@@ -3,32 +3,32 @@ Linux
 Komendy Bash’owe:
 
 ls-la         wyświetl wszystkie widoczne i ukryte pliki i foldery w aktualnej lokalizacji
-tree         wyświetl wszystkie widoczne pliki i foldery w postaci drzewa
+tree          wyświetl wszystkie widoczne pliki i foldery w postaci drzewa
 mkdir         “make direction”; utwórz katalog/w sensie utwórz folder
-touch        utwórz plik, np. touch Lista_moich_plikow.txt
-vim         edytor, np. vim Lista_moich_plikow.txt
-cat         odczyt, np. cat Lista_moich_plikow.txt
-ls-la >         Lista_moich_plikow.txt przekierowanie wyjścia (zapisze w pliku rezultat)
-cd         “change directory”; zmień lokalizację
+touch         utwórz plik, np. touch Lista_moich_plikow.txt
+vim           edytor, np. vim Lista_moich_plikow.txt
+cat           odczyt, np. cat Lista_moich_plikow.txt
+ls-la >       Lista_moich_plikow.txt przekierowanie wyjścia (zapisze w pliku rezultat)
+cd            “change directory”; zmień lokalizację
 cd src        przejdzie do folderu src
-sudo         “super user do”
-pwd         przekazuje aktualną lokalizację
-cd..        pójdź do katalogu wyżej; 
-cd../..         przejdzie o 2 foldery wyżej
-2x tab         podpowiadanie składni
-mv        move up; np. mv Lista_moich_plikow.txt MyFolder/
-mv         Lista_moich_plikow.txt Lista_moich_plikow     zmiana nazwy
-chmod 777    wszystkie uprawnienia do pliku
+sudo          “super user do”
+pwd           przekazuje aktualną lokalizację
+cd..          pójdź do katalogu wyżej; 
+cd../..       przejdzie o 2 foldery wyżej
+2x tab        podpowiadanie składni
+mv            move up; np. mv Lista_moich_plikow.txt MyFolder/
+mv            Lista_moich_plikow.txt Lista_moich_plikow     zmiana nazwy
+chmod 777     wszystkie uprawnienia do pliku
 ps-aux        wyświetl wszystkie procesy (zrzut aktualnej sesji)
-htop        jak menadżer zadań/uboższe top
-sudo pacman -- sync gedit            zainstalowanie paczki
-sudo pacman -- sync refresh        pobieranie wszystkich metadanych (paczek)
+htop          jak menadżer zadań/uboższe top
+sudo pacman -- sync gedit             zainstalowanie paczki
+sudo pacman -- sync refresh           pobieranie wszystkich metadanych (paczek)
 sudo pacman -- sync sysabgrade        aktualizacja systemu
-Terminal     lista poleceń na 1 okno
+Terminal      lista poleceń na 1 okno
 Terminator    nakładka na terminal; pozwala na mnożenie okien, na których można pracować 
-chown        zmiana właściciela, np. sudo chown root SampleFile.txt tylko użytkownik z uprawnieniami root ma dostęp
-mc        midnight comander; menadżer plików;
-bashrc    plik na start powłoki bashowej
+chown         zmiana właściciela, np. sudo chown root SampleFile.txt tylko użytkownik z uprawnieniami root ma dostęp
+mc            midnight comander; menadżer plików;
+bashrc        plik na start powłoki bashowej
 
 
 Linux nie potrzebuje tak jak Windows skrótu pliku, żeby móc odczytać - sam znajdzie w jakim jest formacie, żeby go otworzyć.
