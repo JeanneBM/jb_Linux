@@ -1,1 +1,113 @@
+Polecenia systemu operacyjnego Unix
 
+Zestaw najważniejszych poleceń
+
+Zarządzanie plikami
+
+    cat – wypisywanie i łączenie plików
+    chgrp – zmiana grupy pliku
+    chmod – zmiana praw dostępu do pliku
+    chown – zmiana właściciela/grupy pliku
+    chattr – zmiana konkretnych atrybutów pliku
+    cd – zmiana bieżącego katalogu, użyty bez argumentów powraca do katalogu domowego
+    cp – kopiowanie plików
+    df – wypisywanie wolnej przestrzeni zamontowanych systemów plików
+    du – wyświetla ilość miejsca zajmowanego przez pliki/katalogi
+    file – ustalanie typu danych zawartych w pliku
+    find – przeszukiwanie systemu plików
+    getfacl – odczytanie prawa dostępu z list ACL
+    ln – tworzenie dowiązań twardych i symbolicznych (patrz niżej)
+    ls – listowanie zawartości katalogu
+    lsof – wyświetlanie listy otwartych plików, oraz używających ich programów
+    mkdir – tworzenie katalogów
+    mkfifo – tworzenie nazwanych potoków
+    mv – przenoszenie/zmiana nazwy pliku
+    pwd – wydruk aktualnego katalogu
+    rcp – transfer plików na zdalny host
+    rm – usuwanie plików i katalogów.
+    rmdir – usuwanie katalogów
+    scp – transfer plików bezpiecznym kanałem, SSH, na zdalny host
+    setfacl – ustawienie prawa dostępu list ACL
+    split – dzielenie pliku na kawałki
+    rsync – synchronizacja plików, ewentualnie również bezpiecznym kanałem, SSH.
+    touch – zamiana daty ostatniej modyfikacji, lub dostępu do pliku bądź utworzenie pustego pliku
+    umask – wyświetla aktualną i umożliwia zmianę maski uprawnień dla tworzonych plików
+    unlink – wywołanie systemowe, usuwanie pliku lub katalogu
+
+Zarządzanie systemem plików
+
+    badblocks – kontroluje badblocks (złe bloki urządzeń)
+    df – sprawdzanie przestrzeni (również wolnej) na dyskach
+    fsck – sprawdzanie integralności systemu plików
+    fdisk – manipulacje w tabeli partycji także cfdisk, sfdisk, parted
+    mkfs – tworzenie systemu plików , „formatowanie”
+    lvm – narzędzia do LVM
+    mount – montowanie urządzeń/zasobów w systemie plików (patrz niżej)
+    umount – odmontowanie zasobu z systemu plików (patrz mount)
+    dd – operacje io na dysku z pominięciem systemu plików.
+    mdadm – zarządzania urządzeniami md czyli software RAID
+
+Zarządzanie procesami
+
+    at – jednorazowe wykonywanie polecenia w określonym czasie
+    chroot – uruchomienie programu ze zmienionym katalogiem głównym
+    cron – regularne uruchamianie programów w określonym czasie
+    fg – przeniesienie procesu uruchomionego w tle na pierwszy plan
+    kill – przekazanie sygnału do procesu (domyślnie usunięcie wskazanego procesu)
+    killall – zakończenie wykonywania wszystkich procesów o podanej nazwie
+    ps – pobieranie informacji o aktywnych procesach
+    top – wyświetla najważniejsze procesy
+    watch – monitorowanie wyniku polecenia
+    halt, poweroff, shutdown, reboot – wyłączenie lub restart systemu
+    nice zmienia priorytet procesów
+
+Zarządzanie użytkownikami i systemem
+
+    login – logowanie do systemu
+    passwd – zmiana hasła
+    su – logowanie na konto innego użytkownika (patrz niżej)
+    sudo – uruchomienia aplikacji z uprawnieniami root
+    w – podobnie jak who, jednak zawiera więcej informacji
+    who – wypisanie listy zalogowanych użytkowników wraz z dodatkowymi informacjami o nich
+    whoami – pokazuje bieżący efektywny uid, czyli identyfikator użytkownika, z którego prawami działamy
+
+Przetwarzanie tekstu
+
+    cut – wycina określone znaki z wejścia (zazwyczaj z pliku)
+    grep – wypisywanie linii pasujących do wzorca
+    head – wypisanie pierwszych 10 linijek tekstu
+    more – rozwinięcie o sterowanie strumieniem
+    less – dla dużych ilości tekstów
+    tail – wypisanie ostatnich 10 linijek tekstu, także używane w diagnostyce (patrz niżej)
+    tee – wypisywanie danych wejściowych na standardowe wyjście i do dowolnej liczby plików
+    od – wypisywanie i formatowanie surowej wersji pliku
+    vi – edycja plików tekstowych
+
+Operacje wejścia/wyjścia
+
+    echo – druk na standardowe wyjście
+    printf – bardziej rozbudowane polecenie drukujące na standardowe wyjście.
+    read – wczytanie znaków z terminala
+
+Inne
+
+    clear – wyczyszczenie konsoli/terminala
+    mail – zarządzanie pocztą
+    man – podręcznik elektroniczny
+    xinit – uruchomienie środowiska X Window System
+    test – sprawdzanie typów plików i porównywanie wartości
+
+Operatory (bash)
+
+    && – wykonaj jeśli poprzednie polecenie zakończyło się sukcesem, np. `./configure && make bzImage`
+     ; – bezwzględne wykonanie, np. `clear ; echo -e "Fajnie!"`
+    > – przekierowanie standardowego wyjścia (czyli to co program wypisze w konsoli) do pliku, np. `cat /proc/cpuinfo > ~/cpuinfo.txt`
+    < – przekierowanie do standardowego wejścia, np. `cat < /proc/cpuinfo`, jednak w efekcie to to samo co `cat /proc/cpuinfo` 
+      (w pierwszym przypadku dane wejściowe to plik skierowany na standardowe wejście, w drugim parametr przekazywany do programu, 
+      który znajduje, otwiera i czyta plik)
+    | – skierowanie standardowego wyjścia do potoku, który obsłuży program trzeci, np. `cat /etc/hosts | grep "192.168.0." | awk {print $1}`
+    & – wykonanie programu w tle, np. sudo synaptic &. Program taki nie podaje danych do terminala i pozostawia go możliwym do użycia.
+    `komenda` – wykonanie polecenie bashowego w trakcie wykonywania poprzedniego polecenia, np. `clear && echo -en "\033[1;31mInformacje 
+      o procesorze:\033[1;0m\n`cat < /proc/cpuinfo`\n"` – należy zwrócić uwagę na operator "`", przerywa on na chwilę działanie skryptu, 
+      wykonuje polecenie `cat` i kieruje standardowe wyjście w miejsce operatorów ``. Parametry programu echo – \033[y;xxm 
+      ustawiają kolory – y to kolor tła, x to kolor napisów.
