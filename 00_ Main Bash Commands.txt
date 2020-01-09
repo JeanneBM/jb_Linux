@@ -2,7 +2,7 @@ Linux
 
 Komendy Bash’owe:
 
-ls-la         wyświetl wszystkie widoczne i ukryte pliki i foldery w aktualnej lokalizacji
+ls -la         wyświetl wszystkie widoczne i ukryte pliki i foldery w aktualnej lokalizacji
 tree          wyświetl wszystkie widoczne pliki i foldery w postaci drzewa
 mkdir         “make direction”; utwórz katalog/w sensie utwórz folder
 touch         utwórz plik, np. touch Lista_moich_plikow.txt
