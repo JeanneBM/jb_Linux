@@ -1,0 +1,38 @@
+bin - podstawowy, pliki wykonywalne, programy, polecenia bez ktorych funkcjonowanie po Linuxie byloby niemozliwe
+
+boot - pliki rozruchowe
+
+cdrom - moze byc w mediach
+
+dev - z urzadzeniami, tutaj powstaja partycje
+
+etc - konfiguracje, ustawienia, parametry
+
+home - katalog uzytkownika
+
+lib - biblioteki
+
+media - zewnetrzne nosniki
+
+mnt - dodatkowe punktu montowania, np. dysk zewnetrzny
+
+opt - opcjonalne oprogramowanie, np. dodatki do maszyny wirtualnej
+
+proc - wirtualny system plikow, procesy w systemie, lepiej nic tam nie edytowac
+
+root - katalog administratora, nie na katalogu w home jako wyjatek
+
+run - ... - "podobnie jak proc"
+
+sbin - binaria systemowe uzywane przez administratora 
+
+srv - usługi, np. servera Apache
+
+sys - podobnie jak proc
+
+tmp - pliki tymczasowe, lepiej nie edytowac, czyszczony za kazdym uruchomieniem komputera
+
+usr - aplikacje i pliki uzywane przez uzytkownika
+
+var - zmienne, logi, kopie zapasowe, skrypty
+
