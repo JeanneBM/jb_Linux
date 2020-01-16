@@ -1,0 +1,88 @@
+tylda oznacza, ze jestesmy w katalogu domowym
+
+cd / - pozwala przeniesc sie z kazdego miejsca do katalogu glownego
+
+cd - przeniesie do katalogu domowego
+
+ls -la --sort=time - posortuje po czasie
+ 
+sudo mkdir /home/bolek/katalog123 - sciezka absolutna do stworzenia katalogu w innym miejscu niz jestesmy
+
+mkdir -m 755 test - stworzenie folderu i nadanie uprawnien
+
+mkdir -p dokumenty/{2018/{faktury.umowy}.2019.2020} - tworzenie sieci folderow - tree, / dodaje poziom, a nazwias nazwy katalogow
+
+cp -r - kopiowanie całych katalogow
+
+cp -ru - kopiowanie tylko tych plikow, ktore zmienily sie od ostatniego kopiowania
+
+cp dokumenty/2018/faktura1.txt home/nowa_faktura1.txt - jednoczedne kopiowanie i zmiana nazwy
+
+. oznacza katalog, w ktorym sie znajdujemy
+
+sudo cp -r . /cala_kopia - skopiowanie calego katalogu, w ktorym jestesmy
+
+rm -r - usuwanie całych katalogow
+
+rm -r dokumenty/2018/* - usunie wszystko co jest w katalogu 2018
+
+* oznacza wszystko, dziala jak kazdy znak
+
+rm -r dokumenty/*[9] - usunie kazdy element, w katalogu dokuemnty, ktory posiada 9 w nazwie; wybierajac w nawiasie kilka znakow skasuje wszystko, co ma przyjamniej jeden znak- wielkosc liter ma znaczenie a i A to dwa inne znaki
+
+rm -r dokumenty/^[9] - odwrotnosc powyzszego, kasuje wszystko oprocz elementy z 9 w nazwie
+
+rm -r dokumenty/*[89]/*[k] - wszystkie z k ale tylko z katalogow, ktore maja 8 lub 9
+
+diff - prownywarka zawartosci plikow i katalogow
+
+diff -r dokumenty/ kopiadokumentow/ - wylistyje pliki, ktore roznicuja
+
+file plik - odczytanie informacji o pliku, wiecej informacji o pliku, np. co to za plik
+
+cat > nowyplik.txt - utworzenie pliku i zapisywanie tresci. Zamykane ctrl+d
+
+uzywajac -i nie zwraca uwagi na wielkosc liter
+
+ip a - odczytanie danych ip
+
+find . -iname fakt* - wszystkie pliki, ktore w docelowym maja w nazwie fakt bez wzgledu na wielkosc liter
+
+find . -iname fakt* -ls - to co powyzej wylistowane
+
+find . -iname fakt* -exec cp {} kopia_z_find \; - jak strumien znajdowania i kopiowania, ale funkcja execute, nawiasty "lapia znaleziona zawartosc" i kopiuja do wskazanego pliku, wazne: slash i srednik na koncu jako czesc skladni
+
+tar - domyslny do zarzadzania archiwami
+
+tar -cf dok.tar dokumenty - archiwizowanie katalogu dokumenaty w formie archiwum dok.tar; c tworzy archiwum f nadaje nazwe
+
+tar -tf dok.tar - przegladanie archiwum; t przegladanie, f zawsze kiedy korzystamy z nazwy
+
+-v wyswietla komunikaty
+
+tar -cvf dok2.tar dokumenty - zrob archiwum i to opisze
+
+tar -rf dok.tar home/plik - dodanie pliku do archiwum
+
+tar -cvzf dok3.tar.gz dokumenty - kompresja za pomocja gzip, archiwum o znacznie mniejszej wielkosci
+
+gzip dok.tar - kompresja wczesniej utworzonego archiwum, pierwotne archwium znika
+
+gunzip dok.tar.gz - dekompresja
+
+tar -xf dok.tar - rozpakowywanie archiwum
+
+tar -xf dok.tar -C /nowa_lokalizacja - rozpakowanie do nowej lokalizacji niz domyslna, ta w ktorej bylo archiwum
+
+ln tworzenie linku 
+
+ln link.txt kat_link/nowy_link.txt - twarde dowiazanie nowyt zawiera te same dane co zrodlowy, jak skasujemy zrodlowy nowy pozostanie, bo dowiazanie ogranicza sie do tresci, a nie istnienia 
+
+ln -s link2.txt kat/nowy_link2.txt - dowiazanie miekkie, dziala jak skrot w Windows, jak zrodlowego pliku nie ma drugi nie dziala, plik wskazuje na inny plik po zastosowaniu ls
+
+alias - wypierany przez bardziej praktyczny skrypt, jak ciagle piszesz ta sama zmudna komende mozna zrobic skrot
+
+alias update="sudo apt update" - potem komenda jest tylko update i powinno potraktowac jak cala komende w nawiasie
+
+alias - jako samodzielna komenda pokaze liste posiadanych aliasow
+
