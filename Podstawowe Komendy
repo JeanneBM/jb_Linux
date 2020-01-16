@@ -1,0 +1,18 @@
+Powłoka systemu operacyjnego to program, który udostępnia interfejs pomiędzy użytkownikiem a jądrem systemu. Ma on postać wiersza poleceń. 
+Jądro systemu zawiera wszelkie podprogramy potrzebne do przeprowadzania operacji wejścia i wyjścia, zarządzania plikami itp. 
+Powłoka pozwala korzystać z tych podprogramów za pomocą wiersza poleceń. Poza tym, powłoki obsługują również język programowania. 
+Programy napisane w języku powłoki nazywane są zwykle skryptami lub skryptami powłoki.  
+
+Ogólnie powłoki używane są na trzy sposoby:  
+● interaktywnie, kiedy użytkownik wydaje polecenia  
+● do dostosowania sesji linuksowej do potrzeb użytkownika  
+● do programowania w języku powłoki  
+
+Najczęściej używane powłoki to:  
+/bin/sh - jest to przodek wszystkich innych powłok systemów UNIX-owych, ale brakuje jej wielu przydatnych możliwości  
+/bin/bash - domyślna powłoka systemów linuxowych  
+/bin/csh - składnia i konstrukcje używane w tej powłoce są bardzo podobne do znanych z języka C  
+/bin/tcsh - Jest to bardziej rozbudowana wersja powłoki C Shell  
+/bin/ksh - Jest to jedna z najpopularniejszych powłok UNIX-owych, ale nie jest ona zwykle używana w systemach linuxowych 
+
+Aby sprawdzić, jakiej powłoki używasz, w wierszu poleceń wpisz: echo $SHELL   
