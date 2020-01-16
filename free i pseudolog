@@ -1,0 +1,27 @@
+Termin DevOps dotyczy metodyki zespolenia rozwoju i ekspolatacji systemow informatycznych, w taki sposob, by zapewnic im odpowiednia jakosc. 
+
+DevOps zaklada scisla wspolprace administratorow i programistow, bierze pod uwage zaleznosci miedzy rozowjem i utrzymaniem IT, kladzie nacisk na skrocenie wdrazania funkcji w oprogramowaniu.
+
+free - zajete/wolne przestrzeni w pamieci; pokazuje swapa
+
+free -c 5 - to count, czyli ile razy ma pokazac wynik
+
+free -c 2 -s 2 - pokaze dwa razy ilosc posiadanej pamieci w odstepie czasowym 2 sekund
+
+free -c 5 -s 1 > uzycie_pamieci.txt - zapisze wyniki w pliku
+
+free -c 5 -s 1 > uzycie_pamieci.txt - zapisze wyniki w pliku w wersji bardziej czytelnej blizszej tradycyjnej, pseudolog z funkcjonowania systemu
+
+jak zobaczyc wszystkich uzytkownikow:
+
+more /etc/passwd
+
+sa trzy metodyki usuwania uzytkownikow:
+
+--remove-home - usuwa katalog domowy i poczte
+
+--remove-all-files - usuwa wszystkie pliki nalezace do uzytkownika
+
+--backup-to - tworzy kopie zapasowa
+
+sudo deluser --remove-home --backup-to /home/asia1 asia - usuwanie uzytkownika z katalogiem domowym i poczta z kopia zapasowa
