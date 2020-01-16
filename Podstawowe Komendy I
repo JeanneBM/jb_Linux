@@ -1,0 +1,287 @@
+
+Komendy Bashowe:
+
+man - wyswietlanie stron w podreczniku np. man top
+
+apropos cos - szukanie zapisow w man-ie podreczniku z tym slowem, w komendzie i opisie
+
+type ls - pokaze jakim typem jest komenda ls
+
+whatis df - czym jest komenda df
+
+whereis df - pokaze plik wykonywalny i strone w podreczniku
+
+which df - krotsze whereis - pokaze tylko plik wykonywalny
+
+Kiedy chcemy zamknac plik, badz cokolwiek innego klikamy "q".
+
+help "h"
+
+clear - czyszczenie ekranu
+
+strzalka w gore - poprzednia komenda
+
+history
+
+history 4 -pokaz 4 ostatnie komendy  w historii
+
+!6 - wykonaj 6. komende w historii
+
+shutdown -h now - zamknij komuter teraz
+
+reboot - uruchom ponownie
+
+pwd - pokaz gdzie teraz jestem
+
+ls - zawartosc katalogu, w ktorym jestem
+
+ls /Katalog1 - pokaz zawartosc Katalog1
+
+ls > plik1.txt - tworzy plik1.txt, gdzie zapisuje liste plikow w biezacym katalogu
+
+ls >> plik1.txt - dwa >> dopisuja do pliku tresc
+np. ls -al >> plik1.txt
+
+ls -l - pokaz pliki w katalogu z ich parametrami
+
+ls -a - wszystkie pliki + te ukryte z kropka
+
+ls -al - wszystkie pliki + ukryte + informacje o nich
+
+ls -r - pliki w katalogu w odwrotnej kolejnosci
+
+ls -alr - laczenie komend, wszystkie pliki + ukryte + informacje o nich + odwrotnie
+
+cd Pulpit/ - idz do pliku Pulpit
+
+TAB - automatyczne konczenie nazwy pliku
+
+cd .. - idz katalog wyzej
+
+Sciezka:-
+a. relatywna - krok po kroku przez katalog do pliku
+b. absolutna cd i cala sciazka na raz recznie
+cd /home/asia/cos/costam/tutaj
+
+cat - przegladanie pliku, np. czytanie tekstu. Jak za dlugi, nie zmiesci sie w terminalu i zobaczysz napisy koncowe
+
+tac - zawartosc pliku odwrotnie, ostatni wiersz pierwszy itd.
+
+nl - numerowanie linii, odczyta plik i ponumeruje wiersze jak w notatniku
+
+wc - dane pliku, pokaze ile jest wierszy + ilosc wyrazow + ilosc znakow + nazwa pliku
+
+less - czytanie pliku z chodzeniem po nim strzalkami gora i dol
+
+more - czytanie po kolei procentowo
+
+head - 10 pierwszych wierszy pliku
+
+head -n 5 - 5 pierwszych wierszy
+
+tail - 10 ostatnich wierszy pliku
+
+sort - sortowanie tresci pliku, np. sort wzor
+
+grep 'testowy3' Komendy - znajdzie na czerwono wszystkie testowy3 w tekscie
+
+file wzor - pokaze jaki jest format pliku w ASCII
+
+cat tez laczy pliki, cat plik1.txt plik2.txt > polaczonyplik.txt, poczlaczenie dwoch plikow w jeden
+
+cp plik1 plik2 - skopiuj plik1 i zapisz jako plik2
+
+cp plik1 Katalog1/ - przenies plik1 do Katalog1
+
+tail -n 5 - 5 ostatnich wierszy pliku
+
+touch - tworzenie pliku
+
+mozna tworzyc kilka naraz np. touch plik1 plik2 plik3 plki4
+
+find -name asia - szuka w systemie pliku asia
+
+find -name "'.txt" - znajdzie wszystkie txt
+
+find -type f -name "*.txt" - znajdzie to co wyzej, szuka plikow f jak file
+
+find -type d -name "*.txt" - szukanie katalogow
+
+find -type l -name "*.txt" - szukanie dowiazania symbolicznego
+
+rm - usuwanie pliku
+
+rm -i -plik1 - tryb interaktywny, zapyta czy napewno usunac plik, odpowiedz to t/n albo y/n (jezyk)
+
+rm -f plik1 - wymuszenie usuniecie pliku, niezaleznie od uprawnien do niego
+
+rm -v plik2 - usuwa plik i pisze co zrobil
+
+rm * - usuwa wszystko w katalogu i nie ma odwrotu, niebezpieczna komenda
+
+rm -i * - lepsza wersja kasowania wszystkiego, bo zapyta po kolei i czy ma to usunac
+
+mkdir Katoalog1 - tworzy Katalog1
+
+rmdir Katalog1 - usuwanie Katalog1, jak jest pusty
+
+rm -r Katalog1 - usunie KatalDog1 wraz z wszystkimi plikami wewnatrz
+
+tar - archiwizacja pliku
+
+unzip - odpakowanie zipa
+
+-r komenda zadziala rekursywnie - powtarzalnie
+
+cp * Katalog1/ - skopiuj wszystko dookola do Katalogu1
+
+cp *.gif Katalog1 - kopiowanie wszystkich plikow z rozszerzeniem gif do Katalogu1
+
+cp plik* Katalog1 - kopiowanie wszystkich plikow, gdzie nazwa zaczyna sie od plik
+
+mv asia Katalog1 - przenies plik asia do Katalog1
+
+mv - rowniez zmiana nazwy pliku, np, mv plik4 pliczek4
+
+pico, nano - dwa edytory, wygladaja tak samo
+
+nano plik.txt - utworzy i otworzy plik
+
+ctrlA - poczatek linii
+ctrlE - koniec linii
+ctrlD - usuwanie znaku aktualnie podswietlonego
+ctrlK - usuwanie calej linii
+ctrlU - przywracanie usunietej linii
+
+Potoki - laczenie komend
+
+KOMENDA_0 | KOMENDA_1 | ... | KOMENDA_N
+
+cat PLIK1 | head -n 1 | cat PLIK2 – otwórz plik 1, wytnij tylko pierwszą linię, połacz pierwszą linie pliku 1 z plikiem 2
+
+
+mc - Midnight Commander, Dowodca o Polnocy, jak MS-DOS
+sa dwa okna: zrodlo i lokalizacja docelowa, wazne przy kopiowaniu itp
+TABem do drugiego okna
+dolne menu obsluguja Fy, 1Pomoc to F1
+
+ps - aktualnie dzialajace procesy w tle
+
+pstree - bedzie w drzewku, mozna tak zrozumiec relacje miedzy procesami
+
+ps -aux - aktualnie uruchomione procesy w systemie
+
+USER - uzytkownik powiazany
+PID - numer procesu
+%CPU - zuzycie procesora
+%MEM - obciazenie pamieci
+VSZ - wielkosc pamieci wirtualnej
+COMMAND - nazwa polecenia
+
+top - jak menadzer zadan
+
+htop - ubozsze top
+
+df - pokazuje wykorzystanie dysku
+
+ctrl+Z - zatrzymanie programu
+
+zamykanie
+
+w ps patrze jakie jest PID i kill
+
+kill -9 2275 - zamyka proces, -9 to wysylany sygnal zeby napewno zamknal
+
+killall vi - zabije wszystkie vi
+
+w - zalogowani uzytkownicy i informacje o nich
+
+who - zalogowani
+
+Ctrl + Alt + F1 - pojdzie do termianla nr 1
+
+w -h - uzytkownicy bez naglowkow, ale -h tak nie dziala wszedzie
+
+whoami - jako kto jestem zalogowana
+
+logname - to samo co whoami
+
+id - id uzytkownikami i grupy, z ktorymi jest powiazany
+
+su ktos - przelogowanie na konto ktos
+
+exit - wyloguje z ktos i wroci automatem na asia
+
+su - zaloguje automatem na administratora, na root-a
+
+sudo - wykonanie polecenia jako inny uzytkownik, przewaznie jako adminiostrator
+
+sudo su - zalogowanie na root
+
+passwd - zmiana hasla, bez wkazania na usera bedzie zmienialo zalogowanemu
+
+useradd - dodawanie uzytkownika
+
+adduser - interaktywne dodawanie uzytkownika, lepsze useradd, pelniejsze - z automatu tworzy katalog w home i rejestruje dodatkowe informacje
+
+userdel - usuwanie konta
+
+deluser - interaktywne usuwanie uzytkownika, wyswietla wiecej informacji
+
+usermod -d - ustelnie katalogu domowego dla okreslonego uzytkownika
+
+usermod -d /var/www testowy3 - testowy3 bedzie mial katalog domowy www
+
+usermod -e 2021-01-01 - konto ma wygasnac 01-01-2021
+
+usermod -g grupa testowy3 - przypisanie testowy3 do grupy
+
+usermod -L testowy3 - blokada konta
+
+usermod -U testowy3 - odblokowanie konta i ustalenie nowego hasla z usermod -p testowy3
+
+Uprawnienia:
+
+r - read
+w - write
+x - execute
+
+Odbiorcy:
+
+a - all
+u - user
+g - group
+o - others
+
++ dodanie uprawnien
+- zabranie uprawnien
+
+Rodzaje:
+
+0 - brak
+1 - x
+2 - w
+3 - wx
+4 - r
+5 - rx
+6 - rw
+7 - rwx
+
+chmod - modyfikacje uprawnien
+
+chmod 755 test - nadanie podstawowych uprawnien do pliku test
+
+drwxr-xr-x - d-katalog, rwxr-uzytkownik wszystko, xr-grupa odczyt i wykonanie, reszta-wykonanie
+
+chmod u+rw,g=w,o+r test - modyfikacje uprawnien bez oznaczen numerycznych
+
+
+
+
+
+
+
+
+
+
+
