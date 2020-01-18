@@ -113,3 +113,14 @@ if PATH is set to /bin:/usr/sbin and you type echo, Linux looks for an executabl
 
 ./script.sh (the relative path (./) indicates the working directory) or /home/bob/script.sh (the absolute path)
 
+An inode is a data structure that stores various information about a file in Linux, such as the access mode 
+(read, write, execute permissions), ownership, file type, file size, group, number of links, etc. 
+Each inode is identified by an integer number. An inode is assigned to a file when it is created.
+You can view a file’s inode number using the ls -il command.
+The first number on the left represents the inode number of the file.
+An inode doesn’t store the content of the file and filename. 
+inode - iwęzeł
+
+
+
+
