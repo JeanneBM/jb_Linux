@@ -91,3 +91,20 @@ To make environment variables permanent you need to set them in a global or loca
 
 Environment variables can be deleted using the unset command, which takes the name of an environment variable (without the leading $ symbol) 
 as a parameter. In our case, unset VAR1 deletes the VAR1 environment variable. 
+
+Here is a list of common environment variables in Linux:
+    USER – your current username.
+    SHELL – the path to the current command shell (for example, /bin/bash).
+    PWD – the current working directory.
+    HOSTNAME – the hostname of the computer.
+    HOME – your home directory.
+    MAIL – the location of the user’s mail spool. Usually /var/spool/mail/USER.
+    LANG – your current language.
+    TZ – your time zone.
+    PS1 – the default prompt in bash.
+    TERM – the current terminal type (for example, xterm).
+    DISPLAY – the display used by X. This variable is usually set to :0.0, which means the first display on the current computer.
+    HISTFILESIZE – the maximum number of lines contained in the history file.
+    EDITOR – the user’s preferred text editor.
+    MANPATH – the list of directories to search for manual pages.
+    OSTYPE – the type of operating system.
