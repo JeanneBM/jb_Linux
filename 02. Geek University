@@ -121,6 +121,8 @@ The first number on the left represents the inode number of the file.
 An inode doesn’t store the content of the file and filename. 
 inode - iwęzeł
 
+By default, the ln command creates hard links. To create soft links, you need to use the -s option with the ln command.
+
 
 
 
