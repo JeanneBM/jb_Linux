@@ -78,5 +78,16 @@ A program that needs to know the user’s home directory can refer to the HOME v
 
 To see the environment variables on your system, type env.
 
+To set an environment variable manually, use the equal-sign assignment operator (=). If you want your variable 
+to be available to programs you launch from your shell, use the export command.
+In the example above we have assigned the value example to the variable VAR1. 
+For brevity, you can comibne these two commands in one: export VAR1=example.
+To refer to an environment variable, use the dollar sign ($) in front of the variable name.
+In the example above we have used the echo command to display the content of the variable VAR1.+
 
+Setting an environment variable as described above sets it permanently only for the current shell.
+For example, if you open another terminal window, the variable VAR1 will not be set.
+To make environment variables permanent you need to set them in a global or local bash startup script.
 
+Environment variables can be deleted using the unset command, which takes the name of an environment variable (without the leading $ symbol) 
+as a parameter. In our case, unset VAR1 deletes the VAR1 environment variable. 
