@@ -39,6 +39,11 @@ mkdir command
 To create a new directoy, the mkdir command is used. You must specify the name of the directory. If no path is specified, 
 the directory is created inside the working directory.
 
+The syntax of the info command simple, just type info followed by the command. 
+Note that not all commands have information available in the info database.
+
+
+
 man -k = apropos
 
 
