@@ -39,6 +39,10 @@ mkdir command
 To create a new directoy, the mkdir command is used. You must specify the name of the directory. If no path is specified, 
 the directory is created inside the working directory.
 
+man -k = apropos
+
+
+
 echo command
 The echo command is used to to output text to the screen. You simply type echo and then the text you would like to display.
 
