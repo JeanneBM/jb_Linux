@@ -65,4 +65,7 @@ Typing history -c clears the history. Use this option if you have typed commands
   
 A directory is a location for storing files on your computer.
 
+If you use the rm command, you need to include the -r option, which means that the command will remove the directory 
+and its content recursively.
+
 
