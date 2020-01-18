@@ -1,2 +1,3 @@
 echo
 
+ls ./my_folder/
