@@ -1,3 +1,6 @@
 echo
 
 ls ./my_folder/
+
+env
+
