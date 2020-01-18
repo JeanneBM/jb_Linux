@@ -69,6 +69,14 @@ If you use the rm command, you need to include the -r option, which means that t
 and its content recursively.
 
 The most common way to create a file in Linux is by using the touch command. 
-Although the primary purpose of this command is to update the timestamp of a file, it is often instead used to create one.
+>> Although the primary purpose of this command is to update the timestamp of a file, it is often instead used to create one.
+
+Environment variables are placeholders for data that can change.
+For example, each user typically has its own home directory, 
+so the content of the HOME environment variable is different for each user on the system. 
+A program that needs to know the user’s home directory can refer to the HOME variable to obtain this information.
+
+To see the environment variables on your system, type env.
+
 
 
