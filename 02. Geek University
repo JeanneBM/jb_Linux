@@ -108,3 +108,8 @@ Here is a list of common environment variables in Linux:
     EDITOR – the user’s preferred text editor.
     MANPATH – the list of directories to search for manual pages.
     OSTYPE – the type of operating system.
+
+if PATH is set to /bin:/usr/sbin and you type echo, Linux looks for an executable program called echo in /bin and then in /usr/sbin.
+
+./script.sh (the relative path (./) indicates the working directory) or /home/bob/script.sh (the absolute path)
+
