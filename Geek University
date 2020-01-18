@@ -1,4 +1,20 @@
 uname -a - to find out the kernel version of your Linux installation
 
+All files and directories appear under the root directory (represented with a single slash – /).
 
+Hardware devices are represented by a special file stored in the /dev directory 
+(for example, /dev/sda usually represents the first hard disk on the system).
 
+All files and directories appear under the root directory (/). 
+
+/boot – contains files related to the initial booting of the computer.
+/bin – contains certain critical executable files, such as ls, cp, and mount.
+/dev – contains device files like hard disks or CD-ROMs.
+/sbin – similar to /bin, but it contains programs that are normally run only by the system administrator.
+/etc – contains configuration files.
+/home – user’s home directory.
+/lib – contains program libraries.
+/media – mount point for removable media.
+/usr – contains the majority of user utilities and applications.
+/var – variable files such as logs.
+/tmp – contains temporary files.
