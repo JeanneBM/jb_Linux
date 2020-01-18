@@ -63,4 +63,6 @@ we would press Ctrl+r and then type dd
 To find the next command in history that includes dd, we can press Ctrl+r again.
 Typing history -c clears the history. Use this option if you have typed commands that include passwords. 
   
-  
+A directory is a location for storing files on your computer.
+
+
