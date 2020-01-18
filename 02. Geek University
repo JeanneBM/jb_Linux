@@ -68,4 +68,7 @@ A directory is a location for storing files on your computer.
 If you use the rm command, you need to include the -r option, which means that the command will remove the directory 
 and its content recursively.
 
+The most common way to create a file in Linux is by using the touch command. 
+Although the primary purpose of this command is to update the timestamp of a file, it is often instead used to create one.
+
 
