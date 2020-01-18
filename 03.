@@ -3,4 +3,13 @@ ls ./my_folder/
 env
 export
 unset
-
+mail
+lang
+tz
+ps1
+term
+display
+histfilesize
+editor
+manpath
+ostype
