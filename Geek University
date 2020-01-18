@@ -18,3 +18,33 @@ All files and directories appear under the root directory (/).
 /usr – contains the majority of user utilities and applications.
 /var – variable files such as logs.
 /tmp – contains temporary files.
+
+ a shell is a CLI (Command-Line Interface) between a users and the kernel. 
+ 
+ Some common shells found in Linux distributions are:+
+
+    bash – bash stands for Bourne Again Shell. The most common default shell.
+    C shell – the shell with the interface similar to the C language.
+    Korn – popular among UNIX System V users.
+    
+    @ sign is the hostname of the computer (ubuntu in this case). 
+    
+ls command
+The ls command lists the directory content. If no directory is specified, the command will display the content of the working directory.
+
+pwd command
+The pwd command is used to print the path of the current directory.
+
+mkdir command
+To create a new directoy, the mkdir command is used. You must specify the name of the directory. If no path is specified, 
+the directory is created inside the working directory.
+
+echo command
+The echo command is used to to output text to the screen. You simply type echo and then the text you would like to display.
+
+whoami command
+The whoami command displays the username of the current user.
+
+cd command
+To change the current working directory we use the cd command. You must specify the path of the directory you would like to access.
+
