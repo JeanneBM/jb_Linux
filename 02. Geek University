@@ -48,3 +48,10 @@ The whoami command displays the username of the current user.
 cd command
 To change the current working directory we use the cd command. You must specify the path of the directory you would like to access.
 
+history
+You can also press Ctrl+r to search your command history. For example, to search the history for commands that include dd, 
+we would press Ctrl+r and then type dd
+To find the next command in history that includes dd, we can press Ctrl+r again.
+Typing history -c clears the history. Use this option if you have typed commands that include passwords. 
+  
+  
