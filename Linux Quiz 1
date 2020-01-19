@@ -1,0 +1,94 @@
+Linux Quiz 1
+
+    To find out the kernel version of a Linux installation, which command can be used?
+    Marked Answer :
+
+    uname -a
+    Correct Answer :
+
+    uname -a
+    Total Marks : 1MARKS OBTAINED 1
+
+    The file /dev/sda usually represents…?
+    Marked Answer :
+
+    the first hard disk on the system.
+    Correct Answer :
+
+    the first hard disk on the system.
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command can be used to display the first few lines of a text file?
+    Marked Answer :
+
+    head
+    Correct Answer :
+
+    head
+    Total Marks : 1MARKS OBTAINED 1
+
+    What does the pwd command do?
+    Marked Answer :
+
+    It prints the name of the working directory.
+    Correct Answer :
+
+    It prints the name of the working directory.
+    Total Marks : 1MARKS OBTAINED 1
+
+    Most Linux distributions have almost identical directory structures because of which standard?
+    Marked Answer :
+
+    Filesystem Hierarchy Standard (FHS)
+    Correct Answer :
+
+    Filesystem Hierarchy Standard (FHS)
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which of the following commands will number the lines in the file list.txt?
+    Marked Answer :
+
+    nl list.txt
+    Correct Answer :
+
+    nl list.txt
+    Total Marks : 1MARKS OBTAINED 1
+
+    The default shell in most Linux distributions is…?
+    Marked Answer :
+
+    bash
+    Correct Answer :
+
+    bash
+    Total Marks : 1MARKS OBTAINED 1
+
+    To get more information about a command in Linux, you can use what tool?
+    Marked Answer :
+
+    man
+    Correct Answer :
+
+    man
+    Total Marks : 1MARKS OBTAINED 1
+
+    The standard input usually comes from…?
+    Marked Answer :
+
+    the keyboard
+    Correct Answer :
+
+    the keyboard
+    Total Marks : 1MARKS OBTAINED 1
+
+    The wildcard ? will match…?
+    Marked Answer :
+
+    a single character
+    Correct Answer :
+
+    a single character
+    Total Marks : 1MARKS OBTAINED 1
+
+Total Marks
+10 / 10
