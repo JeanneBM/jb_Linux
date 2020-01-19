@@ -144,5 +144,8 @@ You can redirect the input to a program from a file. [przekierowanie] Redirectio
 
 mail - takes the content of a file as standard input
 
+pipeline - przetwarzanie potokowe, czyli kilka komend z |
+
+
 
 
