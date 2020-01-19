@@ -154,3 +154,4 @@ To rectify this, we need to update the database manually. This can be done using
 After the update, we should be able to find the recently added files.
 Because locate works from a database, it’s usually much faster than find.
 
+To turn on support for the mouse, use the -m option when invoking nano.
