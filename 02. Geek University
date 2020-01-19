@@ -123,6 +123,26 @@ inode - iwęzeł
 
 By default, the ln command creates hard links. To create soft links, you need to use the -s option with the ln command.
 
+Hard links can only be created to files on the same partition.
+
+Three types of wildcards are common in Linux:
+? – matches a single character. For example, O??d matches anything that begins with O, ends with d and has two characters in between 
+(like Oind, Okhd, Oerd, but not Oereed, Oad, Oerererd.)
+* – matches any character or set of characters, including no character. For example, O*d matches anything that begins with O and ends with d 
+(like Oind, Okhd, Oerd, Oereed, Oad, Oerererd, Od, Oarmeerrd). The number of characters in between O and d is not important.
+Bracketed values – match characters enclosed in square brackets. For example, O[ac]d matches only Oad and Ocd. 
+You can also specify a range of values: O[a-e]d matches Oad, Obd, Ocd, Odd and Oed.
+
+ls -l O[ac]d - to list all files that begin with O and end with d and have a or c in between 
+
+Linux shells use three standard streams:
+standard input – usually the input from the keyboard. For example, commands that are executed by typing them.
+standard output – displays the output from commands, usually to the terminal.
+standard error – displays error output from commands. It is usually sent to the same output as standard output, but it can be redirected.
+
+You can redirect the input to a program from a file. [przekierowanie] Redirections are done using symbols after the command.
+
+mail - takes the content of a file as standard input
 
 
 
