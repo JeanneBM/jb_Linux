@@ -148,7 +148,9 @@ pipeline - przetwarzanie potokowe, czyli kilka komend z |
 
 The locate command searches a database of filenames in Linux. 
 Unlike the find command, which can find files by permissions, owner, file size, etc, the locate command finds files only by their name. 
-
-
-
+This command does not search your system live. Instead, it has its own database that it usually updated once a night or once a week. 
+This means that locate may not find files added since the last database update.
+To rectify this, we need to update the database manually. This can be done using the updatedb command. 
+After the update, we should be able to find the recently added files.
+Because locate works from a database, it’s usually much faster than find.
 
