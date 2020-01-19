@@ -146,6 +146,9 @@ mail - takes the content of a file as standard input
 
 pipeline - przetwarzanie potokowe, czyli kilka komend z |
 
+The locate command searches a database of filenames in Linux. 
+Unlike the find command, which can find files by permissions, owner, file size, etc, the locate command finds files only by their name. 
+
 
 
 
