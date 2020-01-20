@@ -1,4 +1,4 @@
-Linux
+Podstawowe Komendy Linux w pracy Software Engineer
 
 Komendy Bash’owe:
 
