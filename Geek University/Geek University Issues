@@ -1,1 +1,58 @@
-
+Overview
+  What is Linux?
+  Differences between Linux and Windows
+  Differences between Unix and Linux
+  Linux distributions 
+  Linux kernel 
+  File structure in Linux 
+  Filesystem Hierarchy Standard (FHS)
+  
+Installation
+   Change the boot order in BIOS 
+   Install Ubuntu 
+   Install CentOS on VMware Player 
+   Login to Ubuntu
+   
+Shell
+  The shell in Linux 
+  Bourne-again shell (Bash) 
+  Start the shell in Ubuntu 
+  Essential Linux commands 
+  Command line history
+  Manual pages 
+  Info command
+  Manage directories 
+  Manage files 
+  Environment variables 
+  Common environment variables 
+  PATH environment variable 
+  Inode 
+  Links 
+  Hard links 
+  Symbolic links 
+  Wildcard 
+  Streams 
+  Redirect input and output 
+  Pipe data between programs 
+  Sort lines of a text file 
+  Search for text strings using grep 
+  Search for files using find 
+  Search for files using locate 
+  Count lines in a file 
+  Determine file type whereis command 
+  Display last lines of a text file 
+  Display first lines of a text file 
+  Split the output of a program 
+  Linux Quiz 1
+  
+Editing text
+  Text editors 
+  Gedit text editor 
+  KWrite text editor 
+  Pico text editor 
+  Nano text editor 
+  less text viewer
+ 
+Managing processes
+  What is a process? 
+  List all running processes
