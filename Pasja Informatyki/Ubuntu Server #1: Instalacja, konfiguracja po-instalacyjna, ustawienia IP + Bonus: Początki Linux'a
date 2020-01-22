@@ -1,1 +1,74 @@
+Czym jest Linux?
+
+W roku 2003 firma IBM ufundowala Linuxowi reklame telewizyjna w USA.
+
+Linus Torvalds - Kod kernela Linux (Pingwin TUX = Torvalds UNIX/Tuxedo, szybkosc zezloszczonego pingwina)
+Richard Stallman - Tresc licencji GNU GPL (od Antylopy)
+
+Jadro systemu operacyjnego - (ang. kernel) - podstawowa czesc systemu operacyjnego, ktora jest opowiedzialna za wszystkie 
+jego elementarne zadania: wspolprace z rejestrami procesora, pamiecia (operacje zapisu / odczytu) oraz urzadzeniami 
+zewnetrznymi. Z budowy jadra wynikaja jego unikatowe cechy, takie jak: wielozadaniowosc, wielodostepnosc, wywlaszczalnosc 
+i tym jest stricte Linux, na ktorym oparty jest caly OS.
+
+Aplikacje:
+	  Jadro Systemu operacyjnego:
+		    Procesor
+		    Pamiec
+		    Urzadzenia
+
+Licencja GNU GPL (General Public Licence) - zasady licencyjne okreslone przez konsorcjum Software Foundation. 
+Jesli ktos wprowadza do obiegu oprogramowanie zawierajace jakakolwiek czesc podlegajaca licencji GPL, to musi udostepnic 
+wraz z kazda dystrybucja binarna jej postac zrodlowa.
+
+Jadro Linux jest rozprowadzane na licencji GNU GPL. Celem licencji GNU GPL jest zagwarantowanie uzytkownikowi swobody 
+udostepniania oraz zmieniania wolnego oprogramowania, a wiec danie pewnosci, iz oprogramowanie jest wolno dostepne 
+dla wszystkich uzytkownikow. System Linux nie jest oprogramowaniem bedacym wlasnoscia ogolu (public domain). 
+Prawa autorskie do poszczegolnych zrodel czesci skladowych Linuxa naleza do roznych autorow poszczegolnych czesci kodu. 
+
+Dystrybucja systemu Linux - (ang. distro) - caly system operacyjny oparty o jadro Linux (czyli zestaw zlozony z jadra, 
+oprogramowania narzedziowego i uzytkowego oraz instalatora). Linux formalnie oznacza jadro systemu, jednak wiekszosc ludzi 
+zwykla nazywac w ten sposob cala dystrtybucje. 
+
+Dystrybucja nazywana jest distros. Liste popularnych distros mozna zobaczyc na stronie: distrowatch.org
+
+Od poczatku prac nad kernelem Linus trzymal sie tradycji, iz jadro wydane z parzystym drugorzednym numerem wersji oznacza 
+tzw. wersje stablina (np. 1.2.x,2.2.x). Oczywiscie zawsze warto przeczytac informacje release'owe danej wersji jadram 
+by poznac szczegoly konkretnego wydania i poczynione zmiany.
+
+Kod jadra mozna zobaczyc pod adresem:github.com/torvalds/linux
+
+Graficzny interfejs uzytkownika (GUI) czesto tez nazywany srodowiskiem graficznym (albo "iksami" za sprawa tradycji 
+z lat 80-tych, od projektu X Window System) - okresla sposob prezentowania informacji przez komputer oraz interakcji 
+z uzytkownikiem. System operacyjny pozbawiony srodowiska graficznego to system tekstowy. Systemy komunikujace sie 
+z uzyciem srodowiska graficznego to systemy graficzne (okienkowe). Przykladowe srodowiska GUI: GNOME, KDE, LXDE, UNITY, MATE.
+
+BASH - Powloka systemowa napisana dla projektu GNU. Program jest rozprowadzany na licencji GNU GPL. BASH to jedna 
+z najpopularniejszych powlok systemowych. Jest domyslna powloka w wiekszosc dystrybucji systemu GNU/Linux oraz 
+w systemie OS X od wersji 10.3, istnieja takze wersje dla wiekszosci systemow uniksowych.
+
+Nazwa jest akronimem od Bourne - Again Shell (angielska gra slow: fonetycznie brzmi tak samo, jak born again shell, 
+czyli odrodzona powloka). Wywodzi sie od powloki Bourne'a o nazwie sh, ktora byla jedna z pierwszych i najwazniejszych 
+powlok systemu UNIX.
+
+HARDWARE > Kernel - Shell > Utilities - User
+
+CSH - (od ang. C shell) - jest jedna z systemowych powlok uniksowych. Zostala stworzona przez Billa Joya dla systemu BSD. 
+Nazwa C shell jest gra slow: doslownie oznacza powloke [o skladni] jezyka C, fonetycznie da sie to jednak odczytac sea shell,
+czyli muszelka :)
+Powloka C shell wniosla wiele ulepszen w stosunku do SH, m.in. aliasy i historie komend
+
+KSH - (ang. Korn shell) to powloka unixowa stworzona przez Davida Korna z AT&T Bell Laboratories w polowie lat 80-tych. 
+Powloka KSH jest calkowicie kompatybilna wstecz z powloka SH, zawiera takze wiele elementow z powloki CSH - takich 
+jak historia wpisanych komend. KSH zawiera wbudowany system obliczania wyrazen arytmetycznych oraz zaawansowane funcje 
+skryptow podobne do tych uzywanych w AWK czy Perlu.
+
+Dystrybucja Linuxa w wersji desktop - system operacyjny wyposazony w srodowisko graficzne GUI, dobry do codziennego 
+uzytkowania w domu czy w pracy
+
+Dystrybucja Linuxa w wersji server - system operacyjny w wersji tekstowej (czyli z terminalem, ale bez GUI). 
+Srodowisko graficzne nie jest zainstalowane, poniewaz serwery to maszyny przeznaczone do realizowania konkretnych zadan 
+(np. hostowania stron internetowych albo domeny w sieci lokalnej). Serwery czesto zreszta dzialaja bez podlaczonego monitora,
+a konfiguracje przeprowadzamy zdalnie, podlaczajac sie z uzyciem protokolu SSH i np. programu PuTTY. 
+Oczywiscie czasami jakas wersja serwerowa distro moze posiadac GUI, ale to wyjatki od ogolnie przyjetej zasady.
+
 
