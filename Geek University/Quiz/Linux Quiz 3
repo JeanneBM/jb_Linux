@@ -1,0 +1,94 @@
+Linux Quiz 3
+
+    Which command is used to modify permissions of a file in Linux?
+    Marked Answer :
+
+    chmod
+    Correct Answer :
+
+    chmod
+    Total Marks : 1MARKS OBTAINED 1
+
+    The /etc/shadow file in Linux is used to store…?
+    Marked Answer :
+
+    various password information
+    Correct Answer :
+
+    various password information
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command usermod -l johnwilliams jwilliams will…?
+    Marked Answer :
+
+    Change the login name of the user jwillams to johnwilliams.
+    Correct Answer :
+
+    Change the login name of the user jwillams to johnwilliams.
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command chage -M 30 bob will…?
+    Marked Answer :
+
+    Set the bob’s password to expire 30 days from the day the command was run.
+    Correct Answer :
+
+    Set the bob’s password to expire 30 days from the day the command was run.
+    Total Marks : 1MARKS OBTAINED 1
+
+    The /etc/shadow file is typically readable by…?
+    Marked Answer :
+
+    Only the root user.
+    Correct Answer :
+
+    Only the root user.
+    Total Marks : 1MARKS OBTAINED 1
+
+    To change your own password, you can use which command?
+    Marked Answer :
+
+    passwd
+    Correct Answer :
+
+    passwd
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command is used to create groups in Linux?
+    Marked Answer :
+
+    addgroup
+    Correct Answer :
+
+    addgroup
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command groupmod -n test_group new_group will…?
+    Marked Answer :
+
+    Change the name of the group from new_group to test_group.
+    Correct Answer :
+
+    Change the name of the group from new_group to test_group.
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command chmod 764 file.txt will assign which permissions to the file?
+    Marked Answer :
+
+    owner – read, write, execute / group – read, write / others – read
+    Correct Answer :
+
+    owner – read, write, execute / group – read, write / others – read
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command is used to display the default permissions for newly created files?
+    Marked Answer :
+
+    umask
+    Correct Answer :
+
+    umask
+    Total Marks : 1MARKS OBTAINED 1
+
+Total Marks
+10 / 10
