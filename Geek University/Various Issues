@@ -165,4 +165,17 @@ down arrow key – down a line
 g NUMBER – moves to the specified line
 q – quits the program
 
- 
+If you have a program that takes a long time to complete, you might want to run that program in the background. To do that, 
+simply append an ampersand (&) to the command.
+To stop a running program and put it in the background, press Ctrl+Z.
+
+Some of the RPM-based distributions are Red Hat, Fedora, Fermi Linux, CentOS, SUSE Enterprise, openSUSE, and Mandriva. 
+This can be done using the rpm command.
+
+yum (Yellowdog Updater, Modified) is a command-line package manager for RPM-based Linux distributions such as CentOS, Red Hat, and Fedora. 
+yum enables you to install a package and all its dependencies, delete a package, upgrade existing packages, search for packages, etc.
+The syntax of the yum command is: yum [OPTIONS] [COMMAND] [PACKAGE]
+
+Debian packages are adopted by several Linux distributions, most notably Ubuntu, Knoppix and Linux Mint. Debian packages usually 
+have the .deb extension. To install, remove or list Debian packages, the dpkg command is used.
+
