@@ -64,4 +64,29 @@ Managing processes
   jobs command
   
 Install applications
+  Package managers 
+  RPM Package Manager 
+  yum package manager 
+  Debian package manager 
+  Advanced Packaging Tool (APT) 
+  apt-cache command 
+  apt-get command 
+  dselect 
+  aptitude 
+  Synaptic Package Manager 
+  tar (tape archive) program 
+  cpio program 
+  Convert between packages 
+  Linux Quiz 2
+ 
+Manage users
+  root account 
+  Create users 
+  Delete users 
+  Modify users 
+  Manage passwords 
+  /etc/passwd file format 
+  /etc/shadow file format 
+  Change passwords
   
+
