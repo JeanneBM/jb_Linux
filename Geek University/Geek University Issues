@@ -89,4 +89,26 @@ Manage users
   /etc/shadow file format 
   Change passwords
   
+Manage groups
+  Linux groups 
+  Create groups 
+  Delete groups 
+  Modify groups 
+  /etc/group file format 
+  Administer groups 
+  Customize a user’s work environment
 
+Permissions
+  UID (User Identifier) and GID (Group Identifier) 
+  Manage file ownership 
+  Change file ownership 
+  Permissions basics 
+  Permission bits 
+  Identify file type 
+  Modify file permissions 
+  Set the default permissions for newly created files 
+  Change file attributes 
+  Linux Quiz 3
+  
+Manage hardware
+  
