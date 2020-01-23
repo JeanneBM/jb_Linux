@@ -1,0 +1,94 @@
+Linux Quiz 4
+
+    A virtual filesystem created dynamically by Linux that contains information about system resources is…?
+    Marked Answer :
+
+    /proc
+    Correct Answer :
+
+    /proc
+    Total Marks : 1MARKS OBTAINED 1
+
+    To find out which I/O ports your system is using, you can use which command?
+    Marked Answer :
+
+    cat /proc/ioports
+    Correct Answer :
+
+    cat /proc/ioports
+    Total Marks : 1MARKS OBTAINED 1
+
+    The kernel modules are usually stored in…?
+    Marked Answer :
+
+    /lib/modules
+    Correct Answer :
+
+    /lib/modules
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command uname -a will…?
+    Marked Answer :
+
+    display all available information about your system.
+    Correct Answer :
+
+    display all available information about your system.
+    Total Marks : 1MARKS OBTAINED 1
+
+    Where is the configuration file for GRUB version 1 is usually stored?
+    Marked Answer :
+
+    /boot/grub/menu.lst
+    Correct Answer :
+
+    /boot/grub/menu.lst
+    Total Marks : 1MARKS OBTAINED 1
+
+    grub.cfg, the configuration file for GRUB v2, is generated from the content of…?
+    Marked Answer :
+
+    The /etc/default/grub file and the /etc/grub.d directory.
+    Correct Answer :
+
+    The /etc/default/grub file and the /etc/grub.d directory.
+    Total Marks : 1MARKS OBTAINED 1
+
+    To inspect the the boot process of a Linux system, which command can be used?
+    Marked Answer :
+
+    dmesg
+    Correct Answer :
+
+    dmesg
+    Total Marks : 1MARKS OBTAINED 1
+
+    What is a runlevel in Linux?
+    Marked Answer :
+
+    The operating state of a Linux operating system.
+    Correct Answer :
+
+    The operating state of a Linux operating system.
+    Total Marks : 1MARKS OBTAINED 1
+
+    The first process that is run by the kernel is known as…?
+    Marked Answer :
+
+    The init process.
+    Correct Answer :
+
+    The init process.
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command can be used to display information about USB devices connected to a Linux system?
+    Marked Answer :
+
+    lsusb
+    Correct Answer :
+
+    lsusb
+    Total Marks : 1MARKS OBTAINED 1
+
+Total Marks
+10 / 10
