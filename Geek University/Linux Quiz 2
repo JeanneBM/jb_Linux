@@ -1,0 +1,94 @@
+Linux Quiz 2
+
+    In Linux, the priority of a running process can be changed using which command?
+    Marked Answer :
+
+    renice
+    Correct Answer :
+
+    renice
+    Total Marks : 1MARKS OBTAINED 1
+
+    To convert an RPM package to DEB format, you can use a program called…?
+    Marked Answer :
+
+    alien
+    Correct Answer :
+
+    alien
+    Total Marks : 1MARKS OBTAINED 1
+
+    To run a program in the background, which character needs to be appended to the command in Linux?
+    Marked Answer :
+
+    &
+    Correct Answer :
+
+    &
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command is used to create file archives in Linux?
+    Marked Answer :
+
+    tar
+    Correct Answer :
+
+    tar
+    Total Marks : 1MARKS OBTAINED 1
+
+    To kill a process based on its name rather than its PID number, you would use which command?
+    Marked Answer :
+
+    killall
+    Correct Answer :
+
+    killall
+    Total Marks : 1MARKS OBTAINED 1
+
+    A front-end to dpkg that is used to manage software packages in Debian and Debian-based Linux distributions is…?
+    Marked Answer :
+
+    dselect
+    Correct Answer :
+
+    dselect
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command apt-cache search firefox will…?
+    Marked Answer :
+
+    Search and display a list of packages that contain the word firefox in their name or description.
+    Correct Answer :
+
+    Search and display a list of packages that contain the word firefox in their name or description.
+    Total Marks : 1MARKS OBTAINED 1
+
+    What is the purpose of the jobs command?
+    Marked Answer :
+
+    Displays the status of jobs started in the current terminal window.
+    Correct Answer :
+
+    Displays the status of jobs started in the current terminal window.
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command dpkg -r vim-common will do what?
+    Marked Answer :
+
+    Remove the .deb package vim-common.
+    Correct Answer :
+
+    Remove the .deb package vim-common.
+    Total Marks : 1MARKS OBTAINED 1
+
+    To extract the archive compress.tgz, we can use use which command?
+    Marked Answer :
+
+    tar xvfz compress.tgz
+    Correct Answer :
+
+    tar xvfz compress.tgz
+    Total Marks : 1MARKS OBTAINED 1
+
+Total Marks
+10 / 10
