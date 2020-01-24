@@ -180,12 +180,80 @@ Configure hard disks
    fdisk utility 
    GNU Parted utility 
    Create a file system 
-   
+   Mount a file system 
+   /etc/fstab file 
+   Mount a USB device 
+   Check disk space 
+   Check file disk usage 
+   Check file systems 
+   Obtain file system information 
+   Adjust file system parameters 
+   Debug a file system
 
 Configure disk quotas
+  Disk quotas 
+  Enable quota support 
+  Set quotas 
+  Disk quota reporting 
+  Linux Quiz 6
+   
 Logging
+  syslog protocol explained 
+  syslogd 
+  rsyslog 
+  Create a log entry 
+  Rotate logs 
+  Common log files 
+  /var/log/messages file
+  
 Schedule jobs
+  Schedule jobs with cron 
+  User cron jobs 
+  Schedule jobs with anacron 
+  Schedule jobs with at
+  
 Date and time
+  date and hwclock commands 
+  Network Time Protocol (NTP) 
+  Configure NTP client 
+  Configure NTP server
+  
 Email
+  Email protocols 
+  Mail server 
+  Read and send mail 
+  Redirect email 
+  Linux Quiz 7
+
 Shell scripting
+  Shell scripts 
+  Create shell scripts 
+  Write shell scripts 
+  if statement 
+  case statement 
+  for loop 
+  while loop 
+  until loop
+
 Miscellaneous
+  Show the full path of shell commands 
+  Remove duplicate lines from a text file 
+  Join lines of two files 
+  Merge files line by line 
+  Convert tabs to spaces 
+  Prepare a file for printing 
+  Split a file into two or more files 
+  Archive a filesystem 
+  Filter text 
+  Shut down the system 
+  Halt, reboot, and power off the system 
+  Create aliases 
+  Octal dump 
+  Number lines in a file 
+  Measure time of program execution 
+  Change characters 
+  Reformat paragraphs 
+  type command 
+  Linux Quiz 8
+  
+ 
