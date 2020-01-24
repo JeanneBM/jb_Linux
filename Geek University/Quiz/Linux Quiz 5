@@ -1,0 +1,94 @@
+Linux Quiz 5
+
+    IPv4 addresses are how many bits long?
+    Marked Answer :
+
+    32
+    Correct Answer :
+
+    32
+    Total Marks : 1MARKS OBTAINED 1
+
+    The first 6 hexacedimal numbers in a MAC address represent…?
+    Marked Answer :
+
+    The card manufacturer.
+    Correct Answer :
+
+    The card manufacturer.
+    Total Marks : 1MARKS OBTAINED 1
+
+    What are the steps of the DHCP four step process?
+    Marked Answer :
+
+    Discover > Offer > Request > Acknowledge
+    Correct Answer :
+
+    Discover > Offer > Request > Acknowledge
+    Total Marks : 1MARKS OBTAINED 1
+
+    The most common way to display the network settings of network interfaces on a Linux system is by using the…?
+    Marked Answer :
+
+    ifconfig command
+    Correct Answer :
+
+    ifconfig command
+    Total Marks : 1MARKS OBTAINED 1
+
+    To configure a static IP address in Ubuntu, you need to edit which file?
+    Marked Answer :
+
+    /etc/network/interfaces
+    Correct Answer :
+
+    /etc/network/interfaces
+    Total Marks : 1MARKS OBTAINED 1
+
+    The /etc/hosts file contains…?
+    Marked Answer :
+
+    IP addresses to hostnames mappings
+    Correct Answer :
+
+    IP addresses to hostnames mappings
+    Total Marks : 1MARKS OBTAINED 1
+
+    The two files that need to be configured to in order to permanently change the hostname of a Linux system are…?
+    Marked Answer :
+
+    /etc/hostname and /etc/hosts
+    Correct Answer :
+
+    /etc/hostname and /etc/hosts
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which protocol is used by the ping command?
+    Marked Answer :
+
+    ICMP
+    Correct Answer :
+
+    ICMP
+    Total Marks : 1MARKS OBTAINED 1
+
+    A packet analyzer in Linux that allows you to intercept network packets is…?
+    Marked Answer :
+
+    tcpdump
+    Correct Answer :
+
+    tcpdump
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command is used to find out information about a domain?
+    Marked Answer :
+
+    whois
+    Correct Answer :
+
+    whois
+    Total Marks : 1MARKS OBTAINED 1
+
+Total Marks
+10 / 10
