@@ -1,0 +1,94 @@
+Linux Quiz 8
+
+    If you use the bash shell, your shell script must begin with…?
+    Marked Answer :
+
+    #!/bin/bash
+    Correct Answer :
+
+    #!/bin/bash
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command shows the full path of shell commands in Linux?
+    Marked Answer :
+
+    which
+    Correct Answer :
+
+    which
+    Total Marks : 1MARKS OBTAINED 1
+
+    To remove duplicate lines from a text file you would use what command?
+    Marked Answer :
+
+    uniq
+    Correct Answer :
+
+    uniq
+    Total Marks : 1MARKS OBTAINED 1
+
+    To convert tabs in a text file to spaces you would use which command?
+    Marked Answer :
+
+    expand
+    Correct Answer :
+
+    expand
+    Total Marks : 1MARKS OBTAINED 1
+
+    What is the greatest disadvantage of the dd command?
+    Marked Answer :
+
+    It backs up the entire partition, including any empty space.
+    Correct Answer :
+
+    It backs up the entire partition, including any empty space.
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command shutdown +5 will…?
+    Marked Answer :
+
+    Shut down the system in 5 minutes.
+    Correct Answer :
+
+    Shut down the system in 5 minutes.
+    Total Marks : 1MARKS OBTAINED 1
+
+    To remove an alias for a command, you would use which command?
+    Marked Answer :
+
+    unalias
+    Correct Answer :
+
+    unalias
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command is used to determine the duration of execution of a command?
+    Marked Answer :
+
+    time
+    Correct Answer :
+
+    time
+    Total Marks : 1MARKS OBTAINED 1
+
+    The tr command in Linux is used to…?
+    Marked Answer :
+
+    Change characters.
+    Correct Answer :
+
+    Change characters.
+    Total Marks : 1MARKS OBTAINED 1
+
+    To reformat paragraphs in a text file, you would use what command?
+    Marked Answer :
+
+    fmt
+    Correct Answer :
+
+    fmt
+    Total Marks : 1MARKS OBTAINED 1
+
+Total Marks
+10 / 10
