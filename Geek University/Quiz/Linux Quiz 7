@@ -1,0 +1,91 @@
+Linux Quiz 7
+
+    Which command is used to execute tasks at certain intervals in Linux?
+    Marked Answer :
+
+    anacron
+    Correct Answer :
+
+    anacron
+    Total Marks : 1MARKS OBTAINED 1
+
+    The line kern.alert  /var/log/kern.log in the syslogd configuration file specifies what?
+    Marked Answer :
+
+    Each log message from the kern facility with the priority of alert and higher will be directed to the file /var/log/kern.log.
+    Correct Answer :
+
+    Each log message from the kern facility with the priority of alert and higher will be directed to the file /var/log/kern.log.
+    Total Marks : 1MARKS OBTAINED 1
+
+    What will the logger This is a log message command do?
+    Marked Answer :
+
+    Write the line This is a log message to /var/log/message.
+    Correct Answer :
+
+    Write the line This is a log message to /var/log/message.
+    Total Marks : 1MARKS OBTAINED 1
+
+    Where is the configuration file for the logrotate command stored?
+    Marked Answer :
+
+    /etc/logrotate.conf
+    Correct Answer : Total Marks : 1MARKS OBTAINED 0
+
+    To remove an at job from the queue, you can use which command?
+    Marked Answer :
+
+    atrm
+    Correct Answer :
+
+    atrm
+    Total Marks : 1MARKS OBTAINED 1
+
+    The line 00 21 * * * root rm /home/bob/trash/* in the /etc/crontab file specifies that…?
+    Marked Answer :
+
+    The command rm /home/bob/trash/* will be run by root at 21:00 every day of the week, every month.
+    Correct Answer :
+
+    The command rm /home/bob/trash/* will be run by root at 21:00 every day of the week, every month.
+    Total Marks : 1MARKS OBTAINED 1
+
+    What date and time will be set with the date 091619552014 command?
+    Marked Answer :
+
+    09/16/2014, 19:55
+    Correct Answer :
+
+    09/16/2014, 19:55
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which port is used by NTP (Network Time Protocol) by default?
+    Marked Answer :
+
+    UDP port 123
+    Correct Answer :
+
+    UDP port 123
+    Total Marks : 1MARKS OBTAINED 1
+
+    To enable one email address to stand in for another one, you need to edit which file?
+    Marked Answer :
+
+    /etc/aliases
+    Correct Answer :
+
+    /etc/aliases
+    Total Marks : 1MARKS OBTAINED 1
+
+    In Ubuntu, the /var/log/message file is replaced by…?
+    Marked Answer :
+
+    /var/log/syslog
+    Correct Answer :
+
+    /var/log/syslog
+    Total Marks : 1MARKS OBTAINED 1
+
+Total Marks
+9 / 10
