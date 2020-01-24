@@ -111,4 +111,81 @@ Permissions
   Linux Quiz 3
   
 Manage hardware
+  proc filesystem (procfs) 
+  IRQ (Interrupt Request) 
+  I/O ports DMA (Direct Memory Access) 
+  Kernel modules 
+  Load kernel modules 
+  Remove kernel modules 
+  Identify CPU 
+  Find out more information about your system 
+  Display information about USB devices
+
+Boot Linux
+  GRUB version 1 
+  GRUB version 2 
+  Alternative boot loaders 
+  mesg command 
+  Runlevels 
+  /etc/inittab 
+  Change runlevel 
+  Linux Quiz 4
   
+Network protocols
+  What is an IP address? 
+  What is a MAC address?
+  What is DHCP? 
+  What is DNS?
+
+Basic networking
+   ifconfig command 
+   Configure a static IP address in Ubuntu 
+   Configure DHCP client on Ubuntu 
+   Configure DNS settings 
+   /etc/hosts file 
+   Configure hostname
+  
+Network tools
+   ping command 
+   traceroute command 
+   host command 
+   dig command 
+   nslookup command 
+   netstat command 
+   tcpdump command 
+   whois command 
+   IP forwarding 
+   Linux Quiz 5
+   
+Overview of file systems
+   File system 
+   ext2fs 
+   ext3fs 
+   ext4fs 
+   Reiser file system 
+   XFS file system 
+   JFS file system 
+   FAT file system 
+   NTFS file system 
+   ISO-9660 file system
+  
+Disk partitioning
+   What is partitioning? 
+   Swap partition 
+   Hard disk interfaces 
+   MBR partitions 
+   GPT partitions
+   
+Configure hard disks
+   fdisk utility 
+   GNU Parted utility 
+   Create a file system 
+   
+
+Configure disk quotas
+Logging
+Schedule jobs
+Date and time
+Email
+Shell scripting
+Miscellaneous
