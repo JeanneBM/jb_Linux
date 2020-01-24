@@ -1,0 +1,94 @@
+Linux Quiz 6
+
+    Which filesystem is usually used for optical disc media?
+    Marked Answer :
+
+    ISO-9660
+    Correct Answer :
+
+    ISO-9660
+    Total Marks : 1MARKS OBTAINED 1
+
+    The partitions that are used as virtual memory when the system runs out of physical memory are known as…?
+    Marked Answer :
+
+    swap partitions
+    Correct Answer :
+
+    swap partitions
+    Total Marks : 1MARKS OBTAINED 1
+
+    The three types of partitions supported by MBR (Master Boot Record) are…?
+    Marked Answer :
+
+    primary, extended, logical.
+    Correct Answer :
+
+    primary, extended, logical.
+    Total Marks : 1MARKS OBTAINED 1
+
+    The preferred partitioning system for hard disks bigger than 2TB is…?
+    Marked Answer :
+
+    GPT
+    Correct Answer :
+
+    GPT
+    Total Marks : 1MARKS OBTAINED 1
+
+    A system configuration file that contains all available disks, disk partitions and their options is…?
+    Marked Answer :
+
+    /etc/fstab
+    Correct Answer :
+
+    /etc/fstab
+    Total Marks : 1MARKS OBTAINED 1
+
+    Which command would you use to display disk space usage on all of a system’s partitions?
+    Marked Answer :
+
+    df
+    Correct Answer :
+
+    df
+    Total Marks : 1MARKS OBTAINED 1
+
+    To find out how much space is being consumed by a particular directory and its subdirectories, you would use the command…?
+    Marked Answer :
+
+    du
+    Correct Answer :
+
+    du
+    Total Marks : 1MARKS OBTAINED 1
+
+    The command fsck /dev/sdc1 will…?
+    Marked Answer :
+
+    check the /dev/sdc1 file system.
+    Correct Answer :
+
+    check the /dev/sdc1 file system.
+    Total Marks : 1MARKS OBTAINED 1
+
+    To obtain information about your ext2, ext3 or ext4 file system, you would use…?
+    Marked Answer :
+
+    The dumpe2fs command.
+    Correct Answer :
+
+    The dumpe2fs command.
+    Total Marks : 1MARKS OBTAINED 1
+
+    To display a summary of hard disk usage and quotas for the specified file system, which command can be used?
+    Marked Answer :
+
+    repquota
+    Correct Answer :
+
+    repquota
+    Total Marks : 1MARKS OBTAINED 1
+
+Total Marks
+10 / 10
