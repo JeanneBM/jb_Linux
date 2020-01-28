@@ -32,3 +32,10 @@ MYLVMBACKUP +
 XTRABACKUP (DB)
 MYSQLDUMP
 
+BackUp:
+Snapshot partycji > tworzenie drugiej partycji, ktora jest klonem > z klona robiony jest backup 
+							(calosc zamraza partycje na sekunde, wiec jest niezauwazalne)
+
+binlogi - Odzyskiwanie skasowanych danych z MySQL.
+
+
