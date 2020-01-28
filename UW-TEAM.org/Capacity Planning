@@ -1,1 +1,29 @@
+Capacity Planning - Jak zaplanowac zasoby serwera?
+
+Capacity Planning - planowanie i modelowanie mocy obliczeniowej na podstawie danych o wydajnosci, dzieki czemu zasoby 
+sa zoptymalizowane, a organizacja dysponuje wystarczajaca moca obliczeniowa, by prowadzic dzialanosc i swiadczyc uslugi 
+na oczekiwanym poziomie. Planowanie pojemnosci serwera.
+
+Dysk + Pamiec + Procesor(CPU) + opcjonalnie wszystkie inne zasoby, ktorych jest ograniczona ilosc 
+(np. pula polaczen do bazy danych)
+
+Konfiguracja LAMP (Stos Lampowy):
+L - Linux, A - Apache, M - MySQL, P - PHP 
+
+Root - APACHE2:
+	-30 MB
+	-30 MB
+	-30 MB	
+	-30 MB
+
+1GB wystarczy na ok 34 polaczen, reszta bedzie kolejkowana. Pamiec ma wplyw na ilosc polaczen jakie jestesmy w stanie obsluzyc.
+
+ApacheBench – program, który został stworzony do wykonywania testów wydajnościowych serwerów HTTP, a w szczególności serwera 
+Apache. „Jest to prosty klient protokołu HTTP, którego jedynym zadaniem jest wydawanie powtarzających się żądań pod adresem 
+serwera, np. oblicza na ile zapytan na sekunde jest w stanie odebrac serwer, ile jest w stanie przyjac polaczen.
+
+uzytkownik: Przegladarka nawiazuje kilka polaczen jednoczesnie z serwerem Apache (4,8, 16 lub in.- wieksze to przez programy 
+przyspieszajace polaczenie) a serwer podaje strone.
+
+Klaster: zestaw serwerow i za pomoca loadbalancera dzielimy ruch przychodzacych zapytan.
 
