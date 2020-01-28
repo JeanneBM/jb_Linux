@@ -1,1 +1,21 @@
+Uzytkownik1 wysyla wiadomosc do swojego servera, serwer1 odnajduje serwer2 uzytkownika2 i tam zapisuje przekaz 
+- dobiera go aplikacja w serwerze - aplkacja odklada na dysku - skrzynka pocztowa uzytkownika2. 
+Uzytkownik2 potrzebuje aplikacji do pobierania zeby zapisac swoje informacje na swoim dysku.
+
+SMTP
+POP3
+IMAP
+
+W serwerach sa 3 aplikacje: Wysylajace, odbierajace i pozwalajace na pobranie na swoj dysk
+
+Czesto app wysylajaca i odbierajaca sa w jednej paczce, np. POSTFIX
+
+single point of failure - pojedynczy serwer w sieci serwerow laczacy wszystko dookola w calosc, jak padnie to wszystko lezy :)
+
+Partycjonowanie powierzchni na dysku - poprzez odpowiednia strukture katalogow
+
+Transporty
+
+
+
 
