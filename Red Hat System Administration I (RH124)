@@ -1,26 +1,5 @@
 Red Hat System Administration I (RH124)
 
-1. Get started with Red Hat Enterprise Linux
-Describe and define open source, Linux distributions, and Red Hat Enterprise Linux.
-
-2. Access the command line
-Log into a Linux system and run simple commands using the shell.
-
-3. Manage files from the command line
-Copy, move, create, delete, and organize files while working from the bash shell.
-
-4. Get help in Red Hat Enterprise Linux
-Resolve problems by using local help systems.
-
-5. Create, view, and edit text files
-Manage text files from command output or in a text editor.
-
-6. Manage local users and groups
-Create, manage, and delete local users and groups, as well as administer local password policies.
-
-7. Control access to files
-Set Linux file system permissions on files and interpret the security effects of different permission settings.
-
 8. Monitor and manage Linux processes
 Evaluate and control processes running on a Red Hat Enterprise Linux system.
 
@@ -47,6 +26,3 @@ Access, inspect, and use existing file systems on storage attached to a Linux se
 
 16. Analyze servers and get support
 Investigate and resolve issues in the web-based management interface, getting support from Red Hat to help solve problems.
-
-17. Comprehensive review
-Review the content covered in this course by completing hands-on exercises.
