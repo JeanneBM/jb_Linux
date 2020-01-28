@@ -27,3 +27,8 @@ Replikacja to nie jest Backup.
 Backup - Kopia bezpieczeństwa, kopia zapasowa (ang. backup copy) – dane, które mają służyć do odtworzenia oryginalnych 
 danych w przypadku ich utraty lub uszkodzenia. 
 
+
+MYLVMBACKUP +
+XTRABACKUP (DB)
+MYSQLDUMP
+
