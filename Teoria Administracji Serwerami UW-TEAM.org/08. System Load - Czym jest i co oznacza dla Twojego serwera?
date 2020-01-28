@@ -1,1 +1,15 @@
+Wartosc jak bardzo jest obciazony system. Aby ocenic skale wyniku trzeba znac moc serwera jaka dysponuje. 
+Jak dziala procesor - jeden core moze wykonywac tylko jedno zadanie, programow mozna odpalic jednoczesnie wiele, 
+ale sam core wykonuje tylko jedna czynnosc wiec przelacza sie miedzy nimi.
 
+load systemowy mowi ile procesow czeka na wykonanie na danym corze procesora. 
+
+Load 1.0! = 100% uzycia CPU.
+Maksymalna liczba jednoczesnie wykonywanych zadan jest rowna liczbie rdzeni procesora. 
+
+jakim procesorem dysponujesz: /proc/cpuinfo
+
+programy moga czekac na moc procesora (najczesciej) albo na dysk. 
+
+Load systemowy serwera mozna sprawdzic przez top lub uptime - trzy cyfry to trzy przedzialy czasowe, jak sa dzisietne 
+to znaczy ze procesor mial czas kiedy nie byl obciazony, przeciazona maszyna jest kiedy jest stale wysoka wartosc. 
