@@ -1,1 +1,29 @@
 
+FE	FE	FE	FE	FE
+
+BE (MySQl)
+		MAX_CONNECTIONS=100+1 polaczen+root
+
+Replikacja MySQL - każda zmiana na serwerze głównym (master), prowadzi do identycznej zmiany na serwerze zapasowym (slave).
+
+(SELECT, INSERT, UPDATE, DELETE)
+			Master (WO) >> Slave (RO)
+
+master zapisuje informacje, a slave odczytuje - odczytow jest wiecej, wiec nie obciaza serwerow.
+
+MAX_CONNECTIONS*(
+	SORT_BUFFER
+	JOIN_BUFFER
+)
+
+Struktury przyspieszajace wyszukiwanie informacji:
+KEY_BUFFER (silnik: MYISAM) - przyspieszanie aplikacji, bufor do trzymania kluczy/indeksow (KEY+DATA) 
+INNODB_BUFFER (silnik: InnoDB) 
+
+MYSQLTUNER.PL - sam obliczy ile dane zajmuja, skrypt Perl umożliwia szybki i prosty przegląd stanu serwera MySQL.
+
+Replikacja to nie jest Backup.
+
+Backup - Kopia bezpieczeństwa, kopia zapasowa (ang. backup copy) – dane, które mają służyć do odtworzenia oryginalnych 
+danych w przypadku ich utraty lub uszkodzenia. 
+
