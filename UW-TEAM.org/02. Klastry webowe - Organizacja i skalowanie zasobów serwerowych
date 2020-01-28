@@ -1,1 +1,76 @@
+Wlasciwa struktura:
+
+RR DNS			
+
+Front-end		Front-end		Front-end 
+(Linux, Apache, Php)	(Linux,Apache, Php)	(Linux, Apache, Php)		php.ini
+IP			IP			IP
+	
+NFS RW
+
+Back end 
+(Linux,
+MySQL,
+Podaje kod,
+FTP)
+	/home
+	/var/session/
+
+
+Protokół transferu plików, FTP (od ang. File Transfer Protocol) – protokół komunikacyjny typu klient-serwer wykorzystujący 
+protokół sterowania transmisją (TCP) według modelu TCP/IP (krótko: połączenie TCP), umożliwiający dwukierunkowy transfer 
+plików w układzie serwer FTP–klient FTP. 
+
+SFTP (ang. SSH File Transfer Protocol) – protokół komunikacyjny typu klient-serwer, który umożliwia przesyłanie plików 
+poprzez sieć TCP/IP.
+
+Przesyłając plik przy użyciu protokołu FTP uzyskujemy dobre przepływności, ale nie zyskujemy bezpieczeństwa – nasze hasła 
+i dane nie są szyfrowane podczas przysyłania, co potencjalnie stwarza zagrożenie ich kradzieży. Znaczną poprawę 
+bezpieczeństwa przynosi protokół SFTP, który nie wymaga obecności serwera FTP, a przesyłane dane są szyfrowane 
+z wykorzystaniem klucza szyfrującego.
+
+SFTP nie powinien być mylony z protokołem FTPS, który jest rozszerzeniem protokołu FTP. 
+
+NFS - Network File System (NFS) – oparty na UDP lub TCP protokół zdalnego udostępniania systemu plików. Standardowy 
+port NFS to 2049.
+
+NFS jest de facto standardowym sieciowym systemem plików na systemach uniksowych. Inne protokoły udostępniające taką 
+usługę, jak np. Coda, nie zyskały dużej popularności. 
+
+Plik php.ini jest to plik konfiguracyjny, który pozwala zdefiniować ustawienia PHP na całym serwerze lub 
+w danym katalogu, do którego domena została przekierowana. Stosowanie pliku php.ini do przechowywania konfiguracji 
+jest bardzo dobrym rozwiązaniem z uwagi na:
+
+    niezaśmiecanie pamięci stałymi,
+    możliwość grupowania danych w sekcje,
+    możliwość zdefiniowania ustawień PHP tylko dla wybranej domeny (katalogu).
+
+Round-robin DNS - loadbalancer, służy do balansowania obciążenia i zwiększenia odporności na awarie serwerów. 
+Kilka hostów z różnymi adresami IP udostępnimy pod jedną nazwą, tak aby klienci losowo łączyli się do któregoś z nich, 
+bez konieczności decydowania do którego. 
+
+CLOUDFLARE.COM - usluga, moze sluzyc za loadbalancera, losuje na ktory serwer ma trafic zapytanie, wykonanie RR DNS
+
+Proxy, Serwer pośredniczący (pośrednik, ang. proxy) – oprogramowanie lub serwer z odpowiednim oprogramowaniem, które 
+dokonuje pewnych operacji (zwykle nawiązuje połączenia) w imieniu użytkownika. Często utożsamiany z pośrednikiem HTTP 
+(HTTP proxy). 
+
+Reverse proxy - W sieciach komputerowych zwrotny serwer proxy to rodzaj serwera proxy, który pobiera zasoby w imieniu 
+klienta z jednego lub więcej serwerów. Zasoby te są następnie zwracane do klienta, wyglądając tak, jakby pochodziły 
+z samego serwera proxy. W przeciwieństwie do serwera proxy przekazywania, który jest pośrednikiem dla swoich powiązanych 
+klientów w kontaktowaniu się z dowolnym serwerem, zwrotny serwer proxy jest pośrednikiem dla swoich powiązanych serwerów, 
+z którymi może się kontaktować dowolny klient. 
+
+Innymi słowy, serwer proxy działa w imieniu klienta (klientów), podczas gdy serwer proxy działa w imieniu serwera (serwerów).
+
+Varnish Cache. Varnish to dopalacz aplikacji webowych (cache HTTP reverse proxy) pozwalający przyśpieszyć ich działanie 
+nawet kilkaset razy, jednocześnie zmniejszając obciążenia generowane przez nie na serwerze. 
+
+Squid - oprogramowanie serwera pośredniczącego (ang. proxy) rozwijane na wolnej licencji. 
+
+
+
+
+tryb RW i RO NFS 
+
 
