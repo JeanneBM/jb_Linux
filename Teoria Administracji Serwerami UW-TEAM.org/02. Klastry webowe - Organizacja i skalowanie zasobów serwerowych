@@ -1,6 +1,6 @@
 Wlasciwa struktura:
 
-RR DNS			
+RR DNS
 
 Front-end		Front-end		Front-end 
 (Linux, Apache, Php)	(Linux,Apache, Php)	(Linux, Apache, Php)		php.ini
@@ -48,6 +48,9 @@ jest bardzo dobrym rozwiązaniem z uwagi na:
 Round-robin DNS - loadbalancer, służy do balansowania obciążenia i zwiększenia odporności na awarie serwerów. 
 Kilka hostów z różnymi adresami IP udostępnimy pod jedną nazwą, tak aby klienci losowo łączyli się do któregoś z nich, 
 bez konieczności decydowania do którego. 
+
+Load balancer - serwer, urzadzenie lub aplikacja, ktora umozliwia rozproszenie ruchu na inne maszyny, 
+aby zrownowazyc obciazenie wszystkich jednostek. 
 
 CLOUDFLARE.COM - usluga, moze sluzyc za loadbalancera, losuje na ktory serwer ma trafic zapytanie, wykonanie RR DNS
 
