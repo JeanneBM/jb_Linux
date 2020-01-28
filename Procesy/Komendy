@@ -36,3 +36,37 @@ START 	Czas uruchomienia procesu
 TIME 	Zużyty czas procesora
 COMMAND 	Polecenie (wraz z parametrami), które spowodowało uruchomienie procesu
 
+W systemie Linux takim najważniejszym procesem jest proces init, będący rodzicem wszystkich innych procesów. 
+
+pstree <użytkownik> - wyświetla drzewo procesów danego użytkownika
+
+pstree <PID> - rozpoczyna budowanie drzewa od procesu z zdefiniowanym numerem PID
+
+Aby zakończyć zadanie należy skorzystać z polecenia: kill <nazwa_bądź_numer_sygnału> PID
+
+
+Lista ważniejszych pozycji znajdujących się w /proc.
+/proc/cpuinfo - wykaz informacji o procesorze: model, wydajność, itp.,
+/proc/consoles - informacja o terminalach,
+/proc/crypto - zabezpieczenia kryptograficzne,
+/proc/devices - lista urządzeń,
+/proc/filesystems - informacja o dostępnych systemach plików,
+/proc/interrupts - lista przerwań wykorzystywanych przez system,
+/proc/ioports - porty wejścia/wyjścia,
+/proc/kcore - obraz pamięci systemu,
+/proc/meminfo - wykaz użycia pamięci fizycznej i swapu.
+/proc/modules - lista modułów wykorzystywana przez system,
+/proc/net - informacje o protokołach sieciowych,
+/proc/partitions - lista partycji,
+/proc/stat -statystyki systemu,
+/proc/uptime - czas pracy systemu,
+/proc/version - wersja kernela,
+/proc/vmstat - statystyki użycia pamięci wirtualnej.
+
+Narzędzie xload w sposób graficzny przedstawia nam obciążenie procesora (oś Y) w funkcji czasu (oś X). 
+Użyta flaga -update ustawia odświeżanie (domyślnie 10 sekund).
+
+Polecenie free poda nam zużycie pamięci (jednostka kB).
+
+Zadaniem narzędzia fuser jest wyświetlenie nazw procesów, które korzystają z podanych plików bądź katalogów. 
+
