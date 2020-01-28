@@ -1,1 +1,22 @@
+LVM - Logical Volume Manager, mechanizm systemu operacyjnego do zarządzania przestrzenią pamięci masowej. W szczególności, 
+zarządca pozwala na połączenie partycji znajdujących się na różnych urządzeniach pamięci masowej w jeden dysk wirtualny. 
 
+PV- wolumen fizyczny < dysk fizyczny
+VG - grupa wolumenow < grupa, do ktorej zaliczaja sie wolumeny
+LV - wolumen logiczny < dysk logiczny
+
+
+LVM umożliwia nam bardziej elastyczne zarządzanie partycjami a w szczególności ich wielkością. Używając LVM jesteśmy 
+w stanie zmieniać wielkość partycji na życzenie, bez konieczności restartowania komputera. Przy niektórych systemach 
+plików nie musimy nawet odłączać partycji by zmienić jej wielkość. 
+
+snapshot - rodzaj zrzutu danych rozumianego jako sposób zapewniania dostępu do starszych wersji danych przechowywanych 
+w pamięci masowej, zwłaszcza dyskowej. 
+
+PVMOVE - Za pomocą komendy pvmove możemy przenieść wszystkie bądź pojedynczy LV pomiędzy PV w ramach danej VG. 
+
+Rozszerzenie VG o utworzone nowe PV, nowa partycje, na ktorej jest zasob do przeniesienia > przenoszenie na uruchomionym dysku 
+> usuniecie starego LV i PV a serwer zacznie dzialac z nowego dysku > resize partycji do calej pojemnosci docelowego dysku
+                                                                    i nie tyrzeba wylaczac zasobu i restartowac komputera. 
+
+Rzadko uzywana funkcjonalnosc.
