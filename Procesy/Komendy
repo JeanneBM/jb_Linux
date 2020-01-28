@@ -4,3 +4,35 @@ sprawdzenie System Load:
 - top
 - uptime
 
+Do wyświetlania listy procesów pracujących w systemie służy polecenie ps.
+Aby wyświetlić listę wszystkich bieżących procesów należy użyć parametru -A :
+
+ps -A
+
+Do wyświetlenia wszystkich procesów uruchomionych w systemie służą parametry -aux :
+
+ps -aux
+
+Objaśnienie poszczególnych kolumn:
+
+USER 	Identyfikator użytkownika będącego właścicielem procesu
+PID 	Identyfikator procesu
+%CPU 	Procentowe zużycie czasu procesora przez proces
+%MEM 	Procentowe zużycie pamięci przez proces
+VSZ 	Rzeczywisty rozmiar procesu, w kilobajtach
+RSS 	Ilość fizycznej pamięci używanej przez proces
+TTY 	Terminal związany z procesem
+STAT 	Status procesu; oto niektóre z możliwych wartości:
+
+R - działający (Runnable)
+D - oczekujący na dostęp do dysku (Disk wait)
+I - nieaktywny przez mniej niż 20 sekund
+S - nieaktywny przez więcej niż 20 sekund
+T - wstrzymany
+Z - Zombie, czyli proces porzucony, który powinien zostać zamknięty przez inny proces
+W - proces przeniesiony czasowo do pliku wymiany
+N - wartość parametru Nice, oznaczającego priorytet procesu
+START 	Czas uruchomienia procesu
+TIME 	Zużyty czas procesora
+COMMAND 	Polecenie (wraz z parametrami), które spowodowało uruchomienie procesu
+
