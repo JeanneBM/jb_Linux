@@ -1,1 +1,11 @@
+Filtry antyspamowe - Aplikacje analizujace tresc i na tej podstawie stwierdzajace czy dana wiadomosc to spam czy nie, 
+szuka znacznikow charakteryzujacych spam.
 
+SPF bazuje na DNS.
+Sender Policy Framework (SPF) – niekomercyjny projekt mający na celu wprowadzenie zabezpieczenia serwerów SMTP przed 
+przyjmowaniem poczty z niedozwolonych źródeł. Ma to pozytywnie wpłynąć na ograniczenie liczby wiadomości mailowych będących 
+spamem. 
+
+SPF sprawdza w DNS kto jest uprawniony do wysylania wiadomosci. "Jesli nadawca jest taki sam jak rekord A to przyjmij poczte".
+
+openspf.org
