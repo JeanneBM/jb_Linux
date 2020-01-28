@@ -1,1 +1,15 @@
+RAID - polaczenie dyskow twardych w jeden zasob, gdy fizycznie jest to kilka urzadzen.
 
+RAID0 - polaczenie wielu dyskow i ich pojemnosci - ale kazdy dysk ma inne dane
+RAID1 - macierz dublowana (mirrored volume), kazdy dysk jest identyczny i po uszkodzeniu jednego z nich mozna go odtwoerzyc 
+bezproblemowo
+RAID3 - pojemnosc zsumowana, szybkosc zsumowana i jeden oddzielny dysk z sumami kontrolnymi (on tak naprawde ogranicza 
+liczbe pozostalych dyskow), pomysl dobry gdy uszkodzony bedzie tylko jeden dysk
+RAID5 - kazdy dysk dzieli sie na tyle czesci co jest dyskow, kazdy ma partycje z sumami kontrolnymi, szybszy od 3 ale 
+tak samo ogranicozne - do awarii tylko jednego dysku
+RAID0+1 - min. 4 dyski, laczymy w pary w R0 a to wszystko polaczone jest w R1, jak piramida, jak pada jeden dysk, 
+pada urzadzenie ale jest zmirrorowane wiec sie odtwarza, zle rozwiazanie bo za duze koszty za maly efekt
+
+RAID1+0 - in. RAID10 - 4 dyski laczone w pary po dwa z mirrorem i w calosc jako dwa urzadzenia ktore sie sumuja, 
+jeden dysk z kazdej pary moze ulec awarii i bedzie ok. Drozsze rozwiazanie, bo potrzebva duzo kart, ale najlepsze.
+ 
