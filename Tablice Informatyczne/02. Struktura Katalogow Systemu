@@ -11,10 +11,30 @@
 /dev  - katalog przechowujacy odnosniki do sterownikow urzadzen zamontowanych w komputerze; 
         programy, odwolujac sie do tych odnosnikow, uzyskuja dostep do urzadzen i komunikuja sie z nimi.
         
-/
-/
-/
-/
-/
-/
-/
+/lib  - katalog zawierajacy biblioteki procedur i modulow uzywanych przez aplikacje.
+
+/mnt  - katalog, w ktorego katalogach podrzednych montowana jest zawartosc wymiennych lub dostepnych poprzez siec 
+        nosnikow informacji - dyskietek, płyt CD-ROM, wspoldzielonych zasobow sieciowych itp.
+       
+/proc - pseudokatalog, dajacy dostep do zaawansowanych funkcji diagnostycznych i konfiguracyjnych systemu operacyjnego;
+        katalog /proc w rzeczywistosci nie istnieje na dysku twardym komputera i jest tworzony od nowa po kazdym 
+        uruchomieniu systemu.
+
+/bin  - katalog zawierajacy narzedzia administracyjne, dostepne przede wszystkim dla administratorow systemu operacyjnego,
+        ale rowniez dla wybranych uzytkownikow.
+        
+/sbin - katalog zawierajacy systemowe narzedzia administracyjne
+
+/tmp  - katalog sluzacy do przechowywania danych tymczasowych, potrzebnych jedynie chwilowo.
+
+/var  - katalog zawierajacy pliki tworzone przez programy dzialajace na komputerze;
+        czesc z nich tworzona jest tylko tymczasowo i przestaje istniec po wylaczeniu programow lub systemu operacyjnego,
+        czesc zas istnieje przez caly czas dzialania systemu i jedynie podlega modyfikacjom
+        
+/lost + found - katalog, w ktorym umieszczane sa pliki odtworzone po awarii systemu operacyjnego, ktora zakonczyla sie 
+                utrata danych 
+                
+/opt   - katalog, w ktorym instalowane sa niektore aplikacje
+
+/usr   - katalog zawierajacy programy, moduly i biblioteki procedur dostepne dla wszystkich uzytkownikow systemu operacyjnego
+
