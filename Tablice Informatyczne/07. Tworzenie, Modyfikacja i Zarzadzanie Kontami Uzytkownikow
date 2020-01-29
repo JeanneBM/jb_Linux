@@ -20,3 +20,17 @@ cat /etc/group    Wyswietla szczegolowe informacje dotyczace wszystkich grup uzy
 
 cat /etc/passwd   Wyswietla szczegolowe informacje dotyczace wszystkich kont uzytkownikow istenijacych w systemie.
 
+passwd            Zmiana wlasnego hasla.
+
+passwd 'nazwa'    Zmiana hasla zwiazanego z dowolnym kontem uzytkownika (opcja dostepna tylko dla administratora systemu).
+
+groupadd 'nazwa'  Tworzy grupe uzytkownikow, nazwana 'nazwa'
+
+groupdel 'nazwa'  Usuwa grupe uzytkownikow, nazwana 'nazwa'.
+
+
+Format pliku /etc/passwd
+
+Plik /etc/passwd zawiera kompletna liste kont uzytkownikow istniejacych w systemie
+gruszka:x:1000:100:Radoslaw Sokol:/home/gruszka:/bin/bash
+
