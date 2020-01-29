@@ -1,2 +1,22 @@
-whoami        Wyswietla nazwe aktualnie uzywanego konta uzytkownika
+whoami            Wyswietla nazwe aktualnie uzywanego konta uzytkownika
+su                Chwilowe uzyskanie uprawnien administratora systemu
+su 'nazwa'        Chwilowe przelaczenie sie na konto uzytkownika o innych uprawnieniach
+                  (opcja dostepna tylko dla administratora systemu)
+useradd 'nazwa'   Tworzy konto uzytkownika o nazwie 'nazwa'.
+
+                  Najczesciej uzywane parametry:
+                  -g 'nazwa'    Wybor grupy uzytkownikow, do ktorej nalezec bedzie tworzone konto
+                  -m            Utworzenie katalogu domowego dla zakladanego konta uzytkownika
+                  -s 'nazwa'    Wybiera domyslna powloke systemowa dla tworzonego konta. 
+                                Polecane jest korzystanie z powloki /bin/bash
+                                
+userdel 'nazwa'   Usuwa konto uzytkownika o nazwie 'nazwa'. 
+                  Dodanie parametru -r spowoduje jednoczesne usuniecie katalogu domowego tego uzytkownika
+               
+groups 'nazwa'    Wyswietla nazwy grup uzytkownika o nazwie 'nazwa'.
+                  Dodanie parametru -r spowoduje jednoczesnie usuniecie katalogu domowego tego uzytkownika.
+                 
+cat /etc/group    Wyswietla szczegolowe informacje dotyczace wszystkich grup uzytkownikow istniejacych w systemie.
+
+cat /etc/passwd   Wyswietla szczegolowe informacje dotyczace wszystkich kont uzytkownikow istenijacych w systemie.
 
