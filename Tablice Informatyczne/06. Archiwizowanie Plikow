@@ -1,1 +1,26 @@
+tar 'opcje' 'nazwa-archiwum' 'dodatkowe parametry'
+
+Najczesciej stosowane opcje:
+c - Utworzenie nowego archiwum
+x - Wydobycie plikow z istniejacego archiwum
+t - Wyswietylenie listy plikow znajdujacych sie w archiwum
+f - Pobieranie i wysylanie danych z lub do pliku
+v - Wyswietlanie nazw przetwarzanych w danym momencie plikow i szczegolowych informacji o nich
+z - Wykorzystanie programu gzip, przeprowadzajacego kompresje danych. 
+    Kompresja gzip nie jest bardzo skuteczna, stanowi jednak pewnego rodzaju standard.
+j - Wykorzystanie programu bzip, przeprowadzajacego kompresje danych. 
+    Kompresja bzip nie jest jeszcze obslugiwana przez niektore narzedzia, jest jednak znacznie skuteczniejsza od kompresji gzip.
+
+Przyklady:
+
+tar xfvz /src/oident.tgz          Wydobywa wszystkie pliki z archiwum o nazwie /src/oident.tgz
+
+tar xfvj /src/oident.tar.bz2 *.h  Wydobywa z archiwum o nazwie /src/oident.tar.bz2 wszystkie pliki o nazwach spelniajacych 
+                                  warunek wieloznaczny
+                                  
+*.h tar cfjv /backup/nowe.tar.bz2 /home/    Tworzy nowe archiwum o nazwie /backup/nowe.tar.bz2 
+                                            (skompresowane za pomoca programu bzip2), 
+                                            zawierajace wszystkie pliki i katalogi zapisane w katalogu /home
+                                            
+tar tfz /home/linux-2.4.26.tgz    Wyswietla na ekranie zawartosc archiwum o nazwie /nowe/linux-2.4.26.tgz
 
