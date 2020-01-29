@@ -42,6 +42,7 @@ W polu zawierajacym znak :x: kiedys przechowywane bylo haslo chroniace dostepu d
 administratorowi podgladac bezposrednio hasla wszystkich uzytkownikow, w nowszych wersjach systemu Linux hasla zapisane sa -
 w formie zaszyfrowanej - w pliku /etc/shadow.
 
+
 Format pliku /etc/group
 
 Plik /etc/group zawiera kompletna liste grup kont uztkownikow istniejacych w systemie.
