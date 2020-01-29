@@ -38,9 +38,17 @@ Nazwa konta:-(czy jest haslo uzywane):Liczbowy identyfikator konta uzytkownika:L
 uzytkownikow, do ktorej nalezy konto (standard 1000 w gore, 100 to szczegolni uzytkownicy):Opisowa nazwa konta uzytkownika:
 Nazwa katalogu domowego uzytkownika:Nazwa powloki systemowej przypisanej uzytkownikowi.
 
-W polu zawierajacym znak :x: kiedys przechhowywane bylo haslo chroniace dostepu do konta uzytkownika. Poniewaz pozwalalo to 
+W polu zawierajacym znak :x: kiedys przechowywane bylo haslo chroniace dostepu do konta uzytkownika. Poniewaz pozwalalo to 
 administratorowi podgladac bezposrednio hasla wszystkich uzytkownikow, w nowszych wersjach systemu Linux hasla zapisane sa -
 w formie zaszyfrowanej - w pliku /etc/shadow.
 
+Format pliku /etc/group
 
+Plik /etc/group zawiera kompletna liste grup kont uztkownikow istniejacych w systemie.
+DomainAdmins::54:root,grush
+
+Nazwa grupy uzytkownikow::Liczbowy identyfikator grupy uzytkownikow:Lista kont uzytkownikow nalezacych do danej grupy.
+
+Kazde z kont uzytkownikow moze nalezec do dowolnej liczby grup uzytkownikow, jednak tylko jedna grupa jest wskazana 
+w pliku /etc/passwd jako podstawowa.
 
