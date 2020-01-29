@@ -1,0 +1,17 @@
+pwd  - Wyswietlanie nazwy biezacego katalogu
+
+cd ..  - Przejscie do katalogu nadrzednego
+
+cd 'nazwa'  - Przejscie do katalogu /nazwa/
+
+cd katalog1/katalog2/../katalog3  - Przejscie do katalogu z pominieciem kilku katalogow posrednich
+
+mkdir 'nazwa' - Utworzenie katalogu /nazwa/
+
+rmdir 'nazwa' - Usuniecie pustego katalogu /nazwa/
+
+rm 'nazwa' -r -f  - Usuniecie katalogu /nazwa/ wraz ze wszystkimi znajdujacymi sie w nim plikami i katalogami.
+                      
+                    Przelacznik -f pozwala zapobiec pytaniu o potwierdzenie checi usuniecia danych
+                    (zaleznego od ustawien srodowiska uzytkownika)
+                
