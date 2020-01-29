@@ -1,1 +1,20 @@
+/boot - katalog zawierajacy pliki niezbedne do uruchomienia systemu operacyjnego 
+        (miedzy innymi tzw. jªdro systemu operacyjnego)
+        
+/etc -  katalog zawierajacy pliki konfiguracyjne, odpowiadajace za sposob funkcjonowania systemu operacyjnego oraz wiekszosci 
+        dzialajacych pod jego kontrola aplikacji.      
+       
+/root - prywatny folder administratora systemu operacyjnego (korzystajacego z konta root)
 
+/home - katalog zawierajacy prywatne foldery poszczegolnych uzytkownikow systemu operacyjnego
+
+/dev  - katalog przechowujacy odnosniki do sterownikow urzadzen zamontowanych w komputerze; 
+        programy, odwolujac sie do tych odnosnikow, uzyskuja dostep do urzadzen i komunikuja sie z nimi.
+        
+/
+/
+/
+/
+/
+/
+/
