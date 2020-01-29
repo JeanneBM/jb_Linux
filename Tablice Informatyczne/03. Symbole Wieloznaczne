@@ -1,1 +1,12 @@
+* Zastepuje dowolny ciag znakow o niekoreslonej dlugosci
+? Zastepuje dokladnie jeden znak
+[ ] Wskazuja zakres znakow
+
+Przyklady:
+
+szu*s: szumilas, szus, szufelka-2s
+*-miniatura: l-miniatura, zdjecie-miniatura
+zdjecie?x:zdjecielx, zdjecie2x, zdjecie-x, zdjecieax
+
+
 
