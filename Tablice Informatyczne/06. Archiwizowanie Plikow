@@ -9,7 +9,8 @@ v - Wyswietlanie nazw przetwarzanych w danym momencie plikow i szczegolowych inf
 z - Wykorzystanie programu gzip, przeprowadzajacego kompresje danych. 
     Kompresja gzip nie jest bardzo skuteczna, stanowi jednak pewnego rodzaju standard.
 j - Wykorzystanie programu bzip, przeprowadzajacego kompresje danych. 
-    Kompresja bzip nie jest jeszcze obslugiwana przez niektore narzedzia, jest jednak znacznie skuteczniejsza od kompresji gzip.
+    Kompresja bzip nie jest jeszcze obslugiwana przez niektore narzedzia, 
+    jest jednak znacznie skuteczniejsza od kompresji gzip.
 
 Przyklady:
 
