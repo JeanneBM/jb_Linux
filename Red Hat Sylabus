@@ -1,0 +1,148 @@
+    Essential Tools
+
+    Access a shell prompt and issue commands
+
+    Use Input-Output Redirection
+
+    Use Input/Output Redirection - Part 2
+
+    Use Grep and Regular Expressions to Analyze Text
+
+    Access Remote System Using SSH
+
+    Log in and Switch Users in MultiUser Targets
+
+    Archive, Compress, Unpack and Uncompress Files Using tar, star, gzip and bzip2
+
+    Archive, Compress, Unpack and Uncompress Files Using tar, star, gzip and bzip2 - Part2
+
+    Create and Edit Text Files
+
+    Create, Delete, Copy and Move Files and Directories
+
+    Create Hard and Soft Links
+
+    List, Set and Change Standard UGO/RWX Permissionsm.
+
+    List, Set and Change Standard UGO/RWX Permissions - Part 2
+
+    List, Set and Change Standard UGO/RWX Permissions umask
+
+    Locate, Read and Use System Documentation with man, info and usr/share/doc
+
+    Finding Files with Locate and Find
+
+    Operate Running systems
+
+    Boot,Reboot and Shutdown a System
+
+    Boot system into different targets
+
+    Interrupt the Boot Process to Gain Access to the System
+
+    Adjust Process Priority and Kill Processes-Part1
+
+    Adjust Process Priority and Kill Processes-Part2
+
+    Adjust Process Priority and Kill Processes-Part3
+
+    Adjust Process Priority and Kill Processes-Part4
+
+    Locate and Interpret System Log Files and Journals
+
+    Start, Stop and Check the Status of Network Services
+
+    Securely Transfer Files Between Systems
+
+    Configure Local Storage
+
+    List, Create and Delete Partitions on MBR and GPT Disks
+
+    Using LVM
+
+    Configure Systems to Mount File Systems at Boot by UUID or Label
+
+    Add New Partitions and Logical Volumes and Swap to a System Non Destructively
+
+    Create and Configure File Systems
+
+    Create, Mount, Unmount and Use VFAT, EXT4 and XFS File Systems
+
+    Mount and Unmount CIFS and NFS Network File Systems
+
+    Extend Existing Logical Volumes
+
+    Create and Configure Set-GID Directories for Collaboration
+
+    Create and Manage Access Control Lists (ACLs) Part 01
+
+    Create and Manage Access Control Lists (ACLs) Part 02
+
+    Diagnose and Correct File Permission Problems
+
+    Deploy, Configure and Maintain Systems
+
+    Configure Networking and Hostname Resolution Statically or Dynamically :Troubles
+
+    Networking and Hostname Resolution Statically or Dynamically : Network Manager
+
+    Network /Hostname Resolution Statically or Dynamically : Hostname Configuration
+
+    Schedule Tasks Using at and cron
+
+    Schedule Tasks Using at and cron Part 2
+
+    Start and Stop Services and Configure Services to Start Automatically at Boot
+
+    Configure Systems to Boot into a Specific Target Automatically
+
+    Install Red Hat Enterprise Linux Automatically Using Kickstart
+
+    Configure a Physical Machine to Host Virtual Guests
+
+    Configure a System to Use Time Services
+
+    Install and Update Software Packages from Red Hat Network, YUM REPO
+
+    Install and Update Software Packages from Red Hat Network, RPM REPO
+
+    Managing Repositories
+
+    Configuring a Local Repository
+
+    Configuring a Local Repository Configure the GPG Key
+
+    Update the Kernel Package Appropriately to Ensure a Bootable System
+
+    Modifying the System Bootloader
+
+
+    Manage Users and Groups
+
+    Create, Delete & Modify Local User Accounts
+
+    Change Passwords & Adjust Password Aging for specific users
+
+    Create, Delete, and Modify Local Groups and Group Memberships
+
+    Using set-GID on Directories
+
+    Manage Security
+
+    Configure Firewall Settings Using Available Firewall Utilities
+
+    Configure Firewall Settings Using Available Firewall Utilities - Part2
+
+    Configure Key-Based Authentication for SSH
+
+    Introduction to SELinux
+
+    Set Enforcing and Permissive Modes for SELinux
+
+    List and Identify SELinux Files and Process Contexts
+
+    Restore Default File Contexts
+
+    Use Boolean Settings to Modify System SELinux Settings
+
+    UDiagnose and Address Routine SELinux Policy Violations
