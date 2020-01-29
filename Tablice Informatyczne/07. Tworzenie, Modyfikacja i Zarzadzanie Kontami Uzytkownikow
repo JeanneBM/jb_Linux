@@ -34,3 +34,7 @@ Format pliku /etc/passwd
 Plik /etc/passwd zawiera kompletna liste kont uzytkownikow istniejacych w systemie
 gruszka:x:1000:100:Radoslaw Sokol:/home/gruszka:/bin/bash
 
+Nazwa konta:-(czy jest haslo uzywane):Liczbowy identyfikator konta uzytkownika:Liczbowy identyfikator podstawowej grupy 
+uzytkownikow, do ktorej nalezy konto (standard 1000 w gore, 100 to szczegolni uzytkownicy):Opisowa nazwa konta uzytkownika:
+Nazwa katalogu domowego uzytkownika:Nazwa powloki systemowej przypisanej uzytkownikowi.
+
