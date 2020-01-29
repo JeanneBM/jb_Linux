@@ -16,12 +16,6 @@
 
     Archive, Compress, Unpack and Uncompress Files Using tar, star, gzip and bzip2 - Part2
 
-    Create and Edit Text Files
-
-    Create, Delete, Copy and Move Files and Directories
-
-    Create Hard and Soft Links
-
     List, Set and Change Standard UGO/RWX Permissionsm.
 
     List, Set and Change Standard UGO/RWX Permissions - Part 2
@@ -118,8 +112,6 @@
 
 
     Manage Users and Groups
-
-    Create, Delete & Modify Local User Accounts
 
     Change Passwords & Adjust Password Aging for specific users
 
