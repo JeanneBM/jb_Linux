@@ -1,10 +1,10 @@
 System Linux zawiera rozbudowana dokumentacje techniczna, umozliwiajaca uzyskanie w dowolnym momencie szczegolowych informacji
 na temat kazdego z polecen, wraz z lista jego opcjonalnych parametrow.
 
-apropos /temat/   Wyswietlenie listy nazw stron systemowego podrecznika wiazanych z tematem o nazwie /temat/.
+apropos 'temat'   Wyswietlenie listy nazw stron systemowego podrecznika wiazanych z tematem o nazwie /temat/.
                   Przyklad: apropos permission 
                 
-man /temat/       Wyswietlenie strony systemowego podrecznika zwiazanej z tematem o nazwie /temat/. 
+man 'temat'       Wyswietlenie strony systemowego podrecznika zwiazanej z tematem o nazwie /temat/. 
                   Najczesciej nazwa tematu jest po prostu nazwa polecenia systemowego.
                   Przyklad: man chmod
                   
