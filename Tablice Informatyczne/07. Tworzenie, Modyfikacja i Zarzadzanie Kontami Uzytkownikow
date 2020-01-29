@@ -38,3 +38,9 @@ Nazwa konta:-(czy jest haslo uzywane):Liczbowy identyfikator konta uzytkownika:L
 uzytkownikow, do ktorej nalezy konto (standard 1000 w gore, 100 to szczegolni uzytkownicy):Opisowa nazwa konta uzytkownika:
 Nazwa katalogu domowego uzytkownika:Nazwa powloki systemowej przypisanej uzytkownikowi.
 
+W polu zawierajacym znak :x: kiedys przechhowywane bylo haslo chroniace dostepu do konta uzytkownika. Poniewaz pozwalalo to 
+administratorowi podgladac bezposrednio hasla wszystkich uzytkownikow, w nowszych wersjach systemu Linux hasla zapisane sa -
+w formie zaszyfrowanej - w pliku /etc/shadow.
+
+
+
