@@ -1,1 +1,15 @@
+ifconfig      Wyswietla informacje na temat aktywnych polaczen sieciowych
 
+    
+    
+    [root@yarrow root]# ifconfig
+    eth0      Link encap:Ethernet   HWaddr 00:0C:29:F9:E8:3B
+              inet addr:10.0.0.12   Bcast:10.255.255.255  Mask:255.0.0.0
+              UP BROADCAST RUNNING MULTICAST    MTU:1500   Metric:1
+              RX packets:167 errors:0 dropped:0 overruns:0 frame:0
+              TX packets:100 errors:0 dropped:0 overruns:0 carrier:0
+              collisions:0 txqueuelen:1000
+              RX bytes:26091 (25.4 Kb)  TX bytes:7872 (7.6 Kb)
+              Interrupt:11 Base address:0x10c0
+              
+    lo        Link
