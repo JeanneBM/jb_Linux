@@ -1,1 +1,28 @@
 
+strumien wejsciowy            PROGRAM             strumien bledow
+                                                              FILTR
+                                                                  strumien wyjsciowy
+                                                                  
+>   Przekazanie wyniku dzialania polecenia (ze strumienia wyjsciowego)
+
+<   Przekazanie poleceniu danych do przetwarzania (do strumienia wejsciowego)
+
+|   Przefiltrowanie danych tworzonych w wyniku dzialania polecenia przed przekazaniem ich do urzadzenia 
+    lub pliku odbierajacego je (w ramach strumeinia wyjsciowego)
+    
+2>  Przekazanie komunikatow o bledach (ze strumenia bledow)
+
+>>  Dolaczenie danych tworzonych w wyniku dzialania polecenia (ze strumenia wyjsciowego) do istniejacego pliku bez jego 
+    wczesniejszego usuwania (jesli plik nie istnieje, zostaje utworzony)
+    
+Przyklady:
+
+ls -l > '/katalog'   Zapisanie rozbudowanej listy plikow w pliku o nazwie 'katalog', tworzonym w katalogu domowym 
+                     aktualnie zalogowanego uzytkownika
+                     
+cat dlugiplik.txt | grep xyz    Przefiltrowanie wyniku dzialania cat dlugiplik.txt (wyswietlajacego na ekranie zawartosc 
+                                pliku o nazwie dlugiplik.txt) za pomoca programu grep, wyszukujacego w swoim 
+                                strumieniu wejsciowym wiersze zawierajace podany ciag znakow. Na ekranie wyswietlone zostana 
+                                tylko wiersze pliku dlugiplik.txt, zawierajace znaki xyz.
+                                
+                                
