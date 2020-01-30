@@ -56,8 +56,36 @@ Zmiana praw dostepu do pliku lub katalogu
 chmod 'prawa' 'nazwa'   Ustalenie kodu praw dostepu do pliku o nazwie 'nazwa' na 'prawa'. Kod 'prawa' musi byc podany jako 
                         trzy cyfry z zakresu od 0 do 7, zgodnie z zasadami.
                         
-chmod 'zmiana' 'nazwa'  Zmiana kodu praw dostepu do pliku o nazwie 'nazwa'. Lancuch znakow 'zmiana' sklada sie z oddzielonych 
-                        przecinkami elementow (
+chmod 'zmiana' 'nazwa'  Zmiana kodu praw dostepu do pliku o nazwie 'nazwa'. 
+
+
+Lancuch znakow 'zmiana' sklada sie z oddzielonych przecinkami elementow (co najmniej jednego) o nastepujacej postaci:
+
+kto     jak     prawa   
+
+kto:
+u       Wlascicel pliku
+g       Grupa uzytkownikow posiadajacych czesc praw wlascicela pliku
+o       Pozostali uzytkownicy
+a       Wszyscy uzytkownicy systemu (jednoczesna zmiana wszystkich trzech grup praw dostepu do pliku: wlasciela, grupy 
+                                                                                           i pozostalych uzytkownikow)
+                                                                                           
+jak:
++       Nadanie dodatkowych praw
+-       Odebranie wybranych praw
+=       Narzucenie praw bez bez zachowania dotychczas obowiazujacych
+
+prawa:
+r       read
+w       write
+x       execute
+
+
+
+
+
+
+
 
 
       
