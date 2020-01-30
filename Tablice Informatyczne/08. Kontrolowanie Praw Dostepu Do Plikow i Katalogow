@@ -1,1 +1,35 @@
+Format zapisu praw dostepu
+====================================
+
+-     r w x     r w x     r w x
+
+        7         7         7
+        
+Informacje dodatkowe  
+Prawa dostepu dla wlasciciela pliku 
+Prawa dostepu dla grupy uzytkownikow posiadajacej czesc uprawnien wlascicela pliku
+Prawa dostepu dla pozostalych uzytkownikow systemu operacyjnego.
+
+Znaczenie poszczegolnych symboli praw dostepu
+===================================================
+
+0 -       Brak dostepu do pliku
+1 --x     Prawo do uruchomienia pliku (lub wejscia do katalogu)
+2 -w-     Prawo do zapisywania pliku
+3 -wx     Prawo do zapisywania pliku i uruchamiania go (lub wejscia do katalogu)
+4 r--     Prawo do odczytywania zawartosci pliku
+5 r-x     Prawo do odczytywania zawartosci pliku i uruchamiania go (lub wejscia do katalogu)
+6 rw-     Prawo do odczytywania i zmiany zawartosci pliku
+7 rwx     Pelne prawa do pliku (odczyt, zapis, uruchamianie)
+
+Symbol informacji dodatkowych (pierwszy znak w linii dostepow)
+===================================================================
+
+d   Element jest katalogiem
+l   Element jest laczem symbolicznym do pliku lub katalogu
+s   Program zostanie uruchomiony w kontekscie konta uzytkownika wskazanego jako wlasciciel pliku, 
+    a nie konta uzytkownika aktualnie zalogowanego w systemie
+
+Zmiana wlascicela pliku lub katalogu
+=========================================
 
