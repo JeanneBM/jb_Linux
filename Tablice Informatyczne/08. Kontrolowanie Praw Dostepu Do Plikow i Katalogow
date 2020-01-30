@@ -39,7 +39,27 @@ chown :'grupa' 'nazwa'              Nadanie grupie uztkownikow o nazwie 'grupa' 
 
 chown 'konto':'grupa' 'nazwa'       Jednoczesne przekazanie praw wlasnosci pliku o nazwie 'nazwa' uzytkownikowi 'konto' 
                                     i grupie uzytkownikow o nazwie 'grupa'
-                                    
+           
+Dolaczajac do polecenia parametr -R, spowodujesz zmodyfikowanie praw wlasnosci we wszystkich elementach (plikach i katalogach)
+znajdujacych sie w katalogach, ktorych prawa dostepu sa modyfikowane. 
+
+Na przyklad wydajac polecenie chown 'konto':'grupa' 'katalog' -R, spowodujesz przekazanie uzytkownikowi 'konto' 
+i grupie 'grupa' praw wlasnosci nie tylko do katalogu 'katalog', ale rowniez do wszystkich znajdujacych sie w nim elementow.
+
+W nazwach plikow i katalogow podawanych jako argument polecenia chown mozesz stosowac symbole wieloznaczne, 
+poszerzajac zakres dzialania polecenia. W jednym wierszu polecenia mozewsz tez podac jedna po drugiej kilka nazw plikow 
+i katalogow: chown 'konto':'grupa' plik1 plik2 katalog1 katalog2.
+
+Zmiana praw dostepu do pliku lub katalogu
+==============================================
+
+chmod 'prawa' 'nazwa'   Ustalenie kodu praw dostepu do pliku o nazwie 'nazwa' na 'prawa'. Kod 'prawa' musi byc podany jako 
+                        trzy cyfry z zakresu od 0 do 7, zgodnie z zasadami.
+                        
+chmod 'zmiana' 'nazwa'  Zmiana kodu praw dostepu do pliku o nazwie 'nazwa'. Lancuch znakow 'zmiana' sklada sie z oddzielonych 
+                        przecinkami elementow (
+
+
       
                                         
                             
