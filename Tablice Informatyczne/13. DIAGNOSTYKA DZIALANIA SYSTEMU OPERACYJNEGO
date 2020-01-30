@@ -30,10 +30,20 @@ CPU states: user 2,1% nice 0,0% system 7,0%
 
 Informuje o obciazeniu obliczeniowym procesora, generowanym przez procesy uzytkownika (user 2,1%),
 procesy o obnizonym priorytecie (nice 0,0%),
-kernel systemu operacyjnego (system 7,0%)
+kernel systemu operacyjnego (system 7,0%).
 
 /* ?!
 
 irq 0,0% softirq 0,0% idle 90,8%
+
+Informuje o przerwaniach sprzetowych (irq 0,0%),
+przerwaniach programowych (softirq 0,0%),
+operacje wejscia-wyjscia (iowait 0,0%);                                                               prawdopodobnie wa
+pole idle informuje natomiast o mocy obliczeniowej, dostepnej w danym momencie do wykorzystania.      prawdopodobnie id
+
+*/
+
+
+
 
 
