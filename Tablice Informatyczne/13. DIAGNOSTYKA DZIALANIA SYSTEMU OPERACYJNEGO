@@ -1,1 +1,32 @@
+Polecenie top
+===========================
+
+Poszczegolne wiersze planszy programu top zawieraja nastepujace informacje:
+
+
+I. Wiersz pierwszy:
+
+14:09:53 up 57 min, 3 users, load average: 0.05, 0,20, 0,22
+
+informuje o aktualnym czasie (14:09:53), 
+czasie nieprzerwanej pracy systemu operacyjnego (up 57 min), 
+liczbie zalogowanych na komputerze uzytkownikow (3 users) 
+oraz srednim obciazeniu obliczeniowym komputera, mierzonym w trzech roznych przedzialach czasu (load average).
+
+
+II. Wiersz drugi:
+
+60 processes: 58 sleeping, 2 running, 0 zombie, 0 stopped
+
+Informuje o sumarycznej liczbie procesow dzialajacych w systemie (60 processes), a w tym o:
+liczbie procesow czekajacych na jakies zdarzenie 58 sleeping),
+liczbie procesow aktualnie wykonywanych (2 running),
+liczbie procesow, ktore zakonczyly dzialanie, jednak nie moga byc jeszcze usuniete (0 zombie)
+oraz liczbie procesow, ktorych dzialanie zostalo swiadomie wstrzymane przez uzytkownika lub administratora (0 stopped)
+
+III i IV. Wiersz trzeci i czwarty:
+
+
+
+
 
