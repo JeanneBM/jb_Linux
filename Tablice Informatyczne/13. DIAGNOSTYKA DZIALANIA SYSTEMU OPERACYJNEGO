@@ -45,6 +45,32 @@ pole idle informuje natomiast o mocy obliczeniowej, dostepnej w danym momencie d
 
 V i VI. Wiersz piaty i szosty:
 
+Mem: 126000k av, 121040k used, 4960k free, 0k shrd, 9772k buff
+
+Informuje o dostepnej dla procesow fizycznej pamieci operacyjnej (RAM) komputera (126000k av),
+wykorzystywanej pojemnosci pamieci (121040k used),
+wolnej pojemnosci pamieci (4960k free),
+pojemnosci blokow pamieci wspoldzielonych przez wiele procesow (0 shrd),
+pojemnosci buforow podsystemu wejscia-wyjscia (9772k buff)
+
+72088k active, 37486k inactive
+
+Informuje o obszarze pamieci aktywnie wykorzystywanym (72088k active) 
+i potencjalnie przeznaczonym do przeniesienia do pliku wymiany (37486k inactive).
+
+VII. Wiersz siodmy:
+
+Swap: 305224k av, 8184k used, 297040 free
+
+Informuje o rozmiarze przestrzeni partycji pliku wymiany (305224k av), 
+stopniu wykorzystania tej przestrzeni (8184k used)
+oraz pozostalym wolnym miejscu (297040k free).
+
+
+
+
+
+
 
 
 
