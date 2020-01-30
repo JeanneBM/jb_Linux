@@ -66,7 +66,7 @@ Informuje o rozmiarze przestrzeni partycji pliku wymiany (305224k av),
 stopniu wykorzystania tej przestrzeni (8184k used)
 oraz pozostalym wolnym miejscu (297040k free).
 
-/*  o.O
+/*  
 Wszystkie wartosci dotyczace zajetosci pamieci i powierzchni partycji pliku wymiany w programie top zakonczone sa 
 mala litera k - jest to blad. Wartosci te podane sa w binarnych kilobajtach (kibibajtach). Poprawnym oznaczeniem 
 bylaby wielka litera K lub - zgodnie z norma SI- oznaczenie Ki.
