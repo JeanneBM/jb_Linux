@@ -32,7 +32,8 @@ Informuje o obciazeniu obliczeniowym procesora, generowanym przez procesy uzytko
 procesy o obnizonym priorytecie (nice 0,0%),
 kernel systemu operacyjnego (system 7,0%)
 
+/* ?!
 
-
+irq 0,0% softirq 0,0% idle 90,8%
 
 
