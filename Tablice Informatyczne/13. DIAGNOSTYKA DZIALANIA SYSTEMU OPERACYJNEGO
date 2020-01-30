@@ -26,6 +26,12 @@ oraz liczbie procesow, ktorych dzialanie zostalo swiadomie wstrzymane przez uzyt
 
 III i IV. Wiersz trzeci i czwarty:
 
+CPU states: user 2,1% nice 0,0% system 7,0%
+
+Informuje o obciazeniu obliczeniowym procesora, generowanym przez procesy uzytkownika (user 2,1%),
+procesy o obnizonym priorytecie (nice 0,0%),
+kernel systemu operacyjnego (system 7,0%)
+
 
 
 
