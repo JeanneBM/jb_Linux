@@ -80,8 +80,18 @@ r       read
 w       write
 x       execute
 
+Brak uprawnien (ma sens tylko przy nadawaniu praw za pomoca symbolu = i odpowiada wtedy lancuchowi -rwx, 
+powodujacemu odebranie wszystkich praw do pliku).
 
+Przyklad:
 
+chmod u+x,g-w,o= 'plik'
+
+Plikowi o nazwie 'plik' zosatna nadane nastepujace prawa dostepu:
+- Wlasciciel bedzie w stanie uruchomic plik (prawa r i w nie ulegna zmianie),
+- Grupa uzytkownikow posiadajacych czesc uprawnien do pliku nie bedzie mogla wprowadzac zmian do plikow 
+  (prawa r i x nie ulegna zmianie),
+- Pozostali uzytkownicy nie beda dysponowali zadnymi prawami do tego pliku. 
 
 
 
