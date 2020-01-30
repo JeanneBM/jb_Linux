@@ -1,1 +1,11 @@
+Lacza symboliczne pozwalaja stworzyc wiele odbrebnych nazw plikow i katalogow (znajdujacych sie w wielu roznych 
+miejscach systemu plikow), wskazujacych na ten sam, jeden element. Pozwala to uproscic odwolywanie sie do plikow 
+lub katalogow znajdujacych sie gleboko w strukturze systemu plikow lub utworzyc biblioteke czesto wykorzystywanych plikow.
+
+ln -s 'istniejacy-plik' 'nazwa-lacza'     Tworzy lacze symboliczne do pliku lub katalogu o nazwie 'istniejacy-plik', 
+                                          nazwane 'nazwa-lacza'
+                                          
+rm -f 'nazwa-lacza'     Usuwa lacze symboliczne o nazwie 'nazwa-lacza', nie usuwajac obiektu, na ktory wskazuje lacze
+
+
 
