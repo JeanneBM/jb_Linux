@@ -66,7 +66,30 @@ Informuje o rozmiarze przestrzeni partycji pliku wymiany (305224k av),
 stopniu wykorzystania tej przestrzeni (8184k used)
 oraz pozostalym wolnym miejscu (297040k free).
 
-=========================================================================================================================
+/*  o.O
+Wszystkie wartosci dotyczace zajetosci pamieci i powierzchni partycji pliku wymiany w programie top zakonczone sa 
+mala litera k - jest to blad. Wartosci te podane sa w binarnych kilobajtach (kibibajtach). Poprawnym oznaczeniem 
+bylaby wielka litera K lub - zgodnie z norma SI- oznaczenie Ki.
+*/
+
+Poszczegolne kolumny tabeli wyswietlanej w dolnej czesci ekranu maja nastepujace znaczenie:
+
+PID -   numeryczny identyfikator procesu,
+User-   nazwa konta uzytkownika, z ktorego prawami wykonywany jest kod procesu,
+Pri -   wewnetrzny systemowy priorytet kodu procesu,
+Ni -    nadany przez uzytkownika priorytet kolejnoci wykonywania kodu procesu,
+Size -  obszar pamieci wirtualnej zarezerwowany na potrzeby procesu,
+RSS -   rzeczywisty obszar fizycznej (realnej) pamieci operacyjnej komputera przydzielonej aktualnie danemu procesowi,
+Share - rozmiar obszaru pamieci operacyjnej, wspoldzielonego z innymi procesami,
+Stat -  stan procesu,
+%CPU -  wzgledny stopien wykorzystania mocy obliczeniowej procesora komputera przez dany proces,
+%Mem -  wzgledny stopien wykorzystania pamieci operacyjnej kopmutera przez dany proces,
+Time -  czas nieprzerwanej pracy procesora komputera, dotychczas wykorzystany przez proces,
+CPU -   numer procesora komputera, ktory wykonuje kod procesu,
+Command -  tekst polecenia uzytego do uruchomienia procesu.
+
+
+
 
 
 
