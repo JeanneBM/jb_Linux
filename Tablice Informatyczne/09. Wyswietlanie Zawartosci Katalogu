@@ -1,1 +1,30 @@
+komenda ls
+Opcjonalnie mozna dolaczyc azwe katalogu, ktorego zawartosc ma zostac wyswietlona.
+
+Najczesciej stosowane parametry:
+-R  Rekursywne wyswietlanie zawartosci wszystkich napotkanych katalogow
+-a  Uwzglednianie ukrytych plikow i katalogow
+-l  Wlaczenie trybu wyswiatelnaia listy szczegolow dotyczacych plikow i katalogow.
+
+Ukryte pliki i katalogi wyroznione sa kropka na poczatku ich nazwy.
+
+drwxr-xr-x  2    root   root  4096  Sep 25 2003   jhttp/
+
+drwxr-xr-x  Prawa dostepu do pliku lub katalogu
+2           Liczba laczy symbolicznych, odnoszacych sie do tego elementu
+root  root  Nazwa konta wlasciciela pliku lub katalogu oraz grupy uzytkownikow posiadajacej czesc praw wlasciciela pliku
+4096        Rozmiar pliku
+Sep 25 2003 Data ostatniej modyfikacji pliku
+jhttp/      Nazwa pliku lub katalogu
+
+Przyklady:
+
+ls          Wyswietlenie zawartosci biezacego katalogu
+ls / -l     Wyswietlenie szczegolow dotyczacych elementow znajdujacych sie w glownym katalogu 
+ls .. -la   Wyswietlenie szczegolow dotyczacych elementow znajdujacych sie w katalogu nadrzednym, 
+            z wlaczeniem do listy ukrytych plikow i katalogow 
+            
+      
+
+
 
