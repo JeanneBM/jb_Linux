@@ -33,3 +33,13 @@ s   Program zostanie uruchomiony w kontekscie konta uzytkownika wskazanego jako 
 Zmiana wlascicela pliku lub katalogu
 =========================================
 
+chown 'konto' 'nazwa'               Nadanie kontu uzytkownika o nazwie 'konto' praw wlasciciela pliku 'nazwa'
+
+chown :'grupa' 'nazwa'              Nadanie grupie uztkownikow o nazwie 'grupa' czesci praw wlascicela pliku o nazwie 'nazwa'
+
+chown 'konto':'grupa' 'nazwa'       Jednoczesne przekazanie praw wlasnosci pliku o nazwie 'nazwa' uzytkownikowi 'konto' 
+                                    i grupie uzytkownikow o nazwie 'grupa'
+                                    
+      
+                                        
+                            
