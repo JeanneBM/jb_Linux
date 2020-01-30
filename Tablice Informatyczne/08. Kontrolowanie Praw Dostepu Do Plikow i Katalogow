@@ -95,6 +95,18 @@ Plikowi o nazwie 'plik' zosatna nadane nastepujace prawa dostepu:
 
 
 
+Dolaczajac do polecenia parametr -R, spowodujesz zmodyfikowanie praw wlasnosci we wszystkich elementach 
+(plikach i katalogach) znajdujacych sie w katalogach, ktorych prawa dostepu sa modyfikowane. 
+Na przyklad wydajac polecenie chmod 750 katalog -R, spowodujesz zmiane uprawnien przypisanych nie tylko katalogowi 'katalog',
+ale rowniez wszystkim znajdujacym sie w nim elementowm.
+
+W nazwach plikow i katalogow podawanych jako argument polecenia chmod mozesz stosowac symbole wieloznaczne, 
+poszerzajac zakres dzialania polecenia. W jednynm wierszu polecenia mozesz tez podac jedna pop drugiej kilka nazw plikow 
+i katalogow: chmod 400 plik1 plik2 katalog1 katalog2.
+
+
+
+
 
 
 
