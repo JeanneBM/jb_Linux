@@ -1,1 +1,24 @@
+Polecenie ps
+
+ps
+Najczesciej stosowane parametry:
+
+r -   Ogranicza liste do procesow aktywnych w danym momencie (ktorych kod jest w trakcie wykonywania przez procesor)
+x -   Wyswietla procesy uruchomione na wszystkich terminalach systemu
+U 'nazwa' -   Ogranicza liste do procesow nalezacych do uzytkownika o nazwie 'nazwa'
+u -   Wyswietla wiecej informacji na temat wykorzystania pamieci operacyjnej i wirtualnej przez analizowane procesy
+m -   Wyswietla wszystkie watki analizowanych procesow
+w -   Umozliwia programowi ps wyswietlanie szerszej tabeli (o dlugosci wierszy przekraczajacej 80 znakow).
+ww -  Jeszcze wieksza dopuszczalna dlugosc wierszy
+
+Przyklady:
+
+ps u   Wyswietlenie szczegolowych informacji na temat uruchomionych w czasie danej sesji procesow
+
+ps ux  Wyswietlenie szczegolowych informacji na temat wszystkich procesow dzialajacych w systemie
+
+ps uU 'luzak'   Wyswietlenie wszystkich procesow uruchomionych przez uzytkownika 'luzak'
+
+
+
 
