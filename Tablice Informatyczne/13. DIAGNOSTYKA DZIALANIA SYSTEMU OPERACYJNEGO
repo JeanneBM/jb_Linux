@@ -88,14 +88,26 @@ Time -  czas nieprzerwanej pracy procesora komputera, dotychczas wykorzystany pr
 CPU -   numer procesora komputera, ktory wykonuje kod procesu,
 Command -  tekst polecenia uzytego do uruchomienia procesu.
 
+Kombinacje klawiszy:
 
+Shift+M   Sortowanie listy procesow wedle zajetosci pamieci operacyjnej.
+Shift+P   Sortowanie listy procesow wedle obciazenia procesora.
+k         Wysylanie sygnalu procesowi o podanym odentyfikatorze PID: Sygnal Znaczenie
+           1 - Ponowne odczytanie pliku konfiguracyjnego programu(obslugiwane przez niektore programy)
+           9 - Informuje proces, ze za chwile zostanie zkonczony, po czy natychwiast wylacz ten proces.
+                Tej metody powinno uzywac sie w ostatecznosci, gdy oporny proces nie reaguje na sygnal 15
+           15 - Informuje proces, ze powinien on elegancko zakonczyc swoja prace. Poniewaz sygnal ten moze zostac zignorowany 
+                przez kod programu, nie zawsze skutecznie realizuje swoja funkcje; jednak - jako ze jego uzycie nie przerywa 
+                w brutalny sposob dzialania kodu - istnieje niewielkie ryzyko, bo ponowne uruchomienie zatrzymanego 
+                w ten sposob programu bylo niemozliwe.
 
+Q        Zakonczenie pracy programu top.
 
+Wylaczanie procesow moze zaklocic dzialanie systemu operacyjnego; jesli wylaczysz jedne z procesow nizbednych 
+do funkcjonowania systemu, mozesz zostac zmuszony do ponownego jego uruchomnienia. 
 
-
-
-
-
+Uzytkownicy moga przerywac dzialanie jedynie tych procesow, ktorych prace sami zainicjowali. 
+Jedynie administrator systemu (root) moze przerywac prace dowolnych procesow.
 
 
 
