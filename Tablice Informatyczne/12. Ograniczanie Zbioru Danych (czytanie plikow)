@@ -1,1 +1,26 @@
+more      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
+          Umozliwia pomijanie fragmentow danych za pomoca polecen podawanych z klawiatury (szczegoly man more).
+    
+          Przyklad: cat /home/jakub/dlugiplik.txt | more
+          
+less      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
+          Umozliwia przewijanie danych za pomoca klawiszy sterowania kursorem oraz PageUp i PageDown. 
+          Nacisniecie klawisza Q przeywa wyswietlanie strumenia danych.
+          
+          Przyklad: cat /home/jakub/dlugiplik.txt | less
+    
+    
+head -n 'plik'  Ogranicza liczbe wyprowadzanych informacji do n pierwszych wierszy pliku o nazwie 'plik'.
+
+                Przyklady: head -5 /etc/passwd
+                          cat /home/luzak/1.txt | head -20
+                          
+tail -n 'plik'  Ogranicza liczbe wyprowadzonych informacji do n ostatnich wierszy pliku o nazwie 'plik'.
+
+                Przyklady: tail -5 /etc/passwd
+                           cat /home/luzak/1.txt | tail -20
+
+
+
+
 
