@@ -1,0 +1,23 @@
+
+traceroute 'nazwa'    Wyswietla trase, jaka przebywaja pakiety danych przeslane do komputera o adresie (lub nazwie) 'nazwa'.
+
+Najczesciej stosowane pakiety:
+
+-I      Przeprowadza test za pomoca pakietow ICMP (domyslnie: UDP)
+
+-n      Wylacza mozliwosc zamiany adresow IP na odpowiadajace im nazwy komputerow 
+        (przydatne w razie klopotow z dzialaniem DNS).
+        
+-w 'czas'     Okresla czas (w sekundach), jaki program czeka na uzyskanie odpwoiedzi (echa) na wyslany pakiet testowy.
+
+
+Przyklad:
+
+root@shoebox:/src> treaceroute 157.158.36.242
+traceroute to 157.158.36.242 (157.158.36.242), 30 hops max, 38 byte packets
+1   gliw-gate.necik.pl  (213.76.162.1)  10.552 ms  1.928 ms   2.173 ms
+2   Motorola.Magsoft.com.pl   (213.76.162.254)   135.799 ms *  71.401 ms
+3   213.25.193.237  (213.25.193.237)  151.434 ms  264.818 ms  95.245 ms
+
+        
+        
