@@ -1,0 +1,44 @@
+mount       Wyswietla liste zamontowanych (widocznych dla systemu) systemow plikow 
+            (czyli urzadzen i partycji zawierajacych zrozumiale dla systemu operacyjnego i uzyteczne dla uzytkownika dane).
+            
+            Przyklad: 
+            root@shoebox :~# mount 
+            /dev/hdal on / type ext3 (rw) 
+            
+            Oznacza, ze urządzenie /dev/hdal zostalo zamontowane w katalogu I (glownym), uzywa systemu plikow ext3 
+            i jest dostepne w trybie do odczytu i zapisu (rw). 
+            
+
+          
+df          Wyswietla pojemnosc (calkowita i dostepna) wszystkich zamontowanych aktualnie systemow plikow oraz katalog, 
+            w ktorym dany system plikow zostal zamontowany.
+            
+            Przyklad:
+            root@shoebox :~# df
+            
+            Filesystem    lk-blocks   Used      Available   Use%   Mounted on 
+            /dev/hdal     3954432     3542276   200040      95%    /
+            
+            Oznacza, ze urzadzenie /dev/hdal jest zamontowane w katalogu I (glownym), ma pojemnosc 3 954 342 KB, 
+            z czego uzyte jest 3 542 276 KB (95%), a wciaz do wykorzystania pozostaje 208 040 KB.
+            
+            
+            
+du          Wyswietla rozmiar podanego pliku lub katalogu. Umozliwia wyswietlanie rozmiarow wielu elementow jednoczesnie 
+            oraz rekursywne wyznaczanie rozmiarow. 
+            
+            Najczesciej uzywane opcje:
+            -a - wyswietla rozmiary wszystkich plikow, a nie tylko katalogow, 
+            -s - dokonuje rekursywnego sumowania rozmiarow podkatalogow i prezentuje wylacznie rozmiar podanego katalogu, 
+                 zamiast wyswietlania indywidualnych rozmiarow wszystkich podkatalogow w glebi hierarchii, 
+            -x - nie dokonuje obliczen dla napotykanych katalogow znajdujacych sie na innych systemach plikow niz poczatkowy, 
+            -c - dolacza sumaryczna informacje o rozmiarze wszystkich przetworzonych elementow. 
+            
+            Przyklad:
+            -root@shoebox :~# du -s *
+            
+            4688 bin 
+            4128 boot 
+            428 dev 
+            
+            
