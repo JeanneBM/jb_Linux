@@ -1,0 +1,5 @@
+janek@serwerek:-$ echo Pierwszy; echo Drugi; echo A tu mamy \; średnik 
+
+Pierwszy 
+Drugi
+A tu mamy ; średnik 
