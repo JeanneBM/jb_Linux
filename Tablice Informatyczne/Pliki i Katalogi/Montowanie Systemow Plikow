@@ -36,7 +36,7 @@ mount --bind 'nazwa''gdzie'       Przekierowuje caly katalog 'nazwa' wraz z zawa
 
 sync        Synchronizuje stan buforow w pamieci operacyjnej z zawartoscia nosnikow danych, minimalizujac (lecz nie likwidujac) ryzyko 
             utraty danych w momencie naglego odlaczenia zasilania lub odlaczenia urzadzenia pamieci masowej 
-            bez wczesniejszego odlaczenia systemu plików. 
+            bez wczesniejszego odlaczenia systemu plikow. 
                         
                     
                                
