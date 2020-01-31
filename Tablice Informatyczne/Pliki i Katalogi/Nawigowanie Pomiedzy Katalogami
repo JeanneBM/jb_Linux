@@ -1,5 +1,7 @@
 pwd  - Wyswietlanie nazwy biezacego katalogu
 
+cd - Przejcie do katalogu domowego 
+
 cd ..  - Przejscie do katalogu nadrzednego
 
 cd 'nazwa'  - Przejscie do katalogu /nazwa/
