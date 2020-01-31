@@ -1,3 +1,6 @@
+cat       Wyswietla zawartosc pliku o sciezce dostepu. 
+          Z najuzetyczniejszych opcji warto wymienic -n powodujaca numerowanie kolejnych wierszy pliku.               
+
 more      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
           Umozliwia pomijanie fragmentow danych za pomoca polecen podawanych z klawiatury (szczegoly man more).
     
@@ -6,9 +9,10 @@ more      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kaz
 less      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
           Umozliwia przewijanie danych za pomoca klawiszy sterowania kursorem oraz PageUp i PageDown. 
           Nacisniecie klawisza Q przeywa wyswietlanie strumenia danych.
+          Klawisz / daje mozliwosc odszukania w tekscie podanego po jego nacisnieciu slowa lub wyrazenia
           
           Przyklad: cat /home/jakub/dlugiplik.txt | less
-    
+          
     
 head -n 'plik'  Ogranicza liczbe wyprowadzanych informacji do n pierwszych wierszy pliku o nazwie 'plik'.
 
