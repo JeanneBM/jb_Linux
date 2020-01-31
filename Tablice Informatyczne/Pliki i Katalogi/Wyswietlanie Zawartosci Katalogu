@@ -1,5 +1,5 @@
 komenda ls
-Opcjonalnie mozna dolaczyc azwe katalogu, ktorego zawartosc ma zostac wyswietlona.
+Opcjonalnie mozna dolaczyc nazwe katalogu, ktorego zawartosc ma zostac wyswietlona.
 
 Najczesciej stosowane parametry:
 -R  Rekursywne wyswietlanie zawartosci wszystkich napotkanych katalogow
