@@ -24,8 +24,14 @@ Przyklad:
 root@shoebox:/src> ping 10.0.0.1 -c 5
 
 PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
-64 bytes from 10.0.0.1 
-
+64 bytes from 10.0.0.1: icmp_seq=1  ttl=64  time=0.341 ms
+64 bytes from 10.0.0.1: icmp_seq=2  ttl=64  time=0.279 ms
+64 bytes from 10.0.0.1: icmp_seq=3  ttl=64  time=0.244 ms
+64 bytes from 10.0.0.1: icmp_seq=4  ttl=64  time=0.281 ms
+64 bytes from 10.0.0.1: icmp_seq=5  ttl=64  time=0.255 ms
+--- 10.0.0.1 ping statistics ---
+5 packets transmitted, 5 recived, 0% packet loss, time 4033ms
+rtt min/avg/max/mdev = 0.244/0.280/0.341/0.033 ms
 
 
 
