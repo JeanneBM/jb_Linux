@@ -1,1 +1,21 @@
+Urzadzenia zewnetrzne i nosniki danych sa identyfikowane przez pseudo-pliki znajdujace sie w katalogu /dev.
 
+Typowe oznaczenia urzadzen:
+- /dev/hdX -   urzadzenia IDE, ATA i ATAPI (w starszych wersjach systemu Linux, obecnie oznaczenie wycofane)
+               - od /dev/hda do /dev/hdz w zaleznosci od liczby podlaczonych urzadzen,
+               
+- /dev/sdX -   urzadzenia SATA bi SCSI, a obecnie rowniez IDE, ATA i ATAPI - od /dev/sda do /dev/sdz w zaleznosci 
+               od liczby podlaczonych urzadzen,
+               
+- /dev/lpX -   drukarki, od /dev/lp0 w gore bw zaleznosci od liczby obslugiwanych drukarek
+
+- /dev/sgX -   urzadzenia SATA, SCSI i inne, niebedace nosnikami danych (np. napedy optyczne, skanery)
+
+- /dev/srX -   urzadzenia SATA, SCSI i inne umozliwiajace rejestracje danych (np. napedy optyczne z funkcja zapisu,
+                                                                              napedy tasmowe)
+               
+- /dev/null -  urzadzenie wirtualne, przyjmuje nieskonczone ilosci danych i ignoruje je, nie wydaje z siebie zadnych informacji
+               uzywane do likwidowania niepozadanych strumieni danych
+               
+               
+               
