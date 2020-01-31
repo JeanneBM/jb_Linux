@@ -16,12 +16,26 @@ Przyklady:
 
 tar xfvz /src/oident.tgz          Wydobywa wszystkie pliki z archiwum o nazwie /src/oident.tgz
 
-tar xfvj /src/oident.tar.bz2 *.h  Wydobywa z archiwum o nazwie /src/oident.tar.bz2 wszystkie pliki o nazwach spelniajacych 
-                                  warunek wieloznaczny
+tar xfvj /src/oident.tar.bz2 *.h    Wydobywa z archiwum o nazwie /src/oident.tar.bz2 wszystkie pliki o nazwach spelniajacych 
+                                    warunek wieloznaczny
                                   
-*.h tar cfjv /backup/nowe.tar.bz2 /home/    Tworzy nowe archiwum o nazwie /backup/nowe.tar.bz2 
-                                            (skompresowane za pomoca programu bzip2), 
-                                            zawierajace wszystkie pliki i katalogi zapisane w katalogu /home
+tar cfjv /backup/nowe.tar.bz2 /home/    Tworzy nowe archiwum o nazwie /backup/nowe.tar.bz2 
+                                        (skompresowane za pomoca programu bzip2), 
+                                        zawierajace wszystkie pliki i katalogi zapisane w katalogu /home
                                             
 tar tfz /home/linux-2.4.26.tgz    Wyswietla na ekranie zawartosc archiwum o nazwie /nowe/linux-2.4.26.tgz
+
+
+
+gzip 'nazwa'        Kompresuje zawartosc pliku 'nazwa' z wykorzystaniem algorytmu gzip, usuwajac ten plik z dysku 
+                    i zastepujac plikiem skompresowanym o nazwie z dolaczonym .gz. 
+                    Mozliwe jest podanie kilku nazw plikow lub nazwy wieloznacznej. 
+                    
+gunzip 'nazwa'      Dziala analogicznie jak gzip, dokonuje jednak dekompresji zawartosci pliku i usuwa .gz z jego nazwy. 
+
+bzip2 'nazwa'       Kompresuje zawartosc pliku 'nazwa' z wykorzystaniem algorytmu bzip, usuwajac ten plik z dysku 
+                    i zastepujac plikiem skompresowanym o nazwie z dolaczonym .bz2. 
+                    Mozliwe jest podanie kilku nazw plikow lub nazwy wieloznacznej. 
+                    
+bunzi p2 'nazwa'    Dziala analogicznie jak bzip2, dokonuje jednak dekompresji zawartosci pliku i usuwa .bz2 z jego nazwy.
 
