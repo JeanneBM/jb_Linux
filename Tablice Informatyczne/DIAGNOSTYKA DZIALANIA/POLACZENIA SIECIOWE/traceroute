@@ -18,6 +18,10 @@ traceroute to 157.158.36.242 (157.158.36.242), 30 hops max, 38 byte packets
 1   gliw-gate.necik.pl  (213.76.162.1)  10.552 ms  1.928 ms   2.173 ms
 2   Motorola.Magsoft.com.pl   (213.76.162.254)   135.799 ms *  71.401 ms
 3   213.25.193.237  (213.25.193.237)  151.434 ms  264.818 ms  95.245 ms
+4   z.kat-r2.do.kat_r2.tpnet.pl  (195.205.0.153)  184.909 ms   249.591 ms   231.478 ms
+5   z.kat-r2.do.kat-rl.tpnet.pl  (195.204.175.187)   114.260 ms   193.740 ms   197.480 ms  
+6   * do.kat_ar4.z.kat_rl.tpnet.pl  (213.25.5.213)   183.355 ms   143.400 ms
+7   do-sask.katowice.tpnet.pl  (194.204.145.130)    189.123 ms   117.858 ms   121.295 ms
+8   pc242.elektr.polsl.gliwice.pl  (157.158.36.242)   215.145 ms  180.132 ms   130.100 ms
 
-        
-        
+
