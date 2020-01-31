@@ -17,5 +17,13 @@ ifconfig      Wyswietla informacje na temat aktywnych polaczen sieciowych
               RX bytes:26091 (25.4 Kb)  TX bytes:7872 (7.6 Kb)
               
               Interrupt:11 Base address:0x10c0
-              
-    lo        Link
+    
+    
+    lo        Link encap:Local Loopback
+              inet addr:127.0.0.1 Mask:255.0.0.0
+              UP LOOPBACK RUNNING   MTU:16436   Metric:1
+              RX packets:4743 errors:0 dropped:0 overruns:0 frame:0
+              TX packets:4743 errors:0 dropped:0 overruns:0 carrier:0
+              collisions:0 txqueuelen:0
+              RX bytes:3898538 (3.7 Mb)     TX bytes:3898538 (3.7 Mb)
+ 
