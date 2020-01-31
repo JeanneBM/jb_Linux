@@ -3,5 +3,23 @@ netstat         Wyswietla liste wszystkich aktywnych w danym momencie polaczen T
 
 Najczesciej stosowane parametry:
 
+-r    Wyswietla tablice zasad przekazywania pakietow miedzy interfejsami sieciowymi.
+
+-n    Wylacza mozliwosc zamiany adresow IP na odpowiadajace im nazwy komputerow 
+      (przydatne w razie klopotow z dzialaniem uslugi DNS).
+      
+-c    Wlacza tryb ciaglego aktualizowania wyswietlanych informacji 
+
+-l    Wlacza tryb wyswietlania nasluchujacych gniazd TCP i UDP.
 
 
+Przyklad:
+
+root@shoebox:/src>  netstat -n
+
+Kernel IP routing table
+Destination   Gateway       Genmask         Flags     MSS Window    irtt Iface
+213.76.162.0  0.0.0.0       255.255.255.224   U           0 0           0 ethl
+10.0.0.0      0.0.0.0       255.0.0.0         U           0 0           0 eth0
+127.0.0.0     0.0.0.0       255.0.0.0         U           0 0           0 lo
+0.0.0.0       213.76.162.1  0.0.0.0           UG          0 0           0 ethl
