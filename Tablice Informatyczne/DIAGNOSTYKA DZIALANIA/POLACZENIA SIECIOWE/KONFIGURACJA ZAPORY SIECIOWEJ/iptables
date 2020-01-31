@@ -1,1 +1,30 @@
 
+iptables -L         Wyswietlanie aktualnej konfiguracji zapory sieciowej
+
+Dodatkowy parametr -n       spowoduje wylaczenie konwersji adresow IP na odpowiadajace im nazwy komputerow 
+                            oraz numerow portow na odpowiadajace im nazwy uslug sieciowych.
+                            
+------------------------------------------------------------------------------------------------------------------------
+
+Interpretacja wierszy tabeli iptables
+
+ACCEPT         udp         --        0.0.0.0/0   0.0.0.0/0   udp  spt:53
+Cel pakietu    Protokol    Opcje     Zrodlo      Cel         Informacje dodatkowe
+
+------------------------------------------------------------------------------------------------------------------------
+
+Cel pakietow
+
+- ACCEPT  - Pakiet jest akceptowany, jesli jego zdaniem bylo utworzenie nowego polaczenia, 
+            zapora sieciowa zapamietuje fakt nawiazania polaczenia.
+            
+- REJECT  - Pakiet jest odrzucany. Jesli jego zadaniem bylo utworzenie nowego polaczenia, nie dojdzie ono do skutku.
+
+- DROP    - Pakiet jest odrzucany bez powiadamiania o tym strony nadajacej go. 
+            Jesli jego zadaniem bylo utworzenie nowego polaczenia, nie dojdzie ono skutku.
+            
+------------------------------------------------------------------------------------------------------------------------
+            
+Zadania pakietu
+
+- NEW
