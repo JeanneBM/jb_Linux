@@ -1,0 +1,44 @@
+
+mount 'nazwa''gdzie''opcje'   Montuje (podlacza) system plikow z urzadzenia 'nazwa' w katalogu 'gdzie'. 
+                              Katalog docelowy musi istniec i powinien byc pusty. 
+                              Opcje:
+                               
+                              -t typ - okresla typ systemu plikow (na przykład iso9660, ext2, ext3, reiserfs). 
+                              -o opcje - dodatkowe opcje procesu montowania; 
+                                      najwazniejsze z nich to: 
+                                       async - asynchroniczne wykonywanie operacji wejscia-wyjscia, 
+                                       sync - synchroniczne (mniej wydajne, choc bezpieczniejsze) wykonywanie operacji wejscia-wyjscia, 
+                                       exec - umozliwia wykonywanie plikow binarnych z systemu plikow, 
+                                       noexec - uniemozliwia wykonywanie plikow binarnych z systemu plikow, 
+                                       noatime - nie aktualizuje zapisu czasu ostatniego dostepu do pliku, co zwieksza wydajnosc, 
+                                       remount - dokonuje podlaczenia juz zamontowanego systemu plikow, zmieniajac tylko opcje 
+                                                 procesu montowania,
+                                       ro - podlaczenie systemu plikow w trybie tylko do odczytu, 
+                                       rw - podlaczenie systemu plikow w trybie do odczytu i zapisu. 
+                                       
+umount 'nazwa'      Odlacza system plikow zamontowany w katalogu co, czyniac go niedostepnym. 
+                    Operacji tej moze dokonac jedynie administrator (root) systemu. Odlaczany system plikow nie powinien byc uzywany. 
+                    Opcje: 
+                    -f - dokonuje proby wymuszenia odlaczenia systemu plikow (jezeli jest on uzywany), 
+                    -1 - oznacza system plikow jako skierowany do odlaczenia i dokonuje automatycznie jego odlaczenia 
+                         przy pierwszej nadarzajacej sie okazji (jezeli aktualnie jest uzywany i nie moze byc odlaczony natychmiast). 
+                         
+                     Odlaczenie systemu plikow przed odlaczeniem urzadzenia, na ktorym zapisane sa dane w ramach tego systemu plikow, 
+                     jest warunkiem koniecznym ochrony przed utrata danych. Zamontowane systemy plikow moga nie byc poprawnie 
+                     zaktualizowane na nosniku i przedwczesne (bez odlaczenia systemu plikow) odlaczenie 
+                     lub wylaczenie urzadzenia moze spowodowac utrate danych.
+                    
+mount --bind 'nazwa''gdzie'       Przekierowuje caly katalog 'nazwa' wraz z zawartoscia do katalogu 'gdzie'. 
+                                  Katalog gdzie musi istniec i powinien byc pusty (poprzednia jego zawartosc staje sie niewidoczna, 
+                                  lecz nie zostaje utracona). Oba katalogi mogą lezec w roznych systemach plikow. 
+                                  Operacji tej moze dokonac jedynie administrator (root) systemu. 
+
+
+sync        Synchronizuje stan buforow w pamieci operacyjnej z zawartoscia nosnikow danych, minimalizujac (lecz nie likwidujac) ryzyko 
+            utraty danych w momencie naglego odlaczenia zasilania lub odlaczenia urzadzenia pamieci masowej 
+            bez wczesniejszego odlaczenia systemu plików. 
+                        
+                    
+                               
+                               
+                               
