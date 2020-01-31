@@ -1,0 +1,43 @@
+touch 'nazwa'    Utworzenie pustego pliku o nazwie 'nazwa'
+
+rm 'nazwa' -f    Usuniecie pliku o nazwie 'nazwa'.
+                 Przelacznik -f pozwala zapobiec pytaniu o potwierdzenie checi usuniecia danych 
+                 (zaleznego od ustawien srodowiska uzytkownika)
+                 
+dd if=/dev/zero of=nazwa bs=1 count=n   Utworzenie pliku o nazwie 'nazwa' zawierajacego n bajtow o wartosci 0.
+
+cp 'opcje' 'skad''dokad'    Kopiuje plik lub katalog (czyli tworzy ich kopie, pozostawiajac oryginal bez zmian) podane jako pierwszy
+                            parametr do katalogu lub pliku o nazwie podanej jako drugi parametr. Nazwa zrodła danych moze byc nazwa 
+                            wieloznaczna. Poniewaz parametry oddzielone sa znakiem spacji, nalezy bardzo uwazac na nazwy plikow 
+                            i katalogow zawierajace spacje. Kazda spacje nalezy poprzedzic znakiem \ lub zamiennie cala nazwe pliku 
+                            nalezy zawrzec w znakach cudzyslowu.
+                            
+                            Najczesciej uzywane opcje polecenia: 
+                            -i- prosi o potwierdzenie (klawiszem y) operacji w przypadku proby skopiowania pliku w miejsce 
+                                lub pod nazwe juz istniejaca na dysku 
+                            -R- kopiuje wszystkie pliki znajdujace sie wewnatrz kopiowanych katalogow 
+                                (bez tego parametru kopiowane sa same katalogi, bez plikow, ktore zawieraja) 
+                            -p- zachowuje dane o wlascicielu pliku i prawach dostepu do niego; 
+                                przydatna w razie kopiowania przez administratora katalogow domowych uzytkownikow w nowe miejsce, 
+                                aby nie naruszyc narzuconej im struktury praw dostępu
+                            -V- wyswietla w czasie wykonywania operacji kopiowania nazwy kolejno przetwarzanych plikow
+                            
+mv 'opcje' 'skad''dokad'    Funkcjonuje analogicznie do polecenia cp, lecz zamiast kopiowac pliki przenosi je, 
+                            a wiec tworzy kopie w miejscu docelowym i usuwa oryginaly. Nazwa zrodla danych moze byc nazwa wieloznaczna.  
+                            W miare mozliwosci przeniesione pliki zachowuja wszystkie informacje na temat wlasciciela pliku i praw dostepu. 
+
+                            Najczesciej uzywane opcje polecenia:
+                            -i- prosi o potwierdzenie operacji w przypadku proby skopiowania pliku w miejsce lub pod nazwe juz istniejaca 
+                                na dysku 
+                            -v- wyswietla w czasie wykonywania operacji kopiowania nazwy kolejno przetwarzanych plikow 
+                            
+rm 'opcje' 'nazwa'          Usuwa wskazane pliki lub katalogi. Domyslnie usuniecie jest natychmiastowe i nieodwracalne 
+                            (niektore dystrybucje wprowadzaja obowiazek potwierdzania). 
+                            Najczesciej uzywane opcje polecenia: 
+                            -f - usuwa pliki bez wymagania potwierdzenia (jezeli ustawienia systemu wymagaja potwierdzania) 
+                            -r - usuwa pliki rekursywnie (po napotkaniu katalogu wskazane pliki sa usuwane rowniez z wnetrza katalogu) 
+                            -i - prosi o potwierdzanie kazdej operacji usuniecia pliku
+                            
+                            
+                            
+                            

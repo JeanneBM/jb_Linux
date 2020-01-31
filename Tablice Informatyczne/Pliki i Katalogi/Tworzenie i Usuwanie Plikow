@@ -1,8 +1,0 @@
-touch 'nazwa'    Utworzenie pustego pliku o nazwie 'nazwa'
-
-rm 'nazwa' -f    Usuniecie pliku o nazwie 'nazwa'.
-                 Przelacznik -f pozwala zapobiec pytaniu o potwierdzenie checi usuniecia danych 
-                 (zaleznego od ustawien srodowiska uzytkownika)
-                 
-dd if=/dev/zero of=nazwa bs=1 count=n   Utworzenie pliku o nazwie 'nazwa' zawierajacego n bajtow o wartosci 0.
-
