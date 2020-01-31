@@ -1,0 +1,20 @@
+
+reset       Ponownie inicjalizuje konsolę wirtualną. Polecenie przydatne w przypadku, gdy zrealizowane wcześniej polecenie spowoduje 
+            błędne działanie konsoli (np. zmianę alfabetu tak, że zamiast liter pojawiają się symbole) 
+            
+clear       Wyczyszczenie aktvwnej konsoli wirtualnej 
+
+echo 'opcje' tekst    Wyświetla na ekranie podany tekst. Z najbardziej użytecznych opcji -n powoduje rezygnację z kończenia wypisywanego tekstu 
+                      znakiem końca wiersza, co umożliwia stopniowe dopisywanie informacji w tym samym wierszu.
+                
+read 'nazwa-zmiennej'       Odczytuje tekst z klawiatury i wstawia do zmiennej o nazwie 'nazwa-zmiennej'. Aby odwołać się później do tej zmiennej, 
+                            musisz poprzedzić jej nazwę znakiem $. 
+                            
+                            Przykład:   
+                            user@shoebox: N$ read zmienna 
+                            abcdef 
+                            user@shoebox: N$ echo $zmienna 
+                            abcdef 
+                        
+                        
+                        
