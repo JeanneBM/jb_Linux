@@ -27,3 +27,8 @@ ifconfig      Wyswietla informacje na temat aktywnych polaczen sieciowych
               collisions:0 txqueuelen:0
               RX bytes:3898538 (3.7 Mb)     TX bytes:3898538 (3.7 Mb)
  
+Pozycja lo odpowiada wirtualnemu urzadzeniu sieciowemu, ktore udaje karte sieciowa podlaczona do sieci, 
+w ktorej nie znajduja sie zadne komputery poza Twoim (ktoremu w sieci odpowiada adres IP 127.0.0.1). 
+Jest to tak zwany 'interfejs zwrotny'.
+
+
