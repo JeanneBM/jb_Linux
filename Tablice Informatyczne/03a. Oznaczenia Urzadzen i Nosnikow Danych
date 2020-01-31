@@ -17,5 +17,15 @@ Typowe oznaczenia urzadzen:
 - /dev/null -  urzadzenie wirtualne, przyjmuje nieskonczone ilosci danych i ignoruje je, nie wydaje z siebie zadnych informacji
                uzywane do likwidowania niepozadanych strumieni danych
                
+- /dev/zero -  urzadzenie wirtualne, nie przyjmuje danych i genereuje nieskonczony ciag zer (w sensie binarnym);
+               uzywanie do zapelniania blokow danych pustymi bajtami (o zerowej wartosci) 
                
-               
+- /dev/random -   urzadzenie wirtualne, nie przyjmuje danych i generuje nieskonczony ciag losowych wartosci binarnych;
+                  uzywane do kasowania informacji poufnych lub w kryptografii
+                  
+Nosniki danych, ktore moga byc podzielone na partycje, dodatkowo sa dostepne jako odrebne urzadzenia wirtualne 
+reprezentujace poszczegolne partycje. Na przyklad nosnik /dev/sda podzielony na trzy partycje podstawowe moze byc
+dostepny dodatkowo jako urzadzenia /dev/sda1, /dev/sda2 i /dev/sda3.
+
+
+                  
