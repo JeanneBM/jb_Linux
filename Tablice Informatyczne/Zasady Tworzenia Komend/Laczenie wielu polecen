@@ -1,5 +1,5 @@
-janek@serwerek:-$ echo Pierwszy; echo Drugi; echo A tu mamy \; średnik 
+janek@serwerek:-$ echo Pierwszy; echo Drugi; echo A tu mamy \; srednik 
 
 Pierwszy 
 Drugi
-A tu mamy ; średnik 
+A tu mamy ; srednik 
