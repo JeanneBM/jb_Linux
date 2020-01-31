@@ -1,0 +1,35 @@
+
+ping 'adres'    Wysyla do komputera o adresie (lub nazwie) 'adres' testowy pakiet danych ICMP i oczekuje odpowiedzi.
+                Polecenie przydatne w czasie testowania sieci lokalnych lub dzialania polaczenia internetowego.
+                
+Najczesciej stosowane parametry:
+                
+-c n        Ogranicza liczbe pakietow do n (standardowo test polaczenia przebiega bez konca, az do momentu uzycia Ctrl+C)
+
+-i 'czas'   Modyfikuje czas (w sekundach) uplywajacy miedzy kolejnymi probami nadania pakietu testowego.
+
+-n          Wylacza mozliwosc zmiany adresow IP na odpowiadajace im nazwy komputerow 
+            (przydatne w razie klopotow z dzialaniem uslugi DNS).
+
+-q          Wylacza wyswietlanie informacji o odebranych prawidlowo pakietach; w czasie konczenia pracy programu wyswietlana 
+            jest jedynie statystyka przeprowadzonego testu polaczenia.
+            
+-s 'rozmiar'    Okresla rozmiar testowych pakietow danych.
+
+-W 'czas'   Okresla czas (w sekundach), jaki program czeka na uzyskanie odpowiedzi (echa) na wyslany pakiet testowy.
+
+
+Przyklad:
+
+root@shoebox:/src> ping 10.0.0.1 -c 5
+
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1 
+
+
+
+
+
+
+                
+                
