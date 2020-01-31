@@ -77,15 +77,25 @@ Parametry:
                   
 -j 'cel'    Kieruje pakiet do innego lancucha przetwarzania pakietow lub od razu odrzuca go (REJECT) lub akceptuje (ACCEPT).
 
+------------------------------------------------------------------------------------------------------------------------
 
-                  
-                  
-    
-              
-              
-              
-                
-                
+Dzialanie stalego dostepu do Internetu w sieci lokalnej
+
+iptables -t nat -A POSTROUTING -o 'karta-zewnetrzna' -s 'IP-wewnetrzne'/'maska-wewnatrzna' -j SNAT --to 'IP-zewnetrzne'
+
+gdzie:
+        karta-zewnetrzna -  identyfikator karty sieciowej realizujacej polaczenie z Internetem - na przyklad eth0,
+        IP-wewnetrzne -    adres IP sieci wewnetrznej (lokalnej) - na przyklad 10.0.0.0,
+        maska-wewnetrzna -  maska sieci wewnetrznej (lokalnej) - na przyklad 255.0.0.0,
+        IP-zewnetrzne -   adres IP przydzielony karcie sieciowej realizujacej polaczenie z Internetem.
+        
+Zamiast karty sieciowej polaczenie z Internetem moze realizowac rowniez inne urzadzenie. 
+W sposob podobny do opisanego mozna rozdzielic dostep do Internetu uzyskany poprzez modem, SDI, neostrade czy DSL.
+Niestety, moze wymagac to troche innego podejscia do problemu. W razie potrzeby nalezy poszukac informacji w Internecie 
+- bez problemu powinny byc dostepne podreczniki opisujace krok po kroku konfiguracje serwera rozdzielajacego dostep do sieci.
+
+------------------------------------------------------------------------------------------------------------------------
 
 
-            
+
+        
