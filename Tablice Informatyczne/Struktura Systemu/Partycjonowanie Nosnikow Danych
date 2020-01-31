@@ -1,0 +1,20 @@
+
+!! Partycjonowanie nosnikow danych jest operacja destruktywna. Usuniecie partycji lub zmiana jej parametrow moze spowodowac utrate dostępu 
+do danych lub ich bezpowrotne uszkodzenie.
+
+fdisk 'nosnik'     Uruchamia program partycjonowania nosnika 'nosnik', np. fdisk /dev/sda. 
+                   
+                   Polecenia dostepne w trybie partycjonowania nosnika danych:
+                   - m - wyswietlenie objasnienia poszczegolnych funkcji programu, 
+                   - q - konczy dzialanie programu bez zapisywania jakichkolwiek zmian, 
+                   - w - zapisuje zmiany wprowadzone w tablicy partycji i konczy dzialanie programu, 
+                   - p - wyswietlenie aktualnej zawartosci tablicy partycji (z uwzglednieniem ewentualnie wprowadzonych zmian), 
+                   - o - usuniecie wszystkich partycji i utworzenie nowej, czystej tablicy partycji, 
+                   - n - utworzenie nowej partycji, 
+                   - a - oznaczenie wybranej partycji podstawowej jako przeznaczonej do rozruchu systemu operacyjnego, 
+                   - t - zmiana identyfikatora typu wybranej partycji, 
+                   - d - usuniecie wybranej partycji, 
+                   - v - weryfikacja poprawnosci tablicy partycji, 
+                   - c - wylaczenie zgodnosci z systemem DOS i przejscie do trybu zarzadzania partycjami wg numeracji sektorow logicznych (LBA). 
+                   
+                   
