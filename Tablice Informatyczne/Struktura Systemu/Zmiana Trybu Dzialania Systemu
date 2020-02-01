@@ -1,1 +1,13 @@
 
+telinit 'tryb'     Zmienia tryb działania systemu na tryb. 
+
+Polecenie mozliwe do wykonania jedynie przez uzytkownika uprzywilejowanego (root).
+
+Możliwe tryby działania systemu to:
+0 (zarezerwowany, wykorzystywany podczas zatrzymywania systemu), 
+1 (tryb administracyjny bez wielodostepu - ang. single-user mode - wykorzystywany do konserwacji systemu bez ryzyka rownoległej pracy 
+  innych uzytkownikow), 
+2, 3, 4, 5 (standardowe tryby tekstowe -zazwyczaj 2,3 - i graficzne - zazwyczaj 4,5) oraz 
+6 (zarezerwowany, wykorzystywany podczas powtornego uruchamiania systemu).
+
+
