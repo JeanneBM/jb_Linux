@@ -1,5 +1,6 @@
 
 telinit 'tryb'     Zmienia tryb dzialania systemu na 'tryb'. 
+===============
 
 Polecenie mozliwe do wykonania jedynie przez uzytkownika uprzywilejowanego (root).
 
@@ -11,11 +12,29 @@ Możliwe tryby działania systemu to:
 6 (zarezerwowany, wykorzystywany podczas powtornego uruchamiania systemu).
 
 
+
 runlevel        Wyswietla poprzedni oraz biezacy tryb dzialania systemu.
+==========
 
 W miejscu poprzedniego trybu moze byc wyswietlana litera N oznaczajaca, ze biezacy tryb jest pierwszym, w jaki zostal wprowadzony system 
 od momentu uruchomienia. 
 
 Realizacja polecenia nie wymaga uprawnien uzytkownika uprzywilejowanego. 
 
+
+
+shutdown 'opcja''kiedy' [komunikat]         Powoduje zatrzymanie działania wszystkich procesów wszystkich użytkowników, 
+======================================      zamknięcie systemu operacyjnego oraz -opcjonalnie -wyłączenie komputera. 
+                                        
+Opcjonalnie użytkownikom może zostać przekazany komunikat o treści wprowadzonej na końcu wiersza polecenia. 
+
+Możliwe opcje:
+-h (zatrzymanie lub wyłączenie}, 
+-H (zatrzymanie}, 
+-P (wyłączenie), 
+-r {powtórne uruchomienie}, 
+-k (zablokowanie możliwości logowania się bez zatrzymywania systemu}. 
+
+Czas realizacji polecenia (kiedy) może zostać podany w formacie godzina:minuty lub jako słowo naw, oznaczające konieczność natychmiastowej 
+realizacji wybranej operacji.
 
