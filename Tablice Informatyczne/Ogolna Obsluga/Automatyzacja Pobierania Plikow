@@ -1,1 +1,14 @@
 
+wget 'opcje' URL      Pobiera plik o podanym adresie URL i zapisuje na dysku komputera. 
+
+Opcje:
+-Onazwa -   narzuca nazwe (lub rowniez katalog docelowy) pliku, 
+
+-c -        kontynuuje pobieranie pliku od momentu przerwania, pod warunkiem ze nazwy pliku docelowego w poprzednim i aktualnym 
+            procesie pobierania sa identyczne,
+            
+--lim it -rate=n -    ogranicza szybkość pobierania danych do co najwyżej n bajtów na sekundę, 
+-q- pobiera plik w tle, bez wyświetlania komunikatów na ekranie, 
+-t n - ogranicza liczbę automatycznych prób pobrania pliku {gdy jest to możliwe} do n, 
+-T n - nakazuje oczekiwanie na odpowiedź serwera {lub dane} do n sekund, 
+-r - pobiera wszystkie pliki zależne {składowe) danego dokumentu HTML lub katalogu FTP. 
