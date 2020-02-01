@@ -1,1 +1,36 @@
+Klient SSH 
+
+ssh [uzytkownik@]host       Nawiazanie bezpiecznego, szyfrowanego polaczenia z serwerem SSH na komputerze o nazwie host. 
+                            Domyslnie dokonywana jest autoryzacja uzytkownika o nazwie takiej jak na lokalnym komputerze 
+                            (aby to zmienic, nalezy podac nazwe konta przed nazwa hosta, oddzielajac je znakiem @). 
+                            
+Opcje:
+
+-1 - uzywa wylacznie starszej wersji 1.0 protokołu SSH, 
+-2 - uzywa wersji 2.0 protokolu, 
+-4 - uzywa polaczenia 1Pv4, 
+-6 - uzywa polaczenia 1Pv6, 
+-c - uaktywnia kompresje danych przesylanych w ramach polaczenia (zalecane tylko dla wolnych sieci). 
+
+
+
+Zabezpieczanie serwera SSH 
+
+Istotne wpisy konfiguracyjne w pliku /etc/ssh/sshd_config: 
+
+Protocol 2, 1           Standardowo obslugiwane sa dwie wersje protokołu SSH. 
+                        Aby zwiększyć poziom bezpieczeństwa, można wyłączyć wersję 1 (Protocol 2) 
+                        
+PermitRootLogin yes     Standardowo system dopuszcza bezposrednie logowanie sie administratora. 
+                        Po zmienieniu tej opcji na Permit Rootlogin no potencjalny wlamywacz musi zgadnac nie tylko haslo administratora, 
+                        ale tez nazwe konta i haslo któoegos z uzytkownikow serwera 
+                        
+AllowUsers              Umozliwia wprowadzenie listy kont uzytkownikow, ktorzy maja prawo korzystac z uslugi SSH 
+                        (standardowo prawo to maja wszystkie konta uzytkownikow). Lista nazw kont jest rozdzielona znakami odstepu 
+                        
+DenyUsers               Umozliwia odebranie prawa korzystania z uslugi SSH okreslonym kontom uzytkownikow.
+                        Lista nazw kont jest rozdzielona znakami odstepu 
+                        
+Banner                  Informacja podawana przed zapytaniem o nazwe konta uzytkownika 
+
 
