@@ -1,5 +1,7 @@
 
 wget 'opcje' URL      Pobiera plik o podanym adresie URL i zapisuje na dysku komputera. 
+================
+
 
 Opcje:
 -Onazwa -   narzuca nazwe (lub rowniez katalog docelowy) pliku, 
@@ -7,8 +9,39 @@ Opcje:
 -c -        kontynuuje pobieranie pliku od momentu przerwania, pod warunkiem ze nazwy pliku docelowego w poprzednim i aktualnym 
             procesie pobierania sa identyczne,
             
---lim it -rate=n -    ogranicza szybkość pobierania danych do co najwyżej n bajtów na sekundę, 
--q- pobiera plik w tle, bez wyświetlania komunikatów na ekranie, 
--t n - ogranicza liczbę automatycznych prób pobrania pliku {gdy jest to możliwe} do n, 
--T n - nakazuje oczekiwanie na odpowiedź serwera {lub dane} do n sekund, 
--r - pobiera wszystkie pliki zależne {składowe) danego dokumentu HTML lub katalogu FTP. 
+--lim it -rate=n -    ogranicza szybkosc pobierania danych do co najwyzej n bajtow na sekunde, 
+
+-q -        pobiera plik w tle, bez wyswietlania komunikatow na ekranie, 
+
+-t n -      ogranicza liczbe automatycznych prob pobrania pliku (gdy jest to mozliwe) do n, 
+
+-T n -      nakazuje oczekiwanie na odpowiedz serwera (lub dane) do n sekund, 
+
+-r -        pobiera wszystkie pliki zalezne (skladowe) danego dokumentu HTML lub katalogu FTP. 
+
+
+seq 'opcje' n m         Generuje sekwencje liczb od n dom, wypisywanych w kolejnych wierszach. 
+================
+
+
+W przypadku podania opcji -w kolejne liczby sa dopelniane z lewej strony zerami, aby miec jednakowa szerokosc liczona w znakach. 
+
+Przyklad: 
+user@shoebox:- seq 1 3 
+
+1 
+2 
+3 
+
+for         Tworzy petle o okreslonych warunkach brzegowych. 
+=====
+
+W polaczeniu z poleceniami seq i wget umozliwia wygodne, automatyczne pobieranie serii plikow o kolejno numerowanych nazwach. 
+
+Na przyklad:
+for i in ·seq -w 1 20·; do wget http://serwer/dokumenty/$i.doc; done; 
+
+spowoduje automatyczne pobranie plikow o nazwach od OO.doc do 20.doc z katalogu dokumenty serwera serwer.
+
+
+
