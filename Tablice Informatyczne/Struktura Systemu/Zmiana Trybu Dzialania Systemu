@@ -23,29 +23,33 @@ Realizacja polecenia nie wymaga uprawnien uzytkownika uprzywilejowanego.
 
 
 
-shutdown 'opcja''kiedy' [komunikat]         Powoduje zatrzymanie działania wszystkich procesów wszystkich użytkowników, 
-======================================      zamknięcie systemu operacyjnego oraz -opcjonalnie -wyłączenie komputera. 
+shutdown 'opcja''kiedy' [komunikat]         Powoduje zatrzymanie dzialania wszystkich procesow wszystkich uzytkownikow, 
+======================================      zamkniecie systemu operacyjnego oraz - opcjonalnie - wylaczenie komputera. 
                                         
-Opcjonalnie użytkownikom może zostać przekazany komunikat o treści wprowadzonej na końcu wiersza polecenia. 
+Opcjonalnie uzytkownikom moze zostac przekazany komunikat o tresci wprowadzonej na koncu wiersza polecenia. 
 
-Możliwe opcje:
--h (zatrzymanie lub wyłączenie}, 
--H (zatrzymanie}, 
--P (wyłączenie), 
--r {powtórne uruchomienie}, 
--k (zablokowanie możliwości logowania się bez zatrzymywania systemu}. 
+Mozliwe opcje:
+-h (zatrzymanie lub wylaczenie), 
+-H (zatrzymanie), 
+-P (wylaczenie), 
+-r (powtorne uruchomienie), 
+-k (zablokowanie mozliwosci logowania sie bez zatrzymywania systemu). 
 
-Czas realizacji polecenia (kiedy) może zostać podany w formacie godzina:minuty lub jako słowo naw, oznaczające konieczność natychmiastowej 
+Czas realizacji polecenia (kiedy) moze zostac podany w formacie godzina:minuty lub jako slowo now, oznaczajace koniecznosc natychmiastowej 
 realizacji wybranej operacji.
 
-halt        Wymusza zatrzymanie działania systemu operacyjnego i wyłączenie komputera. 
+
+halt        Wymusza zatrzymanie dzialania systemu operacyjnego i wylaczenie komputera. 
 ======
 
-Polecenie możliwe do wykonania jedynie przez użytkownika uprzywilejowanego (root). 
+Polecenie mozliwe do wykonania jedynie przez uzytkownika uprzywilejowanego (root). 
 Synonim polecenia shutdown z odpowiednimi parametrami. 
 
-reboot      Wymusza powtórne uruchomienie systemu operacyjnego. 
+
+reboot      Wymusza powtorne uruchomienie systemu operacyjnego. 
 ========
 
-Polecenie możliwe do wykonania jedynie przez użytkownika uprzywilejowanego (root}. 
+Polecenie mozliwe do wykonania jedynie przez uzytkownika uprzywilejowanego (root). 
 Synonim polecenia shutdown z odpowiednimi parametrami.
+
+
