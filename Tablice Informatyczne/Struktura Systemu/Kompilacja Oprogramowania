@@ -1,30 +1,36 @@
-make        Kompilacja programu wielomodulowego, ktory jest wyposazony w plik Makefile i określa listę plików składowych 
-            oraz zalezności miedzy nimi. 
+
+make        Kompilacja programu wielomodulowego, ktory jest wyposazony w plik Makefile i okresla liste plikow skladowych 
+            oraz zaleznosci miedzy nimi. 
                      
 Czesto dostepna opcja: 
 
 clean - usuwa posrednie pliki kompilacji zaraz po pomyslnie zakonczonej kompilacji calego pakietu; 
-przydatne, gdy nie chce się już dokonywać dalszych poprawek w kodzie źródłowym i wykonywać kolejnych przebiegów kompilacji. 
+        przydatne, gdy nie chce sie już dokonywac dalszych poprawek w kodzie zrodlowym i wykonywac kolejnych przebiegow kompilacji. 
 
-install- dokonuje instalacji programu w systemie (wymaga to uprawnień administratora}. 
-uninstall - usuwa zainstalowane wcześniej poleceniem install pliki składowe z systemu. 
+install - dokonuje instalacji programu w systemie (wymaga to uprawnien administratora). 
 
-Kompilacja jądra systemu Linux: 
-make - kompilacja jądra systemu Linux 2.6 (wraz z modułami},
-make bzimage - kompilacja samego jądra systemu Linux 2.4 (bez modułów}, 
-make modules - kompilacja modułów jądra Linux 2.4, 
-make modules_install- automatyczna instalacja modułów jądra w katalogu//ib/modules. 
+uninstall - usuwa zainstalowane wczesniej poleceniem install pliki skladowe z systemu. 
 
-gcc (opcje} plikźródłowy -o plikwynikowy    Dokonuje kompilacji pliku źródłowego w języku Cna jego postać binarną, 
-                                            umieszczając kod maszynowy w pliku pL ikwynikowy. 
-                                            W razie potrzeby kompiluje kilka podanych plików źródłowych 
-                                            lub łączy ze sobą wcześniej skompilowane binarne moduły biblioteczne. 
+
+Kompilacja kernela systemu Linux: 
+
+make - kompilacja kernela systemu Linux 2.6 (wraz z modulami),
+make bzimage - kompilacja samego kernela systemu Linux 2.4 (bez modułow), 
+make modules - kompilacja modułow kernela Linux 2.4, 
+make modules_install- automatyczna instalacja modułow kernela w katalogu /lib/modules. 
+
+
+gcc 'opcje''plik-zrodlowy' -o 'plik-wynikowy'    Dokonuje kompilacji pliku zrodlowego w jezyku C na jego postac binarna, 
+                                                 umieszczajac kod maszynowy w pliku pL ikwynikowy. 
+                                                 W razie potrzeby kompiluje kilka podanych plikow zrodlowych 
+                                                 lub laczy ze soba wczesniej skompilowane binarne moduly biblioteczne. 
                                             
-Najczęściej stosowane opcje: 
--c - dokonuje kompilacji do postaci binarnego modułu bibliotecznego zamiast do postaci samodzielnego pliku wykonywalnego, 
--s- tłumaczy program na postać asemblerową, nie dokonując ostatecznej kompilacji, 
--on - włącza jeden z pięciu poziomów optymalizacji (O -brak, 1 -zalecana, lekka, 2 -silniejsza, 3 -najsilniejsza, niezalecana, 
-s -optymalizacja pod kątem rozmiaru programu}, 
+Najczesciej stosowane opcje: 
 
--s - wyłącza dodawanie do programu informacji diagnostycznych, znacznie zmniejszając rozmiar generowanego pliku wynikowego. 
+-c -        dokonuje kompilacji do postaci binarnego modulu bibliotecznego zamiast do postaci samodzielnego pliku wykonywalnego, 
+-s -        tlumaczy program na postac asemblerowa, nie dokonujac ostatecznej kompilacji, 
+-on -       wlacza jeden z pieciu poziomow optymalizacji (O -brak, 1 -zalecana, lekka, 2 -silniejsza, 3 -najsilniejsza, niezalecana, 
+                                                          s -optymalizacja pod katem rozmiaru programu), 
+
+-s -        wylacza dodawanie do programu informacji diagnostycznych, znacznie zmniejszajac rozmiar generowanego pliku wynikowego. 
 
