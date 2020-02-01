@@ -3,7 +3,9 @@ cat       Wyswietla zawartosc pliku o sciezce dostepu.
 
 more      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
           Umozliwia pomijanie fragmentow danych za pomoca polecen podawanych z klawiatury (szczegoly man more).
-    
+          Uproszczona wersja polecenia less. Jesli nie ma przeciwwskazan, powinno byc stosowane polecenie less.
+          Obsluga: klawisz spacji powoduje wyswietlenie kolejnej partii tekstu, klawisz Q przerywa wyswietlanie strumienia danych     
+           
           Przyklad: cat /home/jakub/dlugiplik.txt | more
           
 less      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
@@ -14,17 +16,27 @@ less      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kaz
           Przyklad: cat /home/jakub/dlugiplik.txt | less
           
     
-head -n 'plik'  Ogranicza liczbe wyprowadzanych informacji do n pierwszych wierszy pliku o nazwie 'plik'.
+head -n 'plik'      Ogranicza liczbe wyprowadzanych informacji do n pierwszych wierszy pliku o nazwie 'plik'.
 
-                Przyklady: head -5 /etc/passwd
+                    Przyklady: head -5 /etc/passwd
                           cat /home/luzak/1.txt | head -20
                           
-tail -n 'plik'  Ogranicza liczbe wyprowadzonych informacji do n ostatnich wierszy pliku o nazwie 'plik'.
+tail -n 'plik'      Ogranicza liczbe wyprowadzonych informacji do n ostatnich wierszy pliku o nazwie 'plik'.
 
-                Przyklady: tail -5 /etc/passwd
+                    Przyklady: tail -5 /etc/passwd
                            cat /home/luzak/1.txt | tail -20
 
-
-
-
-
+grep 'opcje''tekst''plik'     Wyszukuje w pliku 'plik' (lub w potoku danych) podany tekst i wypisuje wiersze tekstu, w ktorym dana fraza  
+                              wystapila choc raz. 
+                              Uzyteczne opcje:
+                              -A n- wypisuje n wierszy tekstu za kazdym znalezionym,
+                              -B n- wypisuje n wierszy tekstu przed kazdym znalezionym,
+                              -c - zamiast wyszukiwania zlicza tylko wystapienia frazy, 
+                              -i - ignoruje wielkosc znakow,
+                              -n - wypisuje przed kazdym wierszem numer tego wiersza w pliku,
+                              -v - odwraca dzialanie, wyszukujac wiersze niezawierajace podanej frazy.
+                              
+                              Przyklad: 
+                              cat log.txt | grep -v „10.0.0.1"
+                              
+                              
