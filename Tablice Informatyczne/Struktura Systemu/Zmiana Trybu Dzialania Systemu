@@ -1,5 +1,5 @@
 
-telinit 'tryb'     Zmienia tryb działania systemu na tryb. 
+telinit 'tryb'     Zmienia tryb dzialania systemu na 'tryb'. 
 
 Polecenie mozliwe do wykonania jedynie przez uzytkownika uprzywilejowanego (root).
 
@@ -9,5 +9,13 @@ Możliwe tryby działania systemu to:
   innych uzytkownikow), 
 2, 3, 4, 5 (standardowe tryby tekstowe -zazwyczaj 2,3 - i graficzne - zazwyczaj 4,5) oraz 
 6 (zarezerwowany, wykorzystywany podczas powtornego uruchamiania systemu).
+
+
+runlevel        Wyswietla poprzedni oraz biezacy tryb dzialania systemu.
+
+W miejscu poprzedniego trybu moze byc wyswietlana litera N oznaczajaca, ze biezacy tryb jest pierwszym, w jaki zostal wprowadzony system 
+od momentu uruchomienia. 
+
+Realizacja polecenia nie wymaga uprawnien uzytkownika uprzywilejowanego. 
 
 
