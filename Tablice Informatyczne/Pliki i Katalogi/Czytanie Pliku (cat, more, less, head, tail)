@@ -1,5 +1,5 @@
 cat       Wyswietla zawartosc pliku o sciezce dostepu. 
-          Z najuzetyczniejszych opcji warto wymienic -n powodujaca numerowanie kolejnych wierszy pliku.               
+          Z najuzyteczniejszych opcji warto wymienic -n powodujaca numerowanie kolejnych wierszy pliku.               
 
 more      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
           Umozliwia pomijanie fragmentow danych za pomoca polecen podawanych z klawiatury (szczegoly man more).
