@@ -1,0 +1,25 @@
+screen 'opcje'      Tworzy nowa trwala sesje uzytkownika (przy braku parametrow) lub przylacza sie do jednej z istniejacych. 
+                    Trwale sesje dzialaja bez przerwy, nawet jezeli uzytkownik wyloguje sie z komputera lub zostanie od niego odlaczony 
+                    (przy pracy zdalnej). 
+                    
+Opcje: 
+
+-list -   wyswietla liste obecnych w pamieci sesji, 
+                              
+-r -      przylacza uzytkownika do jednej z dzialajacych na danym komputerze i nalezacych do niego sesji 
+          (w razie istnienia kilku sesji ich lista zostanie wyswietlona na ekranie, a identyfikator sesji nalezy podac jako parametr opcji -r), 
+                    
+-d -      rozlacza sesje, jezeli jest ona uzywana z innego komputera (czesto uzywa sie polaczenia opcji -d -r, 
+          aby rozlaczyc sesje i przylaczyc sie do niej od razu z lokalnego komputera), 
+                              
+-s 'nazwa' -    nadaje tworzonej sesji opisowa nazwe. 
+
+
+Kombinacje klawiszy obowiązujące w ramach sesji: 
+
+Ctrl+A, 0-9 - przelacza na jedna z dziesieciu konsoli wirtualnych w ramach sesji, 
+Ctrl+A, C - tworzy nową konsole wirtualna w ramach aktywnej sesji, 
+Ctrl+A, O - odlacza biezaca sesje, 
+Ctrl+A, K - likwiduje biezaca konsole wirtualna, 
+Ctrl+A, W - wyswietla liste konsoli wirtualnych w ramach sesji. 
+
