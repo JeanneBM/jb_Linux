@@ -39,9 +39,13 @@ Czas realizacji polecenia (kiedy) może zostać podany w formacie godzina:minuty
 realizacji wybranej operacji.
 
 halt        Wymusza zatrzymanie działania systemu operacyjnego i wyłączenie komputera. 
+======
 
 Polecenie możliwe do wykonania jedynie przez użytkownika uprzywilejowanego (root). 
 Synonim polecenia shutdown z odpowiednimi parametrami. 
 
-reb oot Wymusza powtórne uruchomienie systemu operacyjnego. Polecenie możliwe do wykonania jedynie przez użytkownika uprzywilejowanego (root}. 
+reboot      Wymusza powtórne uruchomienie systemu operacyjnego. 
+========
+
+Polecenie możliwe do wykonania jedynie przez użytkownika uprzywilejowanego (root}. 
 Synonim polecenia shutdown z odpowiednimi parametrami.
