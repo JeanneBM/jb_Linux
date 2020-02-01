@@ -20,5 +20,17 @@ ps ux  Wyswietlenie szczegolowych informacji na temat wszystkich procesow dziala
 ps uU 'luzak'   Wyswietlenie wszystkich procesow uruchomionych przez uzytkownika 'luzak'
 
 
+kill 'opcje' pid      Wysyla uruchomionemu programowi (procesowi) o identyfikatorze pid informacje o koniecznosci chwilowego 
+                      lub trwalego przerwania pracy. Rodzaj przesylanego sygnalu mozna okreslic za pomocą opcji -s n, 
+                      gdzie n to identyfikator sygnału (lista w tabeli ponizej). 
+                      
+                      Przykład: kill -s 15 grep 
+                      
+ killall 'opcje''nazwa'     Funkcjonuje podobnie jak kill, jednak przesyla informacje nie wybranemu procesowi, lecz wszystkim procesom 
+                            o podanej nazwie. 
+
+                            Przyklad: killall -s 9 cat
+                            
+                            
 
 
