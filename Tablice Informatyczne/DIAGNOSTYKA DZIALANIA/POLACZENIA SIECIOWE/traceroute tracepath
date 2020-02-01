@@ -1,5 +1,6 @@
 
-traceroute 'nazwa'    Wyswietla trase, jaka przebywaja pakiety danych przeslane do komputera o adresie (lub nazwie) 'nazwa'.
+traceroute 'nazwa' (rowniez: tracepath 'nazwa')  Wyswietla trase, jaka przebywaja pakiety danych przeslane do komputera o adresie/nazwie 'nazwa'.
+
 
 Najczesciej stosowane pakiety:
 
