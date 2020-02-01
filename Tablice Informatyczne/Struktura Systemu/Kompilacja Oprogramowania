@@ -1,1 +1,30 @@
+make        Kompilacja programu wielomodulowego, ktory jest wyposazony w plik Makefile i określa listę plików składowych 
+            oraz zalezności miedzy nimi. 
+                     
+Czesto dostepna opcja: 
+
+clean - usuwa posrednie pliki kompilacji zaraz po pomyslnie zakonczonej kompilacji calego pakietu; 
+przydatne, gdy nie chce się już dokonywać dalszych poprawek w kodzie źródłowym i wykonywać kolejnych przebiegów kompilacji. 
+
+install- dokonuje instalacji programu w systemie (wymaga to uprawnień administratora}. 
+uninstall - usuwa zainstalowane wcześniej poleceniem install pliki składowe z systemu. 
+
+Kompilacja jądra systemu Linux: 
+make - kompilacja jądra systemu Linux 2.6 (wraz z modułami},
+make bzimage - kompilacja samego jądra systemu Linux 2.4 (bez modułów}, 
+make modules - kompilacja modułów jądra Linux 2.4, 
+make modules_install- automatyczna instalacja modułów jądra w katalogu//ib/modules. 
+
+gcc (opcje} plikźródłowy -o plikwynikowy    Dokonuje kompilacji pliku źródłowego w języku Cna jego postać binarną, 
+                                            umieszczając kod maszynowy w pliku pL ikwynikowy. 
+                                            W razie potrzeby kompiluje kilka podanych plików źródłowych 
+                                            lub łączy ze sobą wcześniej skompilowane binarne moduły biblioteczne. 
+                                            
+Najczęściej stosowane opcje: 
+-c - dokonuje kompilacji do postaci binarnego modułu bibliotecznego zamiast do postaci samodzielnego pliku wykonywalnego, 
+-s- tłumaczy program na postać asemblerową, nie dokonując ostatecznej kompilacji, 
+-on - włącza jeden z pięciu poziomów optymalizacji (O -brak, 1 -zalecana, lekka, 2 -silniejsza, 3 -najsilniejsza, niezalecana, 
+s -optymalizacja pod kątem rozmiaru programu}, 
+
+-s - wyłącza dodawanie do programu informacji diagnostycznych, znacznie zmniejszając rozmiar generowanego pliku wynikowego. 
 
