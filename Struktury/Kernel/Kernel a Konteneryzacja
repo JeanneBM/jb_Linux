@@ -1,0 +1,16 @@
+Docker wykorzystuje do tworzenia kontenerów dwie cechy/funkcjonalności z jądra Linuksa. 
+
+Pierwszą z nich jest cgroups, 
+czyli wspomniany wcześniej mechanizm odpowiadający przede wszystkim za limitowanie zasobów takich jak pamięć, zużycie procesora, 
+ilość operacji dyskowych czy maksymalna liczba procesów w zadanej grupie. Co więcej, mechanizm ten pozwala na zliczanie wszelkiego typu operacji.
+
+Drugim mechanizmem są namespace’y, 
+czyli przestrzenie nazw. W dużym skrócie, przestrzenie nazw odseparowują, tj. izolują procesy między różnymi przestrzeniami nazw. 
+Procesom w zadanej przestrzeni nazw „wydaje się”, że są one jedynymi procesami w systemie. Przestrzenie nazw posiadają między innymi 
+swoje wirtualne sieci, co jest niezbędne w przypadku kontenerów.
+
+Manual:
+man 7 namespaces i 
+man 7 cgroups 
+
+
