@@ -1,0 +1,120 @@
+
+    Wykład 1 
+    Budowa systemu operacyjnego linuks - wprowadzenie teoretyczne (wersje jądra, moduły do jądra, systemy plików, poziomy uruchomienia systemu , init, usługi systemowe, obsługa sieci).
+    Wykład 2 
+    Struktura katalogów Linux, analiza poziomów uruchomienia, zarządzanie partycjami i dyskami, zarządzanie modułami.
+    Wykład 3
+    Zarządzanie oprogramowaniem na przykładzie debian i apt - budowa paczki, repozytorium, aktualizacja, tworzenie paczek.
+    Wykład 4 
+    Zarządzanie sieciami - interfejsy, protokoły, routing.
+    Wykład 5 
+    Dostęp do systemu - biblioteki PAM, program getty, login, serwery telnet i SSH, skrypty startowe użytkowników.
+    Wykład 6 
+    Instalacja VM.
+    Wykład 7 
+    RAID i LVM2.
+    Wykład 8 
+    System DNS - zarządzanie domenami w Internecie.
+    Wykład 9 
+    Rozproszone Systemy Plików - LizardFS.
+    Wykład 10 
+    OpenVPN
+    Wykład 11 
+    Serwery WWW - Apache (opis działania, analiza parametrów konfiguracyjnych, moduły - m.in. vhost, auth, alias, php, userdir) i Nginx (opis działania, struktura bloków konfiguracyjnych, ustawienia virtualhost, proxy)
+    Wykład 12 
+    Serwery Baz danych - MYSQL (budowa i działanie serwera)
+    Wykład 13 
+    Serwery Baz danych - PostgreSQL (budowa i działanie serwera)
+    Wykład 14
+    Implementacja serwera SMTP,POP3,IMAP (postfix, dovecot)
+    Wykład 15
+    Referaty tematyczne studentów
+    Wykład 16 
+    Referaty tematyczne studentów
+    Wykład 17
+    System Firewall - omówienie zasad przetwarzania reguł oraz możliwości i parametrów
+
+Referaty 
+Łatwe:
+
+    NTP - synchronizacja czasu (serwer, klient),
+    Demon Cron, AT 
+    Serwer FTP, 
+    Serwer IRC, 
+    Budowa wiadomości SMTP 
+    Tutorial korzystania z memcached 
+    Setcap w Linux
+    serwer i klient VNC
+
+Średnie:
+
+    Listy ACL w Linux
+    Serwer XMPP 
+    OpenLDAP
+    Ecartis - obsługa grup mailowych
+    Demon ACPI 
+    Kopie zapasowe - Bacula 
+    Kopie zapasowe - Amanda 
+    Kopie zapasowe - Rsync+ssh 
+    Zbieranie logów - rsyslog (lokalne i usługa sieciowa, kernel log, user log),
+    Zbieranie logów - syslog-ng (lokalne i usługa sieciowa, kernel log, user log)
+    Bootloader Lilo
+    Bootloader Grub, 
+    Zbieranie statystyk Cacti
+    Monitoring sieci Nagios, 
+    Serwer DHCP 
+    Duplikacja i replikacja mysql,i 
+    Duplikacja i replikacja postgres, 
+    Linux Virtual Serwer
+    System X-windows
+    Samba w Linux 
+    Squid
+    OpenVPN
+    Wirtualizacja QEMU 
+    Wirtualizacja XEN
+    Cups - drukowanie
+
+Trudne:
+
+    Budowa jądra 2.6/3.x 
+    Łaty jądra GRSecurity
+    Implementacja własnego FS - przygotowanie HOWTO
+    Varnish Cache 
+    Serwer Open iSCSI
+    Chmura OpenStack
+    Zbieranie statystyk NTOP
+    Serwer SVN, 
+    Wersjonowanie konfiguracji (współpraca z grupą SVN)
+    Filtry antyspamowe w postfix
+    Puppet, 
+    NIDS - Snort
+    802.1x i Radius
+    Traffic Control w Linux
+    Asterisk - usługi VoIP (sip2)
+
+Prezentacje i dokumentacja studentów
+
+    ACPI - P. Kwiecinski - ASLCwiczenie-DaemonACPI.docx, [ASL] Prezentacja - Daemon ACPI.pptx, ASLReferat-DaemonACPI.docx,
+    Aircrack-ng - J. Lewandowski J. Wilga - doc_asl.txt, dokumentacja.txt, prezentacja.pptx, zadania.txt,
+    Amanda - A. Kucyrka P. Wisniewski - AMANDA.pps, Kopie zapasowe AMANDA.pdf,
+    BACULA - J. Ciemny A. Ksiazkiewicz -
+    Budowa Email - A. Wichert M. Zurowski - Budowa wiadomosci SMTP.pdf, Dokumentacjaizadania.pdf,
+    Budowa Jadra - K. Chomski - Prezentacja_kernel.pdf,
+    CRONAT - J. Matuszak P. Malinowski - ASL-dokumentacja-v1.0.pdf, ASL-prezentacja-v1.0.pdf,
+    DHCP - N. Owczaryszek I. Stepniak - DHCP - dokumentacja2.odt, DHCP - prezentacja2.odp, DHCP - zadania2.docx,
+    FTP - L. Lorens - FTP dokumentacja .doc, FTP implementacja.doc, SERWER FTP.ppt,
+    GRUB - R. Antczak M. Bogalski -
+    IRC - R. Piatek D. Baranowski - dokumentacjaIRC.docx, implementacjaIRC.docx, prezentacjaIRC.pptx,
+    LDAP - J. Stasinski G. Bandur - Dokumetnacja_LDAP_Bandur_Stasinski.pdf, Prezentacja_LDAP_Bandur-Stasinski.pdf, Zadania_LDAP_Bandur-Stasinski.pdf,
+    Memcached - M. Kurczewski -
+    MySQL - M. Talarczyk P. Knopczynski - ASL-MySQL.pdf, ASL - replikacja i duplikacja MySQL - prezentacja.pdf, ASL-replikacjaiduplikacjaMySQL-zadanie.pdf,
+    Nagios - D. Kaczmarek A. Kasprzak -
+    PostgreSQL - K. Kostyszyn P. Salata -
+    QEMU - B. Zak L. Pogorzelski - QEMU - Prezentacja.pdf, QEMU-Referat.pdf,
+    RSYNCSSH - D. Dobkowski -
+    SAMBA - D. Winiarz M. Zimny - DokumentacjaSamba.pdf,
+    SVN - B. Piskadlo M. Szymanski - Referat+tutorial SVN Piskadlo Szymanski.pdf, Serwer SVN - ASL.odp,
+    Varnish - E. Lodygowski M. Kania - ASLVarnishCache.pdf,
+    XMPP - K. Czosnowski M. Kazmierczak - ASL-Dokumentacja.pdf, ASL - prezentacja.pdf,
+    X-Window - J. Jelinek P. Korpowski - X Window System Jelinek Korpowski.pdf, X Window System - wersja robocza Jelinek Korpowski.pptx, X Window System - zadania Jelinek Korpowski.pdf,
+
