@@ -137,8 +137,65 @@ finger    Wypisuje informacje o użytkownikach
 last      Sprawdza, kiedy nastąpiło ostanie logowanie do systemu
 printeiw  Wypisuje informacje o środowisku użytkownika
 
+Praca z kontami użytkowników: 
 
+useradd   Tworzy nowe konto użytkownika
+userdel   Usuwa istniejące konto użytkownika
+usermod   Zmienia właściwości konta
+passwd    Zmienia hasło 
+chfn      Zmienia osobiste informacje o użytkowniku
+chsh      Zmienia domyślną powłokę użytkownika
 
+Praca z grupami:
 
+groups    Wypisuje grupy, których członkiem jest podany użytkownik 
+groupadd  Tworzy nową grupę
+groupdel  Usuwa grupę
+groupmod  Modyfikuje grupę 
 
+Podstawowe informacje o komputerze: 
+
+uname     Podaje podstawowe informacje o systemie
+hostname  Podaje systemową nazwę komputera
+dnsdomainname     To samo znaczenie co polecenie hostname -d 
+domainname        To samo znaczenie co polecenie hostname -y
+nisdomainname     To samo znaczenie co polecenie hostname -y
+ypdomainname      To samo znaczenie co polecenie hostname -y 
+ifconfig    Wyświetla i ustala informacje o interfejsie sieciowym 
+
+Umiejscowienie komputera:
+
+host      Wyszukuje nazwy komputerów, adresy IP i informacje serwerów DNS
+whois     Wyszukuje informacje o zarejestrowanych domenach internetowych 
+ping      Sprawdza, czy możliwy jest dostęp do zdalnego komputera 
+traceroute   Przegląda sieciową ścieżkę do zdalnego komputera 
+
+Połączenia sieciowe:
+
+ssh       Tworzy bezpieczne połączenie ze zdalnym komputerem, umożliwiając uruchamianie na nim poleceń
+telnet    Umożliwia załogowanie na zdalnym komputerze (nie jest to bezpieczne!)
+scp       Bezpieczne kopiowanie plików do i ze zdalnego komputera (tryb wsadowy)
+sftp      Bezpieczne kopiowanie plików do i ze zdalnego komputera (tryb interaktywny) 
+ftp       Kopiowanie plików do i ze zdalnego komputera (tryb interaktywny, niezabezpieczony) 
+
+Poczta elektroniczna:
+
+evolution   Klient pocztowy z interfejsem GUL 
+mutt        Klient pocztowy działający w trybie tekstowym
+mail        Minimalny, tekstowy klient pocztowy
+
+Przeglądanie stron WWW:
+
+mozilla   Przeglądarka stron WWW o ogromnych możliwościach
+lynx      Tekstowa przeglądarka stron WWW
+wget      Pobiera na dysk strony WWW
+curl      Pobiera na dysk strony WWW
+
+Przesyłanie komunikatów:
+
+gaim      Komunikator internetowy i klient IRC
+talk      Linuksowy i uniksowy program do pogaduszek (chat)
+write     Wysyła komunikaty do terminali
+mesg      Zabrania stosowania poleceń talk i write
+tty       Wypisuje nazwę urządzenia terminala
 
