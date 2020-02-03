@@ -1,5 +1,19 @@
-
-Zmienne 
+1. Zmienne 
 
 nazwa=wartosc
+
+2. Instrukcje warunkowe. 
+If 
+
+if polecenie    - jeżeli kod powrotu polecenia bdzie 0 
+then 
+ ciało 
+fi 
+
+if polecenie 
+then 
+ ciało1 
+else 
+ ciało2 
+fi 
 
