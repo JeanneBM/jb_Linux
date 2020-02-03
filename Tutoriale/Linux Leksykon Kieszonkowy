@@ -1,0 +1,88 @@
+Kontrola zadań:
+
+jobs    Wypisuje listę zadań 
+&       Uruchamia zadanie w tle 
+Ctrl+Z  Wstrzymuje działanie aktualnego zadania 
+suspend Wstrzymuje działanie powłoki 
+fg      Wznowienie zadania i przeniesienie go na pierwszy plan 
+bg      Sprawia, że wstrzymane zadanie wznawia pracę w tle 
+
+Podstawowe operacje na plikach: 
+
+ls      Wypisuje pliki z podanego katalogu
+cp      Kopiuje plik
+mv      Zmienia nazwę pliku („przesuwa" go)
+rm      Usuwa podany plik 
+ln      Tworzy dowiązania do plików (ich nazwy alternatywne) 
+
+Operacje na katalogach:
+
+cd      Zmiana aktualnego katalogu
+pwd     Wypisanie aktualnego katalogu, tzn. określenie „gdzie się znajdujemy" w systemie plików
+basename   Wypisanie ostatniej części ścieżki pliku 
+di marne   Usunięcie ostatniej części ścieżki pliku. 
+mkdir   Utworzenie katalogu
+rmdir   Usunięcie pustego katalogu
+
+Przeglądanie plików: 
+
+cat     Przeglądanie plików w całości
+less    Przeglądanie plików po jednej stronie
+head    Przeglądanie pierwszych wierszy plików 
+tail    Przeglądanie ostatnich wierszy plików
+ni      Przeglądanie plików z ponumerowanymi wierszami. Przeglądanie danych w formacie ósemkowym (a także w innych formatach) 
+xxd     Przeglądanie danych w formacie heksadecymalnym
+
+Tworzenie i edytowanie plików: 
+
+vim     Edytor tekstu będący rozszerzeniem uniksowego edytora vi
+umask   Ustala domyślny tryb nowo tworzonych plików i katalogów
+soffice   Zestaw biurowy pozwalający na edycję plików programów Microsoft Word, Excel i PowerPoint 
+abiword   Edytor dokumentów programu Microsoft Word 
+gnumeric  Edytor dokumentów programu Microsoft Excel
+
+Właściwości plików:
+
+stat    Wyświetla atrybuty plików i katalogów
+we      Zlicza bajty, słowa lub wiersze w podanym pliku
+du      Mierzy miejsce zajęte na dysku przez pliki i katalogi 
+file    Próbuje zidentyfikować typ pliku
+touch   Zmienia znaczniki czasu plików i katalogów
+chown   Zmienia właściciela plików lub katalogów
+chgrp   Zmienia grupę plików lub katalogów
+chmod   Zmienia tryb zabezpieczeń plików lub katalogów
+chattr  Zmienia rozszerzone atrybuty plików lub katalogów 
+lsattr  Wypisuje rozszerzone atrybuty plików lub katalogów 
+
+Lokalizacja plików: 
+
+find    Znajduje pliki w hierarchii katalogów
+slocate    Tworzy indeks plików i wyszukuje w nim ciągi znaków
+which   Wyszukuje pliki wykonywalne w ścieżce (polecenie)
+type    Wyszukuje pliki wykonywalne w ścieżce (wbudowane w powlokę bash)
+whereis    Wyszukuje pliki wykonywalne, dokumentację i pliki źródłowe
+
+Manipulowanie plikami tekstowymi:
+grep    Znajduje w pliku wiersze zgodne z podanym wyrażeniem regularnym
+cut     Pobiera z pliku kolumny 
+paste   Dodaje kolumny
+tr      Zmienia znaki w inne znaki 
+sort    Sortuje wiersze z zastosowaniem różnych kryteriów 
+uniq    Znajduje w pliku identyczne wiersze 
+tee     Kopiuje plik i równocześnie wypisuje go na standardowe wyjście
+
+Kompresowanie i pakowanie plików:
+
+gzip    Kompresuje pliki do formatu GNU Zip
+gunzip  Dekompresuje pliki GNU Zip
+compress    Kompresuje pliki algorytmem tradycyjnej kompresji uniksowej
+uncompress  Dekompresuje pliki algorytmem tradycyjnej kompresji uniksowej
+zcat    Kompresuje i dekompresuje pliki za pomocą standardowego wejścia i wyjścia (programem gzip lub compress)
+bzip2   Kompresuje pliki do formatu BZip 
+bunzip2 Dekompresuje pliki formatu BZip 
+zip     Kompresuje pliki do formatu Windows Zip
+unzip   Dekompresuje pliki formatu Windows Zip
+uuencode    Konwertuje plik do formatu uuencoded
+uudecode    Konwertuje plik z formatu uuencoded 
+
+
