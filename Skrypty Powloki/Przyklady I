@@ -1,0 +1,26 @@
+#!/bin/sh 
+echo Podaj imie nazwisko i wiek 
+read imie nazwisko wiek 
+echo imie: $imie, nazwisko: $nazwisko, wiek: $wiek 
+
+
+#!/bin/sh 
+echo Podaj imie 
+read imie 
+echo Podaj nazwisko 
+read nazwisko 
+echo Podaj wiek 
+read wiek 
+echo imie: $imie, nazwisko: $nazwisko, wiek: $wiek 
+
+if [ `whoami` = „root” ] 
+then 
+ echo “Jesteś superużytkownikiem” 
+fi 
+
+if [ `whoami` = „root” ] 
+then 
+ echo “Jesteś superużytkownikiem” 
+else 
+ echo „Jesteś zwykłym użytkownikiem” 
+fi 
