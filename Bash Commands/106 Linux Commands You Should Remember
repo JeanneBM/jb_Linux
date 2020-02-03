@@ -15,13 +15,17 @@ Table of Contents
     File Transfer Related Commands
     Disk Usage Related Commands
     Directory Traverse Related Commands
+    
 ----------------------------------------------------------------------------------------------------------------------------------------------   
-1. uname                   :  Displays linux system information. With -a switch you can view all the information, with -r switch you can view kernel release information and with -o you can view OS information
+1. uname                   :  Displays linux system information. With -a switch you can view all the information, 
+                              with -r switch you can view kernel release information and with -o you can view OS information
 2. cat /etc/redhat_release :  Shows which version of redhat installed 
 3. uptime                  :  Shows how long the system has been running
-4. hostname                :  Shows system host name. With -i switch you can view the ip address of the machine and with -d you can view the domain name
+4. hostname                :  Shows system host name. With -i switch you can view the ip address of the machine and with -d you can view 
+                              the domain name
 5. last reboot             :  Shows system reboot history
-6. date                    :  Shows the current date and time. You can specify the format you want to view the date as well. As an example, by using 'date +%D' you can view the date in 'MM/DD/YY' format
+6. date                    :  Shows the current date and time. You can specify the format you want to view the date as well. 
+                              As an example, by using 'date +%D' you can view the date in 'MM/DD/YY' format
 7. cal                     :  Shows the calendar of the current month. With -y switch you can view the calendar of the whole current year
 8. w                       :  Displays who is logged on and what they are doing
 9. whoami                  :  Shows current user id
@@ -33,11 +37,13 @@ Hardware Related Commands
 
 These commands are used to view and manage hardware-related aspects of the Linux machine.
 
-13. dmesg                 : Displays all the messages from Kernel ring buffer. With -k switch you can view kernel messages and with -u you can view userspace messages
+13. dmesg                 : Displays all the messages from Kernel ring buffer. With -k switch you can view kernel messages 
+                            and with -u you can view userspace messages
 14. cat /proc/cpuinfo     : Displays information about processes and CPUs of the system
 15. cat /proc/meminfo     : Displays details on hardware memory
 16. cat /proc/interrupts  : Lists the number of interrupts per CPU per I/O device
-17. lshw                  : Displays information on hardware configuration of the system. But this command must be run as super user or it will only report partial information
+17. lshw                  : Displays information on hardware configuration of the system. But this command must be run as super user 
+                            or it will only report partial information
 18. lsblk                 : Displays block device related information of the machine. With -a you can view all block devices
 19. free -m               : Shows used and free memory (-m for MB)
 20. lspci -tv             : Shows information on PCI buses devices
@@ -55,7 +61,8 @@ These set of commands are used to view various kinds of stats of the Linux syste
 26. vmstat 2                      : Displays virtual memory statistics
 27. iostat 2                      : Displays I/O statistics
 28. tail -n 500 /var/log/messages : Displays the last 500 kernel/syslog messages
-29. tcpdump -i eth1               : Captures all packets flow on interface eth1. With -w switch you can specify a file where you can direct the output to
+29. tcpdump -i eth1               : Captures all packets flow on interface eth1. With -w switch you can specify a file where you can direct 
+                                    the output to
     tcpdump -i eth0 'port 80'     : Monitors all traffic on port 80 on interface eth0
 30. lsof                          : Lists all open files belonging to all active processes
     lsof -u testuser              : Lists files opened by a specific user
@@ -67,7 +74,8 @@ User-Related Commands
 These commands are used to manage Linux users
 
 33. id                                      : Shows the active user and group information. With -G switch you can view the IDs of groups
-34. last                                    : Shows a list of last logins on the system. Using -a switch you can add the hostname to the last column of the output
+34. last                                    : Shows a list of last logins on the system. Using -a switch you can add the hostname 
+                                              to the last column of the output
 35. who                                     : Shows who is logged on the system
 36. groupadd admin                          : Adds the group "admin"
 37. useradd -c "Sam Tomshi" -g admin -m sam : Creates user "sam" and adds to group "admin"
@@ -199,16 +207,18 @@ These commands are used to copy files from one system to another system
 
 99. scp file.txt   server2:/tmp                  : Secure copy file.txt to remote host  /tmp folder
     scp nixsavy@server2:/www/*.html /www/tmp     : Copies *.html files from remote host to current host /www/tmp folder
-    scp -r nixsavy@server2:/www   /www/tmp       : Copies all files and folders recursively from remote server to the current system /www/tmp folder
-100. rsync -a /home/apps /backup/                 : Synchronizes source to destination
-    rsync -avz /home/apps $ linoxide@192.168.10.1:/backup  : Synchronize files/directories between the local and remote system with compression enabled
+    scp -r nixsavy@server2:/www   /www/tmp       : Copies all files and folders recursively from remote server to the current system 
+                                                   /www/tmp folder
+100. rsync -a /home/apps /backup/                : Synchronizes source to destination
+    rsync -avz /home/apps $ linoxide@192.168.10.1:/backup  : Synchronize files/directories between the local and remote system 
+                                                             with compression enabled
 
 Disk Usage Related Commands
 
 These commands are used to view disk statistics
 
-101.  df -h                          : Shows free space on mounted filesystems
-     df -i 	                    : Shows free inodes on mounted filesystems
+101.  df -h                         : Shows free space on mounted filesystems
+     df -i 	                        : Shows free inodes on mounted filesystems
 102. fdisk -l	                    : Shows disks partitions sizes and types
 103. du -ah                         : Displays disk usage in human readable form
      du -sh                         : Displays total disk usage on the current directory
@@ -222,3 +232,5 @@ These commands are used to change the directory
 106. cd ..          : Goes up one level of the directory tree
      cd	            : Goes to $HOME directory
      cd /test       : Changes to /test directory
+
+
