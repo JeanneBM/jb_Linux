@@ -199,3 +199,34 @@ write     Wysyła komunikaty do terminali
 mesg      Zabrania stosowania poleceń talk i write
 tty       Wypisuje nazwę urządzenia terminala
 
+Pisanie na ekranie:
+
+echo      Wypisuje prosty tekst na standardowe wyjście
+printf    Wypisuje na standardowe wyjście tekst sformatowany
+yes       Wypisuje na standardowe wyjście powtarzający się tekst
+seq       Wypisuje na standardowe wyjście sekwencję liczb
+clear     Czyści ekran lub okno
+
+Obliczenia matematyczne:
+
+xcalc     Wyświetla graficzny kalkulator 
+expr      Oblicza proste wyrażenia matematyczne z poziomu wiersza poleceń 
+dc        Kalkulator tekstowy
+
+Czas i data:
+xclock     Wyświetla graficzny zegar
+cal        Wypisuje kalendarz
+date       Wypisuje lub ustawia datę i czas
+ntpdate    Ustawia czas systemowy, korzystając ze zdalnego serwera czasu
+
+Planowanie zadań:
+
+sleep      Oczekuje określoną liczbę sekund, nie robiąc nic
+watch      Uruchamia podany program w określonych odstępach czasu
+at         Zaplanowuje zadanie do wykonania w określonym czasie
+crontab    Zaplanowuje zadanie do wielokrotnego wykonania w określonych czasach
+
+Grafika i wygaszacze ekranu:
+eog        Wyświetla pliki graficzne 
+gqview     Wyświetla pliki graficzne i pokazy slajdów.
+
