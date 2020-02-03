@@ -85,4 +85,60 @@ unzip   Dekompresuje pliki formatu Windows Zip
 uuencode    Konwertuje plik do formatu uuencoded
 uudecode    Konwertuje plik z formatu uuencoded 
 
+Porównywanie plików:
+
+diff    Porównuje zawartość plików lub katalogów wiersz po wierszu
+comm    Porównuje zawartość dwóch posortowanych plików wiersz po wierszu
+cmp     Porównuje zawartość plików bajt za bajtem 
+md5sum  Wylicza sumę kontrolną danego pliku (algorytmem MD5)
+
+Dyski i systemy plików:
+df      Podaje ilość dostępnego miejsca w zamontowanych systemach plików
+mount   Umożliwia dostęp do partycji na dysku
+umount  Usuwa możliwość dostępu do partycji na dysku (odmontowuje ją) 
+fsck    Sprawdza, czy na partycji nie powstały jakieś błędy 
+sync    Zapisuje na dyski wszystkie bufory dysków 
+
+Drukowanie:
+
+lpr     Drukuje zawartość pliku
+lpq     Przegląda kolejkę drukowania 
+lprm    Usuwa zadanie drukowania z kolej
+
+Sprawdzanie pisowni: 
+
+look    Szybko wyszukuje informacje o pisowni podanego słowa 
+aspell  Interaktywny program sprawdzający pisownię
+spell   Pakietowy program sprawdzający pisownię
+
+Przeglądanie procesów:
+
+ps      Wypisuje procesy
+uptime  Podglądanie obciążenia systemu
+w       Lista aktywnych procesów wszystkich użytkowników
+top     Interaktywnie monitoruje procesy zajmujące sporo zasobów systemu
+xload   Monitorowanie obciążenia systemu w graficznym oknie systemu X
+free    Wyświetla ilość wolnej pamięci
+
+Kontrola procesów:
+
+kill    Kończy działanie procesu (lub wysyła do procesu sygnał)
+nice    Wywołuje program, przydzielając mu priorytet
+renice  Zmienia priorytet programu w czasie jego pracy 
+
+Użytkownicy i ich środowisko:
+
+logname   Wypisuje nazwę logowania użytkownika
+whoami    Wypisuje aktualną, efektywną nazwę użytkownika
+id        Wypisuje identyfikator użytkownika i jego grupę
+who       Wypisuje zalogowanych użytkowników, podając więcej informacji
+users     Wypisuje zalogowanych użytkowników, podając mniej informacji
+finger    Wypisuje informacje o użytkownikach 
+last      Sprawdza, kiedy nastąpiło ostanie logowanie do systemu
+printeiw  Wypisuje informacje o środowisku użytkownika
+
+
+
+
+
 
