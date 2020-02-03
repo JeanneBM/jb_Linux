@@ -10,7 +10,7 @@ echo "korzystasz z systemu operacyjnego: $OSTYPE"
 zmienna2=$(pwd)
 echo "\"Cos\" – przyklad: $zmienna2"
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 2. Podaj przykład skryptu korzystującego ze zmiennych specjalnych, czyli użyj $0, $1, $2, …, $9, $@, $*, $?, $$.
 
 #!/bin/bash
@@ -26,7 +26,7 @@ echo "Skrypt uruchomiono z parametrami: $*"
 echo "Kod powrotu ostanio wykonywanego polecenia: $?"
 echo "PID procesu biezacej powloki: $$"
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 3. Podać przykład skryptu korzystającego z tablic (Użyj declare, unset, *, @, # ).
 
 owoc[0]="jablko"
@@ -47,7 +47,7 @@ echo "Tablica tab1 ma ${#tab1[*]} elementow"
 declare tab2=(`cat /etc/passwd`)
 echo "Tablica tab2 ma ${#tab2[*]} elementow"
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 4. Napisać skrypt obliczający sumę, różnicę i iloczyn dwóch wczytanych liczb całkowitych. (Użyj polecenia read.)
 
 #!/bin/bash
@@ -67,7 +67,7 @@ echo "Iloraz liczb wynosi: $iloraz" #czesc calkowita
 modulo=$[liczba1%liczba2]
 echo "Modulo liczb wynosi: $modulo" #reszta
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 5. Napisać skrypt sprawdzający, czy w katalogu głównym użytkownika istnieje plik .bashrc. (Użyj instrukcji warunkowej if.)
 
 if [ -e ~/.bashrc ]
@@ -76,7 +76,7 @@ then echo "Masz plik .bashrc"
 else echo "Nie masz pliku .bashrc"
 fi
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 6. Napisać skrypt pytający się czy już jest wieczór. Dla odpowiedzi „tak” powinien wypisać „Dobry wieczor”, 
 dla odpowiedzi „nie” – „Dzien dobry”, dla pozostałych odpowiedzi „Nie rozpoznana odpowiedz: ” i przytoczyć treść odpowiedzi. 
 (Użyj instrukcji warunkowej if-elif.)
@@ -93,7 +93,7 @@ else
   exit 1
 fi
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 7. Napisać skrypt pobierający numer dnia tygodnia i wypisujący jego nazwę lub informację „Nie rozumiem”. 
 (Użyj polecenia read i instrukcji warunkowej case.)
 
@@ -111,7 +111,7 @@ case "$dzien" in
   *) echo "Nie rozumiem"
 esac
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 8. Wyświetlić z bieżącego katalogu nazwy wszystkich plików: *.html, *.htm, .php, .css, .gif, .jpg. (Użyj pętli for.)
 
 #!/bin/bash
@@ -121,8 +121,7 @@ echo $nazwa
 done
 exit 0
 
-To samo, ale bez rozróżniania małych i dużych liter.
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 9. Napisać skrypt wykonujący pętlę 15 razy i wypisujący za każdym razem numer obiegu pętli. (Użyj pętli while.)
 
 #!/bin/bash
@@ -134,12 +133,7 @@ do
   n=$[n + 1]
 done
 exit 0
-
-Ściąga z operatorów wykorzystywanych w warunkach:
-
--eq (==)    -ne (!=)   -lt (<)
--le (<=)    -gt (>)    -ge (>=)
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 10. Napisać skrypt sprawdzający, czy użytkownik, którego login został podany jako parametr skryptu zalogował się. (Użyj pętli until.)
 
 #!/bin/bash
@@ -151,7 +145,7 @@ done
 echo -e \\a
 echo "$1 wlasnie sie zalogowal !!! "
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 11. Napisać skrypt pytający się użytkownika co wybiera: kawe, herbate, sok, quit. Po dokonaniu wyboru powinna się pojawić informacja 
 co zostało wybrane. Po wybraniu quit skrypt powinien zakończyć działanie. (Użyj pętli select i instrukcji warunkowej case.)
 
@@ -168,7 +162,7 @@ do
   esac
 done
 exit 0
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 12. Zmienić nazwy plików i katalogów pisane dużymi literami na nazwy pisane małymi literami.
 
 #!/bin/bash
@@ -177,26 +171,24 @@ do
   mv $nazwa $(echo $nazwa | tr '[A-Z]' '[a-z]')
 done
 exit 0
-
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 13. Przyjmujemy, że strona wydrukowanego tekstu zawiera około 350 słów. Korzystając z programu wc napisać program wypisujący 
 ile będzie miał stron po wydrukowaniu stron plik tekstowy podany jako pierwszy argument skryptu.
 
 #!/usr/bin/env bash
 let x=$(wc -w $1 | cut -d\  -f 1)/350
 echo "Liczba stron po wydrukowaniu $1: $x";
-
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 14. Przykład z xargs i find:
 
 find -type f -print0 | xargs -0 egrep *pattern*
-
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 15. Przykład z while i find:
 
 find $PWD/assets -name "*.css.scss" | while read i;
 do
   mv "$i" "${i%.css.scss}.scss";
 done
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 
