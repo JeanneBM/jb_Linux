@@ -214,6 +214,7 @@ expr      Oblicza proste wyrażenia matematyczne z poziomu wiersza poleceń
 dc        Kalkulator tekstowy
 
 Czas i data:
+
 xclock     Wyświetla graficzny zegar
 cal        Wypisuje kalendarz
 date       Wypisuje lub ustawia datę i czas
@@ -227,6 +228,7 @@ at         Zaplanowuje zadanie do wykonania w określonym czasie
 crontab    Zaplanowuje zadanie do wielokrotnego wykonania w określonych czasach
 
 Grafika i wygaszacze ekranu:
+
 eog        Wyświetla pliki graficzne 
 gqview     Wyświetla pliki graficzne i pokazy slajdów.
 
