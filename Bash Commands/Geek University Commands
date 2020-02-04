@@ -1,4 +1,4 @@
-uname -a To find out the kernel version of your Linux installation
+uname -a 
 ls
 pwd
 mkdir
@@ -7,4 +7,9 @@ whoami
 cd
 history
 man
-
+info
+mv 
+rmdir
+touch
+rm
+less
