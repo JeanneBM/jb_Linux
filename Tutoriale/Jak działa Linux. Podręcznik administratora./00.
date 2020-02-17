@@ -75,3 +75,7 @@ a strumieniem numer 2 - standardowy strumień błędów.
 Każde z miejsc przeznaczone na uprawnienie odczytu, zapisu lub wykonania nazywane jest bitem uprawnienia. 
 Z tego powodu czasami można usłyszeć osoby mówiące o różnych elementach uprawnienia jako o "bitach odczytu". 
 
+brw-rw----, crw-rw-rw-, prw-r--r--, srw-rw-rw- 
+Warto zwrócić uwagę na pierwszy znak w każdym wierszu (pierwszy znak trybu pliku). Jeżeli znakiem tym jest b, c, p lub s, to znaczy, 
+że plik jest urządzeniem. Litery te są skrótami od angielskich słów block (blok), character (znak), pipe (potok) i socket (gniazdo). 
+
