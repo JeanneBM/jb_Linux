@@ -13,3 +13,6 @@ czyli przestrzeń użytkownika.
 ! Zazwyczaj o stanie mówi się z wykorzystaniem pojęć abstrakcyjnych, a nie faktycznych bitów, dlatego pojęcie obrazu (ang. image) odnosi się 
 do fizycznego ułożenia bitów w pamięci. 
 
+Jednym z zadań jądra jest dzielenie pamięci na wiele części, dlatego cały czas musi ono przechowywać informację o stanie każdej z tych części. 
+Każdy proces otrzymuje swoją porcję pamięci, a jądro systemu musi zapewnić procesom wyłączność na przydzieloną im pamięć. 
+
