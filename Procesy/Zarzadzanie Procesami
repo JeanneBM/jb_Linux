@@ -11,5 +11,12 @@ Za przełączanie kontekstów odpowiedzialne jest jądro systemu.
 
 Kernel systemu działa pomiędzy wycinkami czasu przydzielanymi procesom, w trakcie przełączania kontekstów.
 
+W nowoczesnych procesorach znajduje się specjalny moduł zarządzania pamięcią (MMU -ang. Memory Management Unit), który pozwala na korzystanie
+ze schematu dostępu do pamięci nazywanego pamięcią wirtualną (ang. virtual memory). 
+Podczas wykorzystania pamięci wirtualnej procesor nie adresuje jej bezpośrednio, podając fizyczny adres w sprzętowym układzie scalonym. 
+W takiej konfiguracji jądro przygotowuje każdy proces tak, jakby sam miał do swojej dyspozycji całą maszynę. 
+Gdy proces próbuje uzyskać dostęp do przydzielonej mu pamięci, moduł MMU przechwytuje taką próbę i wykorzystuje mechanizm mapowania adresów, 
+żeby przekształcić lokahzację w pamięci procesu na fizyczną lokalizację w pamięci komputera. 
+
 Implementacja mapy adresów pamięci nazywana jest tablicą stron (ang. page table). 
 
