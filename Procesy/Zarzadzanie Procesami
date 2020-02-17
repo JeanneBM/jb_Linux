@@ -1,0 +1,15 @@
+Zarządzanie procesami to ogół zadań związanych z uruchamianiem, wstrzymywaniem, ponownym uruchamianiem i kończeniem pracy procesów. 
+
+Operacja przekazania kontroli nad procesorem od jednego procesu do drugiego nazywana jest przełączaniem kontekstu (ang. context switch).
+
+Każdy taki wycinek czasu (ang. time slice) pozwala procesowi na wykonanie całkiem sporej ilości obliczeń i rzeczywiście większość procesów 
+może zakończyć swoje aktualne prace w ramach pojedynczego wycinka. A dzięki temu, że wycinki czasu są tak małe, ludzie nie są w stanie 
+ich zauważyć, przez co system sprawia wrażenie, jakby działało w nim jednocześnie wiele różnych procesów 
+- to cecha nazywana wielozadaniowością (ang. multitasking). 
+
+Za przełączanie kontekstów odpowiedzialne jest jądro systemu. 
+
+Kernel systemu działa pomiędzy wycinkami czasu przydzielanymi procesom, w trakcie przełączania kontekstów.
+
+Implementacja mapy adresów pamięci nazywana jest tablicą stron (ang. page table). 
+
