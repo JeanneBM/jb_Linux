@@ -1,1 +1,15 @@
+System Linux składa się z trzech głównych poziomów.
+Sprzęt jest podstawą całości. Do sprzętu można zaliczyć zarówno pamięć, jak i jeden lub kilka procesorów (CPU) wykonujących różne obliczenia 
+oraz odczytujących i zapisujących dane w pamięci. 
+Takie urządzenia jak dyski i karty sieciowe również zaliczane są do sprzętu. 
+
+Piętro wyżej znajduje się jądro (ang. kernel) stanowiące główny element systemu operacyjnego. 
+Jądro jest oprogramowaniem rezydującym w pamięci komputera, które steruje pracą procesora. 
+Jądro zajmuje się obsługą sprzętu i działa jako główny interfejs pomiędzy sprzętem a działającymi w komputerze programami. 
+
+Procesy -działające programy zarządzane przez jądro systemu - wspólnie składają się na najwyższy poziom systemu operacyjnego, 
+czyli przestrzeń użytkownika. 
+
+! Zazwyczaj o stanie mówi się z wykorzystaniem pojęć abstrakcyjnych, a nie faktycznych bitów, dlatego pojęcie obrazu (ang. image) odnosi się 
+do fizycznego ułożenia bitów w pamięci. 
 
