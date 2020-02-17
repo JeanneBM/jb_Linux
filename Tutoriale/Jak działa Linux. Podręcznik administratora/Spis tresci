@@ -39,11 +39,41 @@ PODSTAWOWE POLECENIA I HIERARCHIA KATALOGÓW
 2.5.6. Polecenia find i locate
 2.5.7. Polecenia head i tail
 2.5.8. Polecenie sort 
-2.6. Zmienianie hasła i powłoki . ..................................................................................... 47
-2.7. Pliki z kropką . .......................................................................................................... 47 
-2.8. Zmienne środowiskowe i powłoki . ......................................................................... 48 
-2.9. Ścieżka poleceń . ...................................................................................................... 49 
-2. 10. Znaki specjalne . ....................................................................................................... 50 
-2. I I. Edycja wiersza poleceń . ........................................................................................... 50 2. 12. Edytory tekstu .......................................................................................................... 5 I 2.13. Uzyskiwanie pomocy . .............................................................................................. 52 2.14. Wejście i wyjście powłoki . ....................................................................................... 54 2.14.1. Standardowy strumień błędów . ................................................................ 55 2.14.2. Przekierowywanie standardowego wejścia . .............................................. 56 2.15. Prawidłowe odczytywanie komunikatów obłędach . .............................................. 56 2.15.1. Anatomia uniksowych komunikatów obłędach . ....................................... 56 2.15.2. Typowe błędy . ........................................................................................... 57 2. 16. Przeglądanie procesów i manipulowanie nimi . ........................................................ 59 2. 16. I. Opcje polecenia . ........................................................................................ 59 2. 16.2. Przerywanie działania procesów . .............................................................. 60 
-6 Spis treści 
-2.16.3. Kontrola zadań ............................................................................................ 61 2.16.4. Procesy działające w tle . ............................................................................ 61 2.17. Tryby plików i uprawnienia . ..................................................................................... 62 2.1 7. I. Modyfikowanie uprawnień .......................................................................... 64 2. 17.2. Dowiązania symboliczne . ...........................................................................6 5 2.17.3. Tworzenie dowiązań symbolicznych .......................................................... 66 2.18. Archiwizowanie i kompresowanie plików ................................................................ 67 2.18.1. Program gzip ............................................................................................... 67 2.18.2. Program tar ................................................................................................. 67 2.18.3. Archiwa skompresowane (. tar.gz) .............................................................. 69 2.18.4. Program zcat ............................................................................................... 69 2.18.5. Inne narzędzia kompresujące . .................................................................... 70 2.19. Hierarchia katalogów ................................................................................................7 0 2. 19. I . Pozostałe katalogi główne . ......................................................................... 72 2.19.2. Katalog /usr ................................................................................................ 73 2.19.3. Umiejscowienie jądra systemu .................................................................... 73 2.20. Uruchamianie poleceń przez superużytkownika ...................................................... 74 2.20.1. Polecenie sudo ........................................................................................... 74 2.20.2. Plik /etc/sudoers .........................................................................................7 4 2.21. Podsumowanie .........................................................................................................7 
+2.6. Zmienianie hasła i powłoki 
+2.7. Pliki z kropką 
+2.8. Zmienne środowiskowe i powłoki
+2.9. Ścieżka poleceń 
+2.10. Znaki specjalne 
+2.11. Edycja wiersza poleceń 
+2.12. Edytory tekstu  
+2.13. Uzyskiwanie pomocy 
+2.14. Wejście i wyjście powłoki 
+2.14.1. Standardowy strumień błędów 
+2.14.2. Przekierowywanie standardowego wejścia 
+2.15. Prawidłowe odczytywanie komunikatów obłędach 
+2.15.1. Anatomia uniksowych komunikatów obłędach 
+2.15.2. Typowe błędy
+2.16. Przeglądanie procesów i manipulowanie nimi 
+2.16.1. Opcje polecenia 
+2.16.2. Przerywanie działania procesów 
+2.16.3. Kontrola zadań 
+2.16.4. Procesy działające w tle 
+2.17. Tryby plików i uprawnienia 
+2.17.1. Modyfikowanie uprawnień 
+2.17.2. Dowiązania symboliczne
+2.17.3. Tworzenie dowiązań symbolicznych 
+2.18. Archiwizowanie i kompresowanie plików 
+2.18.1. Program gzip 
+2.18.2. Program tar 
+2.18.3. Archiwa skompresowane (. tar.gz) 
+2.18.4. Program zcat
+2.18.5. Inne narzędzia kompresujące
+2.19. Hierarchia katalogów 
+2.19.1. Pozostałe katalogi główne 
+2.19.2. Katalog /usr
+2.19.3. Umiejscowienie jądra systemu 
+2.20. Uruchamianie poleceń przez superużytkownika 
+2.20.1. Polecenie sudo
+2.20.2. Plik /etc/sudoers 
+2.21. Podsumowanie 
+
