@@ -16,3 +16,62 @@ do fizycznego ułożenia bitów w pamięci.
 Jednym z zadań jądra jest dzielenie pamięci na wiele części, dlatego cały czas musi ono przechowywać informację o stanie każdej z tych części. 
 Każdy proces otrzymuje swoją porcję pamięci, a jądro systemu musi zapewnić procesom wyłączność na przydzieloną im pamięć. 
 
+Zarządzanie procesami to ogół zadań związanych z uruchamianiem, wstrzymywaniem, ponownym uruchamianiem i kończeniem pracy procesów. 
+
+Operacja przekazania kontroli nad procesorem od jednego procesu do drugiego nazywana jest przełączaniem kontekstu (ang. context switch).
+
+Każdy taki wycinek czasu (ang. time slice) pozwala procesowi na wykonanie całkiem sporej ilości obliczeń i rzeczywiście większość procesów 
+może zakończyć swoje aktualne prace w ramach pojedynczego wycinka. A dzięki temu, że wycinki czasu są tak małe, ludzie nie są w stanie 
+ich zauważyć, przez co system sprawia wrażenie, jakby działało w nim jednocześnie wiele różnych procesów 
+- to cecha nazywana wielozadaniowością (ang. multitasking). 
+
+Za przełączanie kontekstów odpowiedzialne jest jądro systemu. 
+
+Kernel systemu działa pomiędzy wycinkami czasu przydzielanymi procesom, w trakcie przełączania kontekstów.
+
+W nowoczesnych procesorach znajduje się specjalny moduł zarządzania pamięcią (MMU -ang. Memory Management Unit), który pozwala na korzystanie
+ze schematu dostępu do pamięci nazywanego pamięcią wirtualną (ang. virtual memory). 
+Podczas wykorzystania pamięci wirtualnej procesor nie adresuje jej bezpośrednio, podając fizyczny adres w sprzętowym układzie scalonym. 
+W takiej konfiguracji jądro przygotowuje każdy proces tak, jakby sam miał do swojej dyspozycji całą maszynę. 
+Gdy proces próbuje uzyskać dostęp do przydzielonej mu pamięci, moduł MMU przechwytuje taką próbę i wykorzystuje mechanizm mapowania adresów, 
+żeby przekształcić lokahzację w pamięci procesu na fizyczną lokalizację w pamięci komputera. 
+
+Implementacja mapy adresów pamięci nazywana jest tablicą stron (ang. page table). 
+
+Dwa wywołania systemowe - fork() i exec() - są szczególnie istotne przy poznawaniu sposobu uruchamiania procesów w systemie. 
+
+fork() - gdy dany proces wywołuje funkcję fork O, jądro systemu tworzy niemal identyczną kopię tego procesu. 
+exec() - gdy proces wywołuje funkcję exec (program), jądro systemu uruchamia program, który zastępuje aktualny proces. 
+
+W systemach Linuksowych wszystkie procesy użytkownika z wyjątkiem procesu init powstają w wyniku wywołania systemowego fork(). 
+Dodatkowo, w większości przypadków wywoływana jest funkcja exec() pozwalająca na uruchomienie nowego programu 
+bez tworzenia kopii istniejącego już procesu.
+
+Bardzo prostym przykładem mogą być programy uruchamiane w wierszu poleceń, takie jak polecenie ls wyświetlające zawartość katalogu. 
+Po wprowadzeniu polecenia ls w oknie terminala działająca w nim powłoka wywołuje funkcję fork() w celu utworzenia nowego procesu powłoki, 
+a następnie ta nowa kopia procesu wywołuje funkcję exec(ls), uruchamiając tym samym program ls.
+
+Większość aplikacji i usług zapisuje komunikaty diagnostyczne nazywane protokołami (ang. logs). 
+
+Użytkownicy istnieją w systemie głównie po to, żeby wyznaczać uprawnienia i ich granice. 
+Każdy proces w przestrzeni użytkownika ma swojego właściciela (ang. owner) - mówi się, że procesy uruchamiane są jako dany użytkownik. 
+
+Praca z uprawnieniami superużytkownika może być niebezpieczna. 
+Naprawdę trudne może być identyfikowanie i poprawianie ewentualnych błędów, ponieważ system pozwoli na wykonanie każdej operacji, 
+nawet jeżeli może ona uszkodzić system. Z tego powodu projektanci systemów starają się jak najbardziej ograniczyć konieczność 
+używania konta root, na przykład nie wymagają go do przełączania się w laptopie pomiędzy różnymi sieciami bezprzewodowymi. 
+Mimo swoich ogromnych uprawnień, użytkownik root nadal działa w trybie użytkownika systemu operacyjnego, a nie w trybie jądra.
+
+W niektórych powłokach dostępne są parametry umożliwiające zablokowanie wymazywania. 
+Przykładowo w powłoce bash można wpisać polecenie set -c, aby zablokować mechanizm wymazywania plików. Jeżeli nie chcemy wymazywać zawartości 
+phku, ale wyniki działania polecenia dopisać na jego końcu, należy skorzystać z innego znaku przekierowania (»).
+
+Jeżeli chcielibyśmy, żeby dane generowane przez program zapisywane były do pliku f, a wszystkie komunikaty obłędach do pliku e, 
+to należy użyć następującego polecenia: 
+$ ls /fffffffff > f 2> e 
+Numer 2 to identyfikator strumienia, który podlega przekierowaniu. Strumieniem numer l jest standardowe wyjście (domyślna wartość), 
+a strumieniem numer 2 - standardowy strumień błędów.
+
+Każde z miejsc przeznaczone na uprawnienie odczytu, zapisu lub wykonania nazywane jest bitem uprawnienia. 
+Z tego powodu czasami można usłyszeć osoby mówiące o różnych elementach uprawnienia jako o "bitach odczytu". 
+
