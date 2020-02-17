@@ -20,3 +20,16 @@ Gdy proces próbuje uzyskać dostęp do przydzielonej mu pamięci, moduł MMU pr
 
 Implementacja mapy adresów pamięci nazywana jest tablicą stron (ang. page table). 
 
+Dwa wywołania systemowe - fork() i exec() - są szczególnie istotne przy poznawaniu sposobu uruchamiania procesów w systemie. 
+
+fork() - gdy dany proces wywołuje funkcję fork O, jądro systemu tworzy niemal identyczną kopię tego procesu. 
+exec() - gdy proces wywołuje funkcję exec (program), jądro systemu uruchamia program, który zastępuje aktualny proces. 
+
+W systemach Linuksowych wszystkie procesy użytkownika z wyjątkiem procesu init powstają w wyniku wywołania systemowego fork(). 
+Dodatkowo, w większości przypadków wywoływana jest funkcja exec() pozwalająca na uruchomienie nowego programu 
+bez tworzenia kopii istniejącego już procesu.
+
+Bardzo prostym przykładem mogą być programy uruchamiane w wierszu poleceń, takie jak polecenie ls wyświetlające zawartość katalogu. 
+Po wprowadzeniu polecenia ls w oknie terminala działająca w nim powłoka wywołuje funkcję fork() w celu utworzenia nowego procesu powłoki, 
+a następnie ta nowa kopia procesu wywołuje funkcję exec(ls), uruchamiając tym samym program ls.
+
