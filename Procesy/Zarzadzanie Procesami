@@ -50,9 +50,7 @@ phku, ale wyniki działania polecenia dopisać na jego końcu, należy skorzysta
 
 Jeżeli chcielibyśmy, żeby dane generowane przez program zapisywane były do pliku f, a wszystkie komunikaty obłędach do pliku e, 
 to należy użyć następującego polecenia: 
-
 $ ls /fffffffff > f 2> e 
-
 Numer 2 to identyfikator strumienia, który podlega przekierowaniu. Strumieniem numer l jest standardowe wyjście (domyślna wartość), 
 a strumieniem numer 2 - standardowy strumień błędów. 
 
