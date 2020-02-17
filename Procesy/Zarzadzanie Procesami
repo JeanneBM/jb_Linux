@@ -33,3 +33,14 @@ Bardzo prostym przykładem mogą być programy uruchamiane w wierszu poleceń, t
 Po wprowadzeniu polecenia ls w oknie terminala działająca w nim powłoka wywołuje funkcję fork() w celu utworzenia nowego procesu powłoki, 
 a następnie ta nowa kopia procesu wywołuje funkcję exec(ls), uruchamiając tym samym program ls.
 
+Większość aplikacji i usług zapisuje komunikaty diagnostyczne nazywane protokołami (ang. logs). 
+
+Użytkownicy istnieją w systemie głównie po to, żeby wyznaczać uprawnienia i ich granice. 
+Każdy proces w przestrzeni użytkownika ma swojego właściciela (ang. owner) - mówi się, że procesy uruchamiane są jako dany użytkownik. 
+
+Praca z uprawnieniami superużytkownika może być niebezpieczna. 
+Naprawdę trudne może być identyfikowanie i poprawianie ewentualnych błędów, ponieważ system pozwoli na wykonanie każdej operacji, 
+nawet jeżeli może ona uszkodzić system. Z tego powodu projektanci systemów starają się jak najbardziej ograniczyć konieczność 
+używania konta root, na przykład nie wymagają go do przełączania się w laptopie pomiędzy różnymi sieciami bezprzewodowymi. 
+Mimo swoich ogromnych uprawnień, użytkownik root nadal działa w trybie użytkownika systemu operacyjnego, a nie w trybie jądra.
+
