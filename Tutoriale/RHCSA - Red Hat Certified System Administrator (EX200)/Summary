@@ -1,0 +1,49 @@
+https://margib.blogspot.com/p/linux-wiedza.html
+
+RHCSA - Red Hat Certified System Administrator (EX200) ver.5, ver.6
+
+    Linux RHCSA cz.1 - Inicjowanie systemu - botowanie, uruchomienie systemu
+    Linux RHCSA cz.2 - Inicjowanie systemu - GRUB konfiguracja i zastosowanie
+    Linux RHCSA cz.3 - Runlevels - poziomy uruchomienia systemu
+    Linux RHCSA cz.4 - Runlevels - zarządzanie serwisami, uruchomionymi procesami - usługami
+    Linux RHCSA cz.5 - Dyski i partycje - Tworzenie partycji - fdisk , parted , partprobe
+    Linux RHCSA cz.6 - Dyski i partycje - Tworzenie partycji SWAP
+    Linux RHCSA cz.7 - Dyski i partycje - Usuwanie partycji
+    Linux RHCSA cz.8 - LVM - Logical Volume Manager - wolumeny logiczne
+    Linux RHCSA cz.9 - LVM - Logical Volumen Manager - Tworzenie wolumenu logicznego
+    Linux RHCSA cz.10 - LVM - Logical Volumen Manager - Zmiana rozmiaru wolumenu logicznego
+    Linux RHCSA cz.11 - LVM - Logical Volumen Manager - Migracja danych
+    Linux RHCSA cz.12 - LVM - Logical Volumen Manager - Usuwanie wolumenów logicznych
+    Linux RHCSA cz.13 - Konfiguracja partycji RAID
+    Linux RHCSA cz.14 - RAID - Co zrobić jak zepsuje się dysk ?
+    Linux RHCSA cz.15 - RAID - Usuwanie RAID
+    Linux RHCSA cz.16 - System plików - Utworzenie i konfiguracja
+    Linux RHCSA cz.17 - System plików - Utworzenie i zmiana rozmiaru SWAP
+    Linux RHCSA cz.18 - System plików - Montowanie systemu plików
+    Linux RHCSA cz.19 - System plików - Dodatkowe polecenia jakie mogą się przydać
+    Linux RHCSA cz.20 - System plików - Szyfrowanie LUKS
+    Linux RHCSA cz.21 - System plików - Zarządzanie limitami dyskowymi- QUOTAS
+    Linux RHCSA cz.22 - System plików - Bezpieczeństwo - ACL, GnuPG
+    Linux RHCSA cz.23 - System plików - AutoFS
+    Linux RHCSA cz.24 - Sieć - konfiguracja i zarządzanie
+    Linux RHCSA cz.25 - Sieć - Routing
+    Linux RHCSA cz.26 - Sieć - Rozwiązywanie problemów z połączeniem sieciowym
+    Linux RHCSA cz.27 - Sieć - Monitoring i Analiza sieci - DNS, Rozwiązywanie problemów z klientem DNS.
+    Linux RHCSA cz.28 - Użytkownicy - konta, dodawanie, modyfikacja , usuwanie
+    Linux RHCSA cz.29 - Użytkownicy - Hasła
+    Linux RHCSA cz.30 - Użytkownicy - Grupy
+    Linux RHCSA cz.31 - Użytkownicy - Przełączanie kont, su, sudo
+    Linux RHCSA cz.32 - Użytkownicy - Inicjowanie konta użytkownika
+    Linux RHCSA cz.33 - Użytkownicy - Uprawnienia plików i katalogów - Współpraca grup
+    Linux RHCSA cz.34 - Użytkownicy - Sieciowe uwierzytelnianie użytkowników
+    Linux RHCSA cz.35 - Logi systemowe - praca z Syslog
+    Linux RHCSA cz.36 - Monitorowanie wydajności systemu - procesy
+    Linux RHCSA cz.37 - Automatyzacja działań - CRON
+    Linux RHCSA cz.38 - Zarządzanie pakietami - praca z RPM
+    Linux RHCSA cz.39 - Zarządzanie pakietami - Praca z YUM
+    Linux RHCSA cz.40 - Zarządzanie pakietami - YUM - Dodatkowe repozytoria
+    Linux RHCSA cz.41 - Jądro systemu (Kernel) - Podstawy
+    Linux RHCSA cz.42 - Jądro systemu (Kernel) - Aktualizacja
+    Linux RHCSA cz.43 - FTP - File Transfer Protocol
+    Linux RHCSA cz.44 - FTP - Bezpieczeństwo
+    Linux RHCSA cz.45 - Usługi WEB - Serwer Apache
