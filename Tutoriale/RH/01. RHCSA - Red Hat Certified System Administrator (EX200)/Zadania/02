@@ -41,5 +41,5 @@ Może się zdarzyć również tak, że polecenie "passwd" nie zmieni hasła co s
 # setenforce 0 . Po dezaktywacji możemy sprawdzić status wydając ponownie polecenie # getenforce, które w wyniku powinno dać informację 
 "Permissive" wtedy można już zmienić hasło "root" poleceniem # passwd
 
-------------------------------------------------------------------------------------------------------------------------------------------
+
 
