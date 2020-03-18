@@ -33,3 +33,40 @@ Odp: # chkconfig --level 4 sshd off  i dla sprawdzenia # chkconfig --list sshd :
 
          sshd 0:off 1:off 2:on 3:on 4:off 5:on 6:off
 
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Zadanie 1
+Jaki status na jakim poziomie ma usługa SSH ?
+
+Odp: # chkconfig --list sshd w wyniku otrzymamy :  
+
+sshd 0:off 1:off 2:on 3:on 4:on 5:on 6:off
+
+Otrzymany wynik jest bardzo prosty do interpretacji. Serwis uruchamiany jest w poziomach 2, 3, 4, 5 a zatrzymany jest w poziomach 0, 1 i 6. 
+
+Zadanie 2
+W jaki sposób zatrzymać uruchamianie usługi SSH na wszystkich poziomach ?
+
+Odp: # chkconfig sshf off  następnie sprawdzamy jak wygląda status po zmianie # chkconfig --list sshd :
+
+
+sshd 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Teraz usługa sshd nie uruchomi się na żadnym poziomie. 
+
+Zadanie 3 
+Zezwól na uruchomienie usługi na poziomach na jakich była uruchamiana poprzednio. 
+
+Odp: # chkconfig sshd on  i dla sprawdzenia # chkconfig --list sshd :
+
+          sshd 0:off 1:off 2:on 3:on 4:on 5:on 6:off
+
+Zadanie 4 
+Wyłącz uruchamianie usługi sshd na poziomie 4
+
+Odp: # chkconfig --level 4 sshd off  i dla sprawdzenia # chkconfig --list sshd :
+
+         sshd 0:off 1:off 2:on 3:on 4:off 5:on 6:off
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
