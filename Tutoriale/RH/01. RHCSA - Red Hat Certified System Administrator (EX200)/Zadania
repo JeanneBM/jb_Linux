@@ -1,0 +1,45 @@
+Linux RHCSA cz.2 - Inicjowanie systemu - GRUB konfiguracja i zastosowanie
+
+Zadanie 1 
+Wejdź w linie poleceń GRUB i znajdź dysk oraz partycje zawarte w pliku grub.conf.
+
+Odp: # grub> find /grub/grub.conf  (wynik działania : (hd0,0) ) 
+         lub # grub> root  (wynik działania : (hd0,0): Filesystem type is unknown, partition type 0x8e )
+
+Zadanie 2 
+Zainstaluj GRUB na dysku jaki został zwrócony w zadaniu 1.
+
+Odp: # grub> setup (hd0)  ( Wynik działania :
+
+Checking if “/boot/grub/stage1” exists... no
+Checking if “/grub/stage1” exists... yes
+Checking if “/grub/stage2” exists... yes
+Checking if “/grub/e2fs_stage1_5” exists... yes
+Running “embed /grub/e2fs_stage1_5 (hd0)”... 26 sectors are
+embedded.
+Running “install /grub/stage1 (hd0) (hd0)1+26 p
+(hd0,0)/grub/stage2
+/grub/grub.conf”... succeeded
+Done.
+)
+
+W tej chwili MBR jest zmieniony i po wpisaniu polecenia # grub> root zobaczymy już poprawny system plików. 
+Bardzo ważne jest również by posiadać kopie zapasową pliku grub.conf by w razie problemów łatwo go przywrócić.
+
+Zadanie 3
+Zmienić hasło użytkownika "root" wykorzystując możliwości GRUB i trybu "Single-User-Mode".
+
+Odp:
+Wchodzimy w GRUB (mamy na to domyślnie 5 sekund )
+Używamy opcję "a" (wcisnąć klawisz "a") w celu dodania opcji przed botowaniem
+W miejscu gdzie znajduje się kursor wpisujemy spację i "s" lub "single" ( <BOARDTYPE=pc KEYTABLE=us rd_NO_DM s ) 
+następnie zatwierdzamy Enterem. 
+
+poleceniem "passwd" zmieniamy hasło użytkownika "root" 
+Może się zdarzyć również tak, że polecenie "passwd" nie zmieni hasła co spowodowane jest uruchomionym SELinuxem 
+- sprawdzić to można wydając polecenie : # getenforce i jeżeli zwróci odpowiedź " Enforcing" należy zdezaktywować SELinux komendą 
+# setenforce 0 . Po dezaktywacji możemy sprawdzić status wydając ponownie polecenie # getenforce, które w wyniku powinno dać informację 
+"Permissive" wtedy można już zmienić hasło "root" poleceniem # passwd
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
