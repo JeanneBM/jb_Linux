@@ -1,0 +1,16 @@
+BIOS (1. zadanie test - POST Power On Self Test) 
+-> uruchomienie urzadzen peryferyjnych (wyszukuje i przejmuje kontrole) 
+-> MBR - Master Boot Record (główny rekord startowy, w pierwszym sektorze dysku twardego)
+-> GRUB (Grant Unifiet Bootloader) poszukuje etykiety oznaczonej jako domyślna
+-> Kernel powołuje do życia proces, którego zadaniem jest uruchomienie całego środowiska
+
+GRUB - moment kiedy jest wybor zaintalowanych systemow
+
+Wszystko co dzieje się w momencie uruchamiania środowiska zostaje zalogowane do pliku: /var/log/dmesg
+
+Jeżeli sterowniki systemu są na właściwym miejscu jądro systemu wywołuje: /sbin/init 
+
+Do przeprowadzania testów sprzętowych w realnych sytuacjach pomocna może okazać się komenda: # lsmod
+
+Od wersji RedHat 6 pojawiło się nowe narzędzie botowania o nazwie UpStart zastępując tradycyjnie używane SysV init.
+
