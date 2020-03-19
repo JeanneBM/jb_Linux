@@ -1,0 +1,96 @@
+Zadanie 1 - Zainstalowanie odpowiednich paczek w systemie (jeżeli są można pominąć ten krok) 
+# yum install -y lvm2 
+
+Zadanie 2 - Sprawdzenie instalacji 
+# rpm -qa | grep lvm  w wyniku (wynik może się nieco różnić w zależności od wersji ) : 
+
+lvm2-libs-2.02.72-8.el6.x86_64
+lvm2-2.02.72-8.el6.x86_64 
+
+Zadanie 3 - Wyświetl wolumeny fizyczne w systemie. 
+# pvs   w wyniku otrzymamy coś na wzór :
+PV        VG         Fmt Attr PSize PFree
+/dev/hda2 vg_rhel601 lvm2 a-  19.51g 0
+
+W wersjach RHEL5 domyślnie dla grup wolumenów i wolumenów logicznych stosowano nazwę VolGroup oraz LogVol od wydania RHEL6 nazwy skrócono do "vg_" i "lv-" stosowane jako prefix. 
+
+Zadanie 4 - Pokaż szczegółowe informacje na temat wolumenów fizycznych. 
+# pvdisplay
+-- Physical volume --
+PV Name /dev/hda2
+VG Name vg_rhel601
+PV Size 19.51 GiB / not usable 3.00 MiB
+Allocatable yes (but full)
+PE Size 4.00 MiB
+Total PE 4994
+Free PE 0
+Allocated PE 4994
+PV UUID XI3mef-f2Qm-J5Ri-jiU9-qI8S-hBTI-No6tPn
+
+Domyślnie podczas instalacji RedHat do zarządzania dyskami stosowany jest LVM. Powyższe polecenie wyświetla fizyczne wolumeny utworzone podczas instalacji. Kolejną warstwą w strukturze LVM będzie grupa wolumenów.
+
+Zadanie 5 - wyświetl informację o grupie wolumenów. 
+# vgs
+VG #PV #LV #SN Attr VSize VFree
+vg_rhel601 1 2 0 wz—n- 19.51g 0
+
+Zadanie 6 - Pokaż szczegółowe informacje o grupie wolumenów
+# vgdisplay
+-- Volume group --
+VG Name vg_rhel601
+System ID
+Format lvm2
+Metadata Areas 1
+Metadata Sequence No 3
+VG Access read/write
+VG Status resizable
+MAX LV 0
+Cur LV 2
+Open LV 2
+Max PV 0
+Cur PV 1
+Act PV 1
+VG Size 19.51 GiB
+PE Size 4.00 MiB
+Total PE 4994
+Alloc PE / Size 4994 / 19.51 GiB
+Free PE / Size 0 / 0
+VG UUID pDycLd-SMos-RLeW-656R-xUZv-b45T-485S8D
+
+Zadanie 7 - Pokaż wolumeny logiczne 
+# lvs
+LV VG Attr LSize Origin Snap% Move Log
+Copy% Convert
+lv_root vg_rhel601 -wi-ao 15.57g
+lv_swap vg_rhel601 -wi-ao 3.94g
+
+Zadanie 8 - Wyświetl szczegółowe informację na temat wolumenów logicznych 
+# lvdisplay
+-- Logical volume --
+LV Name /dev/vg_rhel601/lv_root
+VG Name vg_rhel601
+LV UUID I1rLRo-T8Qu-uprj-FdIh-oCQi-6PgL-d0bGeC
+LV Write Access read/write
+LV Status available
+# open 1
+LV Size 15.57 GiB
+Current LE 3986
+Segments 1
+Allocation inherit
+Read ahead sectors auto
+- currently set to 256
+Block device 253:0
+-- Logical volume --
+LV Name /dev/vg_rhel601/lv_swap
+VG Name vg_rhel601
+LV UUID JgOxey-h7Ih-mFgO-6mdt-uibZ-9W9H-I8tZKv
+LV Write Access read/write
+LV Status available
+# open 1
+LV Size 3.94 GiB
+Current LE 1008
+Segments 1
+Allocation inherit
+Read ahead sectors auto
+- currently set to 256
+Block device 253:1
