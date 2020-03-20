@@ -1,1 +1,4 @@
+Lesson 23: Configure the Firewall such that remote access to SSH as well as the Apache process are allowed.
 
+1. type fire-cmd --list-all and see allowed SSH 
+2. find name of the server: firewell-cmd --add-services and search http and https
