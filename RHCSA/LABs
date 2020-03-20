@@ -1,4 +1,13 @@
-Lesson 1:
+Lesson 1: Installing Red Hat Enterprise Linux
+Instal RHEL:
+1. a graphical user interface should be installed
+2. 10 GiB Root partition
+3. 1 GiB Swap partition
+4. 4 GiB of disk space remains as unused
+5. set the root password "password"
+6. create a user "student" with the password "password"
+7. configure the network interface to contact a DHCP server
+
 Lesson 2:
 Lesson 3:
 Lesson 4:
