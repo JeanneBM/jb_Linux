@@ -22,8 +22,15 @@ Lesson 2: Using Essential Tools
 9. use vim to create a file with the name users and make sure that it contains the names: alex, alexander, linda, belinda on separate lines
 
 Solution:
-1. man -k password
-
+1. man -k password -> man -k password | grep 1 
+2. man useradd -> Shift+G -> SEE ALSO -> passwd(1) -> q -> man passwd
+3. useradd anna
+4. passwd anna -> 2x"password"
+5. cd /etc
+6. ls *[0-9]* -> ls -d *[0-9]* //without of the content of the directories
+7. ls -l | less
+8. cd -> you will get back to home /root directory
+9. vim users -> alex, alexander, linda, belinda -> ESC -> :wq!
 
 Lesson 3:
 Lesson 4:
