@@ -84,9 +84,39 @@ Lesson 5:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
+Lesson 6: Managing User and Groups
+1. make sure that new users require a password with a minimal length of 6 characters and a maximal validity of 90 days
+2. ensure, while creating users, an empty file with the name NewFile is created in their home directory create users Anna, Audrey, Linda and Lisa
+3. set the password for Anna and Audrey to "password" 
+4. disable the password for Linda and Lisa 
+5. create the groups profs and students
+6. make users Anna and Audrey members of profs and Linda and Lisa members od students
+- you may do that as a secondary group assignment
 
-Lesson 6:
-Lesson 7:
+Solution:
+1. vim /etc/login.defs -> PASS_MAX_DAYS 90 -> PASS_MIN_LEN 6 -> :q! 
+2. cd /etc/skel -> touch NewFile -> useradd Anna -> useradd Audrey -> useradd Linda  -> useradd Lisa 
+3. passwd Anna -> 2x"password" -> also: echo password | passwd --stdin audrey
+4. passwd -l linda; passwd -l lisa
+5. groupadd students; groupadd profs 
+6. usermod -aG students lisa; usermod -aG students linda; usermod -aG profs anna; usermod -aG profs audrey //to check f.e.: id anna 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Lesson 7: Managing Permissions 
+1. ensure that others is denied default permissions to any file user Linda creates 
+2. create a shared group directory structure with /data/profs and data/students
+3. make sure it meets the following conditions:
+- members of the group have full read and write access to their directories 
+- others should have no permissions at all
+- files created in these directories are writeable for all members of the group
+- users can only delete files they have created themselves
+- members of the group profs have read access to everything /data/students
+- user Anna is the headmaster and should be able to delete everything in /data/students and /data/profs
+
+Solution:
+
+
 Lesson 8:
 Lesson 9:
 Lesson 10:
