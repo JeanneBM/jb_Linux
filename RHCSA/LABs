@@ -27,14 +27,64 @@ Solution:
 3. useradd anna
 4. passwd anna -> 2x"password"
 5. cd /etc
-6. ls *[0-9]* -> ls -d *[0-9]* //without of the content of the directories
+6. ls *[0-9]* -> ls -d *[0-9]* //without the content of the directories
 7. ls -l | less
-8. cd -> you will get back to home /root directory
-9. vim users -> alex, alexander, linda, belinda -> ESC -> :wq!
+8. cd // it takes to home /root directory
+9. vim users -> Alex 
+                Alexander 
+                Linda 
+                Belinda -> ESC -> :wq!
 
-Lesson 3:
-Lesson 4:
-Lesson 5:
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Lesson 3: Essential File Management Tools
+1. create a directory structure /tmp/files/pictures, /tmp/files/photos, /tmp/files/videos
+2. copy all files that have a name starting with an a, b or c from /etc to /tmp/files
+3. from /tmp/files you move all files that have a name starting with an 'a' or 'b' to /tmp/files/photos and with a 'c' to /tmp/files/videos
+4. find all files in /etc that have a size smaller than 1000 bytes
+5. copy these to /tmp/files/pictures
+6. in /tmp/files create a symbolic link to var
+7. create a compressed archive file with relative file names into /tmp/archive
+
+Solution:
+1. mkdir -p /tmp/files/pictures /tmp/files/photos /tmp/files/videos
+2. cp /etc/[a-c]* /tmp/files 
+3. cd /tmp/files/ -> mv [ab]* photos/ -> mv c* videos/
+4.-5. find /etc -size -1000c -exec cp {} pictures \;
+6. ln -s /var .
+7. tar cJvf home.tar.xz /home -> mkdir /tmp/archive; tar xvf home.tar.xz -C /tmp/archive // ";" allows to type commands one by one 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Lesson 4: Working with Text Files
+1. use head and tail to display the 5th line of the the file /etc/passwd
+2. use sed to do exactly the same
+3. use awk in a pipe to filter the last column out of the results of the command ps aux
+4. use grep to show the names of all files in /etc that have lines that contain the text root as a word
+5. use grep to show all lines from all files in /etc that contain exactly 3 characters
+6. use grep to find all files that contain the string alex, but make sure that alexander is not included in the result
+7. create a simple file where one line has the text alex and another line has the text alexander
+
+Solution:
+1. head -n 5 /etc/passwd | tail -n 1
+2. sed -n 5p /etc/passwd
+3. ps aux | awk '{ print $NF }'
+4. cd /etc -> grep '\<root\>' *
+5. cd /etc -> grep '^...$' *
+6. grep '^alex$' * // also: grep '\<alex\>' *
+7. vim users -> Alex
+                Alexander -> ESC -> :wq!
+                
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Lesson 5: 
+1. open a login prompt on tty6, starting from the graphical console
+2. log in as an ordinary user and use the appropriate command to get back to the graphical console
+3. use ssh to make a connection as user root to "localhost"
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
 Lesson 6:
 Lesson 7:
 Lesson 8:
