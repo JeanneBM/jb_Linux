@@ -115,9 +115,22 @@ Lesson 7: Managing Permissions
 - user Anna is the headmaster and should be able to delete everything in /data/students and /data/profs
 
 Solution:
+1. cd /home/linda/ -> vim .bash_profile -> umask 007 //to test: su - linda -> touch linda5 -> ls -l linda5
+2. cd /data -> mkdir profs students  
+3. chmod 3770 students/; chmod 3770 profs/ -> ls -l -> chown anna:students students/; chown anna:profs profs/
+cd students/ -> setfacl -m d:g:profs:rx /data/students -> getfacl .
 
+--------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 8:
+Lesson 8: Configuring Networking 
+1. set the server to a fixed IP address that matches your current network configuration
+2. set a second IP address 10.0.0.10/24 on the same network interface
+3. reboot
+4. verify your network is still working with the new settings
+
+Solution:
+1. ip a -> search "dynamic" -> inet f.e. 192.168.4.200 -> ping 192.168.4.10 -> c^C ->nmtui
+
 Lesson 9:
 Lesson 10:
 Lesson 11:
