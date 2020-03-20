@@ -77,7 +77,7 @@ Solution:
                 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 5: 
+Lesson 5: Connecting to a RHEL Server
 1. open a login prompt on tty6, starting from the graphical console
 2. log in as an ordinary user and use the appropriate command to get back to the graphical console
 3. use ssh to make a connection as user root to "localhost"
