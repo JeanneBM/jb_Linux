@@ -94,7 +94,7 @@ Lesson 6: Managing User and Groups
 - you may do that as a secondary group assignment
 
 Solution:
-1. vim /etc/login.defs -> PASS_MAX_DAYS 90 -> PASS_MIN_LEN 6 -> :q! 
+1. vim /etc/login.defs -> PASS_MAX_DAYS 90 -> PASS_MIN_LEN 6 -> :wq! 
 2. cd /etc/skel -> touch NewFile -> useradd Anna -> useradd Audrey -> useradd Linda  -> useradd Lisa 
 3. passwd Anna -> 2x"password" -> also: echo password | passwd --stdin audrey
 4. passwd -l linda; passwd -l lisa
