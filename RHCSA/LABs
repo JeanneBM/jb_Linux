@@ -8,7 +8,19 @@ Instal RHEL:
 6. create a user "student" with the password "password"
 7. configure the network interface to contact a DHCP server
 
-Lesson 2:
+Lesson 2: Using Essential Tools 
+1. locate the man page that shows how to set a password
+2. use the man page for useradd
+3. as root create a user "Anna"
+4. set the password for user Anna to "password"
+5. use cd /etc to make /etc your current directory
+6. use globbing and the ls command to show all files in /etc that have a number in their number
+7. still from /etc, use the command ls -l and use a pipe to display the results page by page 
+8. type cd without any arguments
+9. use vim to create a file with the name users and make sure that it contains the names: alex, alexander, linda, belinda on separate lines
+
+
+
 Lesson 3:
 Lesson 4:
 Lesson 5:
