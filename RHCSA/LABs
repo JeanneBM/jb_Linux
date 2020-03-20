@@ -129,7 +129,13 @@ Lesson 8: Configuring Networking
 4. verify your network is still working with the new settings
 
 Solution:
-1. ip a -> search "dynamic" -> inet f.e. 192.168.4.200 -> ping 192.168.4.10 -> c^C ->nmtui
+1. ip a -> search "dynamic" -> inet f.e. 192.168.4.200/24 -> ping 192.168.4.10 -> c^C -> nmtui
+NetworkManager TUI: Edit a connection -> Add -> Edit -> IPv4 "Manual" -> Show -> Addresses: 192.168.4.10/24 -> 
+2. Add -> 10.0.0.10/24 -> Gateway: 192.168.4.2 -> DNS servers:8.8.8.8 -> OK -> Back -> Activate a connection -> Activate -> Back -> Quit 
+3. reboot
+4. ip a
+
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 9:
 Lesson 10:
