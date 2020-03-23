@@ -174,7 +174,9 @@ Lesson 11:
 2. edit its configuration such that on failure, it will continue after one minute 
 
 Soultion:
-1.
+1. status httpd
+2. systemctl edit httpd -> RestartSec=60s -> Ctrl+X -> y -> Enter -> systemctl deamon-reload -> systemctl enable --now httpd 
+to check -> systemctl status httpd -> killall httpd -> systemctl status httpd -> Active: activating (auto-restart) -> after 60 it will be working again
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -184,7 +186,7 @@ Lesson 12:
 3. use at to schedule a job to poweroff your system at a convenient time later today
 
 Solution:
-1.
+1. 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 Lesson 13:
