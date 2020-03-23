@@ -213,20 +213,56 @@ vim error -> /var/log/error{
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 14: Managing Storage
-1. create a 10 GiB additional hard disk on your virtual machine and this disk needs to be completely avaliable 
+1. create a 20 GiB additional hard disk on your virtual machine and this disk needs to be completely avaliable 
 2. on this disk, create a primary partition with a size of 1 GiB.
-3. format it with Ext4 and mount it persistently on /mounts/files/ using its UUID 
+3. format it with Ext4 and mount it persistently on /mounts/files using its UUID 
 4. create an extended partition that includes all remaining disk space
-5. in this partition, create a 500 MiB (mebibyte) XFS partition and mount it persistently on /mounts/xfs/ using the label myxfs
+5. in this partition, create a 500 MiB (mebibyte) XFS partition and mount it persistently on /mounts/xfs using the label myxfs
 6. create a 500 MiB Swap partition and mount it persistently as well
+
+Solution:
+
+fdisk /dev/nvme0n4 -> Command: n -> Partition type: p -> Enter -> Last sector ... :+1G -> // creates nvme0n4p1
+Command: n -> Partition type: e -> 
+Command: n -> Last sector ...: +500M -> //nvme0n4p5
+Command: n -> Last sector ...: +500M -> //nvme0n4p6
+Command: t -> Partition number ...: 6 -> Hex code:82 // what means: partition 'Linux' to 'Linux swap/ Solaris' -> 
+Command: w // what means "The partition table has been altered." 
+lsblk
+
+//m is like a menu for fdisk, L - list of partition types w Hex code
+
+mkdir -p /mounts/files -> mkfs.ext4 /dev/nvme0n4p1 -> blkid -> copy by mouse UUID -> vim /etc/fstab -> 
+paste UUID + "/mounts/files ext4 defaults 0 0"
+
+mkfs.xfs /dev/nvme0n4p5 -> mkdir /mounts/xfs -> vim /etc/stab -> "/dev/nvme0n4p5  /mount/xfs  xfs  defaults  0 0"
+mkswap /dev/nvme0n4p6 -> vim /etc/stab -> "/dev/nvme0n4p6  swap  swap  defaults  0 0"
+
+swapon -a -> mount -a 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Lesson 15: Managing Advanced Storage 
+You need a new 10 GiB disk to your virtual machine:
+1. create an LVM logical volume with the name lvdb and a size of 1GiB
+2. create the VG and PV that are required for this LV
+3. format the LV with the XFS file system and mount it persistently on mounts lvdb
+4. use the appropriate solution to create a 10 TiB thin provisioned volume 
+5. create a 1 GiB LUKS encrypted volume with the name secret
+6. make sure it is mounted persistently, but not automatically, on /mount/secret/ 
 
 Solution:
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-Lesson 15:
---------------------------------------------------------------------------------------------------------------------------------------------
-Lesson 16:
+
+Lesson 16: Managing the Kernel
+1. install a new version of the kernel
+2. enable packet forwarding
+
+Solution:
+
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 Lesson 17:
 --------------------------------------------------------------------------------------------------------------------------------------------
