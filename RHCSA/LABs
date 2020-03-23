@@ -193,11 +193,36 @@ Solution:
 3. at 6 pm -> poweroff -> Ctrl+D 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-Lesson 13: Configuring Logging
-1. make sure 
 
+Lesson 13: Configuring Logging
+1. make sure that the systemd journal is logged persistently
+2. create an entry in rsyslog that writes all messages with a severity of error or higher to /var/log/error
+3. ensure that /var/log/error is rotated on a monthly basis and the last 12 logs are kept before they are rotated out
+
+Solution:
+1. mkdir /var/log/journal -> if exists, can't be create a new one
+2. vim rsyslog.conf -> "# Save boot messages also to boot.leg" -> *.error /var/log/error -> :wq! 
+  -> to ensure: systemctl restart rsyslog 
+3. cd /etc/logrotate.d/ -> as example: cat vsftpd -> for information: vim /etc/logrotate.conf -> 
+vim error -> /var/log/error{
+                            monthly 
+                            rotate 12
+                            create 
+             } -> :wq!
+             
 --------------------------------------------------------------------------------------------------------------------------------------------
-Lesson 14:
+
+Lesson 14: Managing Storage
+1. create a 10 GiB additional hard disk on your virtual machine and this disk needs to be completely avaliable 
+2. on this disk, create a primary partition with a size of 1 GiB.
+3. format it with Ext4 and mount it persistently on /mounts/files/ using its UUID 
+4. create an extended partition that includes all remaining disk space
+5. in this partition, create a 500 MiB (mebibyte) XFS partition and mount it persistently on /mounts/xfs/ using the label myxfs
+6. create a 500 MiB Swap partition and mount it persistently as well
+
+Solution:
+
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 Lesson 15:
 --------------------------------------------------------------------------------------------------------------------------------------------
