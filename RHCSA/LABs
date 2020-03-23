@@ -152,7 +152,7 @@ Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 10:
+Lesson 10: Managing Software
 1. ensure your system is using a YUM repository for base packages, as well as application streams
 2. find the package that contains the sepolicy program file and install it
 3. install the previous version of PHP
@@ -169,7 +169,7 @@ Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 11:
+Lesson 11: Working with Systemd
 1. make sure that the httpd service is automatically started 
 2. edit its configuration such that on failure, it will continue after one minute 
 
@@ -180,7 +180,7 @@ to check -> systemctl status httpd -> killall httpd -> systemctl status httpd ->
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 12:
+Lesson 12: Using at
 1. ensure that the systemd timer that cleans up tmp files is enabled
 2. run a cron job that will issue the command touch /tmp/cronfile five minutes from now
 3. use at to schedule a job to poweroff your system at a convenient time later today
