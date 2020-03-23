@@ -160,7 +160,12 @@ Lesson 10:
 5. query to see if there are any scripts in it
 
 Solution:
-1. 
+1. cd /etc/yum.repos.d/ -> ls -> cat base.repo -> cat appstream -> tail -n 1 /etc/fstab //during exam you can't connect with RH repositories
+-> less redhat.repo 
+2. yum search sepolicy -> if "no matches found", deeper searching -> yum provides */sepolicy 
+3. yum module list -> search php -> yum module install php:7.1
+4. cd -> yumdownloader httpd
+5. ls -> rpm -qp --scripts httpd-2.4.35-6.el8+2089+57a79027.x86_64.rpm
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
