@@ -186,10 +186,16 @@ Lesson 12: Using at
 3. use at to schedule a job to poweroff your system at a convenient time later today
 
 Solution:
-1. 
+1. cd /usr/lib/systemd/system -> ls *timer -> ls systemd-tmpfiles-clean. * -> vim systemd-tmpfiles-clean.service -> [Service] 
+  -> vim systemd-tmpfiles-clean.timer -> [Timer] -> systemd enable --now systemd-tmpfiles-clean.timer 
+  -> systemctl status systemd-tmpfiles-clean.timer -> should be: Active: active (waiting)
+2. crontab -e -> 38 * * * * touch /tmp/cronfile -> ls -l /tmp/cronfile after 5 minutes
+3. at 6 pm -> poweroff -> Ctrl+D 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-Lesson 13:
+Lesson 13: Configuring Logging
+1. make sure 
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 Lesson 14:
 --------------------------------------------------------------------------------------------------------------------------------------------
