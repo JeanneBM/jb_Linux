@@ -138,8 +138,17 @@ NetworkManager TUI: Edit a connection -> Add -> Edit -> IPv4 from "Automatic" to
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 9: Managing Process
+1. type the command dd if is /dev/zero and of is /dev/null
+2. change it from a foreground to a background job
+3. run this commmand three more times, but strat it as a background job immediately 
+4. use the jobs command to get information about the current background jobs
+5. from top, change the niceness to one of the dd processes to -5 and observe what's happening
+6. again from top, send a sigkill signal to top and observe what happens 
+7. from the commmand line, terminate all of the remaining dd processes
 
-
+Solution:
+1. dd if=/dev/zero of=/dev/null - this process takes to much time, there are better solutions -> Ctrl+Z -> bg - to verify the background
+2. jobs 
 Lesson 10:
 Lesson 11:
 Lesson 12:
