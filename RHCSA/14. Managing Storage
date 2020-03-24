@@ -72,7 +72,7 @@ Understanding Partioning:
 Procedure Overview-1:
 * parted /dev/sdb
 * print will show if there is a current partition table
-* mklabel msdos *pipe* gpt
+* mklabel msdos | gpt
 * mkpart part-type name fs-type start end
 	* part-type: applies to MBR only and sets primary, logical or extended partition
 	* name:  arbitrary name, required for GPT
@@ -80,7 +80,6 @@ Procedure Overview-1:
 	* start end: specify start and end, counting from the beginning of the disk
 
 	* For instance: mkpart primary 1024MiB 2048MiB
-
 
 Procedure Overview-2:
 * print to verify creation of the new partition
@@ -131,7 +130,7 @@ Use umount before disconnecting a device
 
 lsblk -> mkfs.xfs /dev/nvme0n3p1 -> mount /dev/nvme0n3p1 /mnt -> mount -> last lines 
 
-mount *pipe* grep '^/' -> cd /mnt -> ls -> cp /etc/hosts . -> ls -> umount /dev/nvme0n3p1 -> if "busy": lsof /mnt
+mount | grep '^/' -> cd /mnt -> ls -> cp /etc/hosts . -> ls -> umount /dev/nvme0n3p1 -> if "busy": lsof /mnt
 
 cd -> lsof /mnt -> umount /mnt
 
@@ -174,8 +173,8 @@ blkid - UUID
 tune2fs - to set a label
 xfs_admin 
 
-tune2fs -L articles /dev/nvme0n3p5 -> vim /etc/fstab -> "LABEL=articles /articles  ext4  defaults  0 0" -> mount *pipe* grep artic -> mount -a
--> mount *pipe* grep artic // should see that mount was issued 
+tune2fs -L articles /dev/nvme0n3p5 -> vim /etc/fstab -> "LABEL=articles /articles  ext4  defaults  0 0" -> mount | grep artic -> mount -a
+-> mount | grep artic // should see that mount was issued 
 
 vim /etc/fstab -> UUID on boot device
 
@@ -192,7 +191,7 @@ instead UUID: cd /dev/disk -> ls -l -> ls by-path/ //symbolic links that points 
 
 systemctl cat tmp.mount -> to see what, where ... should be mounted 
 
-systemctl status tmp.mount -> mount *pipe* grep tmp 
+systemctl status tmp.mount -> mount | grep tmp 
 /etc/fstab 
 
 
