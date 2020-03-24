@@ -1,0 +1,217 @@
+14.1 Understanding Disk Layout
+
+/dev/nvme0n1
+/dev/sda
+/dev/vda
+
+BIOS
+MBR
+4 partitions
+logical partition
+extended
+
+
+UEFI
+GPT
+128 partitions
+
+lsblk 
+parted /dev/nvme0n1
+cd /dev
+ls -l nvm*
+
+kernel perspective: cat /proc/partitions
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.2 Understanding Linux Storage Options
+
+Linux Storage Options
+
+* Partitions: the classical solution, use in all cases
+	* Use to allocate dedicated storage to specific types of data
+
+* LVM Logical Volumes 
+	* Used at default installation on RHEL
+	* Adds flexibility to storage (resize, snapshots and more)
+
+* Stratis 
+	* Next generation Volume Managing Filesystem that uses thin provisioning by default 
+	* Implemented in user space, which makes API access possible
+
+* Virtual Data Optimizer
+	* Focused on storing files in the most efficient way
+	* Manages deduplicated and compressed storage pools
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.3 Understanding GPT and MBR Partitions
+
+* Master Boot Record (MBR) is part of the 1981 PC specification 
+	* 512 bytes to store boot information
+	* 64 bytes ti store partitions 
+	* Place for 4 partitions only with a max size of 2 TiB
+	* To use more partitions, extended and logical partitions must be used
+
+* GUID Partition Table is a newer partition table (2010)
+	* More space to store partitions
+	* Used to overcome MBR limitations
+	* 128 partitions max
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.4 Creating Partitions with parted
+
+
+Understanding Partioning:
+* While creating a partition, you do NOT automatically create a file system
+* The parted file system attribute only writes some unimportant file system metadata
+* In RHEL 8, parted is the dafault utility
+* Alternatively, use fdisk to work with MBR and gdisk to use GUID partitions
+
+Procedure Overview-1:
+* parted /dev/sdb
+* print will show if there is a current partition table
+* mklabel msdos *pipe* gpt
+* mkpart part-type name fs-type start end
+	* part-type: applies to MBR only and sets primary, logical or extended partition
+	* name:  arbitrary name, required for GPT
+	* fs-type: does NOT modify the filesystem, but sets some irrelevant file system dependent metadata
+	* start end: specify start and end, counting from the beginning of the disk
+
+	* For instance: mkpart primary 1024MiB 2048MiB
+
+
+Procedure Overview-2:
+* print to verify creation of the new partition
+* quit to exit the parted shell
+* udevadm settle to ensure that the new partition device is created 
+* cat /proc/partitions to verify the creation of the partition
+
+way to manage a partition:
+lsblk -> parted /dev/nvme0n2 -> print -> mklabel gpt -> print -> mkpart one 1MiB 1024MiB -> print -> quit -> udevadm settle ->
+to check: cat /proc/partitions //also: lsblk
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.5 Creating MBR Partitions with fdisk
+
+lsblk -> fdisk /dev/nvme0n3 -> Command: n -> p //as primary -> Last sector...:+1G
+
+Command: p // as "print" to see created partitions
+
+partprobe
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.6 Understanding File System Differences 
+
+XFS is the dafault file system
+	* Fast and scalable 
+	* Uses CoW to guarantee data integrity
+	* Size can be increased, not decreased
+
+Ext4 was default in RHEL 6 and is still used
+	* Backward compatible to Ext2
+	* Uses Journal to guarantee data integrity
+	* Size can be increased and decreased
+
+Other file systems are avaliable but less common 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.7 Making and Mounting File Systems
+
+mkfs.xfs creates an XFS file system 
+mkfs.ext4 creates an Ext4 file system
+Use mkfs.[Tab][Tab] to show a list of avaliable file systems
+Do NOT use mkfs as it will create an Ext2 file system!
+After making the file system, you can mount it in runtime using the mount command
+Use umount before disconnecting a device
+
+lsblk -> mkfs.xfs /dev/nvme0n3p1 -> mount /dev/nvme0n3p1 /mnt -> mount -> last lines 
+
+mount *pipe* grep '^/' -> cd /mnt -> ls -> cp /etc/hosts . -> ls -> umount /dev/nvme0n3p1 -> if "busy": lsof /mnt
+
+cd -> lsof /mnt -> umount /mnt
+
+mkfs.ext4 --help
+mkfs.ext4 /dev/nvme0n3p2 //how to format ext
+
+mkfs [Tab][Tab]
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.8 Mounting Partitions through /etc/fstab
+
+Uderstanding /etc/fstab
+* /etc/fstab is the main configuration file to persistently mount partitions 
+* /etc/fstab content is used to generate systemd mounts by the systemd-fstab-generator utility 
+* To update systemd, make sure to use systemctl daemon-reload after editing /etc/fstab
+
+vim /etc/stab -> "/dev/nvme0n3p1  /xfs  xfs  defaults  0 0" -> "/dev/nvme0n3p2  /ext4  ext4  defaults  0 0" -> :wq! -> 
+systemctl daemon-reload -> mkdir /xfs /ext4 -> mount -a -> mount 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.9 Managing Persistent Naming Attributes 
+
+Understanding Persistent Device Naming:
+
+In datacenter environments, block device names may change. Different solutions exist for persistent naming:
+* UUID: a UUID is automatically generated for each device that contains a file sy/stem or anything similar
+* Label: while creating the file system, the option -L can be used to set an arbitrary name that can be used for mounting the file system
+* Unique device names are created in /dev/disk
+
+fdisk /dev/nvme0n3 -> Command: p -> Command: n -> Command: p -> Command: w -> mkfs.xfs /dev/nvme0n3p5 -> mkfs.ext4 /dev/nvme0n3p6 
+
+cd / -> mkdir /books /articles -> vim /etc/fstab -> "/dev/nvme0n3p5  /books  xfs  defaults  0 0" -> "/dev/nvme0n3p6  /articles  ext4  defaults  0 0" -> to check: mount -a -> mount -> fdisk nvme0n3 -> Command: p -> Command: d -> Partion number: 5 -> Command: w -> need to reboot system to use new table of partitions after one was deleted 
+
+Reboot -> GRUB -> 1st by 'e' -> line with 'linux' -> delete 'rhgb quiet' -> Ctrl+X -> vim /etc/fstab -> # przed partycje, ktora wypadla z obiegu przez usuniecie partycji przed nia w kolejnosci -> Ctrl+D -> login 
+
+blkid - UUID
+
+tune2fs - to set a label
+xfs_admin 
+
+tune2fs -L articles /dev/nvme0n3p5 -> vim /etc/fstab -> "LABEL=articles /articles  ext4  defaults  0 0" -> mount *pipe* grep artic -> mount -a
+-> mount *pipe* grep artic // should see that mount was issued 
+
+vim /etc/fstab -> UUID on boot device
+
+instead UUID: cd /dev/disk -> ls -l -> ls by-path/ //symbolic links that points specific devices, but it's better to focus on LABEL.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.10 Managing Systemd Mounts
+
+* /etc/fstab mounts already are systemd mounts 
+* Mounts can be created using systemd .mount files
+* Using .mount files allows you to be more specyfic in defining dependencies 
+* Use systemctl cat tmp.mount for an example
+
+systemctl cat tmp.mount -> to see what, where ... should be mounted 
+
+systemctl status tmp.mount -> mount *pipe* grep tmp 
+/etc/fstab 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
