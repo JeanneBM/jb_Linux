@@ -82,6 +82,7 @@ Lesson 5: Connecting to a RHEL Server
 2. log in as an ordinary user and use the appropriate command to get back to the graphical console
 3. use ssh to make a connection as user root to "localhost"
 
+//At the login screen, press Ctrl + Alt + F5 to switch to a TTY
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 6: Managing User and Groups
