@@ -238,3 +238,4 @@ free -m
 swapon /dev/nvme0n2p2
 free -m
 vim /etc/fstab -> "/dev/nvme0n2p2  swap  swap  defaults 0 0" 
+
