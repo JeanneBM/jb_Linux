@@ -1,0 +1,47 @@
+cron 
+
+jest opartym na czasie programem do harmonogramowania zadań w systemach operacyjnych z rodziny Unixa. 
+Może zostać wykorzystany do uruchamiania zadań (programów, komend, skryptów) o określonych godzinach, datach 
+albo regularnie zgodnie z określonym interwałem.
+
+cron przegląda /var/spool/cron/crontabs w poszukiwaniu plików-tabel (crontab), o nazwach zgodnych z istniejącymi kontami systemowymi. 
+Znalezione tabele ładuje do pamięci. Cron ładuje również plik konfiguracyjny /etc/crontab (który jest w nieco innym formacie niż pozostałe tabele).
+
+W pliku /etc/crontab wpisane są dodatkowe reguły, które uruchamiają zadania cogodzinowe, codzienne, cotygodniowe i comiesięczne. 
+Zadania te wpisywane są w postaci skryptów do katalogów: /etc/cron.hourly, /etc/cron.daily, /etc/cron.weekly, /etc/cron.monthly.
+
+Następnie cron budzi się co minutę, sprawdzając wszystkie załadowane tabele, czy przypadkiem jakaś komenda w tej minucie nie powinna 
+być wywołana. Podczas wywoływania komend, ich wyjście (oraz standardowy strumień błędów) jest przesyłane pocztą elektroniczną do właściciela 
+tabeli.
+
+Dodatkowo, cron co minutę sprawdza, czy czas modyfikacji katalogu /var/spool/cron/crontabs (lub czas modyfikacji /etc/crontab) był zmieniony, 
+a jeśli tak, to cron sprawdzi czasy modyfikacji tabel i przeładuje wszystkie te, które były ostatnio zmienione. 
+Dzięki temu nie jest konieczne restartowanie demona po wprowadzeniu zmian w plikach.
+
+W plikach-tabelach zadania do wykonania opisywane są przez sześć pól oddzielonych spacją lub tabulatorem. 
+Pierwsze pięć pól służy określeniu czasu, natomiast ostatnie pole to polecenie do wykonania. 
+Kolejne pola czasu określają: minuty, godziny, dni, miesiące, dni tygodnia. Zapis:
+
+    * * * * * polecenie
+
+oznacza polecenie wykonywane co minutę. Zapis:
+
+    5 4,22 */2 * 1-5 polecenie
+
+oznacza polecenie wykonywane w 5. minucie 4. i 22. godziny w każdy dzień parzysty jeśli ten dzień nie jest sobotą lub niedzielą.
+
+Najpopularniejszymi odmianami demona cron są Vixie cron i fcron. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+demon
+
+Demony, inaczej usługi, są pewnym rodzajem programów, które są uruchamiane zazwyczaj przy starcie systemu, i działają potem cały czas w tle, 
+zużywając minimalne zasoby. W każdej chwili mogą przyjąć od innego programu polecenie (żądanie), i je w jakiś sposób wykonać. 
+Demonem jest np. serwer http, który cały czas jest uruchomiony w tle, a w momencie gdy przychodzi żądanie od przeglądarki wysyła odpowiedni 
+plik, lub wykonuje jakąś akcję. Demon może również obsługiwać programy działające na tym samym komputerze.
+
+Kolejną cechą charakterystyczną demonów, jest to że po zamknięciu ich w zwykły sposób, są automatycznie ponownie uruchamiane, 
+np. jeżeli w serwerze wystąpi błąd, to zostanie on znowu uruchomiony, i dzięki temu będzie dalej możliwe łączenie się z daną usługą. 
+Do zatrzymania działania demona służą specjalne skrypty, które znajdują się zazwyczaj w katalogu /etc/init.d/
+
