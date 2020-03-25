@@ -181,7 +181,6 @@ vim /etc/fstab -> UUID on boot device
 instead UUID: cd /dev/disk -> ls -l -> ls by-path/ //symbolic links that points specific devices, but it's better to focus on LABEL.
 
 -------------------------------------------------------------------------------------------------------------------------------------
-
 14.10 Managing Systemd Mounts
 
 * /etc/fstab mounts already are systemd mounts 
@@ -191,26 +190,51 @@ instead UUID: cd /dev/disk -> ls -l -> ls by-path/ //symbolic links that points 
 
 systemctl cat tmp.mount -> to see what, where ... should be mounted 
 
-systemctl status tmp.mount -> mount | grep tmp 
-/etc/fstab 
+mount *pipe* grep tmp 
+systemctl status tmp.mount
+systemctl enable --now tmp.mount
+mount *pipe* grep tmp
+vim /etc/fstab 
+cp /usr/lib/systemd/system/tmp.mount /etc/systemd/system/articles.mount
+vim /etc/systemd/system/articles.mount
+systemctl deamon-reload
+systemctl status articles.mount
+umount /articles
+systemctl enable --now articles.mount
+systemctl status articles.mount
 
+-------------------------------------------------------------------------------------------------------------------------------------
 
+14.11 Managing XFS File Systems
 
+* The xfsdump utility can be used for creating backups of XFS formatted devices and considers specific XFS attributes
+	* xfsdump only works on a complete XFS device 
+	* xfsdump can make full backups (-I 0) or different levels of incremental backuops
+	* xfsdump -I 0 -f /backupfiles/data.xfsdump /data creates a full backup of the contents of the /data directory
 
+* The xfsrestore command is used to restore a backup that was made with xfsdump
+	* xfsrestore -f /backupfiles/data.xfsdump /data
 
+* The xfsrepair command can be manually started to repair broken XFS file systems
 
+-------------------------------------------------------------------------------------------------------------------------------------
 
+14.12 Creating a Swap Partition
 
+Understanding Swap:
+* Swap is a RAM that is emulated on disk
+* All Linux systems should have at least some swap
+	* The amount of swap depends on the use of the server
+* Swap can be created on any block device, including swap files 
+* While creating swap with parted, set file system to linux-swap
+* After creating the swap partition, use mkswap to create the swap FS
+* Activate using swapon
 
+parted /dev/nvme0n2 -> print -> mkpart -> Partition name: swap -> File system type? linux-swap -> Start? 1GiB -> End? 2GiB -> print -> quit
 
-
-
-
-
-
-
-
-
-
-
-
+lsblk
+mkswap /dev/nvme0n2p2
+free -m
+swapon /dev/nvme0n2p2
+free -m
+vim /etc/fstab -> "/dev/nvme0n2p2  swap  swap  defaults 0 0" 
