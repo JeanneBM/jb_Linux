@@ -1,0 +1,125 @@
+15.1 Undeerstanding LVM, Stratis and VDO
+
+Understanding Advanced Storage:
+* LVM Logical Volumes
+	* Used during default installation of RHEL
+	* Adds flexibility to storage (resize, snapshots and more)
+
+* Stratis 
+	* Next generation Volume Managing Filesystem that uses thin provisioning by default 
+	* Implemented in user space, which makes API access possible 
+
+* Vitual Data Optimizer
+	* Focused on storing files in the most efficient way
+	* Manages deduplicated and compressed storage pools
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.2 Understanding LVM Setup
+
+LV (ext4)	LV(xfs)
+
+^		^
+	
+---------------------------
+volume group			/dev/vg/lv
+---------------------------
+
+^		^
+
+PV (physical volumes)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.3 Creating an LVM Logical Volume
+
+LVM Creation Procedure Overview
+
+* Create a partition, from parted use set n lvm on
+* Use pvcreate /dev/sdb1 to create the physical volume
+* Use vgcreate vgdata /dev/sdb1 to create the volume group
+* Use lvcreate -n lvdata -L 1G vgdata to create the logical volume 
+* Use mkfs /dev/vgdata/lvdata to create a file system
+* Put in /etc/fstab to mount it persistently
+
+lsblk
+parted /dev/nvme0n2 -> print -> Partition name: lvm1 -> Start? 2G -> End? 3G -> print -> set 3 lvm on -> print -> mkpart -> 
+Partition name? lvm2 -> Start? 3 GiB -> End? 4GiB -> print -> set 4 lvm on -> print -> quit
+
+pvcreate /dev/nvme0np3 -> lsblk -> pvcreate /dev/nvme0n2p3 -> created
+
+vgcreate vgdata /dev/nvme0n2p3 -> pvs -> vgs -> lvcreate -n lvdata -L 812M vgdata 
+
+mkfs.xfs /dev/vgdata/lvdata -> mkdir /mounts/lvm1 -> vim dev/fstab/ -> "/dev/vgdata/lvdata  /mounts/lvm1  xfs  defaults 0 0"
+-> mount -a -> findmnt
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.4 Understanding Device Mapper and LVM Device Names
+
+Understanding Device Mapper Names:
+* Device mapper is the system that the kernel uses to interface storage devices
+* Device mapper generates meaningless names, like /dev/dm-0 and /dev/dm-1
+* Meaningful names are provided as symbolic links through /dev/mapper 
+	* /dev/mapper/vgdata-lvdata
+* Alternatively, use the LVM generated symbolic links 
+	* /dev/vgdata/lvdata
+
+mount
+tail -n 1 /etc/fstab
+ls -l /dev/vgdata/lvdata /dev/mapper/vgdata-lvdata
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.5 Resizing LVM Logical Volumes
+
+Resizing Logical Volumes:
+* Use vgs to verify avaliability in the volume group'
+* If required, use vgextend to add one or more PVs to the VG
+* Use lvextend -r -L +1G to grow the LVM logical volume, including the file system it's hosting
+	* e2resize is an independent resize utility for Ext file systems
+	* xfs_growfs can be used to grow an XFS file system
+* Shrinking is not possible on XFS volumes
+
+df -h -> vgs -> vgextend vgdata /dev/nvme0n2p4 -> vgs -> lvextend -r -L +1020M /dev/vgdata/lvdata -> df -h
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.6 Understanding Stratis Setup
+
+Understanding Stratis:
+* Stratis is a volume management file system and is Red Hat's answer to Btrfs and ZFS
+	* On top of Stratis a regular file system is needed: XFS
+
+* It is bulit on top of any block device, including LVM devices
+* It offers advanced features 
+	* Thin provisioning 
+	* Snapshots
+	* Cache tier 
+	* Programmatic API
+	* Monitoring and Repair
+
+Stratis Architecture:
+* The Stratis Pool is created from one or more storage devices (blockdev)
+	* Stratis creates a /dev/stratis/my-pool directory for each pool
+	* This directory contains links to devices that represent the file systems in the pool
+	* Block devices in a pool may not be thin provisioned
+
+* The (XFS) file system is put in a volume on top of the pool and is an integrated part of it 
+	* Each pool can contain one or more file systems
+	* File systems are thin provisioned and do not have a fixed size
+	* The thin volume which is an integrated part of the file system automatically grows as more data is added to the file system
+
+------------------------------------------------------------------------------------------------------------------------------------------
+ 
+
+
+
+
+
+
+
+
+
+
