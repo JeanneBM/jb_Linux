@@ -45,3 +45,23 @@ Kolejną cechą charakterystyczną demonów, jest to że po zamknięciu ich w zw
 np. jeżeli w serwerze wystąpi błąd, to zostanie on znowu uruchomiony, i dzięki temu będzie dalej możliwe łączenie się z daną usługą. 
 Do zatrzymania działania demona służą specjalne skrypty, które znajdują się zazwyczaj w katalogu /etc/init.d/
 
+Skrypty te mogą być uruchamiane z następującymi opcjami:
+
+    start - uruchamia demona
+    stop - zatrzymuje demona
+    restart - zatrzymuje, i ponownie uruchamia demona; przydatne np. w przypadku gdy zmieniona została konfiguracja danego demona
+
+Niektóre mogą przyjmować również inne opcje, jednak te trzy są standardowe. 
+
+init: demon wyzwalający demony
+
+init (od ang. initialize) jest to pierwszy program uruchamiany w systemach uniksowych (np. Linux) przez jądro w trakcie procesu uruchamiania
+systemu operacyjnego. Następnie na podstawie plików konfiguracyjnych lub skryptów startowych init uruchamia pozostałe procesy systemowe, 
+dla których jest procesem macierzystym (ojcem), stanowi korzeń drzewa procesów.
+
+Proces init ma pid równy 1. Jest jedynym procesem który nie ma ojca
+
+ps -j -1
+
+inittab ->> systemctl
+
