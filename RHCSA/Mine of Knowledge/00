@@ -1,1 +1,83 @@
+16.1 Basic Kernel Management
+
+shell -> 	-> kernel * initramfs  		-> drivers-modules		-> hardware
+	syscall	     	  * systemd-udevd
+		     	  * modprobe
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+16.2 Working with Kernel Modules 
+
+* Linux drivers are implemented as kernel modules 
+* Most kernel modules are loaded automatically through initramfs or systemd-udevd
+* Use modprobe to manually load kernel module
+* Use lsmod to list currently loaded kernel modules
+
+lsmod *pipe* less
+lsmod *pipe* grep vfat
+modprobe vfat
+lsmod *pipe* grep vfat
+modprobe -r vfat
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+16.3 Using modprobe
+
+* Use modprobe to load a kernel module and all its dependencies
+* Use modprobe -r to unload
+* modinfo can show module parameters
+* To load, specify kernel module parameters, edit /etc/modprobe.conf or the files in /etc/modprobe.d
+
+lsmod
+modinfo e1000
+cd /etc/modprobe.d
+ls
+vim kvm.conf
+"#" makes out in the line with "Options kvm..."
+modprobe kvm
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+16.4 Using /proc to Tune Kernel Behavior
+
+Understanding Kernel Parameters:
+* /proc is a file system that provides access to kernel information:
+	* PID directories
+	* Status files
+	* Tunables in /proc/sys
+
+* Use echo to write a value to any file in /proc/sys to change kernel performance parameters
+* Write the parameters to /etc/sysctl.conf to make them persistent
+* Use sysctl -a to show a list of all current settings 
+
+mount *pipe* grep proc
+cd /proc
+ls
+cat meminfo
+cd sys
+ls
+cd net
+ls
+cd ipv4/
+ls
+cat ip forward
+echo 1 > ip_forward
+cat ip forward
+pwd
+sysctl -a *pipe* grep forward
+vim /etc/sysctl.conf
++ "net.ipv4.ip.forward = 1"
+sysctl -a 
+sysctl *pipe* wc
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+16.5 Updating the Kernel
+
+* Linux kernels are not technically updated, a new kernel is installed beside the old kernel
+* This allows administrators to boot the old kernel in case anything goes wrong
+* Use either yum update kernel or yum install kernel to update the kernel
+
+---------------------------------------------------------------------------------------------------------------------------------
+
 
