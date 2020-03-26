@@ -142,7 +142,7 @@ stratis pool
 stratis fs create mypool myfs1
 stratis fs
 mkdir /myfs1
-mount *pipe* grep myfs1
+mount | grep myfs1
 mount /dev/startis/mypool/myfs1
 mount
 stratis pool list
@@ -154,7 +154,7 @@ vim /etc/fstab
 "UUID="2413f3aa-384d-4d95-917a-a5e80731cbc2"  /myfs1  xfs  defaults 0 0"
 reboot
 su -
-mount *pipe* grep myfs
+mount | grep myfs
  
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -185,7 +185,7 @@ Removing Stratis Snapshots:
 stratis blockdev
 stratis pool
 stratis filesystem
-df -h *pipe* grep myfs
+df -h | grep myfs
 stratis filesystem
 stratis filesystem snapshot mypool myfs1-snapshot 
 stratis filesystem list 
@@ -269,7 +269,7 @@ Start? 4GiB
 End? 6GiB
 print
 quit
-lsblk *pipe* less
+lsblk | less
 cryptsetup luksFormat /dev/nvme0n2p5 
 cryptsetup luksOpen /dev/nvme0n2p5 secret
 ls -l /dev/mapper
