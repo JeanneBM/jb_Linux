@@ -28,8 +28,8 @@ Ctrl+X
 	* grub2-mkconfig -o /boot/grub2/grub.cfg
 	* grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
 
-mount *pipe* grep '^/' 
-mount *pipe* grep '^/' | grep -i efi
+mount | grep '^/' 
+mount | grep '^/' | grep -i efi
 vim /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg
 vim /boot/grub2/grub.cfg // DON'T EDIT EVER THIS FILE
