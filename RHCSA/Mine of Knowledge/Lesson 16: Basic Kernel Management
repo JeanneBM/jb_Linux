@@ -13,10 +13,10 @@ shell -> 	-> kernel * initramfs  		-> drivers-modules		-> hardware
 * Use modprobe to manually load kernel module
 * Use lsmod to list currently loaded kernel modules
 
-lsmod *pipe* less
-lsmod *pipe* grep vfat
+lsmod | less
+lsmod | grep vfat
 modprobe vfat
-lsmod *pipe* grep vfat
+lsmod | grep vfat
 modprobe -r vfat
 
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ Understanding Kernel Parameters:
 * Write the parameters to /etc/sysctl.conf to make them persistent
 * Use sysctl -a to show a list of all current settings 
 
-mount *pipe* grep proc
+mount | grep proc
 cd /proc
 ls
 cat meminfo
@@ -64,11 +64,11 @@ cat ip forward
 echo 1 > ip_forward
 cat ip forward
 pwd
-sysctl -a *pipe* grep forward
+sysctl -a | grep forward
 vim /etc/sysctl.conf
 + "net.ipv4.ip.forward = 1"
 sysctl -a 
-sysctl *pipe* wc
+sysctl | wc
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
