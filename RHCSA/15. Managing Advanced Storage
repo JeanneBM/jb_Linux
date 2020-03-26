@@ -112,7 +112,179 @@ Stratis Architecture:
 	* The thin volume which is an integrated part of the file system automatically grows as more data is added to the file system
 
 ------------------------------------------------------------------------------------------------------------------------------------------
+
+15.7 Creating Stratis Volumes
+
+Procedure Overview - 1: 
+* yum install stratis-cli stratisd
+* systemctl enable --now stratisd
+* stratis pool create mypool /dev/nvme0n2
+	* Add new block devices later using stratis blockdev add-data
+	* Partitions are NOT supported
+	* Note that the block device must be at least 1GiB
+* stratis fs create mypool myfs1
+	* Note this will create an XFS file system!
+* stratis fs list mypool will show all file systems in the pool
+
+Procedure Overview - 2:
+* mkdir /myfs1
+* mount /dev/stratis/mypool/myfs1/myfs1
+* stratis pool list
+* stratis filesystem list
+* stratis blockdev list mypool
+* blkid to find the stratis volume UUID
+* Mount by UUID in /etc/fstab
+
+yum install -y startis-cli stratid
+systemctl enable --now stratisd
+stratis pool create mypool /dev/nvme0n2
+stratis pool
+stratis fs create mypool myfs1
+stratis fs
+mkdir /myfs1
+mount *pipe* grep myfs1
+mount /dev/startis/mypool/myfs1
+mount
+stratis pool list
+stratis fs list
+stratis blockdev list mypool
+lsblk
+blkid
+vim /etc/fstab
+"UUID="2413f3aa-384d-4d95-917a-a5e80731cbc2"  /myfs1  xfs  defaults 0 0"
+reboot
+su -
+mount *pipe* grep myfs
  
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.8 Managing Stratis Śtorage Features 
+
+Monitoring Stratis Volumes:
+* Standard Linux tools don't give accurate sizes as Stratis volumes are thin provisioned 
+* Use stratis blockdev to show information about all block devices used for Stratis
+* Use stratis pool to show information about all pools 
+	* Note that Physical Used should not come too close to Physical Size
+* Use stratis filesystem to monitor individual filesystems
+
+Using Stratis Snapshots
+* stratis fs snapshot mypool myfs1-snapshot
+	* Changes to the original FS will not be reflected in the snapshot
+	* Use mount /stratis/mypool/my-fs-snapshot/mnt to mount it
+* Revert the original volume to the state in the snapshot
+	* umount /myfs1
+	* stratis fs destroy mypool myfs1
+	* stratis fs snapshot mypool myfs1-snap myfs1
+* Note that this approach wouldn't work on LVM!
+
+Removing Stratis Snapshots:
+* stratis filesystem destroy mypool mysnapshot will delete a snapshot 
+* A similar procedure is used for destroying file systems: stratis filesystem destroy mypool myfs
+* When there are no more file systems in a pool, use stratis pool destroy mypool to delete the pool
+
+stratis blockdev
+stratis pool
+stratis filesystem
+df -h *pipe* grep myfs
+stratis filesystem
+stratis filesystem snapshot mypool myfs1-snapshot 
+stratis filesystem list 
+mount /dev/stratis/mypool/myfs1-snapshot /mnt
+ls
+ls /mnt/
+cp /etc/a* /mnt
+cd /mnt
+ls
+cd ..
+umount /myfs1
+stratis filesystem destroy mypool myfs1
+stratis filesystem list
+stratis filesystem snapshot mypool myfs1-snapshot myfs1 
+mount -a
+cd /myfs1/
+ls
+stratis filesystem destroy mypool myfs1-snapshot
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.9 Understanding VDO
+
+* VDO (Virtual Data Optimizer) is used to optimize how data is stored on disk
+* It is used as a separate volume manager on top of which file system will be created
+* Provides thin-provisioned storage 
+	* Use a logical size 10 times the physical size for VMs and containers 
+	* Use a logical size 3 times the physical size for object storage 
+* Used in Cloud/Container environments
+* It manages deduplicated and compressed storage pools in RHEL 8
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.10 Configuring VDO Volumes
+
+Procedure Overview
+* Ensure that underlying block devices are >4GiB 
+* yum install vdo kmod-kvdo
+* vdo create --name=vdo1 --device=/dev/nvme0np2 --vdoLogicalSize=1T
+* mkfs.xfs -K /dev/mapper/vdo1
+* udevadm settle will wait for the system to register the new device name 
+* In /etc/fstab, include the x-systemd.requires=vdo.service mount option 
+* Monitor using vdostats --human-readable
+
+lsblk
+yum install vdo kmod-kvdo
+vdo create --name=vdo1 --device=/dev/nvme0n6 --vdoLogicalSize=10T
+mkfs.xfs -K /dev/mapper/vdo1
+udevadm settle
+mkdir /vdo1
+vim /etc/fstab
+"/dev/mapper/vdo1  /vdo1  xfs  x-systemd.requires=vdo.service  0 0"
+mount -a
+mount
+vdostats --human-readable
+df -h
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.11 Understanding LUKS Encrypted Volumes
+
+/dev/sda1 -> Cryptsetup luksFormat -> Cryptsetup luksOpen secret -> /dev/mapper/secret -> mkfs -> mount
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.12 Configuring LUKS Encrypted Volumes 
+
+Procedure Overview:
+* Use parted to create a partition
+* cryptsetup luksFormat will format the LUKS device
+* cryptsetup luksOpen will open it and create a device mapper name 
+* Mount the resulting device mapper device
+* To automate the cryptsetup luksOpen, use /etc/crypttab
+* To automate mounting the volume, use /etc/fstab
+
+parted /dev/nvme0n2
+print
+mkpart
+Partition name? luks
+Start? 4GiB
+End? 6GiB
+print
+quit
+lsblk *pipe* less
+cryptsetup luksFormat /dev/nvme0n2p5 
+cryptsetup luksOpen /dev/nvme0n2p5 secret
+ls -l /dev/mapper
+mkfs.vxfs /dev/mapper/secret
+mkdir /secret
+vim /etc/fstab
+"/dev/mapper/secret  /secret  xfs  defaults  0 0"
+vim /etc/crypyttab
+"secret  /dev/nvme0n2p5  none"
+reboot
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
