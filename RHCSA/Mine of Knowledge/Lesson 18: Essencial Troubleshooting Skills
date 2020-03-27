@@ -1,0 +1,111 @@
+18.1 Understanding Troubleshooting Modes
+
+POST		BIOS	-> GRUB		kernel		-> systemd		-> services (rescue.target)
+		UEFI			initramfs				   base-OS (systemd.unit=emergency.target)
+
+Boot-disk	menu:kernel		rd.break	   init=/bin/bash	   
+		     arguments
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.2 Changing the Root Password
+
+Procedure Overview:
+1. Enter Grub menu while booting
+2. Find the line that loads the Linux kernel and add rd.break to the end of the line (after "ap")
+3. mount -o remount, rw /sysroot
+4. chroot /sysroot
+5. echo secret *pipe* passwd --stdin root
+6. touch /.autorelabel
+7. Ctrl+D
+8. Ctrl+D
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.3 Troubleshooting Filesystem Issues
+
+Understanding FS Related Problems:
+* Real corruption does occur, but not often and is automatically fixed 
+* Problems occur when making typo's in /etc/fstab
+* To fix: if necessary, remount filesystem in read/write state and edit /etc/fstab
+* Fragmentation can be an issue, different tools exist to fix
+	* cfs_fsr is the XFS File System Reorganizer, it optimizes XFS file systems 
+	* e4defrag can be used to defragment Ext4
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.4 Troubleshooting Networking Issues
+
+Common Network Issues:
+* Wrong subnet mask
+* Wrong router
+* DNS not working
+
+ping centos.org
+ip a
+ip a d 192.168.4.235/32 dev ens33
+ip a
+ip a a dev ens33 192.168.4.235/24
+ip a
+!pi
+ip route show
+ip route add default via 192.168.4.2
+ping centos.org
+Ctrl+C
+nmtui
+dhclinet
+ip a 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.5 Troubleshooting Performance Issues
+
+Understanding Performance Problems:
+* Troubleshooting performance is an art on its own
+* Focus on the four key area's of performance:
+	* memory
+	* CPU load
+	* disk load
+	* network
+
+top
+r //run renice
+kill
+send signal
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.6 Troubleshooting Software Issues
+
+Understanding Software Issues:
+* Dependency problems in RPM's
+	* Should not occur when using repositories 
+	
+* Library problems:
+	* Run ldconfig to update the library cache
+
+cd Downloads/
+ls
+rpm -ivh nmap-7.60-8.fc27.x86_64.rpm
+yum install ./nmap-7.60-8.fc27.x86_64.rpm
+yum install nmap
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.7 Troubleshooting Memory Shortage
+
+top
+reboot
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.8 Consulting Red Hat Websites for Troubleshooting Tips
+
+access.redhat.com
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+ 
