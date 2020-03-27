@@ -1,0 +1,31 @@
+21.1 Understanding Apache Configuration:
+
+* Apache (httpd) is a leading web server on Linux
+* Nginx is the other leading web server
+* The main httpd configuration file is /etc/httpd/conf/httpd.conf
+* Additional snap-in files can be stored in /etc/httpd/conf.d/
+* The default DocumentRoot is /var/www/htdocs
+* Apache looks for a file with the name index.html in this directory
+
+
+yum install httpd
+systemctl enable --now httpd 
+systemctl status httpd 
+yum install -y curl
+curl http://localhost
+vim /etc/httpd/conf/httpd.conf
+Listen
+DocumentRoot
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+21.2 Creating a Basic Website
+
+cd /var/www/html/
+ls
+vim index.html
+"Hello World!"
+systemctl restart httpd
+curl http://localhost
+
+----------------------------------------------------------------------------------------------------------------------------------------------
