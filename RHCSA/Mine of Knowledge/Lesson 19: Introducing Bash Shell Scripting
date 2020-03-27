@@ -1,0 +1,125 @@
+19.1 Understanding Bash Shell Scripts
+
+Understanding Shell Scripting:
+* A shell script can be as simple as a number of commands that is sequentially executed
+* Scripts normally work with variables to make them react differently in different environments
+* Conditional statements such as for, if, case and while can be used
+
+Shell Scripts Compared:
+* Shell scripts are common as they are easy to learn and implement 
+* Also, a shell will always be avaliable to interpret code from shell scripts
+* If the scripts use internal commands only, they're very fast as nothing needs to be loaded
+* There is no need to compile anything
+* There are no modules to be used in the bash script, which makes them rather static
+* Also, Bash shell scripts are not indempotent
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+19.2 Essencial Shell Script Components
+
+ls -l myscript
+./myscript
+chomd +x myscript
+./myscript
+Ctrl+C
+echo $PATH
+vim myscript
+
+=========================================================
+
+# !/bin/bash
+# every shell script should have some comment
+
+echo which directory do you want to activate?
+
+read DIR
+
+cd $DIR
+pwd
+ls
+
+=========================================================
+
+./myscript
+/home
+pwd // answer: /root
+. myscript
+/home
+pwd // answer: /home
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+19.3 Using Loops in Shell Scripts Part 1
+
+Understanding Bash Conditional Statements:
+* Different conditional statements are avaliable in Bash:
+
+	* if ... then ... fi
+	* while ... do  ... done
+	* until ... do ... done
+	* case ... in ... esac
+	* for ... in ... do ... done
+
+ls -l myargument
+chmod +x myargument
+vim myargument
+
+=========================================================
+
+#!/bin/bash
+
+if [ -z $1 ]
+then 
+	echo you have to provide an argument
+	exit 6
+else
+	echo the argument is $1
+fi
+
+=========================================================
+
+man test
+vim myargument
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+19.4 Using Loops in Shell Scripts Part 2
+
+vim countdown
+
+=========================================================
+
+#!/bin/bash
+
+COUNTER=$1
+COUNTER=$(( COUNTER * 60 ))
+
+minusone(){ 
+	COUNTER=$(( COUNTER -1 ))
+	sleep 1
+}
+
+while [ $COUNTER -gtt 0 ]
+do
+	echo you have $COUNTER seconds left
+	minusone
+done
+
+[ $COUNTER = 0 ] && echo time is up && minusone
+[ $COUNTER = "-1" ] && echo you are one second late && minusone
+
+while true
+do
+	echo you are now ${COUNTER#-} seconds late
+	minusone
+done
+
+=========================================================
+
+echo $(( 2 + 4 )) // jak kalkulator tylko ucina ulamki - nie zaokragla
+vim countdown 
+chmod +x countdown // komenda pozwala na uruchomienie skryptu przez ./skrypt
+./countdown 1
+
+
+
