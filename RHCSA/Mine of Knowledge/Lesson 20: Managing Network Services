@@ -47,7 +47,7 @@ vim /etc/ssh/shhd_config
 "PermitRootLogin no
 AllowUsers student"
 systemctl restart sshd
-ssh root*monkey*localhost
+ssh root@localhost
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -55,8 +55,8 @@ ssh root*monkey*localhost
 
 Copying Files Securely:
 * scp can be used to securely copy files over the network, using the sshd process:
-	* scp file1 file2 student*monkey*remoteserver:/home/student
-	* scp -r root*monkey*remoteserver:/tmp/files .
+	* scp file1 file2 student@remoteserver:/home/student
+	* scp -r root@remoteserver:/tmp/files .
 
 * sftp offers an FTP client interface to securely transfer files using SSH:
 	* Use put /my/file to upload a file
@@ -64,9 +64,9 @@ Copying Files Securely:
 	* Use exit to close an sftp session
 
 
-scp /etc/hosts linda*monkey*192.168.4.210:/tmp/
+scp /etc/hosts linda@192.168.4.210:/tmp/
 mkdir temp
-scp -r root*monkey*192.168.4.210:/etc /temp
+scp -r root@192.168.4.210:/etc /temp
 ls
 cd temp/
 ls
@@ -102,7 +102,7 @@ ssh 192.168.4.210
 touch /etc/mynewfile{1..10}
 ls -l /etc/my*
 exit
-rsync -ar root*monkey*192.168.4.210:/etc/ temp/
+rsync -ar root@192.168.4.210:/etc/ temp/
 ls temp/mynewfile*
 
 
