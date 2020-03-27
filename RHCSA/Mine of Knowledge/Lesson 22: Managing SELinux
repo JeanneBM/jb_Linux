@@ -1,0 +1,79 @@
+22.1 Understanding the Need for SELinux
+
+* Linux security is bulit on UNIX security
+* UNIX security consist of different solutions that were never developed with current IT security needs in mind 
+* Most of these solutions focus on a part of the operating system
+* SELinux provides a complete and mandatory security solution 
+* The principle is that if it isn't specifically allowed, it will be denied
+* As a result, "unknown" services will always need additional configuration to enable them in an environment where SELinux is enabled
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.2 Managing SELinux Modes
+
+=====================================================
+
+enabled			->	Enforcing
+			->	Permissive
+
+
+ (reboot) 	Kernel 		setenforce
+
+
+disabled
+
+=====================================================
+
+Managing SELinux States:
+* getenforce will show the current state
+* setenforce toggles between Enforcing and Permissive
+* Edit /etc/sysconfig/selinux to manage the default state of SELinux
+* Never set to disabled if this is meant as a temporary measure only!
+
+getenforce
+setenforce permissive
+getenforce
+setenforce disabled
+vim /etc/sysconfig/selinux
+"SELinux=disabled"
+reboot
+getenforce
+setenforce enforcing
+vim /etc/sysconfig/selinux
+"SELinux=enforcing"
+reboot
+getenforce
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.3 Understanding SELinux Context Labels and Booleans
+
+Understanding Context Labels:
+* Every object is labeled with a context label:
+	* user: user specific context
+	* role: role specific context
+	* type: flags which type of operation is allowed on this object
+
+* Many commands support a -Z option to show current context informaction
+* Context types are used in the rules in the policy to define which source object has access to which target object
+
+Understanding Booleans:
+* A Boolean is a on/off switch
+* Use it to enable or disable specific categories of functionality altogether
+
+
+ps aux
+ps auxZ
+ps auxZ | grep ssh
+ls -lZd /etc/ssh/
+ls -lZ /etc/ssh/
+ps Zaux | grep http
+ls -Z /var/www
+ls -lZ /home/user
+getsebool -a
+getsebool -a | grep http
+setsebool -P httpd enable homedirs on 
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
