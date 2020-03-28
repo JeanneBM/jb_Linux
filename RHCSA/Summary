@@ -45,3 +45,15 @@ Lesson 4: Working with Text Files
   4.5 Using sed
 Lesson 4 Lab: Working with Text Files
 Lesson 4 Lab Solution: Working with Text Files
+
+Lesson 5: Connecting to RHEL Server
+  5.1 Understanding the Root User
+  5.2 Logging in to the GUI
+  5.3 Logging in to the Console
+  5.4 Understanding Virtual Terminals
+  5.5 Switching Between Virtual Terminals
+  5.6 Using su to Work as Another User
+  5.7 Using sudo to Perform Administrator Tasks
+  5.8 Using ssh to Log in Remotely
+Lesson 5 Lab: Connecting to RHEL Server
+  
