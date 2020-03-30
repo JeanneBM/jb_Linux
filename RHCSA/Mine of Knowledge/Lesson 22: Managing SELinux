@@ -76,4 +76,70 @@ setsebool -P httpd enable homedirs on
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
+22.4 Using File Context Labels
 
+* Use semanage fcontext to set the file context label
+	* This will write the context to the SELinux Policy
+
+* To enforce the policy setting on the file system, use restorecon
+* Alternatively, use touch /.autorelabel to relabel all files to the context that is specified in  the policy
+
+
+mkdir /web
+cd /web
+vim index.html
+"welcome to the web directory web server"
+vim /etc/httpd/conf/httpd.conf
+" DocumentRoot "/web" 
+...
+<Directory "/web" "
+systemctl restart httpd
+systemctl status httpd
+curl http://localhost
+setenforce 0 
+getenforce
+!cu
+setenforce 1
+man semanage-fcontext
+semanage fcontext -a -t httpd sys content t "/web(/.)?"
+!cu
+ls -ldZ /web
+restorecon -Rv /web
+!cu
+ps Zaux | grep httpd
+ls -Zd .
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.5 Analyzing SELinux Log Messages
+
+* SELinux uses auditd to write log messages to the audit log
+* Messages in the audit log may be hard to interpret 
+* Ensure that sealert is avaliable, it interprets messages from the audit log, applies SELinux AI 
+and writes meaningful messages to /var/log/messages
+* Run the sealert command, including the UUID message to get advice on how to troubleshoot specific issues
+
+
+grep AVC /var/log/audit/audit.log
+journalctl | grep sealert 
+sealert -l 16f10f8d-f099-467b-826e-ffb4aa7df98c | less
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.6 Resetting the Root Password and SELinux
+
+reboot
+GRUB prompt
+ap rd.break
+Ctrl+X
+mount -o remount.rw /sysroot
+chroot /sysroot
+passwd
+ls -Z /etc/shadow
+load_policy -i 
+ls -Z /etc/shadow
+restorecon -v /etc/shadow
+touch /.autorelabel
+reboot
+
+---------------------------------------------------------------------------------------------------------------------------------------------
