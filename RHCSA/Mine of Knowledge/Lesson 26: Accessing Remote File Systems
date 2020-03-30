@@ -1,0 +1,164 @@
+26.1 Configuring a Base NFS Server
+
+Configuring NFS:
+* Run the nfs-server service
+* Create a directory you want to share: /data
+* Edit /etc/exports to contain the following line
+	* /data *(rw,no_root_squash)
+
+systemctl status nfs-server
+mkdir /data
+vim /etc/exports
++ "/data	*(rw,no_root_squash)"
+systemctl enable --now nfs-server
+systemctl status nfs-server
+firewall-cmd --add-service nfs
+firewall-cmd --add-service mountd
+firewall-cmd --add-service rpc-bind
+firewall-cmd --add-service rpc-bind --permanent
+firewall-cmd --add-service mountd --permanent
+firewall-cmd --add-service nfs --permanent
+firewall-cmd --list-all
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.2 Mounting NFS Shares
+
+* Use showmount -e nfs-server to show exports
+* Use mount nfsserver:/share /mnt to mount 
+* While mounting through /etc/fstab, include the _netdev mount option
+
+showmount -e 192.168.4.210
+mount 192.168.4.210:/data /mnt
+mount
+umount /mnt
+mkdir /nfs
+vim /etc/fstab
++ "192.168.4.210:/data	/nfs	nfs	netdev	0 0"
+mount -a
+mount
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.3 Configuring a Base Samba Server
+
+* Install the Samba server package
+* Create a directory to share
+* Create a local Linux user
+* Set Linux Permissions
+* Use smbpasswd -a to add a Samba user account
+* Enable the share in /etc/samba/smb.conf
+* Use systemctl start smb to start the service
+* Use firewall-cmd --add-service samba --permanent; firewall-cmd --reload to open the firewall
+
+
+yum install samba
+mkdir /samba
+useradd samba
+chown samba /samba
+chmod 770 /samba
+smbpasswd -a samba
+vim /etc/samba/smb.conf
++ "[samba]
+	   comment = samba share
+	   path = /samba
+	   write list = samba"
+systemctl enable --now smb
+systemctl status smb
+firewall-cmd --add-service samba --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.4 Mounting Samba Shares
+
+* Install the cifs-utils and samba-client RPM packages
+* Use smbclient -L //sambahost to discover shares
+* Use mount -o username=sambauser //sambaserver/share /somewhere to mount the share
+* Make mount persistent through /etc/fstab, using the _netdev, username= and password= mount options
+
+
+yum groups list
+yum groups list --hidden | less
+yum groups install "Network File System Client"
+smbclient -L //192.168.4.210
+Enter - nie ma root usera
+mount -o username=samba //192.168.4.210/samba /mnt
+mount
+vim /etc/fstab
++ "//192.168.4.210/samba	/samba	  cifs	 netdev,username=samba,password=password	0 0"	 
+mkdir /samba
+mount -a
+mount
+reboot
+mount
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.5 Understanding Automount 
+
+* In /etc/auto.master you'll identify the directory that automount should manage and the file that is used for additional mount information
+	* /data /etc/auto.data
+
+* In /etc/auto.data you'll identify the subdirectory on which to mount and want to mount exactly 
+	* files -rw nfsserver:/data/files
+
+* Ensure the autofs service is strated:
+	* systemctl enable --now autofs
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.6 Configuring Automount
+
+showmount -e labipa
+yum search autofs
+yum install autofs
+ls /
+systemctl enable --now autofs
+ls /
+vim /etc/auto.master 
+vim /etc/auto.misc
+vim /etc/auto.master
++under line with /misc  /etc/auto.misc
+"/files   /etc/auto.files"
+vim /etc/auto.files
+"data	-rw	labipa:/data"
+systemctl restart autofs
+ls /
+cd /files
+la -a
+cd data
+pwd
+mount | grep data
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.7 Configuring Automount for Home Directories
+
+su - ldapuser1
+exit
+ssh labipa
+vim /etc/exports
++ "/home/ldap	*(rw)"
+systemctl restart nfs-server
+exit
+showmount -e labipa
+vim /etc/auto.master
++ under the line with "/files ..."
+"/home/ldap 	/etc/auto.ldap"
+vim /etc/auto.ldap
+"* 	-rw	labipa:/home/ldap/&"
+systemctl restart autofs
+su - ldapuser1
+pwd
+touch hello
+ls -l
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
