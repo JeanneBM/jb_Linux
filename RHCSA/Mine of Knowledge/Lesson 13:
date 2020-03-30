@@ -1,0 +1,76 @@
+13.1 Understanding RHEL 8 Logging Options
+
+				
+				/var/log/journal
+
+				^
+
+				/dev/log ---------> Rsyslogd ---------> /var/log
+	
+				^
+
+				systemd-journald <--------- journalctl
+				systemd
+					
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.2 Configuring Rsyslog Logging
+
+* Rsyslog needs the rsyslog service to be running 
+* The main configuration file is /etc/rsyslog.conf
+* Snap-in files can be placed in /etc/rsyslog.d/
+* Each logger line contains three items:
+	* facility: the specific facility that the log is created for
+	* severity: the severity from which should be logged
+	* destination: the file or other destination the log should be written to
+
+* Log files normally are in /var/log
+* Use the logger command to write messages to rsyslog manually
+
+Understanding Facilities:
+* rsyslog is and must be backwards compatible with the archaic syslog service
+* In syslog, a fixed number of facilities was defined, like kern, authpriv, cron and more
+* To work with services that don't have their own facility local{0..7} can be used
+* Because of the lack of facilities, some services take care of their own logging and don't use rsyslog
+
+
+cd /etc/
+cd rsyslog.d/
+ls
+cd ..
+vim rsyslog.conf
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.3 Working with systemd-journald
+
+* systemd-journald is the log service that is a part of systemd
+* It integrates well with systemctl status <unit> output
+* Alternatively, the journalctl command can be used to read log entries in the journal 
+* Messages are logged also to rsyslogd, using the rsyslogd imjournal module
+* To make the journal persistent use mkdir /var/log/journal
+
+
+mkdir /var/log/journal
+vim /etc/systemd/
+vim /etc/systemd/journald.conf
+journalctl + Tab
+journalctl UNIT=sshd
+systemctl status httpd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.4 Preserving the Systemd Journal
+
+Keeping the System Journal:
+* The journal is written to /run/log/journal, which is automatically cleared on system reboot
+* Edit /etc/systemd/journald.conf to make the journal persistent across reboots
+* Set the Storage parameter in this file to the appropriate value:
+	* persistent will store the journal in the /var/log/journal directory. This directory will be created if it doesn't exist
+	* volatile stores the journal only in /run/log/journal
+	* auto will store the journal in /var/log/journal if that directory exists and in /run/log/journal if no /var/log/journal exists
+
+
+
+
+
