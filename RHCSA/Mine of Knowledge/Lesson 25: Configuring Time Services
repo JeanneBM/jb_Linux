@@ -1,0 +1,24 @@
+25.1 Understanding Linux Time
+
+
+Hardware  <-- hwclock -->  	System  	<---- timedatectl, date -----	NTP
+							(1000sec!)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+25.2 Setting Time with timedatectl
+
+
+Linux Time Related Commands:
+* hwclock: set hardware clock and synchronize with system time
+* date: set current time and display format
+* tzselect: allows to select the current time zone
+* timedatactl: new utility to manage all aspects of time
+
+
+timedatectl status
+timedatactl
+timedatactl set-timezone America/Los_Angeles
+timedatactl show
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
