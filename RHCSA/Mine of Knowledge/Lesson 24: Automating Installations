@@ -1,0 +1,88 @@
+24.1 Understanding Automated Installations Solutions
+
+Several solutions exist for performing automated installations:
+	* Vagrant is used for automatic deployment of virtual machines
+	* Cloud-init and other templates can be used in cloud environments
+	* Kickstart can be used with a PXE-boot server to provide instructions for automatic installation of RHEL
+
+A kickstart file contains all installation instructions to set up a RHEL instance. It can be used to easily reproduce installations.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.2 Creating a Kickstart File
+
+* After installation, a file anaconda-ks.cfg is created to the root user home directory
+* Edit this file manually to make any changes that are required
+
+vim initial-setup-ks.cfg
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.3 Using the Kickstart File for Automatic Installations
+
+Using a Kickstart File:
+* Typically, the kickstart file is provided on an installation server
+* Before starting the installation, the client indicates where to get the Kickstart file from
+	* Use ks=http://somewhere/ks.cfg
+	* Or provide interface provided by the installation program (as in Virtual Machine Manager)
+
+
+Installation prompt 
+Tab
+ks=http://myserver/ks.cfg
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.4 Using Kickstart Files in Fully Automated Datacenters
+
+			|			|
+			|  access repository	|	
+			| ------------------->	|
+	Start		|    give kickstart	|
+	installation	| <-------------------	|
+			|    get kickstart	|
+			| ------------------->	|  http://ks.cfg
+			|			|
+	Installer	|      boot image	|		
+	loads		| <-------------------	|
+			| 			|  --------------
+			| 			|  | TFTP	| 
+	----------	| 			|  | ^		| 
+	|pxe boot|  	| ------------------->	|  | DHCP	| 
+	----------	| 			|  --------------
+			| 			|  Install server
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.5 Using Vagrant to Set Up Virtual Machines
+
+* Vagrant is a solution to automate installing Virtual Machines
+* Vagrant works with a "box", which is a tar file that contains a VM image
+* Preconfigurated boxes are avaliable at vagrantcloud.com
+* Administrators can create their own boxes
+* Providers allow Vagrant to interface with the underlying host platform
+	* Supported platforms are VirtualBox, VMware, Hyper-V and KVM
+
+* Provisioners can be used to further configure a Vagrant-configured VM
+	* Bash and Ansible are common provisioners
+
+* The Vagrantfile is a text file containing the instructions for creating the Vagrant environment
+* Vagrant is not included in RHEL 8 and must be installed from EPEL
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
