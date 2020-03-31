@@ -1,0 +1,68 @@
+11.1 Understanding Systemd Units
+
+Systemd is the manager of everything after the start of the Linux kernel:
+	* Managed items are called units
+	* Different unit types are avaliable:
+		* services
+		* mounts
+		* timers
+		* and many more
+
+	* systemctl is the management interface to work with Systemd
+	* Managing Services is the most important systemd related task for an administrator
+
+
+systemctl
+systemctl -t help
+systemctl list-unit-files
+systemctl list-units
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+11.2 Managing Systemd Services
+
+* System administrators must be able to manage the state of modules
+* Disabled/enabled determine if a module should be automatically started while booting
+* Start/Stop is managing runtime state of a service
+
+yum install vsftpd
+systemctl status vsftpd
+systemctl start vsftpd
+systemctl status vsftpd
+systemctl enable vsftpd
+systemctl status vsftpd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+11.3 Modifying Systemd Service Configuration
+
+* Default system-provided systemd unit files are in /usr/lib/systemd/system
+* Custom unit files are in /etc/systemd/system
+* Run-time automatically generated unit files are in /run/systemd
+* While modifying a unit file, do NOT edit the file in /usr/lib/systemd/system but create a custom file in /etc/systemd/system that is used as an overlay file 
+* Better: use systemctl edit unit.service to edit unit files
+* Use systemctl show to show avaliable parameters // command: systemctl show
+* Using systemctl-reload may be required
+
+systemctl cat vsftpd.service
+systemctl show vsftpd.service 
+systemctl edit vsftpd.service
++ "[Service]
+Restart=always
+RestartSec=5s"
+systemctl daemon-reload
+systemctl restart vsftpd
+killall vsftdp
+systemctl status vsftpd 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
