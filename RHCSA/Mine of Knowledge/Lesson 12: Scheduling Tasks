@@ -1,0 +1,172 @@
+12.1 Understanding cron and at 
+
+* Cron is a deamon that triggers jobs on a regular basis
+* It works with different configuration files that specify when a job should be started
+* Use it for regular re-occurring jobs, like backup jobs
+* at is used for tasks that need to be started once
+* Systemd Timers provide a new alternative to Cron
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.2 Understanding cron Scheduling Options
+
+* User-specific Cron jobs, created using crontab -e
+* Generic time-specific Cron jobs in /etc/cron.d
+* Scripts, executed on an hourly, daily, weekly, monthly basis  
+* Generic time-specific Cron jobs in /etc/crontab (deprecated)
+
+
+cd /etc/cron.d
+ls
+cat raid-check
+cd ..
+cd cron
+cd cron.daily
+ls
+cat logrotate
+vim /etc/crontab
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.3 Understanding anacron
+
+* Anacron is a service behind cron that takes care jobs are executed on a regular basis, but not at a specific time
+* It takes care of the jobs in /etc/cron.{hourly, daily, weekly, monthly}
+* Configuration is in /etc/anacrontab
+
+
+vim /etc/anacrontab
+cd ../cron.d 
+cat 0hourly
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.4 Scheduling with cron
+
+* Choose the option you want to use
+	* crontab -e as a specific user
+	* Create a cron file in /etc/cron.d
+
+* Use the time specification: */10 4 11 12 1-5
+	* minute (*/10)
+	* hour (4)
+	* day of month (11)
+	* month (12)
+	* day of week (1-5)
+
+* Note that cron does NOT have TDOUT
+
+date
+crontab -e
++ "18 16 * * * logger hello"
+tail /var/log/messages
+less /var/log/messages
+man 5 crontab
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.5 Scheduling Tasks with Systemd Timers
+
+Understanding Systemd Timers:
+* Systemd timers also allow for scheduling jobs at a regular basis, Cron however is still the standard
+* Read man 7 systemd-timer for more information about systemd timers
+* Read man 7 systemd-timer for specyfication of the time format to be used
+
+
+cd /usr/lib/systemd/system
+ls *timer
+ls fstrim*
+vim fstrim.timer 
+vim fstrim.service
+systemctl status fstrim.service
+systemctl status fstrim.timer
+systemctl enable fstrim.timer
+systemctl status fstrim.timer
+systemctl start fstrim.timer
+systemctl status fstrim.timer
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.6 Using at
+
+* The atd service must be running to run once-only jobs using at
+* Use at <time> to schedule a job:
+	* Type one or more job specifications in the at interactive shell
+	* Use Ctrl+D to close this shell
+
+* Use atq for a list of jobs currently scheduled 
+* Use atrm to remove jobs from the list
+
+
+systemctl status atd
+at teatime 
+at> 	"logger have a cup of tea 
+	mail -s hello root < ."
+atq
+atrm 1
+atq
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.7 Managing Temporary Files
+
+Understanding systemd-tmpfiles: 
+* The /usr/lib/tmpfiles.d directory manages settings for creating, deleting and cleaning up of temporary files
+* The systemd-tmpfiles-clean.timer unit can be configured to automatically clean up temporary files:
+	* It triggers the systemd-tmpfiles-clean.service
+	* This service runs systemd-tmpfiles --clean
+
+* The /usr/lib/tmpfiles.d/tmp.conf file contains settings for the automatic tmp file clean up
+* When making modifications, copy the file to /etc/tmpfiles.d
+* After making modifications to this file, use systemd-tmpfiles --clean /etc/tmpfiles.d/tmp.conf to ensure the file does not contain any errors
+
+Understanding tmp.conf:
+* In tmp.conf you'll find lines specifying which directory to monitor, which permissions are set on that directory, which owners and after how many days of not being used the tmp files will be removed
+* Different actions can be performed on the directories and files that are managed
+* Consult man tmpfiles.d for more details
+
+
+systemctl cat systemd-tmpfiles-clean.timer
+cp /usr/lib/tmpfiles.d/tmp.conf /etc/tmpfiles.d
+vim/tmpfiles.d/tmp.conf
+man tmpfiles.d
+systemd-tmpfiles --clean /etc/tmpfiles.d/tmp.conf
+vim /etc/tmpfiles.d/mytmp.conf
++ "d /run/mytemp 0700 root root 30s"
+cd /etc/tmpfiles.d 
+ls
+cd /usr/lib/tmpfiles.d
+ls
+system-t
+systemd-tmpfiles --create /etc/tmpfiles.d/mytemp.conf
+touch /run/mytemp/myfile
+ls /run/mytemp/myfile
+sleep 30
+ls /run/mytemp/myfile
+systemd-tmpfiles --clean /etc/tmpfiles.d/mytemp.conf
+ls /run/mytemp/myfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
