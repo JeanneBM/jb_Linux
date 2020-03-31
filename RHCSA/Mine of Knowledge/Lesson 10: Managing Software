@@ -1,0 +1,74 @@
+10.1 Understanding RPM Packages
+
+* Red Hat Package Manager (RPM) is a package format to install software, as well as a database of installed packages on a system
+* The Package contains an archive of files that is compressed with cpio, as well as metadata and a list of package dependencies
+* RPM Packages may contain scripts as well
+* To install packages, repositories are used
+* Individual packages may be installed, but this should be avoided 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.2 Setting up Repository Access
+
+Setting up a Local Repository:
+
+We'll create a local repository so that we can install packages from the RHEL 8 installation disk ISO image:
+* Create an ISO image: dd if=/dev/sr0 of=/rhel8.iso bs=1M
+* Create a directory /repo: mkdir /repo
+* Edit /etc/fstab and add the following line to the end 
+	* /rhel8.iso 	/repo 	  iso9660     defaults 	0 0
+* Use mount -a to mount the ISO
+
+dd if=/dev/sr0 of=/rhel8.iso bs=1M 
+mkdir /repo
+vim /etc/fstab
+systemctl daemon-reload
+mount -a 
+cd /repo
+ls
+cd BaseOS
+ls
+cd ..
+
+Accessing the Local Repository-1:
+* Create the file /etc/yum.repos.d/appstream.repo with following contents [appstream]
+	name=appstream
+	baseurl=file:///repo/AppStream
+	gpgcheck=0
+
+cd /etc/yum.repos.d/
+vim appstream.repo
++"[appstream ]
+name=appstream
+baseurl=file:///repo/AppStream
+gpgcheck=0"
+vim base.repo
++"[BaseOS]
+name=BaseOS
+baseurl=file:///repo/BaseOS
+gpgcheck=0"
+yum repolist
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.3 Understanding Modules and Application Streams
+
+Understanding Application Streams:
+* RHEL 8 introduces application streams and modules
+* Application streams are used to separate user space packages from core kernel operations
+* Using application streams allows for working with different versions of packages 
+* Base packages are provided through the BaseOS repository
+* AppStream is provided as a separate repository
+
+Understanding Modules:
+* Application Streams are delivered in two formats:
+	* traditional RPMs
+	* New Modules
+
+* Modules can contain streams to make multiple versions of applications avaliable
+* Enabling a module stream gives access to RPM packages in that stream
+* Modules can also have profiles. A profile is a list of packages that belong to a specific use-case
+* The package list of a module can contain packages outside the module stream
+* Use the yum module commands to manage modules (see lesson 10.5)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
