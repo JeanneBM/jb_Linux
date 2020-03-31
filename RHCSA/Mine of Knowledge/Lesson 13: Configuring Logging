@@ -70,6 +70,35 @@ Keeping the System Journal:
 	* volatile stores the journal only in /run/log/journal
 	* auto will store the journal in /var/log/journal if that directory exists and in /run/log/journal if no /var/log/journal exists
 
+Understanding Systemd Journal Log Rotation:
+* Bulit-in log rotation for the journal runs monthly
+* The journal cannot grow beyond 10% of the size of the file system it is on
+* The journal will also make sure at least 15% of its file system will remain avaliable as free space
+* This setting can be changed through /etc/systemd/journald.conf
+
+systemctl status systemd-journald
+systemctl status -l systemd-journald
+vim /etc/systemd/journald.conf
+mkdir /var/log/journal
+systemctl restart systemd-journald
+systemctl status systemd-journald
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.5 Configuring Logrotate
+
+* Logrotate is started through cron.daily to ensure that log files don't grow too big
+* Main configuration is in /etc/logrotate.conf, snap-in files can be provided through /etc/logrotate.d/
+
+vim /etc/logrotate.conf
+cd logrotate.d/
+ls
+vim httpd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
