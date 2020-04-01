@@ -72,3 +72,131 @@ Understanding Modules:
 * Use the yum module commands to manage modules (see lesson 10.5)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.4 Managing Packages with yum
+
+yum was created to be intuitive:
+* yum search
+* yum install
+* yum remote
+* yum update
+* yum provides
+* yum info 
+* yum list
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.5 Managing Modules and Application Streams
+
+Using yum Modules
+The yum module command is used to manage module properties:
+* yum module list
+* yum module provides httpd searches the module that provides a specific package
+* yum module info php
+* yum module info --profile php shows profiles
+* yum module list php shows which streams are avaliable
+* yum module install php:7.1 or yum yum install @php:7.1
+* yum module install php:7.1/devel installs a specific profile
+* yum install httpd will have yum automatically enable the module stream this package is in before installing this package
+* yum module enable php:7.1 enables the module but doesn't install anything yet
+
+Updating Module Content:
+* yum module install php:7.1 will install a specific PHP module stream 
+	* This will also enable the 7.1 stream
+* yum module install php:7.2 will update to the newer version
+	* The 7.1 stream will be disabled and the 7.2 stream will be enabled
+* To update or downgrade packages from a previous module stream that are not listed in profiles that are installed with the module update, use yum distro-sync
+
+
+yum module list
+yum module info php
+yum module info --profile php:7.1
+yum module install php:7.1
+yum update
+yum module install php:7.2
+yum module install php:7.1
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.6 Using yum Groups
+
+* yum groups are provided to give access to specific categories of software
+* yum groups list gives a list of most common yum groups
+* yum groups list hidden shows all yum groups 
+* yum groups info <groupname> shows which packages are in a group
+* yum groups install <groupname> will install a specific yum group
+
+
+yum groups list
+yum groups list hidden
+yum groups info "Directory Client"
+yum groups install --with-optional "Directory Client"
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.7 Managing yum updates and yum history
+
+yum history and yum update:
+* yum history gives a list of recently issued commands
+* yum history undo allows you to undo a specific command, based on the history information
+* yum update will update all packages on your system
+* yum update <packagename> will update one package only, including its dependencies
+
+
+yum history
+yum history undo 3
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.8 Using RPM Queries
+
+Using rpm:
+* rpm is the legacy command to manage RPM packages
+* Do NOT use rpm to install packages as it doesn't consider dependencies
+* rpm is useful though (*chociaz) to perform package queries
+* rpm queries by default are against the database of installed packages, add-p to query package files:
+	* rpm -qf /any/file
+	* rpm -ql mypackage
+	* rpm -qc mypackage
+	* rpm -qp --scripts mypackage-file.rpm
+
+cd /etc/
+ls
+rpm -gf /etc/tcsd.conf
+rpm -ql trousers
+rpm -qd trousers
+rpm -qc trousers
+man tcsd
+cd
+yum install dnf-utils -y
+yumdownloader httpd
+ls
+rpm -qp --scripts httpd-2.4.35-6.el8+2089+57a79027.x86_64.rpm
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.9 Using Red Hat Subscription Manager
+
+* To work with the RHEL repositories, you need a subscription
+* If you just want to evaluate, use the free developer subscription 
+	* get it from https://developer.redhat.com
+* Next, use subsciption manager to set up the subscription
+* Use subscription-manager register to register
+	* Username is the username of your Red Hat account
+	* Password is the associated password
+* Next, use subscription-manager attach --auto to connect your current subscription
+
+
+subscription-manager register
+subscription-manager attach --auto
+yum repolist 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
