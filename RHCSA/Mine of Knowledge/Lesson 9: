@@ -1,0 +1,189 @@
+9.1 Understanding Jobs and Processes
+
+* All tasks are started as processes
+* Processes have a PID
+* Common Process Management tasks include scheduling priority and sending signals
+* Some processes are starting multiple threads, individual threads cannot be managed
+* Tasks that are managed from a shell can be managed as jobs
+* Jobs can be started in the foreground or background
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.2 Managing Shell Jobs
+
+* Use command & to start a job in the background
+* To move a job to the background:
+	* First, stop it using Ctrl+Z
+	* Next, type bg to move it to the background
+
+* Use jobs for a complete overview of running jobs
+* Use fg[n] to move the last job back to the foreground
+
+
+while true; do true; done
+^C 
+while true; do true; done &
+
+dd if=/dev/zero of=/dev/null
+^Z
+bg
+
+jobs
+fg 1
+^C
+jobs
+fg
+^C
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.3 Getting Process Information with ps
+
+Using ps:
+* The ps command has two different dialects: BSD and System5
+* Therefore ps -L and ps L are two completely different commands!
+* ps shows an overview of current processes
+* Use ps aux for an overview of all processes
+* ps -fax shows hierarchical relations between processes
+* ps -fU linda shows all processes owned by linda
+* ps -f --forest -C sshd shows a process tree for a specific process 
+* ps L shows format specifiers
+* ps -eo pid,ppid,user,cmd uses some of these specifiers to show a list of processes
+
+
+ps L
+ps -L
+ps
+ps aux | less
+ps aux
+ps -fax | less
+ps -fU student
+ps -f --forest -C sshd
+ps L
+ps L | wc
+ps -eo pid,ppid,user,cmd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.4 Understanding Memory Usage
+
+* Linux places as many files as possible in cache to guarantee fast access to the files
+* For that reason, Linux memory often shows as saturated 
+* Swap is used as an overflow buffer of emulated RAM on disk
+* The Linux kernel moves inactive memory to swap first
+* Use free -m to get details about current memory usage
+
+free -m 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.5 Understanding CPU Load
+
+		some task			some other task
+
+				runqueue
+
+				pid238
+				pid237
+				pid236
+				pid235
+				pid234
+
+				scheduler
+
+	cpu0		cpu1		cpu2		cpu3
+
+
+uptime
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+uptime
+watch uptime
+lscpu
+uptime
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.6 Monitoring System Activity with top
+
+Understanding top:
+* top is a dashboard taht allows you to monitor current system activity
+* Press f to show and select from avaliable display fields
+* type M to filter on memory usage
+* Press W to save new display setting
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.7 Sending Signals to Processes
+
+Understanding Signals:
+* A signal allows the operating system to interrupt a process from software and ask it to do something
+* Interrupts are comparable to signals, but are generated from hardware
+* A limited amount of signals can be used and is documented in man 7 signals
+* Not all signals work in all cases
+* The kill command is used to send signals to PID's
+* You can also use k from top
+* Different kill-like commands exist, like pkill and killall
+
+
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+top
+signals: k, 15, 9 
+man 7 signals
+ps aux | grep dd
+kill -9 14273
+top
+k/Esc
+signals: k, 14603, 9Killed+Enter - so don't use signal 9
+ps aux | grep '/<dd'
+killall d
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.8 Managing Priorities and Niceness
+
+* By default, Linux processes are started with the same priority
+* In kernel-land real-time processes can be started, which will always be handled with highest priority
+* To change priorities of non-realtime processes, the nice and renice commands can be used
+* Nice values range from -20 up to 19
+* Negative nice value indicates an increased priority, a positive nic value indicates decreased priority
+* Users can set their processes to a lower priority, to increase priorities you need root access
+ 
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+top
+signal: r, -5, r, 10
+
+nice -n -1 dd if=/dev/zero of=/dev/null &
+ps aux | grep '/<dd'
+renice -n 10 14740
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.9 Using Tuned Profiles
+
+Understanding Tuned:
+* tuned is a service that allows for performance optimization in an easy way
+* Different profiles are provided to match specific server workloads
+* To use them, ensure the tuned service is enabled and started
+* tuned-adm list will show a list of profiles
+* tuned-adm profile <name> will set a profile
+* tuned-adm active will show the current profile
+
+
+systemctl status tuned
+tuned-adm list
+tuned-adm profile desktop
+tuned-adm active
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
