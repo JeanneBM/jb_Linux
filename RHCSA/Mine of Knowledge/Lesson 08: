@@ -1,0 +1,192 @@
+8.1 Understanding IPv4 Networking
+
+* In IPv4, each node needs its own IP address, written in dotted decimal notation (192.168.4.200/24)
+* Each IP address must be indicated with the subnet mask behind it
+* The default router or gateway specifies which server to forward packets to that have an external destination
+* The DNS nameserver is the IP address of a server that helps resolving names to IP addresses and the other way around
+* IPv4 is still the most common IP version, but IPv6 addresses can be used as well
+* IPv6 addresses are written in hexadecimal notation (fd01::8eba:210)
+* IPv4 and IPv6 can co-exist on the same network interface
+							
+					    Internet
+						^
+						| 
+						R						
+						| 
+		DNS: 8.8.8.8 		192.186.3.0/24
+			-----------------------------------------
+						^
+						| 
+						R
+						| 
+					192.168.4.1/24
+					--------------------						
+						^
+						| 
+						| 
+
+					192.168.4.200/24
+					gateway:192.168.4.1
+					DNS: 8.8.8.8
+					---------------					
+					USER 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.2 Understanding NIC Naming
+
+Understanding Device Names:
+* IP address configuration needs to be connected to a specific network device
+* Use ip link show to see current devices and ip addr show to check their configuration
+* Every system has an lo device, which is for internal networking
+* Apart from that, you'll see the name of the real network device, which is presented as a BIOS name 
+
+Understanding NIC Naming: 
+* Classical naming is using device names like eth0, eth1 and so on
+	* These device names don't reveal any information about physical device location
+
+* BIOS naming is based on harware properties to give more specific information in the device name:
+	* em[1-N] for embedded NICs
+	* eno[nn] for embedded NICs
+	* p<slot><port> for NICs on the PCI bus
+
+* If the driver doesn't reveal network device properties, classical naming is used
+
+
+ip addr show
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.3 Managing Runtime Configuration with ip
+
+Understanding the ip Tool:
+* The ip tool can be used to manage all aspects of IP networking
+* It replaces the legacy ifconfig tool, do NOT us ifconfig anymore
+* Use ip addr to manage address properties
+* Use ip route to manage route properties
+
+
+ip link show
+ip -s link show
+ip addr show
+ip addr add dev ens33 10.0.0.10/24
+ping 10.0.0.10
+^C
+ifconfig
+if config -a
+man config // "This program is obsolete!"
+ip route show
+ping 8.8.8.8
+ip route del default via 192.168.4.2
+ping 8.8.8.8 // "Network is unreachable"
+ip route add default via 192.168.4.2
+ping 8.8.8.8
+cat /etc/resolv.conf
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.4 Understanding RHEL 8 Networking
+
+
+			
+
+
+	nmcli			nmtui
+
+		NetworkManager
+
+
+
+	/etc/sysconfig/network-scripts/ifcfg-ens33 (Runtime IP)
+			
+			 
+		      ens33
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.5 Managing Persistent Networking with nmcli
+
+Understanding nmcli:
+* An nmcli connection is a configuration that is added to a network device
+* Connections are stored in configuration files
+* The NetworkManager service must be running to manage these files
+* Ensure that the bash-completion RPM package is installed when working with nmcli
+
+
+systemctl status NetworkManager
+rpm -qa | grep bash-completion
+man nmcli-examples
+nmcli
+nmcli connection 
+nmcli connection add
+nmcli connection add ifname ens33 ipv4.addresses 192.168.4.208/24 ipv4.gateway 192.168.4.2 ipv4.dns 8.8.8.8 type ethernet
+nmcli connection 
+nmcli connection up ethernet-ens33
+nmcli connection show
+ip a
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.6 Managing Persistent Networking with nmtui
+
+nmtui
+Edit a connection
+ethernet-ens33
+Edit
+Show
+Set system hostname
+ip a
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.7 Verifying Network Configuration Files
+
+cd network-scripts/
+ls
+vim ifcfg-ethernet-ens33
+nmcli connection 
+nmcli connection show
+nmcli connection up ethernet-ens33
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.8 Testing Network Connections
+
+Network Testing Tools
+
+* ping is used to test connectivity 
+* ip addr show shows current configuration
+* ip route show shows current routing table
+* dig can test DNS nameserver working
+
+
+ping google.com
+^C
+ping -c 1 google.com
+ping -f google.com
+^C
+ping -f 192.168.4.2
+^C
+
+dig rhatcert.com
+dig wlejhlweihj.be
+ping google.com // Name or service not known
+ping 8.8.8.8 // Network is unreachable
+ip route show
+ip addr show
+ip route add default via 192.168.4.2
+ip route show
+!p
+^C
+ip route del default via 192.168.4.2
+!p // Network is unreachable
+cat /etc/sysconfig/network-scripts/ifcfg-ethernet-ens33
+nmcli connection up ethernet-ens33
+ip route show
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
