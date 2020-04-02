@@ -1,0 +1,122 @@
+6.1 Understanding the Need for Users Accounts 
+
+* A user is a security principle, user accounts are used to provide people or processes access to system resources
+* Processes are using system accounts
+* People are using regular user accounts
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.2 Understanding User Properties
+
+* Name: the name of the account
+* Password: the secret that is used for authentication, may be disabled
+* UID: a unique identifier for users
+* GID: the ID of the primary group
+* GECOS: additional non-mandatory information about the user
+* home directory: the environment where users create personal files
+* shell: the program that will be started after successful authentication
+
+student:x:1000:1000:student:/home/student:/bin/bash
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.3 Creating and managing Users
+
+* useradd: create user accounts
+* usermod: modify user accounts
+* userdel: delete user accounts
+* passwd: set passwords
+
+
+useradd -c bill bill
+usermod -aG wheel bill
+id bill
+userdel -f bill
+passwd -l linda
+passwd -u linda
+passwd bob
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.4 Managing User Default Settings
+
+* Use useradd -D to specify default settings
+* Files in /etc/default/useradd apply to useradd only
+* Alternatively, write default settings to /etc/login.defs
+* Files in /etc/skel are created to the user home directory upon creation
+
+
+useradd -D
+cat /etc/default/useradd
+
+vim /etc/login.defs
+
+cd /etc/skel
+ls -a
+vim hello
++"echo hello $USER 
+useradd laura
+ls /home/laura
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.5 Understanding /etc/passwd and /etc/shadow
+
+Understanding the passwd Files:
+* /etc/passwd is used to store user properties
+* Password properties are stored in /etc/shadow
+* /etc/group is used for group properties
+ 
+
+vim /etc/passwd
+less /etc/group
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.6 Understanding Group Membership
+
+* Each user must be a member of at least one group
+* Primary Group Membership is managed through /etc/passwd
+* The user primary group becomes group-owner if a user creates a file
+* Additional (secondary) groups can be defined as well
+* Secondary Group Membership is managed through /etc/groups
+* Use id to see which groups a user is a member of 
+
+
+id linda
+usermod -aG wheel linda
+id linda
+grep linda /etc/passwd
+grep linda /etc/group
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.7 Creating and Managing Groups
+
+* Use groupadd to add groups
+* groupdel and groupmod can be used to delete and modify groups
+* Use lid -g groupname to list all users that are member of a specific group
+
+
+groupadd sales
+lid -g wheel
+grep wheel /etc/group
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.8 Managing Password Properties 
+
+* Basic password requirements are set in /etc/login.defs
+* For advanced password properties, Pluggable Authentication Modules (PAM) can be used
+	* Look for the pam_tally2 module
+* To change password settings for current users, use chage or passwd as root
+
+
+chage linda
+grep linda /etc/shadow
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
