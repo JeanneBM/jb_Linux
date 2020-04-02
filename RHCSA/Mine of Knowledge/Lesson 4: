@@ -1,0 +1,71 @@
+4.1 Using Common Text Tools
+
+More or Less?:
+* more was the original file pager
+* less was developed to offer some more advanced features
+* As a reaction to that, more was developed a bit more
+* But still, to do more, use less
+
+Using head and tail:
+* Use head to show the 10 first lines of a text file
+* Use tail to show the 10 lat lines
+* Use -n nn to specify another number of lines
+
+Displaying File Contents with cat and tac:
+* cat dumps text file contents on screen:
+	* -A shows all non-printable characters
+	* -b numbers lines
+	* -s suppresses repeated empty lines
+* tac is doing the same, but in reversed order
+ 
+Other Common Text Processing Utilities:
+* cut: filter output
+* sort: sort output
+* tr: translates
+
+
+less /etc/passwd
+more /etc/passwd
+head -n 5 /etc/passwd
+head -n 10 /etc/passwd | tail -n 1
+tail -n 3 /etc/passwd
+tail -f /var/log/messages
+cat /etc/hosts
+cat -A /etc/hosts
+cat -b /etc/hosts
+cat -s /etc/hosts
+tac /etc/hosts
+cut -f 3 -d : /etc/passwd | less
+cut -f 3 -d : /etc/passwd | sort | less
+cut -f 3 -d : /etc/passwd | sort -n | less
+cut -f 1 -d : /etc/passwd | sort | tr [a-z] [A-Z]
+cut -f 1 -d : /etc/passwd | sort | tr [:lower:] [:upper:]
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+4.2 Using grep
+
+grep is excellent to find text in files or in output
+* ps aux | grep ssh
+* grep linda *
+* grep -i linda *
+* grep -AS linda /etc/passwd
+* grep -R root /etc
+
+
+ps aux
+ps aux | grep ssh
+cd /etc
+grep linda *
+grep linda * 2>/dev/null
+grep -l linda * 2>/dev/null
+grep -i linda * 2>/dev/null
+grep -A2 linda * 2>/dev/null
+grep -B2 linda * 2>/dev/null
+grep -Rl root /etc 2>/dev/null | less
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
