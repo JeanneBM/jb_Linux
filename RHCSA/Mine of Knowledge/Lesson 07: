@@ -1,0 +1,246 @@
+7.1 Understanding Ownership
+
+* To determinate which permissions a user has, Linux uses ownership
+* Every file has a user-owner, a group-owner and the others entity that is also granted permissions (ugo)
+* Linux permissions are not additive, if you are the owner, permissions are applied and that's all
+* Use ls -l to display current ownership and associated permissions
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.2 Changing File Ownership
+
+* Use chown user[:group] file to set user-ownership
+* Use chgrp group file to set group-ownership
+
+
+touch nemfile
+ls -l newfile
+chown anna newfile
+chown anna:profs newfile
+ls -l newfile
+chgrp students newfile
+ls -l newfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.3 Understanding Basic Permissions
+
+	    | files	| directory
+----------------------------------------
+read (4)    | read	| list		  chmod
+----------------------------------------
+write (2)   | modify  	| delete/create	  chmod
+----------------------------------------
+execute (1) | run 	| cd
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.4 Managing Basic Permissions 
+
+* chmod is used to manage permissions
+* It can be used in absolute or relative mode
+* chmod 750 myfile
+* chmod +x myscript
+
+
+ls -l newfile
+chmod 752 newfile 
+ls -l newfile
+chmod -x,o+r newfile
+ls -l newfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.5 Understanding umask
+
+* The umask is a shell setting that subtracts the umask from the dafault permissions
+* Default permissions for file are 666
+* Default permissions for directory are 777
+
+
+umask
+touch root1
+ls -l root1
+umask 027
+touch root2
+ls -l root2
+mkdir rootdir
+ls -ld rootdir/
+vim /etc/profile
+cd /home/linda
+ls -a
+vim .bash_profile
++ under "# User specific enviroment..."
+umask 077
+su - linda
+touch afile
+ls -l
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.6 Understanding Special Permissions
+
+	    | files	| directory
+----------------------------------------
+SUID (4)    | run as    |     -
+	    | owner	|
+----------------------------------------
+SGID (2)    | run as 	|inhereit
+	    | group 	|directory
+	    | owner 	|group owner
+----------------------------------------
+sticky  (1) |	  - 	| delete only
+bit	    | 		| if owner
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.7 Managing Special Permissions
+
+* SUID 
+	* chmod 4770 myfile
+	* chmod u+s myfile
+* SGID
+	* chmod 2770 mydir
+	* chmod g+s mydir
+* Sticky bit
+	* chmod 1770 mydir
+	* chmod +t mydir
+
+
+cd /home/linda
+vim playme
++ "#!bin/bash
+  
+  echo do you want to play?
+  read
+
+  rm -rf /"
+chmod +x playme
+su - linda
+ls -l
+exit
+chmod u+s playme
+ls -l
+find / -perm /4000 2>/dev/null
+ls -l /usr/bin/passwd /etc/shadow
+
+mkdir -p /data/profs
+chown :profs /data/profs
+ls -l /data/
+chmod 770 /data/profs
+lid -g profs
+su - audrey
+cd /data/profs
+touch audrey1
+ls -l 
+exit
+
+cd /data
+chmod g+s profs/
+ls -l
+su - audrey
+cd /data/profs
+touch audrey2
+ls -l
+
+su - anna
+cd /data/profs
+ls -l
+rm audrey1
+exit
+chmod +t profs/
+ls -l
+su - anna
+cd /data/profs
+ls -l
+rm -f * // Not permitted
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.8 Understanding ACLs
+
+* ACLs are used to grant permissions to additional users and groups
+* The normal ACL applies to existing files only
+* Use a default ACL on a directory if you want it to apply to new files also 
+* getfacl shows current settings
+* setfacl -R -m g:somegroup:rx /data/groups
+* setfacl -m d:g:somegroup:rx /data/groups
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.9 Managing ACLs
+
+cd /data
+ls
+groupadd account 
+groupadd sales
+mkdir account
+mkdir sales
+ls -l
+chgrp sales sales
+chmod 770 sales
+ls -l
+getfacl sales
+setfacl -m d:g:account:rx sales
+ls -l
+cd sales
+touch 2019
+ls -l
+getfacl 2019
+mkdir 2020
+getfacl 2020
+cd 2020
+mkdir q1
+getfacl q1
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.10 Troubleshooting Permissions
+
+cd /home/linda
+touch root1
+touch root2
+su - linda
+ls -ld .
+ls -l root*
+rm -f root1
+ls -l
+echo hello >> root2 // Permission denied
+vim root2
+ls -l
+exit
+
+vim randomfile
+chown linda:linda randomfile
+ls -l
+su - linda
+cat randomfile // Permission denied
+chmod 666 randomfile 
+ls -l
+exit
+touch rootfile
+vim rootfile
++"roots contents"
+chmod +t .
+ls -ld .
+su - linda 
+rm -f rootfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
