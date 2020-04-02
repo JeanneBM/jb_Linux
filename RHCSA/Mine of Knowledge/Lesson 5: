@@ -1,0 +1,129 @@
+5.1 Understanding the Root User
+
+	
+	Users			Processes
+
+	       --------------
+	       | user space | 
+	       --------------
+		rm-rf/
+
+      --------------   -----------
+      | permission |   | syscall | 
+     ----------------------------------
+       
+       --------
+       | Root | 
+       --------
+
+		kernel space
+		drivers
+
+	       ------------
+	       | HARDWARE | 
+	       ------------
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+5.2 Logging in to the GUI
+
+login
+Enter
+password
+Enter :)
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+5.3 Logging in to the Console
+
+login
+Enter
+password
+Enter :)
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+5.4 Understanding Virtual Terminals
+
+computer1	computer2	computer3
+
+tty1		tty2		tty3
+^		^		^
+----------------------------------		
+		| 				virtual terminal
+		| 				------------------
+	     /dev/tty
+	    ---------
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+5.5 Switching Between Virtual Terminals
+
+Working with Virtual Terminals:
+* tty1-tty6 are avaliable to login
+* If installed and active, the GUI is on tty1
+* Use chvt to switch between virtual terminals
+* Or use [Ctrl]+Alt-Fn
+
+su -
+chvt 1
+chvt 2
+chvt 4
+w
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+5.6 Using su to Work as Another User
+
+* su is used to open a shell as another user
+	* Useful to open a root shell
+	* For root, useful to test functionality as a user
+* The password of the target user is required
+* Use su - to open a login shell
+	* This will give complete access to the environment of the target user
+
+
+su -
+exit
+su - linda
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+5.7 Using sudo to Perform Administrator Tasks
+
+Understanding sudo:
+* sudo is used to run tasks as another user
+* sudo prompts for the password of the current user
+* Users must be authorized to use sudo
+* Authorization through /etc/sudoers and /etc/sudoers.d/*
+	* Do NOT edit directly but use visudo
+* Users that are member of the group wheel can use sudo to run administrations tasks 
+
+
+visudo
+under the line "## Allows members of the users group to mount and umount the 
+		## cdrom as root"
++"linda	  	ALL=/usr/sbin/useradd, /usr/bin/passwd"
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+5.8 Using ssh to Log in Remotely
+
+* SSH is Secure Shell and used to establish a secured remote connection
+* Identity of target server is verified through host keys
+	* After initial connection, host key is stored in ~/.ssh/known_hosts
+* Sensitive data will be sent through an encrypted connection
+* Use ssh-X or ssh-Y to display graphical screens from the target server locally
+
+
+ssh localhost
+ls
+ssh -Y linda@localhost
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
