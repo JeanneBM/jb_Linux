@@ -1,0 +1,147 @@
+1.1 Understaning Server Requirements 
+
+Understanding RHEL Installation
+
+Red Hat Enterprise Linux can be installed or deployed in different ways:
+
+	* On physical hardware
+	* In virtual machines
+	* As a container
+	* As an instance in cloud
+
+In this class, we're installing ina virtual machine
+
+	* Use RHEL 8 (downloaded from redhat.com)
+	* Alternatively, use CentOS 8 (download from centos.org)
+
+
+Understanding Server Requirements
+
+Requirements depend on the type of installation:
+
+	* Physical, cloud or virtual?
+	* With or without GUI? #z czy bez interfejsu?
+	* What are you going to do with the server
+
+For installation of a virtual machine in this class:
+
+	* 2 GiB of RAM
+	* 20 GiB of disk space
+	* Wired Network Connection
+	* Optical drive or access to DVD ISO
+
+
+
+1. Install Red Hat Enterprise Linux 8.0
+
+2. Reload
+
+3. Welcome to Red Hat Enterprise Linux 8.0 >> language and keyboard >> "Continue"
+
+4. INSTALLATION SUMMARY:
+	
+	- LOCALIZATION
+		* Keyboard
+		* Language Support
+		* Time & Date
+	- SOFTWARE
+		* Installation Source
+		* Software Selection >> Workstation >> "Done"
+	- SYSTEM
+		* Installation Destination >> Jak pojawia sie komunikat na czerwono, bo zajmiemy caly dysk Red Hatem wystarczy otworzyc opcje 							i potwierdzic "Done"
+		* KDUMP
+		* Network & Host >> Zmienic "OFF" na "ON" >> "Done"
+		* SECURITY POLICY
+		* System Purpose
+
+
+	>> "Begin Installation"
+
+5. USER SETTINGS:
+
+	- Root Password
+	- User Creation
+
+6. Reboot
+
+7. License Information >> License Agreement >> Agree >> Done
+
+8. Finish Configuration (prawy dolny rog)
+
+
+1. Install Red Hat Enterprise Linux 8.0
+
+2. Reload
+
+3. Welcome to Red Hat Enterprise Linux 8.0 >> language and keyboard >> "Continue"
+
+4. INSTALLATION SUMMARY:
+	
+	- LOCALIZATION
+		* Keyboard
+		* Language Support
+		* Time & Date
+	- SOFTWARE
+		* Installation Source
+		* Software Selection >> Workstation >> "Done"
+
+#ROZNICA#
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+	- SYSTEM
+		* Installation Destination >> Storage Configuration >> Custom >> "Done" 
+						>> "+" >> Mount Point:/ >> Desired Capacity: 18G >> Add mount point
+						>> Device Type: Standard Partition 
+						>> "+" >> Mount Point: swap >> Desired Capacity: 2G >> Add mount point
+						>> Device Type: Standard Partition
+
+						>> "Done" >> "Accept Changes"
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+		* KDUMP
+		* Network & Host >> Zmienic "OFF" na "ON" >> "Done"
+		* SECURITY POLICY
+		* System Purpose
+
+
+	>> "Begin Installation"
+
+5. USER SETTINGS:
+
+	- Root Password
+	- User Creation
+
+6. Reboot
+
+7. License Information >> License Agreement >> Agree >> Done
+
+8. Finish Configuration (prawy dolny rog)
+
+
+ 
+* For security, don't log in as root by default
+
+* Use su - to open a root shell when required 
+
+* Or use sudo to run tasks as root (covered in Lesson 5)
+
+CTRL + "+" - zmiana wielkosci czcionki w Terminalu 
+
+dolar - zwykly uzytkownik
+
+/home/student
+
+pwd
+
+"su - " zmiani na roota #
+/root
+
+
+"exit" - powrot na zwyklego uzytkownika
+
+
+
+
+
