@@ -30,7 +30,9 @@ For installation of a virtual machine in this class:
 	* Wired Network Connection
 	* Optical drive or access to DVD ISO
 
+-----------------------------------------------------------------------------------------------------------------------------------------------
 
+1.2 Performing a Basic Installation
 
 1. Install Red Hat Enterprise Linux 8.0
 
@@ -68,6 +70,9 @@ For installation of a virtual machine in this class:
 
 8. Finish Configuration (prawy dolny rog)
 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+1.3 Installing with Custom Partitioning
 
 1. Install Red Hat Enterprise Linux 8.0
 
@@ -119,7 +124,7 @@ For installation of a virtual machine in this class:
 
 8. Finish Configuration (prawy dolny rog)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------
  
 * For security, don't log in as root by default
 
@@ -141,7 +146,7 @@ pwd
 
 "exit" - powrot na zwyklego uzytkownika
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
