@@ -1,0 +1,188 @@
+3.1 Essential File Management Tasks
+
+* ls 
+* mkdir
+* cp
+* mv
+* rmdir
+* rm
+
+
+ls
+ls -l
+mkdir scripts
+mkdir new/scripts // "Cannot create directory..."
+mkdir -p new/scripts
+cp /etc/hosts .
+cp /etc/h* . // "Not specified..."
+cp -r /etc/h* .
+mv script* scripts/ // "Cannot move..."
+rmdir scripts/
+rm hosts.deny
+su -
+rm -rf / // "It is too dangerous..."
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+3.2 Finding Files
+
+* ls is used to list files, not to find files
+* which looks for binaries in $PATH
+* locate uses a database, built by updatedb to find files in a database
+* find is the most flexible tool that allows you to find files based on many criteria
+
+
+which useradd
+echo $PATH
+vim hello
++" #!/bin/bash
+   echo hello world"
+chmod +x hello
+hello
+./hello
+which hello
+locate useradd
+updatedb
+locate useradd
+touch newfile
+locate newfile
+find / -name "hosts"
+find / -name "host"
+find / -type f -size +100M
+find / -user student
+find /etc -exec grep -l student {} \; 
+find /etc -exec grep -l student {} \; 2>/dev/null
+grep -l student /etc/*
+grep -l student /etc/* 2>/dev/null
+find /etc -size +100c -exec grep -l student {} \; 
+find /etc -size +100c -exec grep -l student {} \; -exec cp {} /tmp \; 2>/dev/null
+ls /tmp
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+3.3 Understanding Mounts
+
+* To access a device, it must be connected to a directory
+* This is known as mounting the device
+* The Linux filesystem typically uses multiple mounts
+* Different types of data typically are on different devices for multiple reasons:
+	* security
+	* manageability
+	* specific mount options
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+3.4 Understanding Links 
+
+* Links are pointers to files in a different location
+* Compare to shortcuts on other operating systems
+* Links can be useful to make the same file avaliable on multiple locations
+* Linux uses hard links and symbolic links
+* Create hard links with ln and symbolic links with ln -s 
+
+
+
+			blocks
+	---------------------------------------
+			^
+			inode2 
+	---------------------------------------
+	^		^		^
+	name3		x name		x name2 
+
+
+	* cross device
+	* directory
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+3.5 Working with Links
+
+ls -il /etc/hosts
+ln /etc/hosts /root/hardhosts
+ls -il /etc/hosts /root/hardhosts
+vim /etc/hosts
++"10.0.0.10	dummy.example.local"
+ls -il /etc/hosts /root/hardhosts
+ln -s /etc/hosts symhosts
+ls -il /etc/hosts /root/hardhosts /etc/symhosts
+rm -f /etc/hosts
+ls -il /etc/hosts /root/hardhosts /etc/symhosts
+ls
+cat symhosts
+ln /root/hardhosts /etc/hosts
+ls -il /etc/hosts /root/hardhosts /root/symhosts
+
+cd /
+ls -l
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+3.6 Working with tar
+
+* tar is the Tape Archiver and was created a long time ago
+* By default, it doesn't compress data
+* Basic use is to compress, extract or list:
+	* tar -cvf my_archive.tar /home/etc
+	* tar -tvf will show contents of an archive
+	* tar -xvf my_archive extracts to the current directory 
+		* Use -C to switch the output path
+* To add compression, use -z, -j or -J
+
+tar -cvf ~/mytar.tar /home /etc
+cd 
+ls -l
+tar tvf mytar.tar | less
+tar xvf mytar.tar
+ls
+ls -l
+rm -rf etc home
+tar xvf mytar.tar -C /tmp
+ls /tmp
+ls -l
+mv mytar.tar mytar
+file mytar
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+3.7 Working with Compressed Files
+
+Understanding Compression Utilities:
+A wide range of compression solutions is avaliable for Linux:
+* gzip is still the most common compression utility
+* bzip2 is an alternative utility
+* zip is also avaliable and has Windows-compatible syntax
+* xz is showing up more often as well
+
+
+ls -lk
+gzip mytar
+ls -l
+gunzip mytar.gz
+ls -l
+gzip -k mytar
+ls -l
+bzip2 -k mytar
+ls -l
+xz -k mytar
+ls -l
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
