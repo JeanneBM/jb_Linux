@@ -1,5 +1,6 @@
 1.1 Understaning Server Requirements 
 
+
 Understanding RHEL Installation
 
 Red Hat Enterprise Linux can be installed or deployed in different ways:
@@ -33,6 +34,7 @@ For installation of a virtual machine in this class:
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 1.2 Performing a Basic Installation
+
 
 1. Install Red Hat Enterprise Linux 8.0
 
@@ -74,6 +76,7 @@ For installation of a virtual machine in this class:
 
 1.3 Installing with Custom Partitioning
 
+
 1. Install Red Hat Enterprise Linux 8.0
 
 2. Reload
@@ -91,7 +94,7 @@ For installation of a virtual machine in this class:
 		* Software Selection >> Workstation >> "Done"
 
 #ROZNICA#
--------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
 	- SYSTEM
 		* Installation Destination >> Storage Configuration >> Custom >> "Done" 
@@ -102,8 +105,8 @@ For installation of a virtual machine in this class:
 
 						>> "Done" >> "Accept Changes"
 
+-----------------------------------------------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------------------------------------------------------------------
 
 		* KDUMP
 		* Network & Host >> Zmienic "OFF" na "ON" >> "Done"
@@ -125,7 +128,10 @@ For installation of a virtual machine in this class:
 8. Finish Configuration (prawy dolny rog)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
- 
+
+1.4 Logging into the Server
+
+
 * For security, don't log in as root by default
 
 * Use su - to open a root shell when required 
