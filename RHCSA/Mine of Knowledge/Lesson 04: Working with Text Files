@@ -66,6 +66,76 @@ grep -Rl root /etc 2>/dev/null | less
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+4.3 Understanding Regular Expressions
+
+* Regular Expressions are text patterns that are used by tools like grep and others 
+* Don't confuse regular expressions with globbing!
+* They may look like file globbing, but really are different!
+	* grep 'a*' a*
+* Regular expressions are for use with specific tools only: grep, vim, awk, sed
+* Extended regular expressions enhance basic regex features
+* See man 7 regex for details
+* Regular Expressions are bulit around atoms; an atom specifies what text is to be matched:
+	* Atoms can be single characters, a range of characters or a dot
+	* Atoms can also be a class, such as [[:alpha:]], [[:upper:]], [[:digit:]] or [[:alnum:]]
+* Second is the repetition operator, specifying how often a character occurs
+* The third element is indicating where to find the next character
+
+Common Regular Expressions:
+* ^ beginning of the line
+* $ end of line
+* \< beginning of word
+* \> end of word
+* * zero or more times
+* + one or more times
+* ? zero or one time
+* {n} exactly n times
+
+
+cat regtext
+grep b.t regtext
+grep 'b.t' regtext
+grep 'b.*t' regtext
+grep 'bo*t' regtext
+grep 'b.?t' regtext
+grep -e 'b.?t' regtext
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+4.4 using awk
+
+Understanding awk:
+* awk is a powerful text processing utility that is specialized in data extraction and reporting 
+* It can perform actions based on selectors
+
+
+awk -F : '/linda/ { print $4 }' /etc/passwd
+awk -F : '{ print $NF }' /etc/passwd
+ls -l /etc | awk '/pass/ { print }' | less
+ls -l /etc/ | grep pass
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+4.5 Using sed
+
+Understanding sed: 
+* sed is the stream editor, used to search and transform text
+* It can be used to search for text and perform an operation on matching text
+
+
+vim sedfile
+sed -n 4p sedfile
+sed -i s/four/FOUR/g sedfile
+sed -n 4p sedfile
+sed -i -e '2d' sedfile
+sed -n 4p sedfile
+cat sedfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
