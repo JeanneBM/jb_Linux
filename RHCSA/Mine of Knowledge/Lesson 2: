@@ -1,0 +1,288 @@
+2.1 Getting Started with Linux Commands
+
+Getting Started on the CLI: 
+* Using the CLI is essential for a Linux Administrator:
+	* pwd: shows which directory am I in
+	* whoami: shows current user name
+	* ls: lists files in the current directory
+	* ip addr show: shows your current IP configuration
+	* free -m: shows how much memory you have
+	* df -h: shows avaliable disk space
+	* cat /etc/hosts: shows the contents of a file 
+	* findmnt: shows mounted file systems
+
+
+pwd
+whoami
+ls
+ls -l
+ip addr show 
+free
+free -m
+df
+df -h
+cat /etc/hosts
+findmnt
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.2 Working with the Bash Shell
+
+Understanding the Shell:
+* Bash is the dafault shell and provides several useful features:
+	* Tab command completion
+	* history
+	* piping
+	* redirection
+	* environment variables
+	* aliases
+	* scripts
+
+
+history
+!11
+!f
+^R (reverse-i-search - string of commands)
+ps aux
+ps aux | less
+ps aux | wc
+whoami >> lsfiles
+!ca
+env
+env | less
+LANG=fr_FR.utf-8
+LANG=en_EN.utf-8
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.3 Understanding I/O Redirection and Piping
+
+
+		STDIN	       STDOUT
+	User ----------> CMD ---------> computer monitor
+	
+		file <		> filename	     ^ STDERR 2> errfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.4 Using I/O Redirection and Piping
+
+Using Redirection and Piping:
+* Redirection uses STDIN, STDERR and STDOUT to work with command input and output in a flexible way:
+	* >
+	* >>
+	* 2>/dev/null
+	* <
+
+* In piping, the STDOUT of the first command is used as STDIN of the second command
+
+
+ls /etc
+ls /etc > etcfiles
+less etcfiles
+who 
+who > etcfiles
+ls >> etcfiles
+grep -R student /etc
+grep -R student /etc 2>/dev/null
+ls -l /etc
+ls -l /etc | wc
+ls -l /etc | less
+ls -l /etc | grep host
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.5 Understanding the Linux File System Hierarchy
+
+Understanding the FHS:
+* Directory usage on Linux is highly standardized
+* Standard directories are defined in the FHS, which is maintained by Linux Foundation
+* The starting point is the root directory
+* Different devices may be integrated in the FHS by using mounts
+
+		
+			mount
+		      ---------
+		/ <----------  /dev/sda2
+		| -- boot <--- /dev/sda1
+		| -- home <--- SERVER:/home
+		| -- var  <--- /dev/sdb
+		| -- ....
+
+
+pwd 
+cd ..
+ls
+ls -l
+cd /boot
+ls
+cd /dev
+ls
+ls -l 
+cd /etc
+ls
+cat passwd
+cat redhat-release
+cat os-release
+cd /
+ls
+cd /home
+ls
+useradd linda
+ls -lk
+cd /usr
+ls
+cd bin
+ls
+cd sbin
+pwd
+cd ../sbin
+ls
+cd /var
+ls
+cd log
+ls
+ls -l
+less README
+man hier
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.6 Using man
+
+* man is the best source to get extensive usage information:
+	* Sections define command types
+	* Many man pages have examples
+	* Search for text using /
+
+
+man man
+/section
+man lvcreate
+man ls
+man lvcreate 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.7 Finding the right man page
+
+* All man pages are indexed in the man db
+* Use man -k or apropos to search the mandb based on a keyword
+* A lot of results can show, use grep to filter the results
+* The mandb is bulit automatically through a cron scheduled task
+* Manually trigger a rebulit using mandb
+
+
+man -k user // "Nothing..."
+su -
+man man 
+/-k
+man apropos
+man mandb
+mandb
+man -k user
+man -k user | wc
+man -k user | grep 8
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.8 Understanding vim
+
+* vim is the default editor and is used as embedded editor by many commands
+* vim is an enhanced version of vi
+* To work with vim, you need to manage command mode and input mode
+
+
+       --------		       	       
+       |Start |	------------->  |-> Command Mode-|	
+       |vim   |		        |	         |<- Enter Insert Mode
+       --------		        |	         |
+		      :wq! ->   |	         |
+			        |                | 
+		       Esc ->   |                | 
+			        |                | 
+			        |	         |<- Press a, i or Ins
+      Back to Command mode ->   |	         | 	
+			        |	         |
+		                |	         |
+			        |--Insert Mode <-|
+		       	       
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.9 Using vim
+
+vim Command Overview:
+
+* Esc
+* i,a
+* o
+* :wq!
+* q!
+* dd
+* yy
+* p
+* v
+* u 
+* Ctrl-r
+* gg
+* G
+* /text
+* ?text
+* ^
+* :%/old/new/g
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.10 Using Globbing and Wildcards
+
+Understanding Globbing:
+* Globbing is a shell feature that helps matching filenames
+* Not to be confused with regular expressions, which helps finding text patterns
+* For documentation: see man 7 glob
+
+Globbing Examples
+* ls host*
+* ls ?ost
+* ls [hm]ost
+* ls [!hm]ost
+* ls script[0-9][0-9]
+
+
+cd /etc
+ls hosts
+ls ?ost // "Cannot found..."
+ls ?ost*
+cd
+touch hosts
+touch ghosts
+touch gosts
+ls ?ost*
+touch script{0..100}
+ls
+ls script[0-9][0-9]
+ls script[0-5][5-9]
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+2.11 Using Cockpit
+
+systemctl enable --now cockpit.socket
+systemctl status cockpit.socket
+
+http://localhost:9090
+		
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
