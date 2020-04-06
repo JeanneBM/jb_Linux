@@ -274,28 +274,71 @@ Solution:
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 Lesson 17:
+1. configure your system to boot in multi-user target by default
+2. persistently remove the options that hide startup messages while booting
+
+Solution: 
+
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 Lesson 18:
+Assume that you have lost the root user password: 
+1. fix it and reset the password
+
+If you want to consult the procedure again, watch lesson 18.2
+
+Solution: 
+
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 Lesson 19:
+Write a script:
+1. the script should evaluate the argument that was provided while running the script
+- if the argument is yes, the script should run the command echo "that's nice"
+- if the argument is no, the script should run the command echo "I'm sorry to hear that"
+- and if the argument is anything else, the script should run the command "unknown argument provided"
+2. make sure that if no argument was provided, the script will show an error message explaining what the user was supposed to do 
+
+Solution: 
+
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 Lesson 20:
+1. configure SSH keys for passwordless login to the SSH process that's listening on localhost 
+2. configure SSH such that users linda and root are the only users that are allowed to log in
+
+Solution:
+
 --------------------------------------------------------------------------------------------------------------------------------------------
-Lesson 21:
+
+Lesson 21: Managing HTTP Services
+1. configure Apache: to serve a basic website that shows the text "Hello World" after connecting to it
+
+Solution:
+
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 Lesson 22:
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 23: Configure the Firewall such that remote access to SSH as well as the Apache process are allowed.
 
 1. type fire-cmd --list-all and see allowed SSH 
 2. find name of the server: firewell-cmd --add-services and search http and https
+
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 Lesson 24:
+
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 Lesson 25:
+
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 Lesson 26:
 --------------------------------------------------------------------------------------------------------------------------------------------
 Lesson 27:
