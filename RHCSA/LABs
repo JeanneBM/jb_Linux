@@ -275,7 +275,7 @@ Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 17:
+Lesson 17: Managing the Boot Procedure
 1. configure your system to boot in multi-user target by default
 2. persistently remove the options that hide startup messages while booting
 
@@ -283,7 +283,7 @@ Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 18:
+Lesson 18: Applying Troubleshooting Skills
 Assume that you have lost the root user password: 
 1. fix it and reset the password
 
@@ -293,7 +293,7 @@ Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 19:
+Lesson 19: Writing Shell Scripts
 Write a script:
 1. the script should evaluate the argument that was provided while running the script
 - if the argument is yes, the script should run the command echo "that's nice"
@@ -305,7 +305,7 @@ Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 20:
+Lesson 20: Managing SSH
 1. configure SSH keys for passwordless login to the SSH process that's listening on localhost 
 2. configure SSH such that users linda and root are the only users that are allowed to log in
 
@@ -321,14 +321,16 @@ Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 22:
+Lesson 22: MAnaging SELinux
 1. make sure that SELinux is enabled and enforcing
 2. fix it: you suspect that some files in the /etc directory are configured to the context label that doesn't match the context label 
    that is set in the SELinux policy  
 
+Solution:
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 23: 
+Lesson 23: Configuring a Firewall
 Configure the Firewall such that:
 1. remote access to SSH as well as the Apache process are allowed.
 
@@ -338,17 +340,38 @@ Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 24:
+Lesson 24: Automating Installations
+1. Create a kickstart file with the name my-ks.cfg
+2. It can be used for automated installation and meets the following requirements:
+- the installer should prompt for a password
+- network connectivity must be enabled on boot 
+- the local machine name is set to server10.example.com
+
+Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 25:
+Lesson 25: Configuring Time Services
+1. make sure that the time zone is set to the appropriate time zone for your current location
+2. manually set the time five minutes ahead
+3. verify that NTP time synchronization is active and observe what NTP is doing 
+
+Soultion:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 26:
+Lesson 26: Configuring Automount
+1. on the IPA server, make sure that the hostname is set to labipa.example.com
+2. configure the IPA server to offer read/write-access to two NFS shares, /home/ldap and /data
+3. ensure that:
+- /home/ldap contains a subdirectory for each of your LDAP users 
+- the LDAP User home directories are avaliable on an NFS share with the name /home/ldap/username
+4. configure automount to automatically mount them
+5. configure the NFS client to automatically mount the share labipa:/data 
+
+Solution:
+
 --------------------------------------------------------------------------------------------------------------------------------------------
-Lesson 27:
 
-
+Lesson 27: Sample Exam
 
