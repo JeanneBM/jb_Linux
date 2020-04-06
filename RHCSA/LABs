@@ -314,18 +314,25 @@ Solution:
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 21: Managing HTTP Services
-1. configure Apache: to serve a basic website that shows the text "Hello World" after connecting to it
+Configure Apache: 
+1. to serve a basic website that shows the text "Hello World" after connecting to it
 
 Solution:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 22:
+1. make sure that SELinux is enabled and enforcing
+2. fix it: you suspect that some files in the /etc directory are configured to the context label that doesn't match the context label 
+   that is set in the SELinux policy  
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-Lesson 23: Configure the Firewall such that remote access to SSH as well as the Apache process are allowed.
+Lesson 23: 
+Configure the Firewall such that:
+1. remote access to SSH as well as the Apache process are allowed.
 
+Solution:
 1. type fire-cmd --list-all and see allowed SSH 
 2. find name of the server: firewell-cmd --add-services and search http and https
 
@@ -342,5 +349,6 @@ Lesson 25:
 Lesson 26:
 --------------------------------------------------------------------------------------------------------------------------------------------
 Lesson 27:
+
 
 
