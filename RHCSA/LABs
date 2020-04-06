@@ -135,7 +135,7 @@ Solution:
 NetworkManager TUI: Edit a connection -> Add -> Edit -> IPv4 from "Automatic" to "Manual" -> Show -> Addresses: 192.168.4.10/24 -> 
 2. Add -> 10.0.0.10/24 -> Gateway: 192.168.4.2 -> DNS servers:8.8.8.8 -> OK -> Back -> Activate a connection -> Activate -> Back -> Quit 
 3. reboot
-4. ip a
+4. ip a -> ^C
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
