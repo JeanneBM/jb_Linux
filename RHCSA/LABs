@@ -149,7 +149,8 @@ Lesson 9: Managing Process
 7. from the commmand line, terminate all of the remaining dd processes
 
 Solution:
-1. dd if=/dev/zero of=/dev/null - this process takes to much time, there are better solutions -> Ctrl+Z -> bg - to verify the background
+1. dd if=/dev/zero of=/dev/null - this process takes to much time, there are better solutions -> Ctrl+Z 
+2. bg - to restart a stopped (by^Z) bacground process
 2. jobs 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
