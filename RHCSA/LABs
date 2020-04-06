@@ -154,7 +154,11 @@ Lesson 9: Managing Process
 Solution:
 1. dd if=/dev/zero of=/dev/null - this process takes to much time, there are better solutions -> Ctrl+Z 
 2. bg - to restart a stopped (by^Z) bacground process
-2. jobs 
+3. jobs -> dd if=/dev/zero of=/dev/null -> dd if=/dev/zero of=/dev/null -> dd if=/dev/zero of=/dev/null
+4. jobs
+5. top -> r -> PID -> -5
+6. top -> k -> PID -> 15
+7. killall dd
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
