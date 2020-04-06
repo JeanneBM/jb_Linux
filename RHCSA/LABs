@@ -83,7 +83,10 @@ Lesson 5: Connecting to a RHEL Server
 3. use ssh to make a connection as user root to "localhost"
 
 //At the login screen, press Ctrl + Alt + F5 to switch to a TTY
-press Ctrl+Alt+F6 to go to tty6
+1. Ctrl+Alt+F6 to go to tty6 
+2. login; password -> w -> chvt 1 -> login; password or:
+3. ssh root@localhost; password
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 6: Managing User and Groups
