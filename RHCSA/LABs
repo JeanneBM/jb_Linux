@@ -223,12 +223,12 @@ vim error -> /var/log/error{
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Lesson 14: Managing Storage
-1. create a 20 GiB additional hard disk on your virtual machine and this disk needs to be completely avaliable 
-2. on this disk, create a primary partition with a size of 1 GiB.
-3. format it with Ext4 and mount it persistently on /mounts/files using its UUID 
-4. create an extended partition that includes all remaining disk space
-5. in this partition, create a 500 MiB (mebibyte) XFS partition and mount it persistently on /mounts/xfs using the label myxfs
-6. create a 500 MiB Swap partition and mount it persistently as well
+Create a 20 GiB additional hard disk on your virtual machine and this disk needs to be completely avaliable:
+1. on this disk, create a primary partition with a size of 1 GiB
+2. format it with Ext4 and mount it persistently on /mounts/files using its UUID 
+3. create an extended partition that includes all remaining disk space
+4. in this partition, create a 500 MiB (mebibyte) XFS partition and mount it persistently on /mounts/xfs using the label myxfs
+5. create a 500 MiB Swap partition and mount it persistently as well
 
 Solution:
 
