@@ -108,8 +108,17 @@ Lesson 7: Managing Permissions
   7.9 Managing ACLs
   7.10 Troubleshooting Permissions
   
- 
 Lesson 8: Configuring Networking 	
+  8.1 Understanding IPv4 Networking
+  8.2 Understanding NIC Naming
+  8.3 Managing Runtime Configuration with ip
+  8.4 Understanding RHEL 8 Networking
+  8.5 Managing Persistent Networking with nmcli
+  8.6 Managing Persistent Networking with nmtui
+  8.7 Verifying Network Configuration Files
+  8.8 Testing Network Connections
+  
+  
 Lesson 9: Managing Processes 	
 Lesson 10: Managing Software 	
 Lesson 11: Working with Systemd 	
