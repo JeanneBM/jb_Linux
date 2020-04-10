@@ -120,6 +120,16 @@ Lesson 8: Configuring Networking
   
   
 Lesson 9: Managing Processes 	
+  9.1 Understanding Jobs and Processes
+  9.2 Managing Shell Jobs
+  9.3 Getting Process Information with ps
+  9.4 Understanding Memory Usage
+  9.5 Understanding CPU Load
+  9.6 Monitoring System Activity with top
+  9.7 Sending Signals to Processes
+  9.8 Managing Priorities and Niceness
+  9.9 Using Tuned Profiles
+  
 Lesson 10: Managing Software 	
 Lesson 11: Working with Systemd 	
 Lesson 12: Scheduling Tasks 	
