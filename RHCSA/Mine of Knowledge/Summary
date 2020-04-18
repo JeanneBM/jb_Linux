@@ -2331,24 +2331,697 @@ vim /etc/fstab -> "/dev/nvme0n2p2  swap  swap  defaults 0 0"
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
+15.1 Undeerstanding LVM, Stratis and VDO
 
+Understanding Advanced Storage:
+* LVM Logical Volumes
+	* Used during default installation of RHEL
+	* Adds flexibility to storage (resize, snapshots and more)
 
+* Stratis 
+	* Next generation Volume Managing Filesystem that uses thin provisioning by default 
+	* Implemented in user space, which makes API access possible 
 
+* Vitual Data Optimizer
+	* Focused on storing files in the most efficient way
+	* Manages deduplicated and compressed storage pools
 
+------------------------------------------------------------------------------------------------------------------------------------------
 
+15.2 Understanding LVM Setup
 
+LV (ext4)	LV(xfs)
 
-
-
-
-
-
-
-
-
-
-
+^		^
 	
+---------------------------
+volume group			/dev/vg/lv
+---------------------------
+
+^		^
+
+PV (physical volumes)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.3 Creating an LVM Logical Volume
+
+LVM Creation Procedure Overview
+
+* Create a partition, from parted use set n lvm on
+* Use pvcreate /dev/sdb1 to create the physical volume
+* Use vgcreate vgdata /dev/sdb1 to create the volume group
+* Use lvcreate -n lvdata -L 1G vgdata to create the logical volume 
+* Use mkfs /dev/vgdata/lvdata to create a file system
+* Put in /etc/fstab to mount it persistently
+
+lsblk
+parted /dev/nvme0n2 -> print -> Partition name: lvm1 -> Start? 2G -> End? 3G -> print -> set 3 lvm on -> print -> mkpart -> 
+Partition name? lvm2 -> Start? 3 GiB -> End? 4GiB -> print -> set 4 lvm on -> print -> quit
+
+pvcreate /dev/nvme0np3 -> lsblk -> pvcreate /dev/nvme0n2p3 -> created
+
+vgcreate vgdata /dev/nvme0n2p3 -> pvs -> vgs -> lvcreate -n lvdata -L 812M vgdata 
+
+mkfs.xfs /dev/vgdata/lvdata -> mkdir /mounts/lvm1 -> vim dev/fstab/ -> "/dev/vgdata/lvdata  /mounts/lvm1  xfs  defaults 0 0"
+-> mount -a -> findmnt
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.4 Understanding Device Mapper and LVM Device Names
+
+Understanding Device Mapper Names:
+* Device mapper is the system that the kernel uses to interface storage devices
+* Device mapper generates meaningless names, like /dev/dm-0 and /dev/dm-1
+* Meaningful names are provided as symbolic links through /dev/mapper 
+	* /dev/mapper/vgdata-lvdata
+* Alternatively, use the LVM generated symbolic links 
+	* /dev/vgdata/lvdata
+
+mount
+tail -n 1 /etc/fstab
+ls -l /dev/vgdata/lvdata /dev/mapper/vgdata-lvdata
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.5 Resizing LVM Logical Volumes
+
+Resizing Logical Volumes:
+* Use vgs to verify avaliability in the volume group'
+* If required, use vgextend to add one or more PVs to the VG
+* Use lvextend -r -L +1G to grow the LVM logical volume, including the file system it's hosting
+	* e2resize is an independent resize utility for Ext file systems
+	* xfs_growfs can be used to grow an XFS file system
+* Shrinking is not possible on XFS volumes
+
+df -h -> vgs -> vgextend vgdata /dev/nvme0n2p4 -> vgs -> lvextend -r -L +1020M /dev/vgdata/lvdata -> df -h
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.6 Understanding Stratis Setup
+
+Understanding Stratis:
+* Stratis is a volume management file system and is Red Hat's answer to Btrfs and ZFS
+	* On top of Stratis a regular file system is needed: XFS
+
+* It is bulit on top of any block device, including LVM devices
+* It offers advanced features 
+	* Thin provisioning 
+	* Snapshots
+	* Cache tier 
+	* Programmatic API
+	* Monitoring and Repair
+
+Stratis Architecture:
+* The Stratis Pool is created from one or more storage devices (blockdev)
+	* Stratis creates a /dev/stratis/my-pool directory for each pool
+	* This directory contains links to devices that represent the file systems in the pool
+	* Block devices in a pool may not be thin provisioned
+
+* The (XFS) file system is put in a volume on top of the pool and is an integrated part of it 
+	* Each pool can contain one or more file systems
+	* File systems are thin provisioned and do not have a fixed size
+	* The thin volume which is an integrated part of the file system automatically grows as more data is added to the file system
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.7 Creating Stratis Volumes
+
+Procedure Overview - 1: 
+* yum install stratis-cli stratisd
+* systemctl enable --now stratisd
+* stratis pool create mypool /dev/nvme0n2
+	* Add new block devices later using stratis blockdev add-data
+	* Partitions are NOT supported
+	* Note that the block device must be at least 1GiB
+* stratis fs create mypool myfs1
+	* Note this will create an XFS file system!
+* stratis fs list mypool will show all file systems in the pool
+
+Procedure Overview - 2:
+* mkdir /myfs1
+* mount /dev/stratis/mypool/myfs1/myfs1
+* stratis pool list
+* stratis filesystem list
+* stratis blockdev list mypool
+* blkid to find the stratis volume UUID
+* Mount by UUID in /etc/fstab
+
+yum install -y startis-cli stratid
+systemctl enable --now stratisd
+stratis pool create mypool /dev/nvme0n2
+stratis pool
+stratis fs create mypool myfs1
+stratis fs
+mkdir /myfs1
+mount | grep myfs1
+mount /dev/startis/mypool/myfs1
+mount
+stratis pool list
+stratis fs list
+stratis blockdev list mypool
+lsblk
+blkid
+vim /etc/fstab
+"UUID="2413f3aa-384d-4d95-917a-a5e80731cbc2"  /myfs1  xfs  defaults 0 0"
+reboot
+su -
+mount | grep myfs
+ 
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.8 Managing Stratis Śtorage Features 
+
+Monitoring Stratis Volumes:
+* Standard Linux tools don't give accurate sizes as Stratis volumes are thin provisioned 
+* Use stratis blockdev to show information about all block devices used for Stratis
+* Use stratis pool to show information about all pools 
+	* Note that Physical Used should not come too close to Physical Size
+* Use stratis filesystem to monitor individual filesystems
+
+Using Stratis Snapshots
+* stratis fs snapshot mypool myfs1-snapshot
+	* Changes to the original FS will not be reflected in the snapshot
+	* Use mount /stratis/mypool/my-fs-snapshot/mnt to mount it
+* Revert the original volume to the state in the snapshot
+	* umount /myfs1
+	* stratis fs destroy mypool myfs1
+	* stratis fs snapshot mypool myfs1-snap myfs1
+* Note that this approach wouldn't work on LVM!
+
+Removing Stratis Snapshots:
+* stratis filesystem destroy mypool mysnapshot will delete a snapshot 
+* A similar procedure is used for destroying file systems: stratis filesystem destroy mypool myfs
+* When there are no more file systems in a pool, use stratis pool destroy mypool to delete the pool
+
+stratis blockdev
+stratis pool
+stratis filesystem
+df -h | grep myfs
+stratis filesystem
+stratis filesystem snapshot mypool myfs1-snapshot 
+stratis filesystem list 
+mount /dev/stratis/mypool/myfs1-snapshot /mnt
+ls
+ls /mnt/
+cp /etc/a* /mnt
+cd /mnt
+ls
+cd ..
+umount /myfs1
+stratis filesystem destroy mypool myfs1
+stratis filesystem list
+stratis filesystem snapshot mypool myfs1-snapshot myfs1 
+mount -a
+cd /myfs1/
+ls
+stratis filesystem destroy mypool myfs1-snapshot
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.9 Understanding VDO
+
+* VDO (Virtual Data Optimizer) is used to optimize how data is stored on disk
+* It is used as a separate volume manager on top of which file system will be created
+* Provides thin-provisioned storage 
+	* Use a logical size 10 times the physical size for VMs and containers 
+	* Use a logical size 3 times the physical size for object storage 
+* Used in Cloud/Container environments
+* It manages deduplicated and compressed storage pools in RHEL 8
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.10 Configuring VDO Volumes
+
+Procedure Overview
+* Ensure that underlying block devices are >4GiB 
+* yum install vdo kmod-kvdo
+* vdo create --name=vdo1 --device=/dev/nvme0np2 --vdoLogicalSize=1T
+* mkfs.xfs -K /dev/mapper/vdo1
+* udevadm settle will wait for the system to register the new device name 
+* In /etc/fstab, include the x-systemd.requires=vdo.service mount option 
+* Monitor using vdostats --human-readable
+
+lsblk
+yum install vdo kmod-kvdo
+vdo create --name=vdo1 --device=/dev/nvme0n6 --vdoLogicalSize=10T
+mkfs.xfs -K /dev/mapper/vdo1
+udevadm settle
+mkdir /vdo1
+vim /etc/fstab
+"/dev/mapper/vdo1  /vdo1  xfs  x-systemd.requires=vdo.service  0 0"
+mount -a
+mount
+vdostats --human-readable
+df -h
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.11 Understanding LUKS Encrypted Volumes
+
+/dev/sda1 -> Cryptsetup luksFormat -> Cryptsetup luksOpen secret -> /dev/mapper/secret -> mkfs -> mount
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.12 Configuring LUKS Encrypted Volumes 
+
+Procedure Overview:
+* Use parted to create a partition
+* cryptsetup luksFormat will format the LUKS device
+* cryptsetup luksOpen will open it and create a device mapper name 
+* Mount the resulting device mapper device
+* To automate the cryptsetup luksOpen, use /etc/crypttab
+* To automate mounting the volume, use /etc/fstab
+
+parted /dev/nvme0n2
+print
+mkpart
+Partition name? luks
+Start? 4GiB
+End? 6GiB
+print
+quit
+lsblk | less
+cryptsetup luksFormat /dev/nvme0n2p5 
+cryptsetup luksOpen /dev/nvme0n2p5 secret
+ls -l /dev/mapper
+mkfs.vxfs /dev/mapper/secret
+mkdir /secret
+vim /etc/fstab
+"/dev/mapper/secret  /secret  xfs  defaults  0 0"
+vim /etc/crypyttab
+"secret  /dev/nvme0n2p5  none"
+reboot
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+16.1 Basic Kernel Management
+
+shell -> 	-> kernel * initramfs  		-> drivers-modules		-> hardware
+	syscall	     	  * systemd-udevd
+		     	  * modprobe
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+16.2 Working with Kernel Modules 
+
+* Linux drivers are implemented as kernel modules 
+* Most kernel modules are loaded automatically through initramfs or systemd-udevd
+* Use modprobe to manually load kernel module
+* Use lsmod to list currently loaded kernel modules
+
+lsmod | less
+lsmod | grep vfat
+modprobe vfat
+lsmod | grep vfat
+modprobe -r vfat
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+16.3 Using modprobe
+
+* Use modprobe to load a kernel module and all its dependencies
+* Use modprobe -r to unload
+* modinfo can show module parameters
+* To load, specify kernel module parameters, edit /etc/modprobe.conf or the files in /etc/modprobe.d
+
+lsmod
+modinfo e1000
+cd /etc/modprobe.d
+ls
+vim kvm.conf
+"#" makes out in the line with "Options kvm..."
+modprobe kvm
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+16.4 Using /proc to Tune Kernel Behavior
+
+Understanding Kernel Parameters:
+* /proc is a file system that provides access to kernel information:
+	* PID directories
+	* Status files
+	* Tunables in /proc/sys
+
+* Use echo to write a value to any file in /proc/sys to change kernel performance parameters
+* Write the parameters to /etc/sysctl.conf to make them persistent
+* Use sysctl -a to show a list of all current settings 
+
+mount | grep proc
+cd /proc
+ls
+cat meminfo
+cd sys
+ls
+cd net
+ls
+cd ipv4/
+ls
+cat ip forward
+echo 1 > ip_forward
+cat ip forward
+pwd
+sysctl -a | grep forward
+vim /etc/sysctl.conf
++ "net.ipv4.ip.forward = 1"
+sysctl -a 
+sysctl | wc
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+16.5 Updating the Kernel
+
+* Linux kernels are not technically updated, a new kernel is installed beside the old kernel
+* This allows administrators to boot the old kernel in case anything goes wrong
+* Use either yum update kernel or yum install kernel to update the kernel
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+17.1 Understanding the Boot Procedure
+
+POST	BIOS	-> GRUB		kernel		-> systemd		-> services
+	UEFI			initramfs				   base-OS
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+17.2 Modifying Grub2 Runtime Parameters
+
+* From the Grub2 boot menu, press to edit runtime boot options
+* Press c to enter the Grub2 command mode
+	* From command mode, type help for an overview of avaliable options
+
+reboot
+c
+help
+e
+under "kernel=auto"
++ ap rhyb quiet
+Ctrl+X
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+17.3 Modifying Grub2 Persistent Parameters
+
+* To edit persistent Grub2 parameters, edit the configuration file in /etc/default/grub
+* After writing changes, compile changes to grub.cfg
+	* grub2-mkconfig -o /boot/grub2/grub.cfg
+	* grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
+
+mount | grep '^/' 
+mount | grep '^/' | grep -i efi
+vim /etc/default/grub
+grub2-mkconfig -o /boot/grub2/grub.cfg
+vim /boot/grub2/grub.cfg // DON'T EDIT EVER THIS FILE
+reboot
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+17.4 Managing Systemd Targets
+
+Understanding Systemd Targets:
+* A systemd target is a group of unit files 
+* Some targets are isolatable, which means that they define the final state a system is starting in:
+	* emergency.target
+	* rescue.target
+	* multi-user.target
+	* graphical.target
+* When enabling a unit, it is added to a specific target
+
+systemctl disable httpd
+systemctl enable httpd
+systemctl cat httpd
+systemctl cat multi-user.target
+cd /etc/systemd/system
+ls
+cd multi-user.target.wants/
+ls -l
+systemctl list-dependencies
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+17.5 Setting the Default Systemd Target
+
+Managing the Dafault Target:
+
+* Use systemctl get-default to see the current default target
+* Use systemctl set-default to set a new default target
+
+systemctl get-default
+systemctl set-default multi-user.target
+reboot
+non graphical login prompt
+login: root
+systemctl set-default graphical.target
+systemctl start graphical.target
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+17.6 Booting into a Specific Target
+
+* On the Grub 2 boot prompt, use systemctl.unit==xxx.target to boot into a specific target
+* To change between targets on a running system, use systemctl isolate xxx.target
+
+Grub
+e
+in the line with "ap"
++ system.unit=rescue.target
+Ctrl+X
+systemctl list-units
+systemctl isolate emergency.target
+systemctl list-units
+start graphical.target
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.1 Understanding Troubleshooting Modes
+
+POST		BIOS	-> GRUB		kernel		-> systemd		-> services (rescue.target)
+		UEFI			initramfs				   base-OS (systemd.unit=emergency.target)
+
+Boot-disk	menu:kernel		rd.break	   init=/bin/bash	   
+		     arguments
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.2 Changing the Root Password
+
+Procedure Overview:
+1. Enter Grub menu while booting
+2. Find the line that loads the Linux kernel and add rd.break to the end of the line (after "ap")
+3. mount -o remount, rw /sysroot
+4. chroot /sysroot
+5. echo secret *pipe* passwd --stdin root
+6. touch /.autorelabel
+7. Ctrl+D
+8. Ctrl+D
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.3 Troubleshooting Filesystem Issues
+
+Understanding FS Related Problems:
+* Real corruption does occur, but not often and is automatically fixed 
+* Problems occur when making typo's in /etc/fstab
+* To fix: if necessary, remount filesystem in read/write state and edit /etc/fstab
+* Fragmentation can be an issue, different tools exist to fix
+	* cfs_fsr is the XFS File System Reorganizer, it optimizes XFS file systems 
+	* e4defrag can be used to defragment Ext4
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.4 Troubleshooting Networking Issues
+
+Common Network Issues:
+* Wrong subnet mask
+* Wrong router
+* DNS not working
+
+ping centos.org
+ip a
+ip a d 192.168.4.235/32 dev ens33
+ip a
+ip a a dev ens33 192.168.4.235/24
+ip a
+!pi
+ip route show
+ip route add default via 192.168.4.2
+ping centos.org
+Ctrl+C
+nmtui
+dhclinet
+ip a 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.5 Troubleshooting Performance Issues
+
+Understanding Performance Problems:
+* Troubleshooting performance is an art on its own
+* Focus on the four key area's of performance:
+	* memory
+	* CPU load
+	* disk load
+	* network
+
+top
+r //run renice
+kill
+send signal
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.6 Troubleshooting Software Issues
+
+Understanding Software Issues:
+* Dependency problems in RPM's
+	* Should not occur when using repositories 
+	
+* Library problems:
+	* Run ldconfig to update the library cache
+
+cd Downloads/
+ls
+rpm -ivh nmap-7.60-8.fc27.x86_64.rpm
+yum install ./nmap-7.60-8.fc27.x86_64.rpm
+yum install nmap
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.7 Troubleshooting Memory Shortage
+
+top
+reboot
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+18.8 Consulting Red Hat Websites for Troubleshooting Tips
+
+access.redhat.com
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+19.1 Understanding Bash Shell Scripts
+
+Understanding Shell Scripting:
+* A shell script can be as simple as a number of commands that is sequentially executed
+* Scripts normally work with variables to make them react differently in different environments
+* Conditional statements such as for, if, case and while can be used
+
+Shell Scripts Compared:
+* Shell scripts are common as they are easy to learn and implement 
+* Also, a shell will always be avaliable to interpret code from shell scripts
+* If the scripts use internal commands only, they're very fast as nothing needs to be loaded
+* There is no need to compile anything
+* There are no modules to be used in the bash script, which makes them rather static
+* Also, Bash shell scripts are not indempotent
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+19.2 Essencial Shell Script Components
+
+ls -l myscript
+./myscript
+chomd +x myscript
+./myscript
+Ctrl+C
+echo $PATH
+vim myscript
+
+=========================================================
+
+# !/bin/bash
+# every shell script should have some comment
+
+echo which directory do you want to activate?
+
+read DIR
+
+cd $DIR
+pwd
+ls
+
+=========================================================
+
+./myscript
+/home
+pwd // answer: /root
+. myscript
+/home
+pwd // answer: /home
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+19.3 Using Loops in Shell Scripts Part 1
+
+Understanding Bash Conditional Statements:
+* Different conditional statements are avaliable in Bash:
+
+	* if ... then ... fi
+	* while ... do  ... done
+	* until ... do ... done
+	* case ... in ... esac
+	* for ... in ... do ... done
+
+ls -l myargument
+chmod +x myargument
+vim myargument
+
+=========================================================
+
+#!/bin/bash
+
+if [ -z $1 ]
+then 
+	echo you have to provide an argument
+	exit 6
+else
+	echo the argument is $1
+fi
+
+=========================================================
+
+man test
+vim myargument
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+19.4 Using Loops in Shell Scripts Part 2
+
+vim countdown
+
+=========================================================
+
+#!/bin/bash
+
+COUNTER=$1
+COUNTER=$(( COUNTER * 60 ))
+
+minusone(){ 
+	COUNTER=$(( COUNTER -1 ))
+	sleep 1
+}
+
+while [ $COUNTER -gtt 0 ]
+do
+	echo you have $COUNTER seconds left
+	minusone
+done
+
+[ $COUNTER = 0 ] && echo time is up && minusone
+[ $COUNTER = "-1" ] && echo you are one second late && minusone
+
+while true
+do
+	echo you are now ${COUNTER#-} seconds late
+	minusone
+done
+
+=========================================================
+
+echo $(( 2 + 4 )) // jak kalkulator tylko ucina ulamki - nie zaokragla
+vim countdown 
+chmod +x countdown // komenda pozwala na uruchomienie skryptu przez ./skrypt
+./countdown 1
 
 
 
@@ -2356,27 +3029,7 @@ vim /etc/fstab -> "/dev/nvme0n2p2  swap  swap  defaults 0 0"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
