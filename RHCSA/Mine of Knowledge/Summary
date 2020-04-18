@@ -860,10 +860,1495 @@ ssh -Y linda@localhost
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
+6.1 Understanding the Need for Users Accounts 
+
+* A user is a security principle, user accounts are used to provide people or processes access to system resources
+* Processes are using system accounts
+* People are using regular user accounts
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.2 Understanding User Properties
+
+* Name: the name of the account
+* Password: the secret that is used for authentication, may be disabled
+* UID: a unique identifier for users
+* GID: the ID of the primary group
+* GECOS: additional non-mandatory information about the user
+* home directory: the environment where users create personal files
+* shell: the program that will be started after successful authentication
+
+student:x:1000:1000:student:/home/student:/bin/bash
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.3 Creating and managing Users
+
+* useradd: create user accounts
+* usermod: modify user accounts
+* userdel: delete user accounts
+* passwd: set passwords
+
+
+useradd -c bill bill
+usermod -aG wheel bill
+id bill
+userdel -f bill
+passwd -l linda
+passwd -u linda
+passwd bob
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.4 Managing User Default Settings
+
+* Use useradd -D to specify default settings
+* Files in /etc/default/useradd apply to useradd only
+* Alternatively, write default settings to /etc/login.defs
+* Files in /etc/skel are created to the user home directory upon creation
+
+
+useradd -D
+cat /etc/default/useradd
+
+vim /etc/login.defs
+
+cd /etc/skel
+ls -a
+vim hello
++"echo hello $USER 
+useradd laura
+ls /home/laura
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.5 Understanding /etc/passwd and /etc/shadow
+
+Understanding the passwd Files:
+* /etc/passwd is used to store user properties
+* Password properties are stored in /etc/shadow
+* /etc/group is used for group properties
+ 
+
+vim /etc/passwd
+less /etc/group
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.6 Understanding Group Membership
+
+* Each user must be a member of at least one group
+* Primary Group Membership is managed through /etc/passwd
+* The user primary group becomes group-owner if a user creates a file
+* Additional (secondary) groups can be defined as well
+* Secondary Group Membership is managed through /etc/groups
+* Use id to see which groups a user is a member of 
+
+
+id linda
+usermod -aG wheel linda
+id linda
+grep linda /etc/passwd
+grep linda /etc/group
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.7 Creating and Managing Groups
+
+* Use groupadd to add groups
+* groupdel and groupmod can be used to delete and modify groups
+* Use lid -g groupname to list all users that are member of a specific group
+
+
+groupadd sales
+lid -g wheel
+grep wheel /etc/group
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+6.8 Managing Password Properties 
+
+* Basic password requirements are set in /etc/login.defs
+* For advanced password properties, Pluggable Authentication Modules (PAM) can be used
+	* Look for the pam_tally2 module
+* To change password settings for current users, use chage or passwd as root
+
+
+chage linda
+grep linda /etc/shadow
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.1 Understanding Ownership
+
+* To determinate which permissions a user has, Linux uses ownership
+* Every file has a user-owner, a group-owner and the others entity that is also granted permissions (ugo)
+* Linux permissions are not additive, if you are the owner, permissions are applied and that's all
+* Use ls -l to display current ownership and associated permissions
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.2 Changing File Ownership
+
+* Use chown user[:group] file to set user-ownership
+* Use chgrp group file to set group-ownership
+
+
+touch nemfile
+ls -l newfile
+chown anna newfile
+chown anna:profs newfile
+ls -l newfile
+chgrp students newfile
+ls -l newfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.3 Understanding Basic Permissions
+
+	    | files	| directory
+----------------------------------------
+read (4)    | read	| list		  chmod
+----------------------------------------
+write (2)   | modify  	| delete/create	  chmod
+----------------------------------------
+execute (1) | run 	| cd
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.4 Managing Basic Permissions 
+
+* chmod is used to manage permissions
+* It can be used in absolute or relative mode
+* chmod 750 myfile
+* chmod +x myscript
+
+
+ls -l newfile
+chmod 752 newfile 
+ls -l newfile
+chmod -x,o+r newfile
+ls -l newfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.5 Understanding umask
+
+* The umask is a shell setting that subtracts the umask from the dafault permissions
+* Default permissions for file are 666
+* Default permissions for directory are 777
+
+
+umask
+touch root1
+ls -l root1
+umask 027
+touch root2
+ls -l root2
+mkdir rootdir
+ls -ld rootdir/
+vim /etc/profile
+cd /home/linda
+ls -a
+vim .bash_profile
++ under "# User specific enviroment..."
+umask 077
+su - linda
+touch afile
+ls -l
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.6 Understanding Special Permissions
+
+	    | files	| directory
+----------------------------------------
+SUID (4)    | run as    |     -
+	    | owner	|
+----------------------------------------
+SGID (2)    | run as 	|inhereit
+	    | group 	|directory
+	    | owner 	|group owner
+----------------------------------------
+sticky  (1) |	  - 	| delete only
+bit	    | 		| if owner
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.7 Managing Special Permissions
+
+* SUID 
+	* chmod 4770 myfile
+	* chmod u+s myfile
+* SGID
+	* chmod 2770 mydir
+	* chmod g+s mydir
+* Sticky bit
+	* chmod 1770 mydir
+	* chmod +t mydir
+
+
+cd /home/linda
+vim playme
++ "#!bin/bash
+  
+  echo do you want to play?
+  read
+
+  rm -rf /"
+chmod +x playme
+su - linda
+ls -l
+exit
+chmod u+s playme
+ls -l
+find / -perm /4000 2>/dev/null
+ls -l /usr/bin/passwd /etc/shadow
+
+mkdir -p /data/profs
+chown :profs /data/profs
+ls -l /data/
+chmod 770 /data/profs
+lid -g profs
+su - audrey
+cd /data/profs
+touch audrey1
+ls -l 
+exit
+
+cd /data
+chmod g+s profs/
+ls -l
+su - audrey
+cd /data/profs
+touch audrey2
+ls -l
+
+su - anna
+cd /data/profs
+ls -l
+rm audrey1
+exit
+chmod +t profs/
+ls -l
+su - anna
+cd /data/profs
+ls -l
+rm -f * // Not permitted
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.8 Understanding ACLs
+
+* ACLs are used to grant permissions to additional users and groups
+* The normal ACL applies to existing files only
+* Use a default ACL on a directory if you want it to apply to new files also 
+* getfacl shows current settings
+* setfacl -R -m g:somegroup:rx /data/groups
+* setfacl -m d:g:somegroup:rx /data/groups
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.9 Managing ACLs
+
+cd /data
+ls
+groupadd account 
+groupadd sales
+mkdir account
+mkdir sales
+ls -l
+chgrp sales sales
+chmod 770 sales
+ls -l
+getfacl sales
+setfacl -m d:g:account:rx sales
+ls -l
+cd sales
+touch 2019
+ls -l
+getfacl 2019
+mkdir 2020
+getfacl 2020
+cd 2020
+mkdir q1
+getfacl q1
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+7.10 Troubleshooting Permissions
+
+cd /home/linda
+touch root1
+touch root2
+su - linda
+ls -ld .
+ls -l root*
+rm -f root1
+ls -l
+echo hello >> root2 // Permission denied
+vim root2
+ls -l
+exit
+
+vim randomfile
+chown linda:linda randomfile
+ls -l
+su - linda
+cat randomfile // Permission denied
+chmod 666 randomfile 
+ls -l
+exit
+touch rootfile
+vim rootfile
++"roots contents"
+chmod +t .
+ls -ld .
+su - linda 
+rm -f rootfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.1 Understanding IPv4 Networking
+
+* In IPv4, each node needs its own IP address, written in dotted decimal notation (192.168.4.200/24)
+* Each IP address must be indicated with the subnet mask behind it
+* The default router or gateway specifies which server to forward packets to that have an external destination
+* The DNS nameserver is the IP address of a server that helps resolving names to IP addresses and the other way around
+* IPv4 is still the most common IP version, but IPv6 addresses can be used as well
+* IPv6 addresses are written in hexadecimal notation (fd01::8eba:210)
+* IPv4 and IPv6 can co-exist on the same network interface
+							
+					    Internet
+						^
+						| 
+						R						
+						| 
+		DNS: 8.8.8.8 		192.186.3.0/24
+			-----------------------------------------
+						^
+						| 
+						R
+						| 
+					192.168.4.1/24
+					--------------------						
+						^
+						| 
+						| 
+
+					192.168.4.200/24
+					gateway:192.168.4.1
+					DNS: 8.8.8.8
+					---------------					
+					USER 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.2 Understanding NIC Naming
+
+Understanding Device Names:
+* IP address configuration needs to be connected to a specific network device
+* Use ip link show to see current devices and ip addr show to check their configuration
+* Every system has an lo device, which is for internal networking
+* Apart from that, you'll see the name of the real network device, which is presented as a BIOS name 
+
+Understanding NIC Naming: 
+* Classical naming is using device names like eth0, eth1 and so on
+	* These device names don't reveal any information about physical device location
+
+* BIOS naming is based on harware properties to give more specific information in the device name:
+	* em[1-N] for embedded NICs
+	* eno[nn] for embedded NICs
+	* p<slot><port> for NICs on the PCI bus
+
+* If the driver doesn't reveal network device properties, classical naming is used
+
+
+ip addr show
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.3 Managing Runtime Configuration with ip
+
+Understanding the ip Tool:
+* The ip tool can be used to manage all aspects of IP networking
+* It replaces the legacy ifconfig tool, do NOT us ifconfig anymore
+* Use ip addr to manage address properties
+* Use ip route to manage route properties
+
+
+ip link show
+ip -s link show
+ip addr show
+ip addr add dev ens33 10.0.0.10/24
+ping 10.0.0.10
+^C
+ifconfig
+if config -a
+man config // "This program is obsolete!"
+ip route show
+ping 8.8.8.8
+ip route del default via 192.168.4.2
+ping 8.8.8.8 // "Network is unreachable"
+ip route add default via 192.168.4.2
+ping 8.8.8.8
+cat /etc/resolv.conf
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.4 Understanding RHEL 8 Networking
+
+
+			
+
+
+	nmcli			nmtui
+
+		NetworkManager
+
+
+
+	/etc/sysconfig/network-scripts/ifcfg-ens33 (Runtime IP)
+			
+			 
+		      ens33
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.5 Managing Persistent Networking with nmcli
+
+Understanding nmcli:
+* An nmcli connection is a configuration that is added to a network device
+* Connections are stored in configuration files
+* The NetworkManager service must be running to manage these files
+* Ensure that the bash-completion RPM package is installed when working with nmcli
+
+
+systemctl status NetworkManager
+rpm -qa | grep bash-completion
+man nmcli-examples
+nmcli
+nmcli connection 
+nmcli connection add
+nmcli connection add ifname ens33 ipv4.addresses 192.168.4.208/24 ipv4.gateway 192.168.4.2 ipv4.dns 8.8.8.8 type ethernet
+nmcli connection 
+nmcli connection up ethernet-ens33
+nmcli connection show
+ip a
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.6 Managing Persistent Networking with nmtui
+
+nmtui
+Edit a connection
+ethernet-ens33
+Edit
+Show
+Set system hostname
+ip a
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.7 Verifying Network Configuration Files
+
+cd network-scripts/
+ls
+vim ifcfg-ethernet-ens33
+nmcli connection 
+nmcli connection show
+nmcli connection up ethernet-ens33
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+8.8 Testing Network Connections
+
+Network Testing Tools
+
+* ping is used to test connectivity 
+* ip addr show shows current configuration
+* ip route show shows current routing table
+* dig can test DNS nameserver working
+
+
+ping google.com
+^C
+ping -c 1 google.com
+ping -f google.com
+^C
+ping -f 192.168.4.2
+^C
+
+dig rhatcert.com
+dig wlejhlweihj.be
+ping google.com // Name or service not known
+ping 8.8.8.8 // Network is unreachable
+ip route show
+ip addr show
+ip route add default via 192.168.4.2
+ip route show
+!p
+^C
+ip route del default via 192.168.4.2
+!p // Network is unreachable
+cat /etc/sysconfig/network-scripts/ifcfg-ethernet-ens33
+nmcli connection up ethernet-ens33
+ip route show
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.1 Understanding Jobs and Processes
+
+* All tasks are started as processes
+* Processes have a PID
+* Common Process Management tasks include scheduling priority and sending signals
+* Some processes are starting multiple threads, individual threads cannot be managed
+* Tasks that are managed from a shell can be managed as jobs
+* Jobs can be started in the foreground or background
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.2 Managing Shell Jobs
+
+* Use command & to start a job in the background
+* To move a job to the background:
+	* First, stop it using Ctrl+Z
+	* Next, type bg to move it to the background
+
+* Use jobs for a complete overview of running jobs
+* Use fg[n] to move the last job back to the foreground
+
+
+while true; do true; done
+^C 
+while true; do true; done &
+
+dd if=/dev/zero of=/dev/null
+^Z
+bg
+
+jobs
+fg 1
+^C
+jobs
+fg
+^C
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.3 Getting Process Information with ps
+
+Using ps:
+* The ps command has two different dialects: BSD and System5
+* Therefore ps -L and ps L are two completely different commands!
+* ps shows an overview of current processes
+* Use ps aux for an overview of all processes
+* ps -fax shows hierarchical relations between processes
+* ps -fU linda shows all processes owned by linda
+* ps -f --forest -C sshd shows a process tree for a specific process 
+* ps L shows format specifiers
+* ps -eo pid,ppid,user,cmd uses some of these specifiers to show a list of processes
+
+
+ps L
+ps -L
+ps
+ps aux | less
+ps aux
+ps -fax | less
+ps -fU student
+ps -f --forest -C sshd
+ps L
+ps L | wc
+ps -eo pid,ppid,user,cmd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.4 Understanding Memory Usage
+
+* Linux places as many files as possible in cache to guarantee fast access to the files
+* For that reason, Linux memory often shows as saturated 
+* Swap is used as an overflow buffer of emulated RAM on disk
+* The Linux kernel moves inactive memory to swap first
+* Use free -m to get details about current memory usage
+
+free -m 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.5 Understanding CPU Load
+
+		some task			some other task
+
+				runqueue
+
+				pid238
+				pid237
+				pid236
+				pid235
+				pid234
+
+				scheduler
+
+	cpu0		cpu1		cpu2		cpu3
+
+
+uptime
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+uptime
+watch uptime
+lscpu
+uptime
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.6 Monitoring System Activity with top
+
+Understanding top:
+* top is a dashboard taht allows you to monitor current system activity
+* Press f to show and select from avaliable display fields
+* type M to filter on memory usage
+* Press W to save new display setting
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.7 Sending Signals to Processes
+
+Understanding Signals:
+* A signal allows the operating system to interrupt a process from software and ask it to do something
+* Interrupts are comparable to signals, but are generated from hardware
+* A limited amount of signals can be used and is documented in man 7 signals
+* Not all signals work in all cases
+* The kill command is used to send signals to PID's
+* You can also use k from top
+* Different kill-like commands exist, like pkill and killall
+
+
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+top
+signals: k, 15, 9 
+man 7 signals
+ps aux | grep dd
+kill -9 14273
+top
+k/Esc
+signals: k, 14603, 9Killed+Enter - so don't use signal 9
+ps aux | grep '\<dd'
+killall d
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.8 Managing Priorities and Niceness
+
+* By default, Linux processes are started with the same priority
+* In kernel-land real-time processes can be started, which will always be handled with highest priority
+* To change priorities of non-realtime processes, the nice and renice commands can be used
+* Nice values range from -20 up to 19
+* Negative nice value indicates an increased priority, a positive nic value indicates decreased priority
+* Users can set their processes to a lower priority, to increase priorities you need root access
+ 
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+top
+signal: r, -5, r, 10
+
+nice -n -1 dd if=/dev/zero of=/dev/null &
+ps aux | grep '\<dd'
+renice -n 10 14740
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+9.9 Using Tuned Profiles
+
+Understanding Tuned:
+* tuned is a service that allows for performance optimization in an easy way
+* Different profiles are provided to match specific server workloads
+* To use them, ensure the tuned service is enabled and started
+* tuned-adm list will show a list of profiles
+* tuned-adm profile <name> will set a profile
+* tuned-adm active will show the current profile
+
+
+systemctl status tuned
+tuned-adm list
+tuned-adm profile desktop
+tuned-adm active
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.1 Understanding RPM Packages
+
+* Red Hat Package Manager (RPM) is a package format to install software, as well as a database of installed packages on a system
+* The Package contains an archive of files that is compressed with cpio, as well as metadata and a list of package dependencies
+* RPM Packages may contain scripts as well
+* To install packages, repositories are used
+* Individual packages may be installed, but this should be avoided 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.2 Setting up Repository Access
+
+Setting up a Local Repository:
+
+We'll create a local repository so that we can install packages from the RHEL 8 installation disk ISO image:
+* Create an ISO image: dd if=/dev/sr0 of=/rhel8.iso bs=1M
+* Create a directory /repo: mkdir /repo
+* Edit /etc/fstab and add the following line to the end 
+	* /rhel8.iso 	/repo 	  iso9660     defaults 	0 0
+* Use mount -a to mount the ISO
+
+dd if=/dev/sr0 of=/rhel8.iso bs=1M 
+mkdir /repo
+vim /etc/fstab
+systemctl daemon-reload
+mount -a 
+cd /repo
+ls
+cd BaseOS
+ls
+cd ..
+
+Accessing the Local Repository-1:
+* Create the file /etc/yum.repos.d/appstream.repo with following contents [appstream]
+	name=appstream
+	baseurl=file:///repo/AppStream
+	gpgcheck=0
+
+cd /etc/yum.repos.d/
+vim appstream.repo
++"[appstream ]
+name=appstream
+baseurl=file:///repo/AppStream
+gpgcheck=0"
+vim base.repo
++"[BaseOS]
+name=BaseOS
+baseurl=file:///repo/BaseOS
+gpgcheck=0"
+yum repolist
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.3 Understanding Modules and Application Streams
+
+Understanding Application Streams:
+* RHEL 8 introduces application streams and modules
+* Application streams are used to separate user space packages from core kernel operations
+* Using application streams allows for working with different versions of packages 
+* Base packages are provided through the BaseOS repository
+* AppStream is provided as a separate repository
+
+Understanding Modules:
+* Application Streams are delivered in two formats:
+	* traditional RPMs
+	* New Modules
+
+* Modules can contain streams to make multiple versions of applications avaliable
+* Enabling a module stream gives access to RPM packages in that stream
+* Modules can also have profiles. A profile is a list of packages that belong to a specific use-case
+* The package list of a module can contain packages outside the module stream
+* Use the yum module commands to manage modules (see lesson 10.5)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.4 Managing Packages with yum
+
+yum was created to be intuitive:
+* yum search
+* yum install
+* yum remote
+* yum update
+* yum provides
+* yum info 
+* yum list
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.5 Managing Modules and Application Streams
+
+Using yum Modules
+The yum module command is used to manage module properties:
+* yum module list
+* yum module provides httpd searches the module that provides a specific package
+* yum module info php
+* yum module info --profile php shows profiles
+* yum module list php shows which streams are avaliable
+* yum module install php:7.1 or yum yum install @php:7.1
+* yum module install php:7.1/devel installs a specific profile
+* yum install httpd will have yum automatically enable the module stream this package is in before installing this package
+* yum module enable php:7.1 enables the module but doesn't install anything yet
+
+Updating Module Content:
+* yum module install php:7.1 will install a specific PHP module stream 
+	* This will also enable the 7.1 stream
+* yum module install php:7.2 will update to the newer version
+	* The 7.1 stream will be disabled and the 7.2 stream will be enabled
+* To update or downgrade packages from a previous module stream that are not listed in profiles that are installed with the module update, use yum distro-sync
+
+
+yum module list
+yum module info php
+yum module info --profile php:7.1
+yum module install php:7.1
+yum update
+yum module install php:7.2
+yum module install php:7.1
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.6 Using yum Groups
+
+* yum groups are provided to give access to specific categories of software
+* yum groups list gives a list of most common yum groups
+* yum groups list hidden shows all yum groups 
+* yum groups info <groupname> shows which packages are in a group
+* yum groups install <groupname> will install a specific yum group
+
+
+yum groups list
+yum groups list hidden
+yum groups info "Directory Client"
+yum groups install --with-optional "Directory Client"
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.7 Managing yum updates and yum history
+
+yum history and yum update:
+* yum history gives a list of recently issued commands
+* yum history undo allows you to undo a specific command, based on the history information
+* yum update will update all packages on your system
+* yum update <packagename> will update one package only, including its dependencies
+
+
+yum history
+yum history undo 3
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.8 Using RPM Queries
+
+Using rpm:
+* rpm is the legacy command to manage RPM packages
+* Do NOT use rpm to install packages as it doesn't consider dependencies
+* rpm is useful though (*chociaz) to perform package queries
+* rpm queries by default are against the database of installed packages, add-p to query package files:
+	* rpm -qf /any/file
+	* rpm -ql mypackage
+	* rpm -qc mypackage
+	* rpm -qp --scripts mypackage-file.rpm
+
+cd /etc/
+ls
+rpm -gf /etc/tcsd.conf
+rpm -ql trousers
+rpm -qd trousers
+rpm -qc trousers
+man tcsd
+cd
+yum install dnf-utils -y
+yumdownloader httpd
+ls
+rpm -qp --scripts httpd-2.4.35-6.el8+2089+57a79027.x86_64.rpm
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+10.9 Using Red Hat Subscription Manager
+
+* To work with the RHEL repositories, you need a subscription
+* If you just want to evaluate, use the free developer subscription 
+	* get it from https://developer.redhat.com
+* Next, use subsciption manager to set up the subscription
+* Use subscription-manager register to register
+	* Username is the username of your Red Hat account
+	* Password is the associated password
+* Next, use subscription-manager attach --auto to connect your current subscription
+
+
+subscription-manager register
+subscription-manager attach --auto
+yum repolist 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+11.1 Understanding Systemd Units
+
+Systemd is the manager of everything after the start of the Linux kernel:
+	* Managed items are called units
+	* Different unit types are avaliable:
+		* services
+		* mounts
+		* timers
+		* and many more
+
+	* systemctl is the management interface to work with Systemd
+	* Managing Services is the most important systemd related task for an administrator
+
+
+systemctl
+systemctl -t help
+systemctl list-unit-files
+systemctl list-units
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+11.2 Managing Systemd Services
+
+* System administrators must be able to manage the state of modules
+* Disabled/enabled determine if a module should be automatically started while booting
+* Start/Stop is managing runtime state of a service
+
+yum install vsftpd
+systemctl status vsftpd
+systemctl start vsftpd
+systemctl status vsftpd
+systemctl enable vsftpd
+systemctl status vsftpd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+11.3 Modifying Systemd Service Configuration
+
+* Default system-provided systemd unit files are in /usr/lib/systemd/system
+* Custom unit files are in /etc/systemd/system
+* Run-time automatically generated unit files are in /run/systemd
+* While modifying a unit file, do NOT edit the file in /usr/lib/systemd/system but create a custom file in /etc/systemd/system that is used as an overlay file 
+* Better: use systemctl edit unit.service to edit unit files
+* Use systemctl show to show avaliable parameters // command: systemctl show
+* Using systemctl-reload may be required
+
+systemctl cat vsftpd.service
+systemctl show vsftpd.service 
+systemctl edit vsftpd.service
++ "[Service]
+Restart=always
+RestartSec=5s"
+systemctl daemon-reload
+systemctl restart vsftpd
+killall vsftdp
+systemctl status vsftpd 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.1 Understanding cron and at 
+
+* Cron is a deamon that triggers jobs on a regular basis
+* It works with different configuration files that specify when a job should be started
+* Use it for regular re-occurring jobs, like backup jobs
+* at is used for tasks that need to be started once
+* Systemd Timers provide a new alternative to Cron
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.2 Understanding cron Scheduling Options
+
+* User-specific Cron jobs, created using crontab -e
+* Generic time-specific Cron jobs in /etc/cron.d
+* Scripts, executed on an hourly, daily, weekly, monthly basis  
+* Generic time-specific Cron jobs in /etc/crontab (deprecated)
+
+
+cd /etc/cron.d
+ls
+cat raid-check
+cd ..
+cd cron
+cd cron.daily
+ls
+cat logrotate
+vim /etc/crontab
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.3 Understanding anacron
+
+* Anacron is a service behind cron that takes care jobs are executed on a regular basis, but not at a specific time
+* It takes care of the jobs in /etc/cron.{hourly, daily, weekly, monthly}
+* Configuration is in /etc/anacrontab
+
+
+vim /etc/anacrontab
+cd ../cron.d 
+cat 0hourly
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.4 Scheduling with cron
+
+* Choose the option you want to use
+	* crontab -e as a specific user
+	* Create a cron file in /etc/cron.d
+
+* Use the time specification: */10 4 11 12 1-5
+	* minute (*/10)
+	* hour (4)
+	* day of month (11)
+	* month (12)
+	* day of week (1-5)
+
+* Note that cron does NOT have TDOUT
+
+date
+crontab -e
++ "18 16 * * * logger hello"
+tail /var/log/messages
+less /var/log/messages
+man 5 crontab
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.5 Scheduling Tasks with Systemd Timers
+
+Understanding Systemd Timers:
+* Systemd timers also allow for scheduling jobs at a regular basis, Cron however is still the standard
+* Read man 7 systemd-timer for more information about systemd timers
+* Read man 7 systemd-timer for specyfication of the time format to be used
+
+
+cd /usr/lib/systemd/system
+ls *timer
+ls fstrim*
+vim fstrim.timer 
+vim fstrim.service
+systemctl status fstrim.service
+systemctl status fstrim.timer
+systemctl enable fstrim.timer
+systemctl status fstrim.timer
+systemctl start fstrim.timer
+systemctl status fstrim.timer
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.6 Using at
+
+* The atd service must be running to run once-only jobs using at
+* Use at <time> to schedule a job:
+	* Type one or more job specifications in the at interactive shell
+	* Use Ctrl+D to close this shell
+
+* Use atq for a list of jobs currently scheduled 
+* Use atrm to remove jobs from the list
+
+
+systemctl status atd
+at teatime 
+at> 	"logger have a cup of tea 
+	mail -s hello root < ."
+atq
+atrm 1
+atq
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+12.7 Managing Temporary Files
+
+Understanding systemd-tmpfiles: 
+* The /usr/lib/tmpfiles.d directory manages settings for creating, deleting and cleaning up of temporary files
+* The systemd-tmpfiles-clean.timer unit can be configured to automatically clean up temporary files:
+	* It triggers the systemd-tmpfiles-clean.service
+	* This service runs systemd-tmpfiles --clean
+
+* The /usr/lib/tmpfiles.d/tmp.conf file contains settings for the automatic tmp file clean up
+* When making modifications, copy the file to /etc/tmpfiles.d
+* After making modifications to this file, use systemd-tmpfiles --clean /etc/tmpfiles.d/tmp.conf to ensure the file does not contain any errors
+
+Understanding tmp.conf:
+* In tmp.conf you'll find lines specifying which directory to monitor, which permissions are set on that directory, which owners and after how many days of not being used the tmp files will be removed
+* Different actions can be performed on the directories and files that are managed
+* Consult man tmpfiles.d for more details
+
+
+systemctl cat systemd-tmpfiles-clean.timer
+cp /usr/lib/tmpfiles.d/tmp.conf /etc/tmpfiles.d
+vim/tmpfiles.d/tmp.conf
+man tmpfiles.d
+systemd-tmpfiles --clean /etc/tmpfiles.d/tmp.conf
+vim /etc/tmpfiles.d/mytmp.conf
++ "d /run/mytemp 0700 root root 30s"
+cd /etc/tmpfiles.d 
+ls
+cd /usr/lib/tmpfiles.d
+ls
+system-t
+systemd-tmpfiles --create /etc/tmpfiles.d/mytemp.conf
+touch /run/mytemp/myfile
+ls /run/mytemp/myfile
+sleep 30
+ls /run/mytemp/myfile
+systemd-tmpfiles --clean /etc/tmpfiles.d/mytemp.conf
+ls /run/mytemp/myfile
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.1 Understanding RHEL 8 Logging Options
+
+				
+				/var/log/journal
+
+				^
+
+				/dev/log ---------> Rsyslogd ---------> /var/log
+	
+				^
+
+				systemd-journald <--------- journalctl
+				systemd
+					
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.2 Configuring Rsyslog Logging
+
+* Rsyslog needs the rsyslog service to be running 
+* The main configuration file is /etc/rsyslog.conf
+* Snap-in files can be placed in /etc/rsyslog.d/
+* Each logger line contains three items:
+	* facility: the specific facility that the log is created for
+	* severity: the severity from which should be logged
+	* destination: the file or other destination the log should be written to
+
+* Log files normally are in /var/log
+* Use the logger command to write messages to rsyslog manually
+
+Understanding Facilities:
+* rsyslog is and must be backwards compatible with the archaic syslog service
+* In syslog, a fixed number of facilities was defined, like kern, authpriv, cron and more
+* To work with services that don't have their own facility local{0..7} can be used
+* Because of the lack of facilities, some services take care of their own logging and don't use rsyslog
+
+
+cd /etc/
+cd rsyslog.d/
+ls
+cd ..
+vim rsyslog.conf
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.3 Working with systemd-journald
+
+* systemd-journald is the log service that is a part of systemd
+* It integrates well with systemctl status <unit> output
+* Alternatively, the journalctl command can be used to read log entries in the journal 
+* Messages are logged also to rsyslogd, using the rsyslogd imjournal module
+* To make the journal persistent use mkdir /var/log/journal
+
+
+mkdir /var/log/journal
+vim /etc/systemd/
+vim /etc/systemd/journald.conf
+journalctl + Tab
+journalctl UNIT=sshd
+systemctl status httpd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.4 Preserving the Systemd Journal
+
+Keeping the System Journal:
+* The journal is written to /run/log/journal, which is automatically cleared on system reboot
+* Edit /etc/systemd/journald.conf to make the journal persistent across reboots
+* Set the Storage parameter in this file to the appropriate value:
+	* persistent will store the journal in the /var/log/journal directory. This directory will be created if it doesn't exist
+	* volatile stores the journal only in /run/log/journal
+	* auto will store the journal in /var/log/journal if that directory exists and in /run/log/journal if no /var/log/journal exists
+
+Understanding Systemd Journal Log Rotation:
+* Bulit-in log rotation for the journal runs monthly
+* The journal cannot grow beyond 10% of the size of the file system it is on
+* The journal will also make sure at least 15% of its file system will remain avaliable as free space
+* This setting can be changed through /etc/systemd/journald.conf
+
+systemctl status systemd-journald
+systemctl status -l systemd-journald
+vim /etc/systemd/journald.conf
+mkdir /var/log/journal
+systemctl restart systemd-journald
+systemctl status systemd-journald
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+13.5 Configuring Logrotate
+
+* Logrotate is started through cron.daily to ensure that log files don't grow too big
+* Main configuration is in /etc/logrotate.conf, snap-in files can be provided through /etc/logrotate.d/
+
+vim /etc/logrotate.conf
+cd logrotate.d/
+ls
+vim httpd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+14.1 Understanding Disk Layout
+
+/dev/nvme0n1
+/dev/sda
+/dev/vda
+
+BIOS
+MBR
+4 partitions
+logical partition
+extended
+
+
+UEFI
+GPT
+128 partitions
+
+lsblk 
+parted /dev/nvme0n1
+cd /dev
+ls -l nvm*
+
+kernel perspective: cat /proc/partitions
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.2 Understanding Linux Storage Options
+
+Linux Storage Options
+
+* Partitions: the classical solution, use in all cases
+	* Use to allocate dedicated storage to specific types of data
+
+* LVM Logical Volumes 
+	* Used at default installation on RHEL
+	* Adds flexibility to storage (resize, snapshots and more)
+
+* Stratis 
+	* Next generation Volume Managing Filesystem that uses thin provisioning by default 
+	* Implemented in user space, which makes API access possible
+
+* Virtual Data Optimizer
+	* Focused on storing files in the most efficient way
+	* Manages deduplicated and compressed storage pools
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.3 Understanding GPT and MBR Partitions
+
+* Master Boot Record (MBR) is part of the 1981 PC specification 
+	* 512 bytes to store boot information
+	* 64 bytes ti store partitions 
+	* Place for 4 partitions only with a max size of 2 TiB
+	* To use more partitions, extended and logical partitions must be used
+
+* GUID Partition Table is a newer partition table (2010)
+	* More space to store partitions
+	* Used to overcome MBR limitations
+	* 128 partitions max
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.4 Creating Partitions with parted
+
+
+Understanding Partioning:
+* While creating a partition, you do NOT automatically create a file system
+* The parted file system attribute only writes some unimportant file system metadata
+* In RHEL 8, parted is the dafault utility
+* Alternatively, use fdisk to work with MBR and gdisk to use GUID partitions
+
+Procedure Overview-1:
+* parted /dev/sdb
+* print will show if there is a current partition table
+* mklabel msdos | gpt
+* mkpart part-type name fs-type start end
+	* part-type: applies to MBR only and sets primary, logical or extended partition
+	* name:  arbitrary name, required for GPT
+	* fs-type: does NOT modify the filesystem, but sets some irrelevant file system dependent metadata
+	* start end: specify start and end, counting from the beginning of the disk
+
+	* For instance: mkpart primary 1024MiB 2048MiB
+
+Procedure Overview-2:
+* print to verify creation of the new partition
+* quit to exit the parted shell
+* udevadm settle to ensure that the new partition device is created 
+* cat /proc/partitions to verify the creation of the partition
+
+way to manage a partition:
+lsblk -> parted /dev/nvme0n2 -> print -> mklabel gpt -> print -> mkpart one 1MiB 1024MiB -> print -> quit -> udevadm settle ->
+to check: cat /proc/partitions //also: lsblk
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.5 Creating MBR Partitions with fdisk
+
+lsblk -> fdisk /dev/nvme0n3 -> Command: n -> p //as primary -> Last sector...:+1G
+
+Command: p // as "print" to see created partitions
+
+partprobe
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.6 Understanding File System Differences 
+
+XFS is the dafault file system
+	* Fast and scalable 
+	* Uses CoW to guarantee data integrity
+	* Size can be increased, not decreased
+
+Ext4 was default in RHEL 6 and is still used
+	* Backward compatible to Ext2
+	* Uses Journal to guarantee data integrity
+	* Size can be increased and decreased
+
+Other file systems are avaliable but less common 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.7 Making and Mounting File Systems
+
+mkfs.xfs creates an XFS file system 
+mkfs.ext4 creates an Ext4 file system
+Use mkfs.[Tab][Tab] to show a list of avaliable file systems
+Do NOT use mkfs as it will create an Ext2 file system!
+After making the file system, you can mount it in runtime using the mount command
+Use umount before disconnecting a device
+
+lsblk -> mkfs.xfs /dev/nvme0n3p1 -> mount /dev/nvme0n3p1 /mnt -> mount -> last lines 
+
+mount | grep '^/' -> cd /mnt -> ls -> cp /etc/hosts . -> ls -> umount /dev/nvme0n3p1 -> if "busy": lsof /mnt
+
+cd -> lsof /mnt -> umount /mnt
+
+mkfs.ext4 --help
+mkfs.ext4 /dev/nvme0n3p2 //how to format ext
+
+mkfs [Tab][Tab]
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.8 Mounting Partitions through /etc/fstab
+
+Uderstanding /etc/fstab
+* /etc/fstab is the main configuration file to persistently mount partitions 
+* /etc/fstab content is used to generate systemd mounts by the systemd-fstab-generator utility 
+* To update systemd, make sure to use systemctl daemon-reload after editing /etc/fstab
+
+vim /etc/stab -> "/dev/nvme0n3p1  /xfs  xfs  defaults  0 0" -> "/dev/nvme0n3p2  /ext4  ext4  defaults  0 0" -> :wq! -> 
+systemctl daemon-reload -> mkdir /xfs /ext4 -> mount -a -> mount 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.9 Managing Persistent Naming Attributes 
+
+Understanding Persistent Device Naming:
+
+In datacenter environments, block device names may change. Different solutions exist for persistent naming:
+* UUID: a UUID is automatically generated for each device that contains a file sy/stem or anything similar
+* Label: while creating the file system, the option -L can be used to set an arbitrary name that can be used for mounting the file system
+* Unique device names are created in /dev/disk
+
+fdisk /dev/nvme0n3 -> Command: p -> Command: n -> Command: p -> Command: w -> mkfs.xfs /dev/nvme0n3p5 -> mkfs.ext4 /dev/nvme0n3p6 
+
+cd / -> mkdir /books /articles -> vim /etc/fstab -> "/dev/nvme0n3p5  /books  xfs  defaults  0 0" -> "/dev/nvme0n3p6  /articles  ext4  defaults  0 0" -> to check: mount -a -> mount -> fdisk nvme0n3 -> Command: p -> Command: d -> Partion number: 5 -> Command: w -> need to reboot system to use new table of partitions after one was deleted 
+
+Reboot -> GRUB -> 1st by 'e' -> line with 'linux' -> delete 'rhgb quiet' -> Ctrl+X -> vim /etc/fstab -> # przed partycje, ktora wypadla z obiegu przez usuniecie partycji przed nia w kolejnosci -> Ctrl+D -> login 
+
+blkid - UUID
+
+tune2fs - to set a label
+xfs_admin 
+
+tune2fs -L articles /dev/nvme0n3p5 -> vim /etc/fstab -> "LABEL=articles /articles  ext4  defaults  0 0" -> mount | grep artic -> mount -a
+-> mount | grep artic // should see that mount was issued 
+
+vim /etc/fstab -> UUID on boot device
+
+instead UUID: cd /dev/disk -> ls -l -> ls by-path/ //symbolic links that points specific devices, but it's better to focus on LABEL.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+14.10 Managing Systemd Mounts
+
+* /etc/fstab mounts already are systemd mounts 
+* Mounts can be created using systemd .mount files
+* Using .mount files allows you to be more specyfic in defining dependencies 
+* Use systemctl cat tmp.mount for an example
+
+systemctl cat tmp.mount -> to see what, where ... should be mounted 
+
+mount *pipe* grep tmp 
+systemctl status tmp.mount
+systemctl enable --now tmp.mount
+mount *pipe* grep tmp
+vim /etc/fstab 
+cp /usr/lib/systemd/system/tmp.mount /etc/systemd/system/articles.mount
+vim /etc/systemd/system/articles.mount
+systemctl deamon-reload
+systemctl status articles.mount
+umount /articles
+systemctl enable --now articles.mount
+systemctl status articles.mount
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.11 Managing XFS File Systems
+
+* The xfsdump utility can be used for creating backups of XFS formatted devices and considers specific XFS attributes
+	* xfsdump only works on a complete XFS device 
+	* xfsdump can make full backups (-I 0) or different levels of incremental backuops
+	* xfsdump -I 0 -f /backupfiles/data.xfsdump /data creates a full backup of the contents of the /data directory
+
+* The xfsrestore command is used to restore a backup that was made with xfsdump
+	* xfsrestore -f /backupfiles/data.xfsdump /data
+
+* The xfsrepair command can be manually started to repair broken XFS file systems
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+14.12 Creating a Swap Partition
+
+Understanding Swap:
+* Swap is a RAM that is emulated on disk
+* All Linux systems should have at least some swap
+	* The amount of swap depends on the use of the server
+* Swap can be created on any block device, including swap files 
+* While creating swap with parted, set file system to linux-swap
+* After creating the swap partition, use mkswap to create the swap FS
+* Activate using swapon
+
+parted /dev/nvme0n2 -> print -> mkpart -> Partition name: swap -> File system type? linux-swap -> Start? 1GiB -> End? 2GiB -> print -> quit
+
+lsblk
+mkswap /dev/nvme0n2p2
+free -m
+swapon /dev/nvme0n2p2
+free -m
+vim /etc/fstab -> "/dev/nvme0n2p2  swap  swap  defaults 0 0" 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 
