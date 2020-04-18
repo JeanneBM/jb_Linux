@@ -3132,13 +3132,493 @@ exit
 rsync -ar root@192.168.4.210:/etc/ temp/
 ls temp/mynewfile*
 
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+21.1 Understanding Apache Configuration:
+
+* Apache (httpd) is a leading web server on Linux
+* Nginx is the other leading web server
+* The main httpd configuration file is /etc/httpd/conf/httpd.conf
+* Additional snap-in files can be stored in /etc/httpd/conf.d/
+* The default DocumentRoot is /var/www/htdocs
+* Apache looks for a file with the name index.html in this directory
 
 
+yum install httpd
+systemctl enable --now httpd 
+systemctl status httpd 
+yum install -y curl
+curl http://localhost
+vim /etc/httpd/conf/httpd.conf
+Listen
+DocumentRoot
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+21.2 Creating a Basic Website
+
+cd /var/www/html/
+ls
+vim index.html
+"Hello World!"
+systemctl restart httpd
+curl http://localhost
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+22.1 Understanding the Need for SELinux
+
+* Linux security is bulit on UNIX security
+* UNIX security consist of different solutions that were never developed with current IT security needs in mind 
+* Most of these solutions focus on a part of the operating system
+* SELinux provides a complete and mandatory security solution 
+* The principle is that if it isn't specifically allowed, it will be denied
+* As a result, "unknown" services will always need additional configuration to enable them in an environment where SELinux is enabled
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.2 Managing SELinux Modes
+
+=====================================================
+
+enabled			->	Enforcing
+			->	Permissive
 
 
+ (reboot) 	Kernel 		setenforce
 
 
+disabled
 
+=====================================================
+
+Managing SELinux States:
+* getenforce will show the current state
+* setenforce toggles between Enforcing and Permissive
+* Edit /etc/sysconfig/selinux to manage the default state of SELinux
+* Never set to disabled if this is meant as a temporary measure only!
+
+getenforce
+setenforce permissive
+getenforce
+setenforce disabled
+vim /etc/sysconfig/selinux
+"SELinux=disabled"
+reboot
+getenforce
+setenforce enforcing
+vim /etc/sysconfig/selinux
+"SELinux=enforcing"
+reboot
+getenforce
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.3 Understanding SELinux Context Labels and Booleans
+
+Understanding Context Labels:
+* Every object is labeled with a context label:
+	* user: user specific context
+	* role: role specific context
+	* type: flags which type of operation is allowed on this object
+
+* Many commands support a -Z option to show current context informaction
+* Context types are used in the rules in the policy to define which source object has access to which target object
+
+Understanding Booleans:
+* A Boolean is a on/off switch
+* Use it to enable or disable specific categories of functionality altogether
+
+
+ps aux
+ps auxZ
+ps auxZ | grep ssh
+ls -lZd /etc/ssh/
+ls -lZ /etc/ssh/
+ps Zaux | grep http
+ls -Z /var/www
+ls -lZ /home/user
+getsebool -a
+getsebool -a | grep http
+setsebool -P httpd enable homedirs on 
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.4 Using File Context Labels
+
+* Use semanage fcontext to set the file context label
+	* This will write the context to the SELinux Policy
+
+* To enforce the policy setting on the file system, use restorecon
+* Alternatively, use touch /.autorelabel to relabel all files to the context that is specified in  the policy
+
+
+mkdir /web
+cd /web
+vim index.html
+"welcome to the web directory web server"
+vim /etc/httpd/conf/httpd.conf
+" DocumentRoot "/web" 
+...
+<Directory "/web" "
+systemctl restart httpd
+systemctl status httpd
+curl http://localhost
+setenforce 0 
+getenforce
+!cu
+setenforce 1
+man semanage-fcontext
+semanage fcontext -a -t httpd sys content t "/web(/.)?"
+!cu
+ls -ldZ /web
+restorecon -Rv /web
+!cu
+ps Zaux | grep httpd
+ls -Zd .
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.5 Analyzing SELinux Log Messages
+
+* SELinux uses auditd to write log messages to the audit log
+* Messages in the audit log may be hard to interpret 
+* Ensure that sealert is avaliable, it interprets messages from the audit log, applies SELinux AI 
+and writes meaningful messages to /var/log/messages
+* Run the sealert command, including the UUID message to get advice on how to troubleshoot specific issues
+
+
+grep AVC /var/log/audit/audit.log
+journalctl | grep sealert 
+sealert -l 16f10f8d-f099-467b-826e-ffb4aa7df98c | less
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+22.6 Resetting the Root Password and SELinux
+
+reboot
+GRUB prompt
+ap rd.break
+Ctrl+X
+mount -o remount.rw /sysroot
+chroot /sysroot
+passwd
+ls -Z /etc/shadow
+load_policy -i 
+ls -Z /etc/shadow
+restorecon -v /etc/shadow
+touch /.autorelabel
+reboot
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+23.1 Understanding RHEL 8 Firewalling
+
+
+kernel | netfilter  <--> nftables  <-->  firewalld
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+23.2 Understanding Firewalld Components
+
+Firewalld is using different components to make firewalling easier:
+	* Service: the main component, contains one or more ports as well as optional kernel modules that should be loaded
+	* Zone: a default configuration to which network cards can be assigned to apply apecific settings
+	* Ports: optional elements to allow access to specific ports
+	* Additional components are avaliable as well, but not frequently used in a base firewall configuration
+
+
+firewall-cmd --list-all
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+23.3 Configuring a Firewall with firewall-cmd
+
+* The firewall-cmd command is used to write firewall configuration
+* Use the option --permanent to write to persistent (but not to runtime)
+* Without --permanent the rule is written to runtime (but not to persistent)
+
+firewall-cmd --get-services
+firewall-cmd --add-service ftp
+firewall-cmd --list-all
+firewall-cmd --reload
+firewall-cmd --list-all
+firewall-cmd --add-service ftp --permanent
+firewall-cmd --list-all
+firewall-cmd --add-service ftp
+firewall-cmd --list-all
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+23.4 Using firewall-config
+
+yum search firewall-config
+yum install firewall-config
+firewall-config
+Ctrl+Z
+firewall-cmd --list-all
+fg
+^C
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.1 Understanding Automated Installations Solutions
+
+Several solutions exist for performing automated installations:
+	* Vagrant is used for automatic deployment of virtual machines
+	* Cloud-init and other templates can be used in cloud environments
+	* Kickstart can be used with a PXE-boot server to provide instructions for automatic installation of RHEL
+
+A kickstart file contains all installation instructions to set up a RHEL instance. It can be used to easily reproduce installations.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.2 Creating a Kickstart File
+
+* After installation, a file anaconda-ks.cfg is created to the root user home directory
+* Edit this file manually to make any changes that are required
+
+vim initial-setup-ks.cfg
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.3 Using the Kickstart File for Automatic Installations
+
+Using a Kickstart File:
+* Typically, the kickstart file is provided on an installation server
+* Before starting the installation, the client indicates where to get the Kickstart file from
+	* Use ks=http://somewhere/ks.cfg
+	* Or provide interface provided by the installation program (as in Virtual Machine Manager)
+
+
+Installation prompt 
+Tab
+ks=http://myserver/ks.cfg
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.4 Using Kickstart Files in Fully Automated Datacenters
+
+			|			|
+			|  access repository	|	
+			| ------------------->	|
+	Start		|    give kickstart	|
+	installation	| <-------------------	|
+			|    get kickstart	|
+			| ------------------->	|  http://ks.cfg
+			|			|
+	Installer	|      boot image	|		
+	loads		| <-------------------	|
+			| 			|  --------------
+			| 			|  | TFTP	| 
+	----------	| 			|  | ^		| 
+	|pxe boot|  	| ------------------->	|  | DHCP	| 
+	----------	| 			|  --------------
+			| 			|  Install server
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+24.5 Using Vagrant to Set Up Virtual Machines
+
+* Vagrant is a solution to automate installing Virtual Machines
+* Vagrant works with a "box", which is a tar file that contains a VM image
+* Preconfigurated boxes are avaliable at vagrantcloud.com
+* Administrators can create their own boxes
+* Providers allow Vagrant to interface with the underlying host platform
+	* Supported platforms are VirtualBox, VMware, Hyper-V and KVM
+
+* Provisioners can be used to further configure a Vagrant-configured VM
+	* Bash and Ansible are common provisioners
+
+* The Vagrantfile is a text file containing the instructions for creating the Vagrant environment
+* Vagrant is not included in RHEL 8 and must be installed from EPEL
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+25.1 Understanding Linux Time
+
+
+Hardware  <-- hwclock -->  	System  	<---- timedatectl, date -----	NTP
+							(1000sec!)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+25.2 Setting Time with timedatectl
+
+
+Linux Time Related Commands:
+* hwclock: set hardware clock and synchronize with system time
+* date: set current time and display format
+* tzselect: allows to select the current time zone
+* timedatactl: new utility to manage all aspects of time
+
+
+timedatectl status
+timedatactl
+timedatactl set-timezone America/Los_Angeles
+timedatactl show
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.1 Configuring a Base NFS Server
+
+Configuring NFS:
+* Run the nfs-server service
+* Create a directory you want to share: /data
+* Edit /etc/exports to contain the following line
+	* /data *(rw,no_root_squash)
+
+systemctl status nfs-server
+mkdir /data
+vim /etc/exports
++ "/data	*(rw,no_root_squash)"
+systemctl enable --now nfs-server
+systemctl status nfs-server
+firewall-cmd --add-service nfs
+firewall-cmd --add-service mountd
+firewall-cmd --add-service rpc-bind
+firewall-cmd --add-service rpc-bind --permanent
+firewall-cmd --add-service mountd --permanent
+firewall-cmd --add-service nfs --permanent
+firewall-cmd --list-all
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.2 Mounting NFS Shares
+
+* Use showmount -e nfs-server to show exports
+* Use mount nfsserver:/share /mnt to mount 
+* While mounting through /etc/fstab, include the _netdev mount option
+
+showmount -e 192.168.4.210
+mount 192.168.4.210:/data /mnt
+mount
+umount /mnt
+mkdir /nfs
+vim /etc/fstab
++ "192.168.4.210:/data	/nfs	nfs	netdev	0 0"
+mount -a
+mount
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.3 Configuring a Base Samba Server
+
+* Install the Samba server package
+* Create a directory to share
+* Create a local Linux user
+* Set Linux Permissions
+* Use smbpasswd -a to add a Samba user account
+* Enable the share in /etc/samba/smb.conf
+* Use systemctl start smb to start the service
+* Use firewall-cmd --add-service samba --permanent; firewall-cmd --reload to open the firewall
+
+
+yum install samba
+mkdir /samba
+useradd samba
+chown samba /samba
+chmod 770 /samba
+smbpasswd -a samba
+vim /etc/samba/smb.conf
++ "[samba]
+	   comment = samba share
+	   path = /samba
+	   write list = samba"
+systemctl enable --now smb
+systemctl status smb
+firewall-cmd --add-service samba --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.4 Mounting Samba Shares
+
+* Install the cifs-utils and samba-client RPM packages
+* Use smbclient -L //sambahost to discover shares
+* Use mount -o username=sambauser //sambaserver/share /somewhere to mount the share
+* Make mount persistent through /etc/fstab, using the _netdev, username= and password= mount options
+
+
+yum groups list
+yum groups list --hidden | less
+yum groups install "Network File System Client"
+smbclient -L //192.168.4.210
+Enter - nie ma root usera
+mount -o username=samba //192.168.4.210/samba /mnt
+mount
+vim /etc/fstab
++ "//192.168.4.210/samba	/samba	  cifs	 netdev,username=samba,password=password	0 0"	 
+mkdir /samba
+mount -a
+mount
+reboot
+mount
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.5 Understanding Automount 
+
+* In /etc/auto.master you'll identify the directory that automount should manage and the file that is used for additional mount information
+	* /data /etc/auto.data
+
+* In /etc/auto.data you'll identify the subdirectory on which to mount and want to mount exactly 
+	* files -rw nfsserver:/data/files
+
+* Ensure the autofs service is strated:
+	* systemctl enable --now autofs
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.6 Configuring Automount
+
+showmount -e labipa
+yum search autofs
+yum install autofs
+ls /
+systemctl enable --now autofs
+ls /
+vim /etc/auto.master 
+vim /etc/auto.misc
+vim /etc/auto.master
++under line with /misc  /etc/auto.misc
+"/files   /etc/auto.files"
+vim /etc/auto.files
+"data	-rw	labipa:/data"
+systemctl restart autofs
+ls /
+cd /files
+la -a
+cd data
+pwd
+mount | grep data
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+26.7 Configuring Automount for Home Directories
+
+su - ldapuser1
+exit
+ssh labipa
+vim /etc/exports
++ "/home/ldap	*(rw)"
+systemctl restart nfs-server
+exit
+showmount -e labipa
+vim /etc/auto.master
++ under the line with "/files ..."
+"/home/ldap 	/etc/auto.ldap"
+vim /etc/auto.ldap
+"* 	-rw	labipa:/home/ldap/&"
+systemctl restart autofs
+su - ldapuser1
+pwd
+touch hello
+ls -l
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
