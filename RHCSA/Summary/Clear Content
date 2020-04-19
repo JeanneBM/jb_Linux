@@ -167,19 +167,6 @@ Getting Started on the CLI:
 	* cat /etc/hosts: shows the contents of a file 
 	* findmnt: shows mounted file systems
 
-
-pwd
-whoami
-ls
-ls -l
-ip addr show 
-free
-free -m
-df
-df -h
-cat /etc/hosts
-findmnt
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 2.2 Working with the Bash Shell
@@ -193,21 +180,6 @@ Understanding the Shell:
 	* environment variables
 	* aliases
 	* scripts
-
-
-history
-!11
-!f
-^R (reverse-i-search - string of commands)
-ps aux
-ps aux | less
-ps aux | wc
-whoami >> lsfiles
-!ca
-env
-env | less
-LANG=fr_FR.utf-8
-LANG=en_EN.utf-8
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -232,20 +204,6 @@ Using Redirection and Piping:
 
 * In piping, the STDOUT of the first command is used as STDIN of the second command
 
-
-ls /etc
-ls /etc > etcfiles
-less etcfiles
-who 
-who > etcfiles
-ls >> etcfiles
-grep -R student /etc
-grep -R student /etc 2>/dev/null
-ls -l /etc
-ls -l /etc | wc
-ls -l /etc | less
-ls -l /etc | grep host
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 2.5 Understanding the Linux File System Hierarchy
@@ -266,42 +224,6 @@ Understanding the FHS:
 		| -- ....
 
 
-pwd 
-cd ..
-ls
-ls -l
-cd /boot
-ls
-cd /dev
-ls
-ls -l 
-cd /etc
-ls
-cat passwd
-cat redhat-release
-cat os-release
-cd /
-ls
-cd /home
-ls
-useradd linda
-ls -lk
-cd /usr
-ls
-cd bin
-ls
-cd sbin
-pwd
-cd ../sbin
-ls
-cd /var
-ls
-cd log
-ls
-ls -l
-less README
-man hier
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 2.6 Using man
@@ -310,13 +232,6 @@ man hier
 	* Sections define command types
 	* Many man pages have examples
 	* Search for text using /
-
-
-man man
-/section
-man lvcreate
-man ls
-man lvcreate 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -327,18 +242,6 @@ man lvcreate
 * A lot of results can show, use grep to filter the results
 * The mandb is bulit automatically through a cron scheduled task
 * Manually trigger a rebulit using mandb
-
-
-man -k user // "Nothing..."
-su -
-man man 
-/-k
-man apropos
-man mandb
-mandb
-man -k user
-man -k user | wc
-man -k user | grep 8
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -404,21 +307,6 @@ Globbing Examples
 * ls [!hm]ost
 * ls script[0-9][0-9]
 
-
-cd /etc
-ls hosts
-ls ?ost // "Cannot found..."
-ls ?ost*
-cd
-touch hosts
-touch ghosts
-touch gosts
-ls ?ost*
-touch script{0..100}
-ls
-ls script[0-9][0-9]
-ls script[0-5][5-9]
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 2.11 Using Cockpit
@@ -439,21 +327,6 @@ http://localhost:9090
 * rmdir
 * rm
 
-
-ls
-ls -l
-mkdir scripts
-mkdir new/scripts // "Cannot create directory..."
-mkdir -p new/scripts
-cp /etc/hosts .
-cp /etc/h* . // "Not specified..."
-cp -r /etc/h* .
-mv script* scripts/ // "Cannot move..."
-rmdir scripts/
-rm hosts.deny
-su -
-rm -rf / // "It is too dangerous..."
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 3.2 Finding Files
@@ -462,33 +335,6 @@ rm -rf / // "It is too dangerous..."
 * which looks for binaries in $PATH
 * locate uses a database, built by updatedb to find files in a database
 * find is the most flexible tool that allows you to find files based on many criteria
-
-
-which useradd
-echo $PATH
-vim hello
-+" #!/bin/bash
-   echo hello world"
-chmod +x hello
-hello
-./hello
-which hello
-locate useradd
-updatedb
-locate useradd
-touch newfile
-locate newfile
-find / -name "hosts"
-find / -name "host"
-find / -type f -size +100M
-find / -user student
-find /etc -exec grep -l student {} \; 
-find /etc -exec grep -l student {} \; 2>/dev/null
-grep -l student /etc/*
-grep -l student /etc/* 2>/dev/null
-find /etc -size +100c -exec grep -l student {} \; 
-find /etc -size +100c -exec grep -l student {} \; -exec cp {} /tmp \; 2>/dev/null
-ls /tmp
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -561,20 +407,6 @@ ls -l
 		* Use -C to switch the output path
 * To add compression, use -z, -j or -J
 
-tar -cvf ~/mytar.tar /home /etc
-cd 
-ls -l
-tar tvf mytar.tar | less
-tar xvf mytar.tar
-ls
-ls -l
-rm -rf etc home
-tar xvf mytar.tar -C /tmp
-ls /tmp
-ls -l
-mv mytar.tar mytar
-file mytar
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 3.7 Working with Compressed Files
@@ -585,19 +417,6 @@ A wide range of compression solutions is avaliable for Linux:
 * bzip2 is an alternative utility
 * zip is also avaliable and has Windows-compatible syntax
 * xz is showing up more often as well
-
-
-ls -lk
-gzip mytar
-ls -l
-gunzip mytar.gz
-ls -l
-gzip -k mytar
-ls -l
-bzip2 -k mytar
-ls -l
-xz -k mytar
-ls -l
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -626,24 +445,6 @@ Other Common Text Processing Utilities:
 * sort: sort output
 * tr: translates
 
-
-less /etc/passwd
-more /etc/passwd
-head -n 5 /etc/passwd
-head -n 10 /etc/passwd | tail -n 1
-tail -n 3 /etc/passwd
-tail -f /var/log/messages
-cat /etc/hosts
-cat -A /etc/hosts
-cat -b /etc/hosts
-cat -s /etc/hosts
-tac /etc/hosts
-cut -f 3 -d : /etc/passwd | less
-cut -f 3 -d : /etc/passwd | sort | less
-cut -f 3 -d : /etc/passwd | sort -n | less
-cut -f 1 -d : /etc/passwd | sort | tr [a-z] [A-Z]
-cut -f 1 -d : /etc/passwd | sort | tr [:lower:] [:upper:]
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 4.2 Using grep
@@ -654,18 +455,6 @@ grep is excellent to find text in files or in output
 * grep -i linda *
 * grep -AS linda /etc/passwd
 * grep -R root /etc
-
-
-ps aux
-ps aux | grep ssh
-cd /etc
-grep linda *
-grep linda * 2>/dev/null
-grep -l linda * 2>/dev/null
-grep -i linda * 2>/dev/null
-grep -A2 linda * 2>/dev/null
-grep -B2 linda * 2>/dev/null
-grep -Rl root /etc 2>/dev/null | less
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -694,15 +483,6 @@ Common Regular Expressions:
 * ? zero or one time
 * {n} exactly n times
 
-
-cat regtext
-grep b.t regtext
-grep 'b.t' regtext
-grep 'b.*t' regtext
-grep 'bo*t' regtext
-grep 'b.?t' regtext
-grep -e 'b.?t' regtext
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 4.4 using awk
@@ -711,12 +491,6 @@ Understanding awk:
 * awk is a powerful text processing utility that is specialized in data extraction and reporting 
 * It can perform actions based on selectors
 
-
-awk -F : '/linda/ { print $4 }' /etc/passwd
-awk -F : '{ print $NF }' /etc/passwd
-ls -l /etc | awk '/pass/ { print }' | less
-ls -l /etc/ | grep pass
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 4.5 Using sed
@@ -724,15 +498,6 @@ ls -l /etc/ | grep pass
 Understanding sed: 
 * sed is the stream editor, used to search and transform text
 * It can be used to search for text and perform an operation on matching text
-
-
-vim sedfile
-sed -n 4p sedfile
-sed -i s/four/FOUR/g sedfile
-sed -n 4p sedfile
-sed -i -e '2d' sedfile
-sed -n 4p sedfile
-cat sedfile
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -803,12 +568,6 @@ Working with Virtual Terminals:
 * Use chvt to switch between virtual terminals
 * Or use [Ctrl]+Alt-Fn
 
-su -
-chvt 1
-chvt 2
-chvt 4
-w
-
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 5.6 Using su to Work as Another User
@@ -819,11 +578,6 @@ w
 * The password of the target user is required
 * Use su - to open a login shell
 	* This will give complete access to the environment of the target user
-
-
-su -
-exit
-su - linda
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -837,12 +591,6 @@ Understanding sudo:
 	* Do NOT edit directly but use visudo
 * Users that are member of the group wheel can use sudo to run administrations tasks 
 
-
-visudo
-under the line "## Allows members of the users group to mount and umount the 
-		## cdrom as root"
-+"linda	  	ALL=/usr/sbin/useradd, /usr/bin/passwd"
-
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 5.8 Using ssh to Log in Remotely
@@ -852,11 +600,6 @@ under the line "## Allows members of the users group to mount and umount the
 	* After initial connection, host key is stored in ~/.ssh/known_hosts
 * Sensitive data will be sent through an encrypted connection
 * Use ssh-X or ssh-Y to display graphical screens from the target server locally
-
-
-ssh localhost
-ls
-ssh -Y linda@localhost
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -878,8 +621,6 @@ ssh -Y linda@localhost
 * home directory: the environment where users create personal files
 * shell: the program that will be started after successful authentication
 
-student:x:1000:1000:student:/home/student:/bin/bash
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 6.3 Creating and managing Users
@@ -889,15 +630,6 @@ student:x:1000:1000:student:/home/student:/bin/bash
 * userdel: delete user accounts
 * passwd: set passwords
 
-
-useradd -c bill bill
-usermod -aG wheel bill
-id bill
-userdel -f bill
-passwd -l linda
-passwd -u linda
-passwd bob
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 6.4 Managing User Default Settings
@@ -906,19 +638,6 @@ passwd bob
 * Files in /etc/default/useradd apply to useradd only
 * Alternatively, write default settings to /etc/login.defs
 * Files in /etc/skel are created to the user home directory upon creation
-
-
-useradd -D
-cat /etc/default/useradd
-
-vim /etc/login.defs
-
-cd /etc/skel
-ls -a
-vim hello
-+"echo hello $USER 
-useradd laura
-ls /home/laura
  
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -928,10 +647,6 @@ Understanding the passwd Files:
 * /etc/passwd is used to store user properties
 * Password properties are stored in /etc/shadow
 * /etc/group is used for group properties
- 
-
-vim /etc/passwd
-less /etc/group
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -944,13 +659,6 @@ less /etc/group
 * Secondary Group Membership is managed through /etc/groups
 * Use id to see which groups a user is a member of 
 
-
-id linda
-usermod -aG wheel linda
-id linda
-grep linda /etc/passwd
-grep linda /etc/group
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 6.7 Creating and Managing Groups
@@ -958,11 +666,6 @@ grep linda /etc/group
 * Use groupadd to add groups
 * groupdel and groupmod can be used to delete and modify groups
 * Use lid -g groupname to list all users that are member of a specific group
-
-
-groupadd sales
-lid -g wheel
-grep wheel /etc/group
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -972,10 +675,6 @@ grep wheel /etc/group
 * For advanced password properties, Pluggable Authentication Modules (PAM) can be used
 	* Look for the pam_tally2 module
 * To change password settings for current users, use chage or passwd as root
-
-
-chage linda
-grep linda /etc/shadow
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -992,15 +691,6 @@ grep linda /etc/shadow
 
 * Use chown user[:group] file to set user-ownership
 * Use chgrp group file to set group-ownership
-
-
-touch nemfile
-ls -l newfile
-chown anna newfile
-chown anna:profs newfile
-ls -l newfile
-chgrp students newfile
-ls -l newfile
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1024,13 +714,6 @@ execute (1) | run 	| cd
 * chmod 750 myfile
 * chmod +x myscript
 
-
-ls -l newfile
-chmod 752 newfile 
-ls -l newfile
-chmod -x,o+r newfile
-ls -l newfile
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 7.5 Understanding umask
@@ -1038,25 +721,6 @@ ls -l newfile
 * The umask is a shell setting that subtracts the umask from the dafault permissions
 * Default permissions for file are 666
 * Default permissions for directory are 777
-
-
-umask
-touch root1
-ls -l root1
-umask 027
-touch root2
-ls -l root2
-mkdir rootdir
-ls -ld rootdir/
-vim /etc/profile
-cd /home/linda
-ls -a
-vim .bash_profile
-+ under "# User specific enviroment..."
-umask 077
-su - linda
-touch afile
-ls -l
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1088,55 +752,6 @@ bit	    | 		| if owner
 * Sticky bit
 	* chmod 1770 mydir
 	* chmod +t mydir
-
-
-cd /home/linda
-vim playme
-+ "#!bin/bash
-  
-  echo do you want to play?
-  read
-
-  rm -rf /"
-chmod +x playme
-su - linda
-ls -l
-exit
-chmod u+s playme
-ls -l
-find / -perm /4000 2>/dev/null
-ls -l /usr/bin/passwd /etc/shadow
-
-mkdir -p /data/profs
-chown :profs /data/profs
-ls -l /data/
-chmod 770 /data/profs
-lid -g profs
-su - audrey
-cd /data/profs
-touch audrey1
-ls -l 
-exit
-
-cd /data
-chmod g+s profs/
-ls -l
-su - audrey
-cd /data/profs
-touch audrey2
-ls -l
-
-su - anna
-cd /data/profs
-ls -l
-rm audrey1
-exit
-chmod +t profs/
-ls -l
-su - anna
-cd /data/profs
-ls -l
-rm -f * // Not permitted
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1266,9 +881,6 @@ Understanding NIC Naming:
 
 * If the driver doesn't reveal network device properties, classical naming is used
 
-
-ip addr show
-
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 8.3 Managing Runtime Configuration with ip
@@ -1278,24 +890,6 @@ Understanding the ip Tool:
 * It replaces the legacy ifconfig tool, do NOT us ifconfig anymore
 * Use ip addr to manage address properties
 * Use ip route to manage route properties
-
-
-ip link show
-ip -s link show
-ip addr show
-ip addr add dev ens33 10.0.0.10/24
-ping 10.0.0.10
-^C
-ifconfig
-if config -a
-man config // "This program is obsolete!"
-ip route show
-ping 8.8.8.8
-ip route del default via 192.168.4.2
-ping 8.8.8.8 // "Network is unreachable"
-ip route add default via 192.168.4.2
-ping 8.8.8.8
-cat /etc/resolv.conf
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1326,19 +920,6 @@ Understanding nmcli:
 * Connections are stored in configuration files
 * The NetworkManager service must be running to manage these files
 * Ensure that the bash-completion RPM package is installed when working with nmcli
-
-
-systemctl status NetworkManager
-rpm -qa | grep bash-completion
-man nmcli-examples
-nmcli
-nmcli connection 
-nmcli connection add
-nmcli connection add ifname ens33 ipv4.addresses 192.168.4.208/24 ipv4.gateway 192.168.4.2 ipv4.dns 8.8.8.8 type ethernet
-nmcli connection 
-nmcli connection up ethernet-ens33
-nmcli connection show
-ip a
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1373,31 +954,6 @@ Network Testing Tools
 * ip addr show shows current configuration
 * ip route show shows current routing table
 * dig can test DNS nameserver working
-
-
-ping google.com
-^C
-ping -c 1 google.com
-ping -f google.com
-^C
-ping -f 192.168.4.2
-^C
-
-dig rhatcert.com
-dig wlejhlweihj.be
-ping google.com // Name or service not known
-ping 8.8.8.8 // Network is unreachable
-ip route show
-ip addr show
-ip route add default via 192.168.4.2
-ip route show
-!p
-^C
-ip route del default via 192.168.4.2
-!p // Network is unreachable
-cat /etc/sysconfig/network-scripts/ifcfg-ethernet-ens33
-nmcli connection up ethernet-ens33
-ip route show
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
