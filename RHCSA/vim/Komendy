@@ -1,1 +1,98 @@
+:wq – zapisywanie pliku i wyjście
+:q! – wyjście bez zapisania zmian
+:w plik – zapisanie w nowym pliku „plik”
 
+Tryb pisania(wprowadzania): i
+
+Poruszanie się po dokumencie w edytorze:
+
++ – przejście do następnej linii
+– – przejście do poprzedniej linii
+0 – przejście do początku linii
+^ – przejście do pierwszego znaku nie będącego znakiem białym w linii
+
+$ – przejście na koniec linii
+n| – przejście do kolumny n linii
+} – przejście do następnego paragrafu
+{ – przejście do poprzedniego paragrafu
+% – przejście do otwarcia / zamknięcia nawiasu (),[],<>,{}
+G – przejście na koniec dokumentu
+nG – przejście do linii
+Wyszukiwanie czyli popularne ctrl+f w innych edytorach:
+
+/ STRING – szukanie do przodu
+? STRING – szukanie do tyłu
+n – przejście do następnego znalezionego elementu
+SHIFT+n przejście do poprzedniego znalezionego elementu
+
+Kasowanie treści w edytorze:
+
+x – kasowanie bieżącego znaku
+nx – kasowanie znaków
+dw – kasowanie bieżącego wyrazu
+dd – kasowanie bieżącej linii
+ndd – kasowanie linii
+D – kasowanie znaków od kursora do końca bieżącej lini
+dG – kasowanie wszystkiego od kursora do końca dokumentu
+EDYCJA:
+
+o – wstawienie nowej linii poniżej bieżącej
+O – wstawienie nowej linii powyżej bieżącej
+i – rozpoczęcie edycji przed kursorem
+I – rozpoczęcie edycji na początku bieżącej linii
+a – rozpoczęcie edycji po kursorze
+A – rozpoczęcie edycji na końcu bieżącej linii
+cw – zastąpienie wyrazu (bieżący wyraz się kasuje, kursor ustawia się na jego początku)
+cc – zastąpienie linii (bieżąca linia się kasuje, kursor ustawia się na jej początku)
+
+u – cofnięcie ostatniej zmiany
+U – cofnięcie wszystkich zmian w bieżącej linii
+. – powtórzenie ostatniej komendy
+SHIFT+# – wyszukiwanie wyrażeń pasujących do zaznaczonego
+SHIFT+% – przejście do kolejnego nawiasu () lub {}
+~ – zmiana litery z małej na dużą i na odwrót
+Popularne ctrl+c, ctrl+v czyli kopiowanie w samy edytorze:
+
+yw – kopiuj do schowka bieżący wyraz
+yb – kopiuj do schowka poprzedni wyraz
+Y – kopiuj do schowka bieżącą linię
+nY – kopiuj następne linii
+p – wklej skopiowany tekst za kursorem
+P – wklej skopiowany tekst przed kursorem
+Wklejanie z zewnątrz ctrl+shift+v
+
+Jeżeli przy wklejaniu do konsoli kodu z tabulacjami/spacjami tworzą się niechciane wcięcia należy użyć polecenia „:set paste” 
+następnie wkleić kod i ponownie ustawić „:set nopaste”.
+
+Znajdź i zamień:
+
+STARY – ciąg znaków stary (który ma zostać znaleziony), NOWY – na ten na który zamieniamy.
+:s/STARY/NOWY – pierwszego wystąpienia w bieżącej linii
+:s/STARY/NOWY/g – każdego wystąpienia w linii
+:#,#s/STARY/NOWY/g – pomiędzy liniami # i #
+:%s/STARY/NOWY/g – w całym dokumencie
+
+Dane zewnętrzne, polecenia edytora Vim
+
+:r textfile – wczytanie źródła pliku ‚textfile’ do edytora
+:r ! w3m http://piestrzynski.info i -dump – wczytanie do edytora zawartości strony internetowej
+:r ! komenda – wywołanie ‚komenda’ w shellu i wczytanie wyniku jej działania do edytora
+:r ! last | grep user – na wywoływanych komendach można robić dowolne operacje przed wczytaniem do edytora
+
+Praca z zakładkami
+
+:tabs – wyświetlenie informacje o aktualnie otwartych zakładkach
+:tabnew – otwarcie pustej zakładki
+:tabnew FILE – otwarcie pliku FILE w nowej zakładce
+:tabf FILE – otwarcie pliku w nowej zakładce
+:tabn – przejście do następnej zakładki
+gt – przejście do następnej zakładki (działa w trybie NORMAL)
+gT – przejście do poprzedniej zakładki (działa w trybie NORMAL)
+n gt – przejście do zakładki o numerze n (działa w trybie NORMAL)
+n gT – cofnięcie się do zakładki znajdującej się w odległości n od aktualnej (działa w trybie NORMAL)
+:tabp – przejście do poprzedniej zakładki
+:tabl – przejście do ostatniej zakładki
+:tabc – zamknięcie aktualnej zakładki, gdy jest jedna karta, to nie będzie zamknięta
+
+:tabo – zamknięcie wszystkich zakładek oprócz tej która jest aktualnie używana
+:tabd KOMENDA – wykonuje komendę na wszystkich otwartych zakładkach
