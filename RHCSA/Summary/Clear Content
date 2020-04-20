@@ -977,22 +977,6 @@ Network Testing Tools
 
 * Use jobs for a complete overview of running jobs
 * Use fg[n] to move the last job back to the foreground
-
-
-while true; do true; done
-^C 
-while true; do true; done &
-
-dd if=/dev/zero of=/dev/null
-^Z
-bg
-
-jobs
-fg 1
-^C
-jobs
-fg
-^C
  
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1009,19 +993,6 @@ Using ps:
 * ps L shows format specifiers
 * ps -eo pid,ppid,user,cmd uses some of these specifiers to show a list of processes
 
-
-ps L
-ps -L
-ps
-ps aux | less
-ps aux
-ps -fax | less
-ps -fU student
-ps -f --forest -C sshd
-ps L
-ps L | wc
-ps -eo pid,ppid,user,cmd
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 9.4 Understanding Memory Usage
@@ -1031,8 +1002,6 @@ ps -eo pid,ppid,user,cmd
 * Swap is used as an overflow buffer of emulated RAM on disk
 * The Linux kernel moves inactive memory to swap first
 * Use free -m to get details about current memory usage
-
-free -m 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1051,16 +1020,6 @@ free -m
 				scheduler
 
 	cpu0		cpu1		cpu2		cpu3
-
-
-uptime
-dd if=/dev/zero of=/dev/null &
-dd if=/dev/zero of=/dev/null &
-dd if=/dev/zero of=/dev/null &
-uptime
-watch uptime
-lscpu
-uptime
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1085,21 +1044,6 @@ Understanding Signals:
 * You can also use k from top
 * Different kill-like commands exist, like pkill and killall
 
-
-dd if=/dev/zero of=/dev/null &
-dd if=/dev/zero of=/dev/null &
-dd if=/dev/zero of=/dev/null &
-top
-signals: k, 15, 9 
-man 7 signals
-ps aux | grep dd
-kill -9 14273
-top
-k/Esc
-signals: k, 14603, 9Killed+Enter - so don't use signal 9
-ps aux | grep '\<dd'
-killall d
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 9.8 Managing Priorities and Niceness
@@ -1111,16 +1055,6 @@ killall d
 * Negative nice value indicates an increased priority, a positive nic value indicates decreased priority
 * Users can set their processes to a lower priority, to increase priorities you need root access
  
-dd if=/dev/zero of=/dev/null &
-dd if=/dev/zero of=/dev/null &
-dd if=/dev/zero of=/dev/null &
-top
-signal: r, -5, r, 10
-
-nice -n -1 dd if=/dev/zero of=/dev/null &
-ps aux | grep '\<dd'
-renice -n 10 14740
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 9.9 Using Tuned Profiles
@@ -1132,12 +1066,6 @@ Understanding Tuned:
 * tuned-adm list will show a list of profiles
 * tuned-adm profile <name> will set a profile
 * tuned-adm active will show the current profile
-
-
-systemctl status tuned
-tuned-adm list
-tuned-adm profile desktop
-tuned-adm active
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1162,35 +1090,11 @@ We'll create a local repository so that we can install packages from the RHEL 8 
 	* /rhel8.iso 	/repo 	  iso9660     defaults 	0 0
 * Use mount -a to mount the ISO
 
-dd if=/dev/sr0 of=/rhel8.iso bs=1M 
-mkdir /repo
-vim /etc/fstab
-systemctl daemon-reload
-mount -a 
-cd /repo
-ls
-cd BaseOS
-ls
-cd ..
-
 Accessing the Local Repository-1:
 * Create the file /etc/yum.repos.d/appstream.repo with following contents [appstream]
 	name=appstream
 	baseurl=file:///repo/AppStream
 	gpgcheck=0
-
-cd /etc/yum.repos.d/
-vim appstream.repo
-+"[appstream ]
-name=appstream
-baseurl=file:///repo/AppStream
-gpgcheck=0"
-vim base.repo
-+"[BaseOS]
-name=BaseOS
-baseurl=file:///repo/BaseOS
-gpgcheck=0"
-yum repolist
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1250,15 +1154,6 @@ Updating Module Content:
 	* The 7.1 stream will be disabled and the 7.2 stream will be enabled
 * To update or downgrade packages from a previous module stream that are not listed in profiles that are installed with the module update, use yum distro-sync
 
-
-yum module list
-yum module info php
-yum module info --profile php:7.1
-yum module install php:7.1
-yum update
-yum module install php:7.2
-yum module install php:7.1
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 10.6 Using yum Groups
@@ -1268,12 +1163,6 @@ yum module install php:7.1
 * yum groups list hidden shows all yum groups 
 * yum groups info <groupname> shows which packages are in a group
 * yum groups install <groupname> will install a specific yum group
-
-
-yum groups list
-yum groups list hidden
-yum groups info "Directory Client"
-yum groups install --with-optional "Directory Client"
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1695,21 +1584,6 @@ instead UUID: cd /dev/disk -> ls -l -> ls by-path/ //symbolic links that points 
 * Using .mount files allows you to be more specyfic in defining dependencies 
 * Use systemctl cat tmp.mount for an example
 
-systemctl cat tmp.mount -> to see what, where ... should be mounted 
-
-mount *pipe* grep tmp 
-systemctl status tmp.mount
-systemctl enable --now tmp.mount
-mount *pipe* grep tmp
-vim /etc/fstab 
-cp /usr/lib/systemd/system/tmp.mount /etc/systemd/system/articles.mount
-vim /etc/systemd/system/articles.mount
-systemctl deamon-reload
-systemctl status articles.mount
-umount /articles
-systemctl enable --now articles.mount
-systemctl status articles.mount
-
 -------------------------------------------------------------------------------------------------------------------------------------
 
 14.11 Managing XFS File Systems
@@ -1736,15 +1610,6 @@ Understanding Swap:
 * While creating swap with parted, set file system to linux-swap
 * After creating the swap partition, use mkswap to create the swap FS
 * Activate using swapon
-
-parted /dev/nvme0n2 -> print -> mkpart -> Partition name: swap -> File system type? linux-swap -> Start? 1GiB -> End? 2GiB -> print -> quit
-
-lsblk
-mkswap /dev/nvme0n2p2
-free -m
-swapon /dev/nvme0n2p2
-free -m
-vim /etc/fstab -> "/dev/nvme0n2p2  swap  swap  defaults 0 0" 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1793,17 +1658,6 @@ LVM Creation Procedure Overview
 * Use mkfs /dev/vgdata/lvdata to create a file system
 * Put in /etc/fstab to mount it persistently
 
-lsblk
-parted /dev/nvme0n2 -> print -> Partition name: lvm1 -> Start? 2G -> End? 3G -> print -> set 3 lvm on -> print -> mkpart -> 
-Partition name? lvm2 -> Start? 3 GiB -> End? 4GiB -> print -> set 4 lvm on -> print -> quit
-
-pvcreate /dev/nvme0np3 -> lsblk -> pvcreate /dev/nvme0n2p3 -> created
-
-vgcreate vgdata /dev/nvme0n2p3 -> pvs -> vgs -> lvcreate -n lvdata -L 812M vgdata 
-
-mkfs.xfs /dev/vgdata/lvdata -> mkdir /mounts/lvm1 -> vim dev/fstab/ -> "/dev/vgdata/lvdata  /mounts/lvm1  xfs  defaults 0 0"
--> mount -a -> findmnt
-
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 15.4 Understanding Device Mapper and LVM Device Names
@@ -1816,10 +1670,6 @@ Understanding Device Mapper Names:
 * Alternatively, use the LVM generated symbolic links 
 	* /dev/vgdata/lvdata
 
-mount
-tail -n 1 /etc/fstab
-ls -l /dev/vgdata/lvdata /dev/mapper/vgdata-lvdata
-
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 15.5 Resizing LVM Logical Volumes
@@ -1831,8 +1681,6 @@ Resizing Logical Volumes:
 	* e2resize is an independent resize utility for Ext file systems
 	* xfs_growfs can be used to grow an XFS file system
 * Shrinking is not possible on XFS volumes
-
-df -h -> vgs -> vgextend vgdata /dev/nvme0n2p4 -> vgs -> lvextend -r -L +1020M /dev/vgdata/lvdata -> df -h
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
