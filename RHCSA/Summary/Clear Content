@@ -1884,27 +1884,6 @@ Procedure Overview - 2:
 * stratis blockdev list mypool
 * blkid to find the stratis volume UUID
 * Mount by UUID in /etc/fstab
-
-yum install -y startis-cli stratid
-systemctl enable --now stratisd
-stratis pool create mypool /dev/nvme0n2
-stratis pool
-stratis fs create mypool myfs1
-stratis fs
-mkdir /myfs1
-mount | grep myfs1
-mount /dev/startis/mypool/myfs1
-mount
-stratis pool list
-stratis fs list
-stratis blockdev list mypool
-lsblk
-blkid
-vim /etc/fstab
-"UUID="2413f3aa-384d-4d95-917a-a5e80731cbc2"  /myfs1  xfs  defaults 0 0"
-reboot
-su -
-mount | grep myfs
  
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1932,29 +1911,6 @@ Removing Stratis Snapshots:
 * A similar procedure is used for destroying file systems: stratis filesystem destroy mypool myfs
 * When there are no more file systems in a pool, use stratis pool destroy mypool to delete the pool
 
-stratis blockdev
-stratis pool
-stratis filesystem
-df -h | grep myfs
-stratis filesystem
-stratis filesystem snapshot mypool myfs1-snapshot 
-stratis filesystem list 
-mount /dev/stratis/mypool/myfs1-snapshot /mnt
-ls
-ls /mnt/
-cp /etc/a* /mnt
-cd /mnt
-ls
-cd ..
-umount /myfs1
-stratis filesystem destroy mypool myfs1
-stratis filesystem list
-stratis filesystem snapshot mypool myfs1-snapshot myfs1 
-mount -a
-cd /myfs1/
-ls
-stratis filesystem destroy mypool myfs1-snapshot
-
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 15.9 Understanding VDO
@@ -1980,19 +1936,6 @@ Procedure Overview
 * In /etc/fstab, include the x-systemd.requires=vdo.service mount option 
 * Monitor using vdostats --human-readable
 
-lsblk
-yum install vdo kmod-kvdo
-vdo create --name=vdo1 --device=/dev/nvme0n6 --vdoLogicalSize=10T
-mkfs.xfs -K /dev/mapper/vdo1
-udevadm settle
-mkdir /vdo1
-vim /etc/fstab
-"/dev/mapper/vdo1  /vdo1  xfs  x-systemd.requires=vdo.service  0 0"
-mount -a
-mount
-vdostats --human-readable
-df -h
-
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 15.11 Understanding LUKS Encrypted Volumes
@@ -2011,26 +1954,6 @@ Procedure Overview:
 * To automate the cryptsetup luksOpen, use /etc/crypttab
 * To automate mounting the volume, use /etc/fstab
 
-parted /dev/nvme0n2
-print
-mkpart
-Partition name? luks
-Start? 4GiB
-End? 6GiB
-print
-quit
-lsblk | less
-cryptsetup luksFormat /dev/nvme0n2p5 
-cryptsetup luksOpen /dev/nvme0n2p5 secret
-ls -l /dev/mapper
-mkfs.vxfs /dev/mapper/secret
-mkdir /secret
-vim /etc/fstab
-"/dev/mapper/secret  /secret  xfs  defaults  0 0"
-vim /etc/crypyttab
-"secret  /dev/nvme0n2p5  none"
-reboot
-
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 16.1 Basic Kernel Management
@@ -2048,12 +1971,6 @@ shell -> 	-> kernel * initramfs  		-> drivers-modules		-> hardware
 * Use modprobe to manually load kernel module
 * Use lsmod to list currently loaded kernel modules
 
-lsmod | less
-lsmod | grep vfat
-modprobe vfat
-lsmod | grep vfat
-modprobe -r vfat
-
 ---------------------------------------------------------------------------------------------------------------------------------
 
 16.3 Using modprobe
@@ -2062,14 +1979,6 @@ modprobe -r vfat
 * Use modprobe -r to unload
 * modinfo can show module parameters
 * To load, specify kernel module parameters, edit /etc/modprobe.conf or the files in /etc/modprobe.d
-
-lsmod
-modinfo e1000
-cd /etc/modprobe.d
-ls
-vim kvm.conf
-"#" makes out in the line with "Options kvm..."
-modprobe kvm
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -2084,26 +1993,6 @@ Understanding Kernel Parameters:
 * Use echo to write a value to any file in /proc/sys to change kernel performance parameters
 * Write the parameters to /etc/sysctl.conf to make them persistent
 * Use sysctl -a to show a list of all current settings 
-
-mount | grep proc
-cd /proc
-ls
-cat meminfo
-cd sys
-ls
-cd net
-ls
-cd ipv4/
-ls
-cat ip forward
-echo 1 > ip_forward
-cat ip forward
-pwd
-sysctl -a | grep forward
-vim /etc/sysctl.conf
-+ "net.ipv4.ip.forward = 1"
-sysctl -a 
-sysctl | wc
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -2128,14 +2017,6 @@ POST	BIOS	-> GRUB		kernel		-> systemd		-> services
 * Press c to enter the Grub2 command mode
 	* From command mode, type help for an overview of avaliable options
 
-reboot
-c
-help
-e
-under "kernel=auto"
-+ ap rhyb quiet
-Ctrl+X
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 17.3 Modifying Grub2 Persistent Parameters
@@ -2144,13 +2025,6 @@ Ctrl+X
 * After writing changes, compile changes to grub.cfg
 	* grub2-mkconfig -o /boot/grub2/grub.cfg
 	* grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
-
-mount | grep '^/' 
-mount | grep '^/' | grep -i efi
-vim /etc/default/grub
-grub2-mkconfig -o /boot/grub2/grub.cfg
-vim /boot/grub2/grub.cfg // DON'T EDIT EVER THIS FILE
-reboot
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2165,16 +2039,6 @@ Understanding Systemd Targets:
 	* graphical.target
 * When enabling a unit, it is added to a specific target
 
-systemctl disable httpd
-systemctl enable httpd
-systemctl cat httpd
-systemctl cat multi-user.target
-cd /etc/systemd/system
-ls
-cd multi-user.target.wants/
-ls -l
-systemctl list-dependencies
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 17.5 Setting the Default Systemd Target
@@ -2184,30 +2048,12 @@ Managing the Dafault Target:
 * Use systemctl get-default to see the current default target
 * Use systemctl set-default to set a new default target
 
-systemctl get-default
-systemctl set-default multi-user.target
-reboot
-non graphical login prompt
-login: root
-systemctl set-default graphical.target
-systemctl start graphical.target
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 17.6 Booting into a Specific Target
 
 * On the Grub 2 boot prompt, use systemctl.unit==xxx.target to boot into a specific target
 * To change between targets on a running system, use systemctl isolate xxx.target
-
-Grub
-e
-in the line with "ap"
-+ system.unit=rescue.target
-Ctrl+X
-systemctl list-units
-systemctl isolate emergency.target
-systemctl list-units
-start graphical.target
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2218,6 +2064,7 @@ POST		BIOS	-> GRUB		kernel		-> systemd		-> services (rescue.target)
 
 Boot-disk	menu:kernel		rd.break	   init=/bin/bash	   
 		     arguments
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 18.2 Changing the Root Password
@@ -2253,21 +2100,6 @@ Common Network Issues:
 * Wrong router
 * DNS not working
 
-ping centos.org
-ip a
-ip a d 192.168.4.235/32 dev ens33
-ip a
-ip a a dev ens33 192.168.4.235/24
-ip a
-!pi
-ip route show
-ip route add default via 192.168.4.2
-ping centos.org
-Ctrl+C
-nmtui
-dhclinet
-ip a 
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 18.5 Troubleshooting Performance Issues
@@ -2279,11 +2111,6 @@ Understanding Performance Problems:
 	* CPU load
 	* disk load
 	* network
-
-top
-r //run renice
-kill
-send signal
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
