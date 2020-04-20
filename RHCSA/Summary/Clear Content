@@ -2314,12 +2314,6 @@ Common sshd_config Options:
 	* PasswordAuthentication
 	* X11Forwarding
 
-vim /etc/ssh/shhd_config
-"PermitRootLogin no
-AllowUsers student"
-systemctl restart sshd
-ssh root@localhost
-
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 20.4 Securely Copying Files 
@@ -2333,26 +2327,6 @@ Copying Files Securely:
 	* Use put /my/file to upload a file
 	* Use get /your/file to download a file to the current directory
 	* Use exit to close an sftp session
-
-
-scp /etc/hosts linda@192.168.4.210:/tmp/
-mkdir temp
-scp -r root@192.168.4.210:/etc /temp
-ls
-cd temp/
-ls
-cd ..
-sftp 192.168.4.210
-sftp>:
-	help
-	lpwd
-	pwd
-	cd /
-	cd etc
-	lcd /tmp
-	get /etc/passwd
-	put /etc/passwd
-	exit
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2368,13 +2342,6 @@ sftp>:
 	* -a uses archive mode, which is equivalent to -rlptgoD'
 	* -A uses archive mode and also synchronizes ACLs
 	* -X will synchronize SELinux context as well
-
-ssh 192.168.4.210
-touch /etc/mynewfile{1..10}
-ls -l /etc/my*
-exit
-rsync -ar root@192.168.4.210:/etc/ temp/
-ls temp/mynewfile*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2621,8 +2588,6 @@ A kickstart file contains all installation instructions to set up a RHEL instanc
 
 * After installation, a file anaconda-ks.cfg is created to the root user home directory
 * Edit this file manually to make any changes that are required
-
-vim initial-setup-ks.cfg
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
