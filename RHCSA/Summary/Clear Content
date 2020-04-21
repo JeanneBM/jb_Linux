@@ -1971,12 +1971,6 @@ Understanding Software Issues:
 * Library problems:
 	* Run ldconfig to update the library cache
 
-cd Downloads/
-ls
-rpm -ivh nmap-7.60-8.fc27.x86_64.rpm
-yum install ./nmap-7.60-8.fc27.x86_64.rpm
-yum install nmap
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 18.7 Troubleshooting Memory Shortage
@@ -2136,19 +2130,6 @@ Procedure Overview:
 * ssh-agent /bin/bash allocates space in the bash shell to cache the private key passphrase
 * ssh-add adds the current passphrase to the cache
 
-ssh-keygen
-Enter file ...: Enter
-Enter passphrase: Enter
-ssh-copy-id 192.168.4.237
-ssh 192.168.4.237
-Ctrl+Alt+F3
-root
-root
-ssh-agent /bin/bash
-ssh-add
-ssh 192.168.4.237
-exit
-
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 20.3 Changing Common SSH Server Options
@@ -2202,16 +2183,6 @@ Copying Files Securely:
 * The default DocumentRoot is /var/www/htdocs
 * Apache looks for a file with the name index.html in this directory
 
-
-yum install httpd
-systemctl enable --now httpd 
-systemctl status httpd 
-yum install -y curl
-curl http://localhost
-vim /etc/httpd/conf/httpd.conf
-Listen
-DocumentRoot
-
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 21.2 Creating a Basic Website
@@ -2257,20 +2228,6 @@ Managing SELinux States:
 * Edit /etc/sysconfig/selinux to manage the default state of SELinux
 * Never set to disabled if this is meant as a temporary measure only!
 
-getenforce
-setenforce permissive
-getenforce
-setenforce disabled
-vim /etc/sysconfig/selinux
-"SELinux=disabled"
-reboot
-getenforce
-setenforce enforcing
-vim /etc/sysconfig/selinux
-"SELinux=enforcing"
-reboot
-getenforce
-
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 22.3 Understanding SELinux Context Labels and Booleans
@@ -2288,19 +2245,6 @@ Understanding Booleans:
 * A Boolean is a on/off switch
 * Use it to enable or disable specific categories of functionality altogether
 
-
-ps aux
-ps auxZ
-ps auxZ | grep ssh
-ls -lZd /etc/ssh/
-ls -lZ /etc/ssh/
-ps Zaux | grep http
-ls -Z /var/www
-ls -lZ /home/user
-getsebool -a
-getsebool -a | grep http
-setsebool -P httpd enable homedirs on 
-
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 22.4 Using File Context Labels
@@ -2311,31 +2255,6 @@ setsebool -P httpd enable homedirs on
 * To enforce the policy setting on the file system, use restorecon
 * Alternatively, use touch /.autorelabel to relabel all files to the context that is specified in  the policy
 
-
-mkdir /web
-cd /web
-vim index.html
-"welcome to the web directory web server"
-vim /etc/httpd/conf/httpd.conf
-" DocumentRoot "/web" 
-...
-<Directory "/web" "
-systemctl restart httpd
-systemctl status httpd
-curl http://localhost
-setenforce 0 
-getenforce
-!cu
-setenforce 1
-man semanage-fcontext
-semanage fcontext -a -t httpd sys content t "/web(/.)?"
-!cu
-ls -ldZ /web
-restorecon -Rv /web
-!cu
-ps Zaux | grep httpd
-ls -Zd .
-
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 22.5 Analyzing SELinux Log Messages
@@ -2345,11 +2264,6 @@ ls -Zd .
 * Ensure that sealert is avaliable, it interprets messages from the audit log, applies SELinux AI 
 and writes meaningful messages to /var/log/messages
 * Run the sealert command, including the UUID message to get advice on how to troubleshoot specific issues
-
-
-grep AVC /var/log/audit/audit.log
-journalctl | grep sealert 
-sealert -l 16f10f8d-f099-467b-826e-ffb4aa7df98c | less
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2386,9 +2300,6 @@ Firewalld is using different components to make firewalling easier:
 	* Ports: optional elements to allow access to specific ports
 	* Additional components are avaliable as well, but not frequently used in a base firewall configuration
 
-
-firewall-cmd --list-all
-
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 23.3 Configuring a Firewall with firewall-cmd
@@ -2396,16 +2307,6 @@ firewall-cmd --list-all
 * The firewall-cmd command is used to write firewall configuration
 * Use the option --permanent to write to persistent (but not to runtime)
 * Without --permanent the rule is written to runtime (but not to persistent)
-
-firewall-cmd --get-services
-firewall-cmd --add-service ftp
-firewall-cmd --list-all
-firewall-cmd --reload
-firewall-cmd --list-all
-firewall-cmd --add-service ftp --permanent
-firewall-cmd --list-all
-firewall-cmd --add-service ftp
-firewall-cmd --list-all
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2446,11 +2347,6 @@ Using a Kickstart File:
 * Before starting the installation, the client indicates where to get the Kickstart file from
 	* Use ks=http://somewhere/ks.cfg
 	* Or provide interface provided by the installation program (as in Virtual Machine Manager)
-
-
-Installation prompt 
-Tab
-ks=http://myserver/ks.cfg
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2503,18 +2399,11 @@ Hardware  <-- hwclock -->  	System  	<---- timedatectl, date -----	NTP
 
 25.2 Setting Time with timedatectl
 
-
 Linux Time Related Commands:
 * hwclock: set hardware clock and synchronize with system time
 * date: set current time and display format
 * tzselect: allows to select the current time zone
 * timedatactl: new utility to manage all aspects of time
-
-
-timedatectl status
-timedatactl
-timedatactl set-timezone America/Los_Angeles
-timedatactl show
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2526,20 +2415,6 @@ Configuring NFS:
 * Edit /etc/exports to contain the following line
 	* /data *(rw,no_root_squash)
 
-systemctl status nfs-server
-mkdir /data
-vim /etc/exports
-+ "/data	*(rw,no_root_squash)"
-systemctl enable --now nfs-server
-systemctl status nfs-server
-firewall-cmd --add-service nfs
-firewall-cmd --add-service mountd
-firewall-cmd --add-service rpc-bind
-firewall-cmd --add-service rpc-bind --permanent
-firewall-cmd --add-service mountd --permanent
-firewall-cmd --add-service nfs --permanent
-firewall-cmd --list-all
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 26.2 Mounting NFS Shares
@@ -2547,16 +2422,6 @@ firewall-cmd --list-all
 * Use showmount -e nfs-server to show exports
 * Use mount nfsserver:/share /mnt to mount 
 * While mounting through /etc/fstab, include the _netdev mount option
-
-showmount -e 192.168.4.210
-mount 192.168.4.210:/data /mnt
-mount
-umount /mnt
-mkdir /nfs
-vim /etc/fstab
-+ "192.168.4.210:/data	/nfs	nfs	netdev	0 0"
-mount -a
-mount
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2571,24 +2436,6 @@ mount
 * Use systemctl start smb to start the service
 * Use firewall-cmd --add-service samba --permanent; firewall-cmd --reload to open the firewall
 
-
-yum install samba
-mkdir /samba
-useradd samba
-chown samba /samba
-chmod 770 /samba
-smbpasswd -a samba
-vim /etc/samba/smb.conf
-+ "[samba]
-	   comment = samba share
-	   path = /samba
-	   write list = samba"
-systemctl enable --now smb
-systemctl status smb
-firewall-cmd --add-service samba --permanent 
-firewall-cmd --reload 
-firewall-cmd --list-all
-
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 26.4 Mounting Samba Shares
@@ -2597,22 +2444,6 @@ firewall-cmd --list-all
 * Use smbclient -L //sambahost to discover shares
 * Use mount -o username=sambauser //sambaserver/share /somewhere to mount the share
 * Make mount persistent through /etc/fstab, using the _netdev, username= and password= mount options
-
-
-yum groups list
-yum groups list --hidden | less
-yum groups install "Network File System Client"
-smbclient -L //192.168.4.210
-Enter - nie ma root usera
-mount -o username=samba //192.168.4.210/samba /mnt
-mount
-vim /etc/fstab
-+ "//192.168.4.210/samba	/samba	  cifs	 netdev,username=samba,password=password	0 0"	 
-mkdir /samba
-mount -a
-mount
-reboot
-mount
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
