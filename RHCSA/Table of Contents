@@ -138,32 +138,36 @@ Lesson 9 Lab: Managing Processes
 Lesson 9 Lab Solution: Managing Processes 	
 
 Lesson 10: Managing Software 	
-
-Lesson 10: Managing Software 
+Lesson 10 Lab: Managing Software 
 Lesson 10 Lab Solution: Managing Software 
 
 Lesson 11: Working with Systemd 	
-
-Lesson 11: Working with Systemd 
+Lesson 11 Lab: Working with Systemd 
 Lesson 11 Lab Solution: Working with Systemd 
 
 Lesson 12: Scheduling Tasks 	
-
-Lesson 12: Scheduling Tasks 
+Lesson 12 Lab: Scheduling Tasks 
 Lesson 12 Lab Solution: Scheduling Tasks 
 
 Lesson 13: Configuring Logging 	
-Lesson 13: Configuring Logging 
+Lesson 13 Lab: Configuring Logging 
 Lesson 13 Lab Solution: Configuring Logging 
 
 Lesson 14: Managing Storage 	
+Lesson 14: Managing Storage 	
+Lesson 14 Lab Solution: Managing Storage 	
 
 Lesson 15: Managing Advanced Storage 	
+Lesson 15: Managing Advanced Storage 	
+Lesson 15 Lab Solution: Managing Advanced Storage 	
 
-Lesson 16: Basic Kernel Management 	
+Lesson 16: Basic Kernel Management 
+Lesson 16: Basic Kernel Management 
+Lesson 16 Lab Solution: Basic Kernel Management 
 
 Lesson 17: Managing the Boot Procedure 	
-Lab Solution
+Lesson 17: Managing the Boot Procedure
+Lesson 17 Lab Solution: Managing the Boot Procedure
 
 Lesson 18: Essencial Troubleshooting Skills 	
 Lesson 18: Essencial Troubleshooting Skills
@@ -175,19 +179,19 @@ Lesson 19 Lab Solution: Introducing Bash Shell Scripting
 
 Lesson 20: Managing Network Services 
 Lesson 20: Managing Network Services 
-Lesson 20: Managing Network Services 
+Lesson 20 Lab Solution: Managing Network Services 
 
 Lesson 21: Managing HTTP Services
 Lesson 21: Managing HTTP Services
-Lesson 21: Managing HTTP Services
+Lesson 21 Lab Solution: Managing HTTP Services
 
 Lesson 22: Managing SELinux 	
 Lesson 22: Managing SELinux 
-Lesson 22: Managing SELinux 
+Lesson 22 Lab Solution: Managing SELinux 
 
 Lesson 23: Managing Network Security 	
 Lesson 23: Managing Network Security 
-Lesson 23: Managing Network Security 
+Lesson 23 Lab Solution: Managing Network Security 
 
 Lesson 24: Automating Installations 	
 Lesson 24 Lab: Automating Installations 
