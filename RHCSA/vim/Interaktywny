@@ -40,3 +40,7 @@ You can combine f with a number. For example, you can find 3rd occurrence of 'q'
 7. Go to matching parentheses, %
 
 In text that is structured with parentheses or brackets ( or { or [, use % to jump to the matching parenthesis or bracket.
+
+% + Shift
+
+-------------------------------------------------------------------------------------------------------------------------------------------
