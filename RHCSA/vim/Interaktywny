@@ -8,4 +8,13 @@ To change between modes, use Esc for normal mode and i for insert mode.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
+In contrast to regular text editor, you use keys h,j,k, and l instead of arrow keys to move the cursor.
 
+
+
+To navigate the text in terms of words, you can use keys w,b, and e (also W,B,E in real Vim).
+w moves to the start of next word; e moves to the end of the word; and b moves to beginning of the word.
+
+
+
+Moving within the text is not limited to individual keys; you can combine movement keys with a number. For 
