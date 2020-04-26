@@ -17,4 +17,7 @@ w moves to the start of next word; e moves to the end of the word; and b moves t
 
 
 
-Moving within the text is not limited to individual keys; you can combine movement keys with a number. For 
+Moving within the text is not limited to individual keys; you can combine movement keys with a number. For example, 3w is the same as pressing w three times.
+
+
+
