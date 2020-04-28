@@ -239,3 +239,299 @@ swapon /dev/nvme0n2p2
 free -m
 vim /etc/fstab -> "/dev/nvme0n2p2  swap  swap  defaults 0 0" 
 
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Managing Advanced Storage
+=============================
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+15.1 Undeerstanding LVM, Stratis and VDO
+
+Understanding Advanced Storage:
+* LVM Logical Volumes
+	* Used during default installation of RHEL
+	* Adds flexibility to storage (resize, snapshots and more)
+
+* Stratis 
+	* Next generation Volume Managing Filesystem that uses thin provisioning by default 
+	* Implemented in user space, which makes API access possible 
+
+* Vitual Data Optimizer
+	* Focused on storing files in the most efficient way
+	* Manages deduplicated and compressed storage pools
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.2 Understanding LVM Setup
+
+LV (ext4)	LV(xfs)
+
+^		^
+	
+---------------------------
+volume group			/dev/vg/lv
+---------------------------
+
+^		^
+
+PV (physical volumes)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.3 Creating an LVM Logical Volume
+
+LVM Creation Procedure Overview
+
+* Create a partition, from parted use set n lvm on
+* Use pvcreate /dev/sdb1 to create the physical volume
+* Use vgcreate vgdata /dev/sdb1 to create the volume group
+* Use lvcreate -n lvdata -L 1G vgdata to create the logical volume 
+* Use mkfs /dev/vgdata/lvdata to create a file system
+* Put in /etc/fstab to mount it persistently
+
+lsblk
+parted /dev/nvme0n2 -> print -> Partition name: lvm1 -> Start? 2G -> End? 3G -> print -> set 3 lvm on -> print -> mkpart -> 
+Partition name? lvm2 -> Start? 3 GiB -> End? 4GiB -> print -> set 4 lvm on -> print -> quit
+
+pvcreate /dev/nvme0np3 -> lsblk -> pvcreate /dev/nvme0n2p3 -> created
+
+vgcreate vgdata /dev/nvme0n2p3 -> pvs -> vgs -> lvcreate -n lvdata -L 812M vgdata 
+
+mkfs.xfs /dev/vgdata/lvdata -> mkdir /mounts/lvm1 -> vim dev/fstab/ -> "/dev/vgdata/lvdata  /mounts/lvm1  xfs  defaults 0 0"
+-> mount -a -> findmnt
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.4 Understanding Device Mapper and LVM Device Names
+
+Understanding Device Mapper Names:
+* Device mapper is the system that the kernel uses to interface storage devices
+* Device mapper generates meaningless names, like /dev/dm-0 and /dev/dm-1
+* Meaningful names are provided as symbolic links through /dev/mapper 
+	* /dev/mapper/vgdata-lvdata
+* Alternatively, use the LVM generated symbolic links 
+	* /dev/vgdata/lvdata
+
+mount
+tail -n 1 /etc/fstab
+ls -l /dev/vgdata/lvdata /dev/mapper/vgdata-lvdata
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.5 Resizing LVM Logical Volumes
+
+Resizing Logical Volumes:
+* Use vgs to verify avaliability in the volume group'
+* If required, use vgextend to add one or more PVs to the VG
+* Use lvextend -r -L +1G to grow the LVM logical volume, including the file system it's hosting
+	* e2resize is an independent resize utility for Ext file systems
+	* xfs_growfs can be used to grow an XFS file system
+* Shrinking is not possible on XFS volumes
+
+df -h -> vgs -> vgextend vgdata /dev/nvme0n2p4 -> vgs -> lvextend -r -L +1020M /dev/vgdata/lvdata -> df -h
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.6 Understanding Stratis Setup
+
+Understanding Stratis:
+* Stratis is a volume management file system and is Red Hat's answer to Btrfs and ZFS
+	* On top of Stratis a regular file system is needed: XFS
+
+* It is bulit on top of any block device, including LVM devices
+* It offers advanced features 
+	* Thin provisioning 
+	* Snapshots
+	* Cache tier 
+	* Programmatic API
+	* Monitoring and Repair
+
+Stratis Architecture:
+* The Stratis Pool is created from one or more storage devices (blockdev)
+	* Stratis creates a /dev/stratis/my-pool directory for each pool
+	* This directory contains links to devices that represent the file systems in the pool
+	* Block devices in a pool may not be thin provisioned
+
+* The (XFS) file system is put in a volume on top of the pool and is an integrated part of it 
+	* Each pool can contain one or more file systems
+	* File systems are thin provisioned and do not have a fixed size
+	* The thin volume which is an integrated part of the file system automatically grows as more data is added to the file system
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.7 Creating Stratis Volumes
+
+Procedure Overview - 1: 
+* yum install stratis-cli stratisd
+* systemctl enable --now stratisd
+* stratis pool create mypool /dev/nvme0n2
+	* Add new block devices later using stratis blockdev add-data
+	* Partitions are NOT supported
+	* Note that the block device must be at least 1GiB
+* stratis fs create mypool myfs1
+	* Note this will create an XFS file system!
+* stratis fs list mypool will show all file systems in the pool
+
+Procedure Overview - 2:
+* mkdir /myfs1
+* mount /dev/stratis/mypool/myfs1/myfs1
+* stratis pool list
+* stratis filesystem list
+* stratis blockdev list mypool
+* blkid to find the stratis volume UUID
+* Mount by UUID in /etc/fstab
+
+yum install -y startis-cli stratid
+systemctl enable --now stratisd
+stratis pool create mypool /dev/nvme0n2
+stratis pool
+stratis fs create mypool myfs1
+stratis fs
+mkdir /myfs1
+mount | grep myfs1
+mount /dev/startis/mypool/myfs1
+mount
+stratis pool list
+stratis fs list
+stratis blockdev list mypool
+lsblk
+blkid
+vim /etc/fstab
+"UUID="2413f3aa-384d-4d95-917a-a5e80731cbc2"  /myfs1  xfs  defaults 0 0"
+reboot
+su -
+mount | grep myfs
+ 
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.8 Managing Stratis Śtorage Features 
+
+Monitoring Stratis Volumes:
+* Standard Linux tools don't give accurate sizes as Stratis volumes are thin provisioned 
+* Use stratis blockdev to show information about all block devices used for Stratis
+* Use stratis pool to show information about all pools 
+	* Note that Physical Used should not come too close to Physical Size
+* Use stratis filesystem to monitor individual filesystems
+
+Using Stratis Snapshots
+* stratis fs snapshot mypool myfs1-snapshot
+	* Changes to the original FS will not be reflected in the snapshot
+	* Use mount /stratis/mypool/my-fs-snapshot/mnt to mount it
+* Revert the original volume to the state in the snapshot
+	* umount /myfs1
+	* stratis fs destroy mypool myfs1
+	* stratis fs snapshot mypool myfs1-snap myfs1
+* Note that this approach wouldn't work on LVM!
+
+Removing Stratis Snapshots:
+* stratis filesystem destroy mypool mysnapshot will delete a snapshot 
+* A similar procedure is used for destroying file systems: stratis filesystem destroy mypool myfs
+* When there are no more file systems in a pool, use stratis pool destroy mypool to delete the pool
+
+stratis blockdev
+stratis pool
+stratis filesystem
+df -h | grep myfs
+stratis filesystem
+stratis filesystem snapshot mypool myfs1-snapshot 
+stratis filesystem list 
+mount /dev/stratis/mypool/myfs1-snapshot /mnt
+ls
+ls /mnt/
+cp /etc/a* /mnt
+cd /mnt
+ls
+cd ..
+umount /myfs1
+stratis filesystem destroy mypool myfs1
+stratis filesystem list
+stratis filesystem snapshot mypool myfs1-snapshot myfs1 
+mount -a
+cd /myfs1/
+ls
+stratis filesystem destroy mypool myfs1-snapshot
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.9 Understanding VDO
+
+* VDO (Virtual Data Optimizer) is used to optimize how data is stored on disk
+* It is used as a separate volume manager on top of which file system will be created
+* Provides thin-provisioned storage 
+	* Use a logical size 10 times the physical size for VMs and containers 
+	* Use a logical size 3 times the physical size for object storage 
+* Used in Cloud/Container environments
+* It manages deduplicated and compressed storage pools in RHEL 8
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.10 Configuring VDO Volumes
+
+Procedure Overview
+* Ensure that underlying block devices are >4GiB 
+* yum install vdo kmod-kvdo
+* vdo create --name=vdo1 --device=/dev/nvme0np2 --vdoLogicalSize=1T
+* mkfs.xfs -K /dev/mapper/vdo1
+* udevadm settle will wait for the system to register the new device name 
+* In /etc/fstab, include the x-systemd.requires=vdo.service mount option 
+* Monitor using vdostats --human-readable
+
+lsblk
+yum install vdo kmod-kvdo
+vdo create --name=vdo1 --device=/dev/nvme0n6 --vdoLogicalSize=10T
+mkfs.xfs -K /dev/mapper/vdo1
+udevadm settle
+mkdir /vdo1
+vim /etc/fstab
+"/dev/mapper/vdo1  /vdo1  xfs  x-systemd.requires=vdo.service  0 0"
+mount -a
+mount
+vdostats --human-readable
+df -h
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.11 Understanding LUKS Encrypted Volumes
+
+/dev/sda1 -> Cryptsetup luksFormat -> Cryptsetup luksOpen secret -> /dev/mapper/secret -> mkfs -> mount
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+15.12 Configuring LUKS Encrypted Volumes 
+
+Procedure Overview:
+* Use parted to create a partition
+* cryptsetup luksFormat will format the LUKS device
+* cryptsetup luksOpen will open it and create a device mapper name 
+* Mount the resulting device mapper device
+* To automate the cryptsetup luksOpen, use /etc/crypttab
+* To automate mounting the volume, use /etc/fstab
+
+parted /dev/nvme0n2
+print
+mkpart
+Partition name? luks
+Start? 4GiB
+End? 6GiB
+print
+quit
+lsblk | less
+cryptsetup luksFormat /dev/nvme0n2p5 
+cryptsetup luksOpen /dev/nvme0n2p5 secret
+ls -l /dev/mapper
+mkfs.vxfs /dev/mapper/secret
+mkdir /secret
+vim /etc/fstab
+"/dev/mapper/secret  /secret  xfs  defaults  0 0"
+vim /etc/crypyttab
+"secret  /dev/nvme0n2p5  none"
+reboot
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
