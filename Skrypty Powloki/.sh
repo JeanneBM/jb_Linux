@@ -28,26 +28,25 @@ done
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
-while true
-do 
+while true 
+do
 clear
 echo
 echo "MENU"
-echo "-------------"
+echo "---------------"
 echo
-echo "1 - Continue"
+echo "1 - Show IP adresses for $HOSTNAME"
 echo
 echo "2 - Quit"
 echo
 echo "Enter choice:"
-read $selection in
+read selection
 echo
 case $selection in
+        1) ifconfig em0 | grep inet; read junk;;
         2) clear; exit;;
 esac
 done
-
------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
