@@ -78,6 +78,24 @@ After new line is created, the editor is set to insert mode.
 13. Removing a character, x and X
 
 x and X delete the character under the cursor and to the left of the cursor, respectively.
+To remove two words - d2w.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
-14. 
+14. Replacing letter under cursor, r
+
+When you need to replace only one character under your cursor, without changing to insert mode, use r.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+15. Deleting, d 
+
+d is the delete command.
+You can combine it with movement, e.g. dw deletes the first word on the right side of the cursor.
+It also copies the content, so that you can paste it with p to another location.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+16. Repetition with .
+
+To repeat the previous command, just press . 
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
