@@ -98,4 +98,19 @@ It also copies the content, so that you can paste it with p to another location.
 To repeat the previous command, just press . 
 
 -------------------------------------------------------------------------------------------------------------------------------------------
+17. Visual mode, v
+
+Besides insert and normal mode, Vim has also visual mode.
+In visual mode, you select text using movement keys before you decide what to do with it.
+Go visual mode with v. Then select a word with e. After you've selected the text, you can delete it with d.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+18. Real Vim awaits
+
+Most important commands to remember are :w (save), :q (quit), and :q! (quit without saving).
+u for undo, ctrl+R for redo
+If you have a problem, or want to learn more about what Vim offers, type :help.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
 
