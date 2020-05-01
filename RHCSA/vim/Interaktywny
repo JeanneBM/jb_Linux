@@ -69,3 +69,15 @@ You can repeat the search for next and previous occurances with n and N, respect
 For advanced use cases, it's possible to use regexps that help to find text of particular form.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
+12. Insert new line, o and O
+
+To insert text info a new line, press o or O.
+After new line is created, the editor is set to insert mode.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+13. Removing a character, x and X
+
+x and X delete the character under the cursor and to the left of the cursor, respectively.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+14. 
