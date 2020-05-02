@@ -158,6 +158,13 @@ Lesson 11 Lab: Working with Systemd
 Lesson 11 Lab Solution: Working with Systemd 
 
 Lesson 12: Scheduling Tasks 	
+  12.1 Understanding cron and at 
+  12.2 Understanding cron Scheduling Options
+  12.3 Understanding anacron
+  12.4 Scheduling with cron
+  12.5 Scheduling Tasks with Systemd Timers
+  12.6 Using at
+  12.7 Managing Temporary Files
 Lesson 12 Lab: Scheduling Tasks 
 Lesson 12 Lab Solution: Scheduling Tasks 
 
