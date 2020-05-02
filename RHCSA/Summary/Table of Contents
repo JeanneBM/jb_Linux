@@ -150,7 +150,10 @@ Lesson 10: Managing Software
 Lesson 10 Lab: Managing Software 
 Lesson 10 Lab Solution: Managing Software 
 
-Lesson 11: Working with Systemd 	
+Lesson 11: Working with Systemd 
+  11.1 Understanding Systemd Units
+  11.2 Managing Systemd Services
+  11.3 Modifying Systemd Service Configuration
 Lesson 11 Lab: Working with Systemd 
 Lesson 11 Lab Solution: Working with Systemd 
 
