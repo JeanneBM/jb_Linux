@@ -138,6 +138,15 @@ Lesson 9 Lab: Managing Processes
 Lesson 9 Lab Solution: Managing Processes 	
 
 Lesson 10: Managing Software 	
+  10.1 Understanding RPM Packages
+  10.2 Setting up Repository Access
+  10.3 Understanding Modules and Application Streams
+  10.4 Managing Packages with yum
+  10.5 Managing Modules and Application Streams
+  10.6 Using yum Groups
+  10.7 Managing yum updates and yum history
+  10.8 Using RPM Queries
+  10.9 Using Red Hat Subscription Manager
 Lesson 10 Lab: Managing Software 
 Lesson 10 Lab Solution: Managing Software 
 
