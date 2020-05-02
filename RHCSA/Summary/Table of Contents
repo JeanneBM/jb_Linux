@@ -169,6 +169,11 @@ Lesson 12 Lab: Scheduling Tasks
 Lesson 12 Lab Solution: Scheduling Tasks 
 
 Lesson 13: Configuring Logging 	
+  13.1 Understanding RHEL 8 Logging Options
+  13.2 Configuring Rsyslog Logging
+  13.3 Working with systemd-journald
+  13.4 Preserving the Systemd Journal
+  13.5 Configuring Logrotate
 Lesson 13 Lab: Configuring Logging 
 Lesson 13 Lab Solution: Configuring Logging 
 
