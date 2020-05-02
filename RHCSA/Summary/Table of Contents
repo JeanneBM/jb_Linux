@@ -177,7 +177,19 @@ Lesson 13: Configuring Logging
 Lesson 13 Lab: Configuring Logging 
 Lesson 13 Lab Solution: Configuring Logging 
 
-Lesson 14: Managing Storage 	
+Lesson 14: Managing Storage 
+  14.1 Understanding Disk Layout
+  14.2 Understanding Linux Storage Options
+  14.3 Understanding GPT and MBR Partitions
+  14.4 Creating Partitions with parted
+  14.5 Creating MBR Partitions with fdisk
+  14.6 Understanding File System Differences 
+  14.7 Making and Mounting File Systems
+  14.8 Mounting Partitions through /etc/fstab
+  14.9 Managing Persistent Naming Attributes 
+  14.10 Managing Systemd Mounts
+  14.11 Managing XFS File Systems
+  14.12 Creating a Swap Partition
 Lesson 14 Lab: Managing Storage 	
 Lesson 14 Lab Solution: Managing Storage 	
 
