@@ -194,6 +194,18 @@ Lesson 14 Lab: Managing Storage
 Lesson 14 Lab Solution: Managing Storage 	
 
 Lesson 15: Managing Advanced Storage 	
+  15.1 Undeerstanding LVM, Stratis and VDO
+  15.2 Understanding LVM Setup
+  15.3 Creating an LVM Logical Volume
+  15.4 Understanding Device Mapper and LVM Device Names
+  15.5 Resizing LVM Logical Volumes
+  15.6 Understanding Stratis Setup
+  15.7 Creating Stratis Volumes
+  15.8 Managing Stratis Śtorage Features 
+  15.9 Understanding VDO
+  15.10 Configuring VDO Volumes
+  15.11 Understanding LUKS Encrypted Volumes
+  15.12 Configuring LUKS Encrypted Volumes 
 Lesson 15 Lab: Managing Advanced Storage 	
 Lesson 15 Lab Solution: Managing Advanced Storage 	
 
