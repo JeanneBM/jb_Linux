@@ -113,9 +113,10 @@ If you have a problem, or want to learn more about what Vim offers, type :help.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-1.
-2.
-3.
+1. i - insert mode
+2. h,j,k, and l - arrows
+3. w - start of next word; 
+   e - nd of the word; and b moves to beginning of the word.
 4.
 5.
 6.
