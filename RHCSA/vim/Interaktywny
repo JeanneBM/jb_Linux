@@ -115,22 +115,30 @@ If you have a problem, or want to learn more about what Vim offers, type :help.
 
 1. i - insert mode
 2. h,j,k, and l - arrows
-3. w - start of next word; 
-   e - nd of the word; and b moves to beginning of the word.
-4.
-5.
-6.
-7.
-8.
-9.
-10.
-11.
-12.
-13.
-14.
-15.
-16
-17.
-18.
+3. w - start of next word 
+   e - end of the word
+   b - beginning of the word
+4. 5w - do 5 times
+5. 3iWord - write 3 times word
+6. f - find
+   3fq - find third q
+7. % - podpowiadanie nawiasow
+8. 0 - beginning of a line
+   $ - end of a line
+9. * - next occurance of the word
+   # - previous occurance of the word
+10. gg - beginning of the file
+    G - end of the file
+11. /text - find text
+    n - search for next and previous occurances
+12. o - insert a new line
+13. x - delete the character
+14. r - replace only one character
+15. d - deleting 
+16. . - repeat the previous command
+17. v - visual mode
+18. w - save
+    :q - quit
+    :q! - quit without saving
 
 -------------------------------------------------------------------------------------------------------------------------------------------
