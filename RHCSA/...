@@ -1,6 +1,34 @@
+Zmiana hasla roota
+RHEL 7
+=========
+1. Reboot
+2. GRUB i 'e'
+3. w czesci zaczynajacej sie na "linux16" lub "linuxefi"; szukamy zapisu "rhgb quiet" i zamieniamy na "rd.break enforcing=0"
+4. CTRL+X i zacznie sie bootowanie na poziomie root
+5. pojawi sie prompt jako switch_root:/# i wpisujemy komende mount -o remount, rw /sysroot (czyli rozmontowanie plikow /sysroot0
+  czyli: switch_root:/# mount -o remount, rw /sysroot
+6. kolejna komenda: chroot /sysroot i przejdzie z switch_root na sh-4.2#
+7. komenda passwd i nowe haslo
+8. exit - powrot na switch_root
+9. komenda: mount -o remount, ro /sysroot - jako rozmontowanie na read-only
+10. exit - wyjscie ze switch_root i login jako root
+11. restorecon /etc/shadow - komenda aktualizujaca plik z zaszyfrowanymi haslami, porzadki po zmianie
+12. setenforce 1 - powrot na SELINUX
+
 https://spr.com/password-recovery-for-rhel-centos-7-linux/
 
+RHEL 6
+=========
+1. Reboot
+2. GRUB -> press 'e'
+3. pojawia się informacja i po quiet na koncu dopisujemy '1' i Enter - w rozumieniu przejscie na level 1
+4. w prompt jako [root@localhost /]$ komenda passwd, czyli [root@localhost /]$ passwd
+5. Reboot i standardowo dalej
+
 https://www.youtube.com/watch?v=97NVZ_p0ltA
+
+
+
 
 yum
 install patches
