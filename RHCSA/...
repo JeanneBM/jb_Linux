@@ -8,9 +8,41 @@ history
 remove
 add repo
 
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+What is an inode?
+
+An inode represents a file-system object that contains information about the data stored on the server, such as files, directories, emails, etc. 
+The number of files and directories that reside on the account equal the inodes used on the account.
 
 
+Why are inodes limited?
 
+When a file is read, open or written by the operating system, the file inodes is checked by the server, 
+and the more files or directories are hosted on the account, the more inodes are used. 
+
+
+Exceeding the inodes limit
+
+Once the inodes limit is reached, your account behaves in the same way as when the disk space limit is exceeded. 
+Basically, you won’t be able to create/upload new files, receive emails, write data in the MySQL database, 
+and your cPanel will show errors as no temporary files can be stored on your account anymore. 
+You might also see your website down if the application used is doing continuous queries to the database, 
+storing new data or if it requires to save new data in a temporary folder.
+
+
+Resolving the issue
+
+1. One of the ways to resolve the excessive inodes usage would be to upgrade to a higher plan to better accommodate your hosting account needs. 
+For this, you need to get in touch with your account manager, or contact our support team.
+
+2. The inode usage can also be reduced by removing files and directories from your account. 
+It's possible to provide a breakdown of inode usage as per folders to remove some files if these are no longer needed.
+
+3. In cases when the inode usage is higher due to many incoming emails or many temporary/cache/session files 
+– avoid reaching the limit again in future.
+
+----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
