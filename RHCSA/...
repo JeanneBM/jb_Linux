@@ -5,7 +5,7 @@ RHEL 7
 2. GRUB i 'e'
 3. w czesci zaczynajacej sie na "linux16" lub "linuxefi"; szukamy zapisu "rhgb quiet" i zamieniamy na "rd.break enforcing=0"
 4. CTRL+X i zacznie sie bootowanie na poziomie root
-5. pojawi sie prompt jako switch_root:/# i wpisujemy komende mount -o remount, rw /sysroot (czyli rozmontowanie plikow /sysroot0
+5. pojawi sie prompt jako switch_root:/# i wpisujemy komende mount -o remount, rw /sysroot (czyli rozmontowanie plikow /sysroot)
   czyli: switch_root:/# mount -o remount, rw /sysroot
 6. kolejna komenda: chroot /sysroot i przejdzie z switch_root na sh-4.2#
 7. komenda passwd i nowe haslo
