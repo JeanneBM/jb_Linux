@@ -111,6 +111,16 @@ delete or move files to another drive. Or mount a higher capacity drive to a new
 You can backup the whole filesystem, than recreate it with higher number of inodes.
 Or you can mount another drive to the path with many files and move the files to that drive.
 
+----------------------------------------------------------------------------------------------------------------------------------------------
+Geek: 
 
+dumpe2fs shows some useful information about the file system, such as:
+the mount point.
+the last time the file system was checked.
+file system OS type.
+number of inodes.
+journal information.
+
+df - To list available and used inodes, use the -i option
 
 
