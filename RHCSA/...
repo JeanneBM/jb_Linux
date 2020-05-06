@@ -124,3 +124,35 @@ journal information.
 df - To list available and used inodes, use the -i option
 
 
+SWAP
+$ free -m
+             total       used       free     shared    buffers     cached
+Mem:           490        482          7         13          3         55
+-/+ buffers/cache:        423         66
+Swap:            0          0          0
+
+$ sudo dd if=/dev/zero of=/swapfile bs=32M count=16
+16+0 records in
+16+0 records out
+536870912 bytes (537 MB) copied, 10.2107 s, 52.6 MB/s
+
+$ sudo chmod 600 /swapfile
+
+$ sudo mkswap /swapfile
+Setting up swapspace version 1, size = 524284 KiB
+no label, UUID=f3167ae7-4edf-4355-abd4-85881f7a0c66
+
+$ sudo swapon /swapfile
+
+$ sudo swapon -s
+Filename				Type		Size	Used	Priority
+/swapfile                               file		524284	0	-1
+
+$ free -m
+             total       used       free     shared    buffers     cached
+Mem:           490        483          6         13          7        144
+-/+ buffers/cache:        330        159
+Swap:          511          0        511
+
+
+
