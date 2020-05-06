@@ -17,11 +17,14 @@ storage:
 *-filesystem
 *-mount
 
--------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
 
 14.2 Understanding GPT and MBR Partitions
 
-BIOS    hard maximum disk size = 2TB
+sposób zapisu informacji o partycjach na dysku twardym
+
+BIOS    
+  hard maximum disk size = 2TB
   MBR Master Boot Record (512 bytes)                          command: fdisk
     - boot loader
     - partition table
@@ -33,6 +36,14 @@ BIOS    hard maximum disk size = 2TB
         ...       -> for total is max 15 partitions
         
         
+ UEFI        
+  more than 2TB hard disk size
+  GPT GUID Partition Table:                                   command: gdisk
+  - boot loader
+  - partition table
+  128 partitions
         
-        
-        
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+14.3 Creating MBR Partitions with fdisk
+
