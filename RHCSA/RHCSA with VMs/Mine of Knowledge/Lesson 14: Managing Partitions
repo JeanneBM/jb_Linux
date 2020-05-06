@@ -55,3 +55,9 @@ fdisk /dev/sda -> Command: n -> p //as primary -> Last sector...:+1G -> p (as pr
 
 14.4 Creating GPT Partitions with gdisk
 
+14.5 Understanding File System Differences
+14.6 Making the File System
+14.7 Mounting the File System Manually
+14.8 Mounting Partitions via /etc/fstab
+14.9 Creating a Swap Partition
+
