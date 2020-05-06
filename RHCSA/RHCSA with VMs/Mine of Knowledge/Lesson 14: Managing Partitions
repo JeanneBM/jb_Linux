@@ -5,18 +5,18 @@ Partition - the area to store data
 metadata - dane obrazujace dzialania systemu, niewidoczne dla koncowego usera
 
 disk:
-/home
-/boot
-swap
-/
+- /home
+- /boot
+- swap
+- /     -> czesc root'a
 
-metadata
-data
-
-partition
--filesystem
--mount
+storage:
+1. metadata
+2. data:
+*partition
+*-filesystem
+*-mount
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
-14.2 
+14.2 Understanding GPT and MBR Partitions
