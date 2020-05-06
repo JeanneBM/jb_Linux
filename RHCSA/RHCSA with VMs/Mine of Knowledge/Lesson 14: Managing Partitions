@@ -20,3 +20,19 @@ storage:
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
 14.2 Understanding GPT and MBR Partitions
+
+BIOS    hard maximum disk size = 2TB
+  MBR Master Boot Record (512 bytes)                          command: fdisk
+    - boot loader
+    - partition table
+      max. 4 partitions:
+      - primary
+      - extened: 
+        - logical
+        - logical
+        ...       -> for total is max 15 partitions
+        
+        
+        
+        
+        
