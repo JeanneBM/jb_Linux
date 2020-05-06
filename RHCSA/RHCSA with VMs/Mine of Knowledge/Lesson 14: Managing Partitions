@@ -47,3 +47,11 @@ BIOS
 
 14.3 Creating MBR Partitions with fdisk
 
+fdisk
+cat /proc/partitions
+fdisk /dev/sda -> Command: n -> p //as primary -> Last sector...:+1G -> p (as print)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+14.4 Creating GPT Partitions with gdisk
+
