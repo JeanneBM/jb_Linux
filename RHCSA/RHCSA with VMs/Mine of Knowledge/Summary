@@ -1,0 +1,13 @@
+
+Lesson 14: Managing Partitions
+  14.1 Understanding Disk Layout
+  14.2 Understanding GPT and MBR Partitions
+  14.3 Creating MBR Partitions with fdisk
+  14.4 Creating GPT Partitions with gdisk
+  14.5 Understanding File System Differences  
+  14.6 Making the File System
+  14.7 Mounting the File System Manually
+  14.8 Mounting Partitions via /etc/fstab
+  14.9 Creating a Swap Partition
+Lesson 14 Lab: Managing Partitions
+Lesson 14 Lab Solution: Managing Partitions
