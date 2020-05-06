@@ -1,0 +1,22 @@
+14.1 Understanding Disk Layout
+
+Partition - the area to store data
+
+metadata - dane obrazujace dzialania systemu, niewidoczne dla koncowego usera
+
+disk:
+/home
+/boot
+swap
+/
+
+metadata
+data
+
+partition
+-filesystem
+-mount
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+14.2 
