@@ -282,14 +282,28 @@ Lesson 23 Lab: Managing Network Security
 Lesson 23 Lab Solution: Managing Network Security 
 
 Lesson 24: Automating Installations 	
+  24.1 Understanding Automated Installations Solutions
+  24.2 Creating a Kickstart File
+  24.3 Using the Kickstart File for Automatic Installations
+  24.4 Using Kickstart Files in Fully Automated Datacenters
+  24.5 Using Vagrant to Set Up Virtual Machines
 Lesson 24 Lab: Automating Installations 
 Lesson 24 Lab Solution: Automating Installations 
 
 Lesson 25: Configuring Time Services 
+  25.1 Understanding Linux Time
+  25.2 Setting Time with timedatectl
 Lesson 25 Lab: Configuring Time Services 
 Lesson 25 Lab Solution: Configuring Time Services 
 
 Lesson 26: Accessing Remote File
+  26.1 Configuring a Base NFS Server
+  26.2 Mounting NFS Shares
+  26.3 Configuring a Base Samba Server
+  26.4 Mounting Samba Shares
+  26.5 Understanding Automount 
+  26.6 Configuring Automount
+  26.7 Configuring Automount for Home Directories
 Lesson 26 Lab: Accessing Remote File
 Lesson 26 Lab Solution: Accessing Remote File
 
