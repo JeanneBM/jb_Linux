@@ -264,11 +264,20 @@ Lesson 21 Lab: Managing HTTP Services
 Lesson 21 Lab Solution: Managing HTTP Services
 
 Lesson 22: Managing SELinux 
-
+  22.1 Understanding the Need for SELinux
+  22.2 Managing SELinux Modes
+  22.3 Understanding SELinux Context Labels and Booleans
+  22.4 Using File Context Labels
+  22.5 Analyzing SELinux Log Messages
+  22.6 Resetting the Root Password and SELinux
 Lesson 22 Lab: Managing SELinux 
 Lesson 22 Lab Solution: Managing SELinux 
 
-Lesson 23: Managing Network Security 	
+Lesson 23: Managing Network Security 
+  23.1 Understanding RHEL 8 Firewalling
+  23.2 Understanding Firewalld Components
+  23.3 Configuring a Firewall with firewall-cmd
+  23.4 Using firewall-config
 Lesson 23 Lab: Managing Network Security 
 Lesson 23 Lab Solution: Managing Network Security 
 
