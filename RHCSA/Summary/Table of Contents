@@ -210,14 +210,33 @@ Lesson 15 Lab: Managing Advanced Storage
 Lesson 15 Lab Solution: Managing Advanced Storage 	
 
 Lesson 16: Basic Kernel Management 
+  16.1 Basic Kernel Management
+  16.2 Working with Kernel Modules 
+  16.3 Using modprobe
+  16.4 Using /proc to Tune Kernel Behavior
+  16.5 Updating the Kernel
 Lesson 16 Lab: Basic Kernel Management 
 Lesson 16 Lab Solution: Basic Kernel Management 
 
-Lesson 17: Managing the Boot Procedure 	
+Lesson 17: Managing the Boot Procedure 
+  17.1 Understanding the Boot Procedure
+  17.2 Modifying Grub2 Runtime Parameters
+  17.3 Modifying Grub2 Persistent Parameters
+  17.4 Managing Systemd Targets
+  17.5 Setting the Default Systemd Target
+  17.6 Booting into a Specific Target
 Lesson 17 Lab: Managing the Boot Procedure 
 Lesson 17 Lab Solution: Managing the Boot Procedure
 
-Lesson 18: Essencial Troubleshooting Skills 	
+Lesson 18: Essencial Troubleshooting Skills 
+  18.1 Understanding Troubleshooting Modes
+  18.2 Changing the Root Password
+  18.3 Troubleshooting Filesystem Issues
+  18.4 Troubleshooting Networking Issues
+  18.5 Troubleshooting Performance Issues
+  18.6 Troubleshooting Software Issues
+  18.7 Troubleshooting Memory Shortage
+  18.8 Consulting Red Hat Websites for Troubleshooting Tips
 Lesson 18 Lab: Essencial Troubleshooting Skills
 Lesson 18 Lab Solution: Essencial Troubleshooting Skills
 
