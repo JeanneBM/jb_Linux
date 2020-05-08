@@ -249,14 +249,22 @@ Lesson 19 Lab: Introducing Bash Shell Scripting
 Lesson 19 Lab Solution: Introducing Bash Shell Scripting 
 
 Lesson 20: Managing Network Services 
+  20.1 Understanding SSH Key-based Login
+  20.2 Setting up SSH Key-based Login
+  20.3 Changing Common SSH Server Options
+  20.4 Securely Copying Files 
+  20.5 Securely Synchronizing Files
 Lesson 20 Lab: Managing Network Services 
 Lesson 20 Lab Solution: Managing Network Services 
 
 Lesson 21: Managing HTTP Services
+  21.1 Understanding Apache Configuration:
+  21.2 Creating a Basic Website
 Lesson 21 Lab: Managing HTTP Services
 Lesson 21 Lab Solution: Managing HTTP Services
 
-Lesson 22: Managing SELinux 	
+Lesson 22: Managing SELinux 
+
 Lesson 22 Lab: Managing SELinux 
 Lesson 22 Lab Solution: Managing SELinux 
 
