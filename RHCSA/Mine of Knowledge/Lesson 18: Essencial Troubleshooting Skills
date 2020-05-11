@@ -14,7 +14,7 @@ Procedure Overview:
 2. Find the line that loads the Linux kernel and add rd.break to the end of the line (after "ap")
 3. mount -o remount, rw /sysroot
 4. chroot /sysroot
-5. echo secret *pipe* passwd --stdin root
+5. echo secret | passwd --stdin root
 6. touch /.autorelabel
 7. Ctrl+D
 8. Ctrl+D
