@@ -173,4 +173,159 @@ sync        Synchronizuje stan buforow w pamieci operacyjnej z zawartoscia nosni
             bez wczesniejszego odlaczenia systemu plikow. 
             
 -------------------------------------------------------------------------------------------------------------------------------------
+Informacje o Systemach Plikow
+
+mount       Wyswietla liste zamontowanych (widocznych dla systemu) systemow plikow 
+            (czyli urzadzen i partycji zawierajacych zrozumiale dla systemu operacyjnego i uzyteczne dla uzytkownika dane).
+            
+            Przyklad: 
+            root@shoebox :~# mount 
+            /dev/hdal on / type ext3 (rw) 
+            
+            Oznacza, ze urządzenie /dev/hdal zostalo zamontowane w katalogu I (glownym), uzywa systemu plikow ext3 
+            i jest dostepne w trybie do odczytu i zapisu (rw). 
+            
+
+          
+df          Wyswietla pojemnosc (calkowita i dostepna) wszystkich zamontowanych aktualnie systemow plikow oraz katalog, 
+            w ktorym dany system plikow zostal zamontowany.
+            
+            Przyklad:
+            root@shoebox :~# df
+            
+            Filesystem    lk-blocks   Used      Available   Use%   Mounted on 
+            /dev/hdal     3954432     3542276   200040      95%    /
+            
+            Oznacza, ze urzadzenie /dev/hdal jest zamontowane w katalogu I (glownym), ma pojemnosc 3 954 342 KB, 
+            z czego uzyte jest 3 542 276 KB (95%), a wciaz do wykorzystania pozostaje 208 040 KB.
+            
+            
+            
+du          Wyswietla rozmiar podanego pliku lub katalogu. Umozliwia wyswietlanie rozmiarow wielu elementow jednoczesnie 
+            oraz rekursywne wyznaczanie rozmiarow. 
+            
+            Najczesciej uzywane opcje:
+            -a - wyswietla rozmiary wszystkich plikow, a nie tylko katalogow, 
+            -s - dokonuje rekursywnego sumowania rozmiarow podkatalogow i prezentuje wylacznie rozmiar podanego katalogu, 
+                 zamiast wyswietlania indywidualnych rozmiarow wszystkich podkatalogow w glebi hierarchii, 
+            -x - nie dokonuje obliczen dla napotykanych katalogow znajdujacych sie na innych systemach plikow niz poczatkowy, 
+            -c - dolacza sumaryczna informacje o rozmiarze wszystkich przetworzonych elementow. 
+            
+            Przyklad:
+            -root@shoebox :~# du -s *
+            
+            4688 bin 
+            4128 boot 
+            428 dev 
+            
+-------------------------------------------------------------------------------------------------------------------------------------
+Partycjonowanie Nosnikow Danych
+
+
+!! Partycjonowanie nosnikow danych jest operacja destruktywna. Usuniecie partycji lub zmiana jej parametrow moze spowodowac utrate dostępu 
+do danych lub ich bezpowrotne uszkodzenie.
+
+fdisk 'nosnik'     Uruchamia program partycjonowania nosnika 'nosnik', np. fdisk /dev/sda. 
+                   
+                   Polecenia dostepne w trybie partycjonowania nosnika danych:
+                   - m - wyswietlenie objasnienia poszczegolnych funkcji programu, 
+                   - q - konczy dzialanie programu bez zapisywania jakichkolwiek zmian, 
+                   - w - zapisuje zmiany wprowadzone w tablicy partycji i konczy dzialanie programu, 
+                   - p - wyswietlenie aktualnej zawartosci tablicy partycji (z uwzglednieniem ewentualnie wprowadzonych zmian), 
+                   - o - usuniecie wszystkich partycji i utworzenie nowej, czystej tablicy partycji, 
+                   - n - utworzenie nowej partycji, 
+                   - a - oznaczenie wybranej partycji podstawowej jako przeznaczonej do rozruchu systemu operacyjnego, 
+                   - t - zmiana identyfikatora typu wybranej partycji, 
+                   - d - usuniecie wybranej partycji, 
+                   - v - weryfikacja poprawnosci tablicy partycji, 
+                   - c - wylaczenie zgodnosci z systemem DOS i przejscie do trybu zarzadzania partycjami wg numeracji sektorow logicznych (LBA). 
+                   
+-------------------------------------------------------------------------------------------------------------------------------------
+Nawigowanie Pomiedzy Katalogami
+
+pwd  - Wyswietlanie nazwy biezacego katalogu
+
+cd - Przejcie do katalogu domowego 
+
+cd ..  - Przejscie do katalogu nadrzednego
+
+cd 'nazwa'  - Przejscie do katalogu /nazwa/
+
+cd katalog1/katalog2/../katalog3  - Przejscie do katalogu z pominieciem kilku katalogow posrednich
+
+mkdir 'nazwa' - Utworzenie katalogu /nazwa/
+
+rmdir 'nazwa' - Usuniecie pustego katalogu /nazwa/
+
+rm 'nazwa' -r -f  - Usuniecie katalogu /nazwa/ wraz ze wszystkimi znajdujacymi sie w nim plikami i katalogami.
+                      
+                    Przelacznik -f pozwala zapobiec pytaniu o potwierdzenie checi usuniecia danych
+                    (zaleznego od ustawien srodowiska uzytkownika)
+                
+find 'punkt-startowy''wyrazenie'    Wyszukuje pliki o nazwach spelniajacych okreslone warunki, rozpoczynajac od podanego katalogu. 
+                                    find / przeszuka wszystkie katalogi na wszystkich systemach plikow, 
+                                    a find . rozpocznie poszukiwania od biezacego katalogu. 
+                                    
+                                    Najczesciej stosowane opcje i wyrazenia: 
+                                    -maxdepth n - ogranicza glebokosc rekurencji do n poziomow, 
+                                    -xdev - uniemozliwia przegladanie innych systemow plikow niz poczatkowy,
+                                    -amin n - wyszukuje pliki uzywane do n minut temu, 
+                                    -cmin n - wyszukuje pliki zmodyfikowane do n minut temu, 
+                                    -empty - wyszukuje pliki o rozmiarze O i puste katalogi, 
+                                    -name 'nazwa' - wyszukuje pliki o podanej nazwie (mozna stosowac symbole wieloznaczne),
+                                    -iname 'nazwa' - analogiczne do -name, lecz nie rozroznia malych i wielkich liter. 
+                                    
+                                    Przyklad: 
+                                    user@shoebox:-$ find . -iname "char*" 
+                                    ./Dokumenty/Charts.ods 
+                                    ./C++ Projects/ a/charsize.c 
+                                    ./Ghart.pmc 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Tworzenie i Usuwanie Plikow
+
+touch 'nazwa'    Utworzenie pustego pliku o nazwie 'nazwa'
+
+rm 'nazwa' -f    Usuniecie pliku o nazwie 'nazwa'.
+                 Przelacznik -f pozwala zapobiec pytaniu o potwierdzenie checi usuniecia danych 
+                 (zaleznego od ustawien srodowiska uzytkownika)
+                 
+dd if=/dev/zero of=nazwa bs=1 count=n   Utworzenie pliku o nazwie 'nazwa' zawierajacego n bajtow o wartosci 0.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Zarzadzanie Plikami
+
+cp 'opcje' 'skad''dokad'    Kopiuje plik lub katalog (czyli tworzy ich kopie, pozostawiajac oryginal bez zmian) podane jako pierwszy
+                            parametr do katalogu lub pliku o nazwie podanej jako drugi parametr. Nazwa zrodła danych moze byc nazwa 
+                            wieloznaczna. Poniewaz parametry oddzielone sa znakiem spacji, nalezy bardzo uwazac na nazwy plikow 
+                            i katalogow zawierajace spacje. Kazda spacje nalezy poprzedzic znakiem \ lub zamiennie cala nazwe pliku 
+                            nalezy zawrzec w znakach cudzyslowu.
+                            
+                            Najczesciej uzywane opcje polecenia: 
+                            -i- prosi o potwierdzenie (klawiszem y) operacji w przypadku proby skopiowania pliku w miejsce 
+                                lub pod nazwe juz istniejaca na dysku 
+                            -R- kopiuje wszystkie pliki znajdujace sie wewnatrz kopiowanych katalogow 
+                                (bez tego parametru kopiowane sa same katalogi, bez plikow, ktore zawieraja) 
+                            -p- zachowuje dane o wlascicielu pliku i prawach dostepu do niego; 
+                                przydatna w razie kopiowania przez administratora katalogow domowych uzytkownikow w nowe miejsce, 
+                                aby nie naruszyc narzuconej im struktury praw dostępu
+                            -V- wyswietla w czasie wykonywania operacji kopiowania nazwy kolejno przetwarzanych plikow
+                            
+mv 'opcje' 'skad''dokad'    Funkcjonuje analogicznie do polecenia cp, lecz zamiast kopiowac pliki przenosi je, 
+                            a wiec tworzy kopie w miejscu docelowym i usuwa oryginaly. Nazwa zrodla danych moze byc nazwa wieloznaczna.  
+                            W miare mozliwosci przeniesione pliki zachowuja wszystkie informacje na temat wlasciciela pliku i praw dostepu. 
+
+                            Najczesciej uzywane opcje polecenia:
+                            -i- prosi o potwierdzenie operacji w przypadku proby skopiowania pliku w miejsce lub pod nazwe juz istniejaca 
+                                na dysku 
+                            -v- wyswietla w czasie wykonywania operacji kopiowania nazwy kolejno przetwarzanych plikow 
+                            
+rm 'opcje' 'nazwa'          Usuwa wskazane pliki lub katalogi. Domyslnie usuniecie jest natychmiastowe i nieodwracalne 
+                            (niektore dystrybucje wprowadzaja obowiazek potwierdzania). 
+                            Najczesciej uzywane opcje polecenia: 
+                            -f - usuwa pliki bez wymagania potwierdzenia (jezeli ustawienia systemu wymagaja potwierdzania) 
+                            -r - usuwa pliki rekursywnie (po napotkaniu katalogu wskazane pliki sa usuwane rowniez z wnetrza katalogu) 
+                            -i - prosi o potwierdzanie kazdej operacji usuniecia pliku
+                            
+-------------------------------------------------------------------------------------------------------------------------------------
 
