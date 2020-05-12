@@ -845,6 +845,39 @@ kill 'opcje' pid      Wysyla uruchomionemu programowi (procesowi) o identyfikato
                             o podanej nazwie. 
 
                             Przyklad: killall -s 9 cat
+
+Lista Sygnalow Przesylanych Procesom
+
+SIGHUP 1    Zakonczenie lub przekonfigurowanie programu 
+SIGINT 2    Program przerwany za pomoca kombinacji klawiszy
+SIGQUIT 3   Program zakonczony decyzja uzytkownika 
+SIGKILL 9   Program ma zostac bezwarunkowo zakonczonv 
+SIGTERM 15  Program ma zakonczyc prace w sposob kontrolowany 
+
+
+hdparm 'opcje' urzadzenie       Umozliwia pobranie informacji o urzadzeniu dyskowym i zbadanie jego wydajnosci. 
+
+Najczesciej uzywane opcje: 
+
+-B n -  ustala poziom agresywnosci dzialania mechanizmu oszczedzania energii przez dysk twardy (im mniejsze wartosci n, tym nizsza wydajnosc 
+        i wieksza oszczednosc mocy, 255 wylacza oszczednosc calkowicie), 
+
+-i -    wyswietla dane techniczne urzadzenia, obowiazujace w momencie uruchamiania systemu operacyjnego,
+
+-I -    wyswietla dane techniczne urzadzenia i aktualne informacje o jego stanie,
+
+-5 n -  ustala czas, po ktorym dysk bedzie zatrzymywal ruch talerzy i przechodzil w stan uspienia (n może przyjmowac wartosci od 1 do 240
+        i oznacza jednostki 5-sekundowe; 0 wylacza mechanizm usypiania),
+
+-T -    mierzy szybkosc transmisji danych z uwzglednieniem funkcjonowania bufora systemu operacyjnego,
+
+-t -    mierzy realna szybkosc transmisji danych z nosnika do pamieci. 
+
+Przyklad: 
+root@shoebox: /home/gruszka# hdparm -T -t /dev/hda 
+/dev/hda: 
+Timing cached reads: 252 MB in 2.00 seconds = 125.81 MB/sec 
+Timing buffered disk reads: 104 MB in 3.02 seconds = 34.42 MB/sec 
 -------------------------------------------------------------------------------------------------------------------------------------                 
 Diagnostyka Dzialania Polaczen Sieciowych
 
