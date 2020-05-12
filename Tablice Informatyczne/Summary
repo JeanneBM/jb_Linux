@@ -556,4 +556,46 @@ poszerzajac zakres dzialania polecenia. W jednynm wierszu polecenia mozesz tez p
 i katalogow: chmod 400 plik1 plik2 katalog1 katalog2.
 
 -------------------------------------------------------------------------------------------------------------------------------------
+Wyswietlanie Zawartosci Katalogu
+
+komenda ls
+Opcjonalnie mozna dolaczyc nazwe katalogu, ktorego zawartosc ma zostac wyswietlona.
+
+Najczesciej stosowane parametry:
+-R  Rekursywne wyswietlanie zawartosci wszystkich napotkanych katalogow
+-a  Uwzglednianie ukrytych plikow i katalogow
+-l  Wlaczenie trybu wyswiatelnaia listy szczegolow dotyczacych plikow i katalogow.
+
+Ukryte pliki i katalogi wyroznione sa kropka na poczatku ich nazwy.
+
+drwxr-xr-x  2    root   root  4096  Sep 25 2003   jhttp/
+
+drwxr-xr-x  Prawa dostepu do pliku lub katalogu
+2           Liczba laczy symbolicznych, odnoszacych sie do tego elementu
+root  root  Nazwa konta wlasciciela pliku lub katalogu oraz grupy uzytkownikow posiadajacej czesc praw wlasciciela pliku
+4096        Rozmiar pliku
+Sep 25 2003 Data ostatniej modyfikacji pliku
+jhttp/      Nazwa pliku lub katalogu
+
+Przyklady:
+
+ls          Wyswietlenie zawartosci biezacego katalogu
+ls / -l     Wyswietlenie szczegolow dotyczacych elementow znajdujacych sie w glownym katalogu 
+ls .. -la   Wyswietlenie szczegolow dotyczacych elementow znajdujacych sie w katalogu nadrzednym, 
+            z wlaczeniem do listy ukrytych plikow i katalogow 
+            
+-------------------------------------------------------------------------------------------------------------------------------------
+Lacza twarde i symboliczne
+
+Lacza twarde i symboliczne pozwalaja stworzyc wiele odbrebnych nazw plikow i katalogow (znajdujacych sie w wielu roznych 
+miejscach systemu plikow), wskazujacych na ten sam, jeden element. Pozwala to uproscic odwolywanie sie do plikow 
+lub katalogow znajdujacych sie gleboko w strukturze systemu plikow lub utworzyc biblioteke czesto wykorzystywanych plikow.
+
+ln -s 'istniejacy-plik' 'nazwa-lacza'     Tworzy lacze symboliczne do pliku lub katalogu o nazwie 'istniejacy-plik' nazwane 'nazwa-lacza'
+                                          
+ln 'istniejacy-plik' 'nazwa-lacza'        Tworzy lacze twarde do pliku lub katalogu 'istniejacy-plik' nazwane 'nazwa-lacza' 
+
+rm -f 'nazwa-lacza'     Usuwa lacze symboliczne o nazwie 'nazwa-lacza', nie usuwajac obiektu, na ktory wskazuje lacze
+
+-------------------------------------------------------------------------------------------------------------------------------------
 
