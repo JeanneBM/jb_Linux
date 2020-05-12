@@ -1119,3 +1119,183 @@ Niestety, moze wymagac to troche innego podejscia do problemu. W razie potrzeby 
 
 ------------------------------------------------------------------------------------------------------------------------
 
+Automatyzacja Pobierania Plikow
+
+
+wget 'opcje' URL      Pobiera plik o podanym adresie URL i zapisuje na dysku komputera. 
+================
+
+
+Opcje:
+-Onazwa -   narzuca nazwe (lub rowniez katalog docelowy) pliku, 
+
+-c -        kontynuuje pobieranie pliku od momentu przerwania, pod warunkiem ze nazwy pliku docelowego w poprzednim i aktualnym 
+            procesie pobierania sa identyczne,
+            
+--lim it -rate=n -    ogranicza szybkosc pobierania danych do co najwyzej n bajtow na sekunde, 
+
+-q -        pobiera plik w tle, bez wyswietlania komunikatow na ekranie, 
+
+-t n -      ogranicza liczbe automatycznych prob pobrania pliku (gdy jest to mozliwe) do n, 
+
+-T n -      nakazuje oczekiwanie na odpowiedz serwera (lub dane) do n sekund, 
+
+-r -        pobiera wszystkie pliki zalezne (skladowe) danego dokumentu HTML lub katalogu FTP. 
+
+
+seq 'opcje' n m         Generuje sekwencje liczb od n dom, wypisywanych w kolejnych wierszach. 
+================
+
+
+W przypadku podania opcji -w kolejne liczby sa dopelniane z lewej strony zerami, aby miec jednakowa szerokosc liczona w znakach. 
+
+Przyklad: 
+user@shoebox:- seq 1 3 
+
+1 
+2 
+3 
+
+for         Tworzy petle o okreslonych warunkach brzegowych. 
+=====
+
+W polaczeniu z poleceniami seq i wget umozliwia wygodne, automatyczne pobieranie serii plikow o kolejno numerowanych nazwach. 
+
+Na przyklad:
+for i in ·seq -w 1 20·; do wget http://serwer/dokumenty/$i.doc; done; 
+
+spowoduje automatyczne pobranie plikow o nazwach od OO.doc do 20.doc z katalogu dokumenty serwera serwer.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Polaczenia SSH
+
+Klient SSH 
+
+ssh [uzytkownik@]host       Nawiazanie bezpiecznego, szyfrowanego polaczenia z serwerem SSH na komputerze o nazwie host. 
+                            Domyslnie dokonywana jest autoryzacja uzytkownika o nazwie takiej jak na lokalnym komputerze 
+                            (aby to zmienic, nalezy podac nazwe konta przed nazwa hosta, oddzielajac je znakiem @). 
+                            
+Opcje:
+
+-1 - uzywa wylacznie starszej wersji 1.0 protokołu SSH, 
+-2 - uzywa wersji 2.0 protokolu, 
+-4 - uzywa polaczenia 1Pv4, 
+-6 - uzywa polaczenia 1Pv6, 
+-c - uaktywnia kompresje danych przesylanych w ramach polaczenia (zalecane tylko dla wolnych sieci). 
+
+
+
+Zabezpieczanie serwera SSH 
+
+Istotne wpisy konfiguracyjne w pliku /etc/ssh/sshd_config: 
+
+Protocol 2, 1           Standardowo obslugiwane sa dwie wersje protokołu SSH. 
+                        Aby zwiększyć poziom bezpieczeństwa, można wyłączyć wersję 1 (Protocol 2) 
+                        
+PermitRootLogin yes     Standardowo system dopuszcza bezposrednie logowanie sie administratora. 
+                        Po zmienieniu tej opcji na Permit Rootlogin no potencjalny wlamywacz musi zgadnac nie tylko haslo administratora, 
+                        ale tez nazwe konta i haslo któoegos z uzytkownikow serwera 
+                        
+AllowUsers              Umozliwia wprowadzenie listy kont uzytkownikow, ktorzy maja prawo korzystac z uslugi SSH 
+                        (standardowo prawo to maja wszystkie konta uzytkownikow). Lista nazw kont jest rozdzielona znakami odstepu 
+                        
+DenyUsers               Umozliwia odebranie prawa korzystania z uslugi SSH okreslonym kontom uzytkownikow.
+                        Lista nazw kont jest rozdzielona znakami odstepu 
+                        
+Banner                  Informacja podawana przed zapytaniem o nazwe konta uzytkownika 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Kompilacja Oprogramowania
+
+make        Kompilacja programu wielomodulowego, ktory jest wyposazony w plik Makefile i okresla liste plikow skladowych 
+            oraz zaleznosci miedzy nimi. 
+                     
+Czesto dostepna opcja: 
+
+clean - usuwa posrednie pliki kompilacji zaraz po pomyslnie zakonczonej kompilacji calego pakietu; 
+        przydatne, gdy nie chce sie już dokonywac dalszych poprawek w kodzie zrodlowym i wykonywac kolejnych przebiegow kompilacji. 
+
+install - dokonuje instalacji programu w systemie (wymaga to uprawnien administratora). 
+
+uninstall - usuwa zainstalowane wczesniej poleceniem install pliki skladowe z systemu. 
+
+
+Kompilacja kernela systemu Linux: 
+
+make - kompilacja kernela systemu Linux 2.6 (wraz z modulami),
+make bzimage - kompilacja samego kernela systemu Linux 2.4 (bez modułow), 
+make modules - kompilacja modułow kernela Linux 2.4, 
+make modules_install- automatyczna instalacja modułow kernela w katalogu /lib/modules. 
+
+
+gcc 'opcje''plik-zrodlowy' -o 'plik-wynikowy'    Dokonuje kompilacji pliku zrodlowego w jezyku C na jego postac binarna, 
+                                                 umieszczajac kod maszynowy w pliku pL ikwynikowy. 
+                                                 W razie potrzeby kompiluje kilka podanych plikow zrodlowych 
+                                                 lub laczy ze soba wczesniej skompilowane binarne moduly biblioteczne. 
+                                            
+Najczesciej stosowane opcje: 
+
+-c -        dokonuje kompilacji do postaci binarnego modulu bibliotecznego zamiast do postaci samodzielnego pliku wykonywalnego, 
+-s -        tlumaczy program na postac asemblerowa, nie dokonujac ostatecznej kompilacji, 
+-on -       wlacza jeden z pieciu poziomow optymalizacji (O -brak, 1 -zalecana, lekka, 2 -silniejsza, 3 -najsilniejsza, niezalecana, 
+                                                          s -optymalizacja pod katem rozmiaru programu), 
+
+-s -        wylacza dodawanie do programu informacji diagnostycznych, znacznie zmniejszajac rozmiar generowanego pliku wynikowego. 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Zmiana Trybu Dzialania Systemu
+
+telinit 'tryb'     Zmienia tryb dzialania systemu na 'tryb'. 
+===============
+
+Polecenie mozliwe do wykonania jedynie przez uzytkownika uprzywilejowanego (root).
+
+Możliwe tryby działania systemu to:
+0 (zarezerwowany, wykorzystywany podczas zatrzymywania systemu), 
+1 (tryb administracyjny bez wielodostepu - ang. single-user mode - wykorzystywany do konserwacji systemu bez ryzyka rownoległej pracy 
+  innych uzytkownikow), 
+2, 3, 4, 5 (standardowe tryby tekstowe -zazwyczaj 2,3 - i graficzne - zazwyczaj 4,5) oraz 
+6 (zarezerwowany, wykorzystywany podczas powtornego uruchamiania systemu).
+
+
+
+runlevel        Wyswietla poprzedni oraz biezacy tryb dzialania systemu.
+==========
+
+W miejscu poprzedniego trybu moze byc wyswietlana litera N oznaczajaca, ze biezacy tryb jest pierwszym, w jaki zostal wprowadzony system 
+od momentu uruchomienia. 
+
+Realizacja polecenia nie wymaga uprawnien uzytkownika uprzywilejowanego. 
+
+
+
+shutdown 'opcja''kiedy' [komunikat]         Powoduje zatrzymanie dzialania wszystkich procesow wszystkich uzytkownikow, 
+======================================      zamkniecie systemu operacyjnego oraz - opcjonalnie - wylaczenie komputera. 
+                                        
+Opcjonalnie uzytkownikom moze zostac przekazany komunikat o tresci wprowadzonej na koncu wiersza polecenia. 
+
+Mozliwe opcje:
+-h (zatrzymanie lub wylaczenie), 
+-H (zatrzymanie), 
+-P (wylaczenie), 
+-r (powtorne uruchomienie), 
+-k (zablokowanie mozliwosci logowania sie bez zatrzymywania systemu). 
+
+Czas realizacji polecenia (kiedy) moze zostac podany w formacie godzina:minuty lub jako slowo now, oznaczajace koniecznosc natychmiastowej 
+realizacji wybranej operacji.
+
+
+halt        Wymusza zatrzymanie dzialania systemu operacyjnego i wylaczenie komputera. 
+======
+
+Polecenie mozliwe do wykonania jedynie przez uzytkownika uprzywilejowanego (root). 
+Synonim polecenia shutdown z odpowiednimi parametrami. 
+
+
+reboot      Wymusza powtorne uruchomienie systemu operacyjnego. 
+========
+
+Polecenie mozliwe do wykonania jedynie przez uzytkownika uprzywilejowanego (root). 
+Synonim polecenia shutdown z odpowiednimi parametrami.
+
+-------------------------------------------------------------------------------------------------------------------------------------
