@@ -1,9 +1,14 @@
 What is Linux?
-Linux is an open source operating system. Like other operating system (such as Windows) Linux consists of various software components that manage computer hardware resources and enable you to do tasks such as surfing the web or editing a file in a text editor.
-Linux is a free and open source software, which means that you can use, copy, study, and change the software in any way. It is distributed with the source code so users can view and modify it. This is in contrast to Microsoft Windows, a proprietary operating system.
-Many versions of Linux exist. Some of the more popular Linux distributions are Debian, Ubuntu, Fedora, openSUSE, Red Hat Enterprise Linux and SUSE Linux Enterprise Server.
-Today, Linux runs almost every computing platform available: mobile phones, tablets, servers, desktops, mainframes, etc. Android, a widely used operating system for mobile phones and tablets is based on the Linux kernel.
-Modern Linux distributions usually feature a nice GUI, similar to the one found in Windows. Here is an example Linux desktop in SUSE:
+Linux is an open source operating system. Like other operating system (such as Windows) Linux consists of various software components 
+that manage computer hardware resources and enable you to do tasks such as surfing the web or editing a file in a text editor.
+Linux is a free and open source software, which means that you can use, copy, study, and change the software in any way. 
+It is distributed with the source code so users can view and modify it. This is in contrast to Microsoft Windows, a proprietary 
+operating system.
+Many versions of Linux exist. Some of the more popular Linux distributions are Debian, Ubuntu, Fedora, openSUSE, Red Hat Enterprise Linux 
+and SUSE Linux Enterprise Server.
+Today, Linux runs almost every computing platform available: mobile phones, tablets, servers, desktops, mainframes, etc. 
+Android, a widely used operating system for mobile phones and tablets is based on the Linux kernel.
+Modern Linux distributions usually feature a nice GUI, similar to the one found in Windows. 
 
 Differences between Linux and Windows
 Here are the major differences between Linux and Windows:
@@ -51,9 +56,10 @@ A kernel is the lowest level of software that interfaces with the hardware in yo
 Generally, most kernels fall into one of the three types: monolithic, microkernel, and hybrid. Linux is a monolithic kernel which means that the entire operating system is working in kernel space and is alone in supervisor mode.
 Here is a diagram of a monolithic kernel (Photo credit: Wikipedia)
 
-To find out the kernel version of your Linux installation, you can use the uname -a command:
+To find out the kernel version of your Linux installation, you can use the uname -a command.
 
-In the picture above we can see that the kernel version is 3.0.76-0.11.
+-------------------------------------------------------------------------------------------------------------------------------------
+
 File structure in Linux
 Everything in Linux is considered a file, even a hard disk or a CD-ROM device. All files and directories appear under the root directory (represented with a single slash – /). You can refer to any file or directory using either a full path (for example, /home/bob/file.txt) or a relative path (for example, if your current directory is /home/bob/, you can refer to the file simply by typing file.txt).
 A directory is similar to a folder in Windows, and it can contain files and other directories. Hardware devices are represented by a special file stored in the /dev directory (for example, /dev/sda usually represents the first hard disk on the system).
@@ -77,6 +83,8 @@ In the FHS all files and directories appear under the root directory (/), Here i
 /tmp – contains temporary files.
 Here is the file structure from Ubuntu:
 
+-------------------------------------------------------------------------------------------------------------------------------------
+
 Change the boot order in BIOS
 If you are installing Linux from a CD or a DVD, the first thing you will need to do is to change the boot order of your system, so that the CD/ROM becomes the first boot device. This is done in the BIOS setup utility.
 First, when computer boots, enter the BIOS setup. This can done in various ways, depending on your motherboard. It is usually done by pressing F2, F10 or ESC while the computer is booting. Check the documentation of your motherboard provider for more information on how to access BIOS.
@@ -88,6 +96,8 @@ The next step is to save the changes. Go to the Exit tab and select Exit saving 
 
 That’it! Your Ubuntu installation should now start.
 The process is similar for installing Linux from an USB device. Just make sure that your USB device is the first boot device in BIOS.
+
+-------------------------------------------------------------------------------------------------------------------------------------
 
 Install Ubuntu
 In this chapter we will show you how to install Ubuntu, a popular Linux distribution. If you would like to follow along, get your copy of Ubuntu from the following link:
