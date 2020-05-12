@@ -598,4 +598,77 @@ ln 'istniejacy-plik' 'nazwa-lacza'        Tworzy lacze twarde do pliku lub katal
 rm -f 'nazwa-lacza'     Usuwa lacze symboliczne o nazwie 'nazwa-lacza', nie usuwajac obiektu, na ktory wskazuje lacze
 
 -------------------------------------------------------------------------------------------------------------------------------------
+Przetwarzanie Potokowe
+
+strumien wejsciowy            PROGRAM             strumien bledow
+                                                              FILTR
+                                                                  strumien wyjsciowy
+                                                                  
+>   Przekazanie wyniku dzialania polecenia (ze strumienia wyjsciowego)
+
+<   Przekazanie poleceniu danych do przetwarzania (do strumienia wejsciowego)
+
+|   Przefiltrowanie danych tworzonych w wyniku dzialania polecenia przed przekazaniem ich do urzadzenia 
+    lub pliku odbierajacego je (w ramach strumeinia wyjsciowego)
+    
+2>  Przekazanie komunikatow o bledach (ze strumenia bledow)
+
+>>  Dolaczenie danych tworzonych w wyniku dzialania polecenia (ze strumenia wyjsciowego) do istniejacego pliku bez jego 
+    wczesniejszego usuwania (jesli plik nie istnieje, zostaje utworzony)
+    
+Przyklady:
+
+ls -l > '/katalog'   Zapisanie rozbudowanej listy plikow w pliku o nazwie 'katalog', tworzonym w katalogu domowym 
+                     aktualnie zalogowanego uzytkownika
+                     
+cat dlugiplik.txt | grep xyz    Przefiltrowanie wyniku dzialania cat dlugiplik.txt (wyswietlajacego na ekranie zawartosc 
+                                pliku o nazwie dlugiplik.txt) za pomoca programu grep, wyszukujacego w swoim 
+                                strumieniu wejsciowym wiersze zawierajace podany ciag znakow. Na ekranie wyswietlone zostana 
+                                tylko wiersze pliku dlugiplik.txt, zawierajace znaki xyz.
+                                
+-------------------------------------------------------------------------------------------------------------------------------------
+Ogranicznie zbioru danych 
+
+cat       Wyswietla zawartosc pliku o sciezce dostepu. 
+          Z najuzyteczniejszych opcji warto wymienic -n powodujaca numerowanie kolejnych wierszy pliku.               
+
+more      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
+          Umozliwia pomijanie fragmentow danych za pomoca polecen podawanych z klawiatury (szczegoly man more).
+          Uproszczona wersja polecenia less. Jesli nie ma przeciwwskazan, powinno byc stosowane polecenie less.
+          Obsluga: klawisz spacji powoduje wyswietlenie kolejnej partii tekstu, klawisz Q przerywa wyswietlanie strumienia danych     
+           
+          Przyklad: cat /home/jakub/dlugiplik.txt | more
+          
+less      Spowalnia przeplyw informacji, zatrzymujac wyprowadzanie danych po kazdym pelnym ekranie. 
+          Umozliwia przewijanie danych za pomoca klawiszy sterowania kursorem oraz PageUp i PageDown. 
+          Nacisniecie klawisza Q przeywa wyswietlanie strumenia danych.
+          Klawisz / daje mozliwosc odszukania w tekscie podanego po jego nacisnieciu slowa lub wyrazenia
+          
+          Przyklad: cat /home/jakub/dlugiplik.txt | less
+          
+    
+head -n 'plik'      Ogranicza liczbe wyprowadzanych informacji do n pierwszych wierszy pliku o nazwie 'plik'.
+
+                    Przyklady: head -5 /etc/passwd
+                          cat /home/luzak/1.txt | head -20
+                          
+tail -n 'plik'      Ogranicza liczbe wyprowadzonych informacji do n ostatnich wierszy pliku o nazwie 'plik'.
+
+                    Przyklady: tail -5 /etc/passwd
+                           cat /home/luzak/1.txt | tail -20
+
+grep 'opcje''tekst''plik'     Wyszukuje w pliku 'plik' (lub w potoku danych) podany tekst i wypisuje wiersze tekstu, w ktorym dana fraza  
+                              wystapila choc raz. 
+                              Uzyteczne opcje:
+                              -A n- wypisuje n wierszy tekstu za kazdym znalezionym,
+                              -B n- wypisuje n wierszy tekstu przed kazdym znalezionym,
+                              -c - zamiast wyszukiwania zlicza tylko wystapienia frazy, 
+                              -i - ignoruje wielkosc znakow,
+                              -n - wypisuje przed kazdym wierszem numer tego wiersza w pliku,
+                              -v - odwraca dzialanie, wyszukujac wiersze niezawierajace podanej frazy.
+                              
+                              Przyklad: 
+                              cat log.txt | grep -v „10.0.0.1"
+                              
+-------------------------------------------------------------------------------------------------------------------------------------
 
