@@ -345,6 +345,215 @@ time 'polecenie'        Mierzy czas realizacji polecenia podanego jako parametr 
                         sys  0m0.004s
                         
 -------------------------------------------------------------------------------------------------------------------------------------
+Archiwizowanie Plikow (tar)
+
+tar 'opcje' 'nazwa-archiwum' 'dodatkowe parametry'
+
+Najczesciej stosowane opcje:
+c - Utworzenie nowego archiwum
+x - Wydobycie plikow z istniejacego archiwum
+t - Wyswietylenie listy plikow znajdujacych sie w archiwum
+f - Pobieranie i wysylanie danych z lub do pliku
+v - Wyswietlanie nazw przetwarzanych w danym momencie plikow i szczegolowych informacji o nich
+z - Wykorzystanie programu gzip, przeprowadzajacego kompresje danych. 
+    Kompresja gzip nie jest bardzo skuteczna, stanowi jednak pewnego rodzaju standard.
+j - Wykorzystanie programu bzip, przeprowadzajacego kompresje danych. 
+    Kompresja bzip nie jest jeszcze obslugiwana przez niektore narzedzia, 
+    jest jednak znacznie skuteczniejsza od kompresji gzip.
+
+Przyklady:
+
+tar xfvz /src/oident.tgz          Wydobywa wszystkie pliki z archiwum o nazwie /src/oident.tgz
+
+tar xfvj /src/oident.tar.bz2 *.h    Wydobywa z archiwum o nazwie /src/oident.tar.bz2 wszystkie pliki o nazwach spelniajacych 
+                                    warunek wieloznaczny
+                                  
+tar cfjv /backup/nowe.tar.bz2 /home/    Tworzy nowe archiwum o nazwie /backup/nowe.tar.bz2 
+                                        (skompresowane za pomoca programu bzip2), 
+                                        zawierajace wszystkie pliki i katalogi zapisane w katalogu /home
+                                            
+tar tfz /home/linux-2.4.26.tgz    Wyswietla na ekranie zawartosc archiwum o nazwie /nowe/linux-2.4.26.tgz
 
 
+
+gzip 'nazwa'        Kompresuje zawartosc pliku 'nazwa' z wykorzystaniem algorytmu gzip, usuwajac ten plik z dysku 
+                    i zastepujac plikiem skompresowanym o nazwie z dolaczonym .gz. 
+                    Mozliwe jest podanie kilku nazw plikow lub nazwy wieloznacznej. 
+                    
+gunzip 'nazwa'      Dziala analogicznie jak gzip, dokonuje jednak dekompresji zawartosci pliku i usuwa .gz z jego nazwy. 
+
+bzip2 'nazwa'       Kompresuje zawartosc pliku 'nazwa' z wykorzystaniem algorytmu bzip, usuwajac ten plik z dysku 
+                    i zastepujac plikiem skompresowanym o nazwie z dolaczonym .bz2. 
+                    Mozliwe jest podanie kilku nazw plikow lub nazwy wieloznacznej. 
+                    
+bunzi p2 'nazwa'    Dziala analogicznie jak bzip2, dokonuje jednak dekompresji zawartosci pliku i usuwa .bz2 z jego nazwy.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Tworzenie, Modyfikacja i Zarzadzanie Kontami Uzytkownikow
+
+whoami            Wyswietla nazwe aktualnie uzywanego konta uzytkownika
+su                Chwilowe uzyskanie uprawnien administratora systemu
+su 'nazwa'        Chwilowe przelaczenie sie na konto uzytkownika o innych uprawnieniach
+                  (opcja dostepna tylko dla administratora systemu)
+useradd 'nazwa'   Tworzy konto uzytkownika o nazwie 'nazwa'.
+
+                  Najczesciej uzywane parametry:
+                  -g 'nazwa'    Wybor grupy uzytkownikow, do ktorej nalezec bedzie tworzone konto
+                  -m            Utworzenie katalogu domowego dla zakladanego konta uzytkownika
+                  -s 'nazwa'    Wybiera domyslna powloke systemowa dla tworzonego konta. 
+                                Polecane jest korzystanie z powloki /bin/bash
+                                
+userdel 'nazwa'   Usuwa konto uzytkownika o nazwie 'nazwa'. 
+                  Dodanie parametru -r spowoduje jednoczesne usuniecie katalogu domowego tego uzytkownika
+               
+groups 'nazwa'    Wyswietla nazwy grup uzytkownika o nazwie 'nazwa'.
+                  Dodanie parametru -r spowoduje jednoczesnie usuniecie katalogu domowego tego uzytkownika.
+                 
+cat /etc/group    Wyswietla szczegolowe informacje dotyczace wszystkich grup uzytkownikow istniejacych w systemie.
+
+cat /etc/passwd   Wyswietla szczegolowe informacje dotyczace wszystkich kont uzytkownikow istenijacych w systemie.
+
+passwd            Zmiana wlasnego hasla.
+
+passwd 'nazwa'    Zmiana hasla zwiazanego z dowolnym kontem uzytkownika (opcja dostepna tylko dla administratora systemu).
+
+groupadd 'nazwa'  Tworzy grupe uzytkownikow, nazwana 'nazwa'
+
+groupdel 'nazwa'  Usuwa grupe uzytkownikow, nazwana 'nazwa'.
+
+
+Format pliku /etc/passwd
+
+Plik /etc/passwd zawiera kompletna liste kont uzytkownikow istniejacych w systemie
+gruszka:x:1000:100:Radoslaw Sokol:/home/gruszka:/bin/bash
+
+Nazwa konta:-(czy jest haslo uzywane):Liczbowy identyfikator konta uzytkownika:Liczbowy identyfikator podstawowej grupy 
+uzytkownikow, do ktorej nalezy konto (standard 1000 w gore, 100 to szczegolni uzytkownicy):Opisowa nazwa konta uzytkownika:
+Nazwa katalogu domowego uzytkownika:Nazwa powloki systemowej przypisanej uzytkownikowi.
+
+W polu zawierajacym znak :x: kiedys przechowywane bylo haslo chroniace dostepu do konta uzytkownika. Poniewaz pozwalalo to 
+administratorowi podgladac bezposrednio hasla wszystkich uzytkownikow, w nowszych wersjach systemu Linux hasla zapisane sa -
+w formie zaszyfrowanej - w pliku /etc/shadow.
+
+
+Format pliku /etc/group
+
+Plik /etc/group zawiera kompletna liste grup kont uztkownikow istniejacych w systemie.
+DomainAdmins::54:root,grush
+
+Nazwa grupy uzytkownikow::Liczbowy identyfikator grupy uzytkownikow:Lista kont uzytkownikow nalezacych do danej grupy.
+
+Kazde z kont uzytkownikow moze nalezec do dowolnej liczby grup uzytkownikow, jednak tylko jedna grupa jest wskazana 
+w pliku /etc/passwd jako podstawowa.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Kontrolowanie Praw Dostepu Do Plikow i Katalogow
+
+Format zapisu praw dostepu
+====================================
+
+-     r w x     r w x     r w x
+
+        7         7         7
+        
+Informacje dodatkowe  
+Prawa dostepu dla wlasciciela pliku 
+Prawa dostepu dla grupy uzytkownikow posiadajacej czesc uprawnien wlascicela pliku
+Prawa dostepu dla pozostalych uzytkownikow systemu operacyjnego.
+
+Znaczenie poszczegolnych symboli praw dostepu
+===================================================
+
+0 -       Brak dostepu do pliku
+1 --x     Prawo do uruchomienia pliku (lub wejscia do katalogu)
+2 -w-     Prawo do zapisywania pliku
+3 -wx     Prawo do zapisywania pliku i uruchamiania go (lub wejscia do katalogu)
+4 r--     Prawo do odczytywania zawartosci pliku
+5 r-x     Prawo do odczytywania zawartosci pliku i uruchamiania go (lub wejscia do katalogu)
+6 rw-     Prawo do odczytywania i zmiany zawartosci pliku
+7 rwx     Pelne prawa do pliku (odczyt, zapis, uruchamianie)
+
+Symbol informacji dodatkowych (pierwszy znak w linii dostepow)
+===================================================================
+
+d   Element jest katalogiem
+l   Element jest laczem symbolicznym do pliku lub katalogu
+s   Program zostanie uruchomiony w kontekscie konta uzytkownika wskazanego jako wlasciciel pliku, 
+    a nie konta uzytkownika aktualnie zalogowanego w systemie
+
+Zmiana wlascicela pliku lub katalogu
+=========================================
+
+chown 'konto' 'nazwa'               Nadanie kontu uzytkownika o nazwie 'konto' praw wlasciciela pliku 'nazwa'
+
+chown :'grupa' 'nazwa'              Nadanie grupie uztkownikow o nazwie 'grupa' czesci praw wlascicela pliku o nazwie 'nazwa'
+
+chown 'konto':'grupa' 'nazwa'       Jednoczesne przekazanie praw wlasnosci pliku o nazwie 'nazwa' uzytkownikowi 'konto' 
+                                    i grupie uzytkownikow o nazwie 'grupa'
+           
+Dolaczajac do polecenia parametr -R, spowodujesz zmodyfikowanie praw wlasnosci we wszystkich elementach (plikach i katalogach)
+znajdujacych sie w katalogach, ktorych prawa dostepu sa modyfikowane. 
+
+Na przyklad wydajac polecenie chown 'konto':'grupa' 'katalog' -R, spowodujesz przekazanie uzytkownikowi 'konto' 
+i grupie 'grupa' praw wlasnosci nie tylko do katalogu 'katalog', ale rowniez do wszystkich znajdujacych sie w nim elementow.
+
+W nazwach plikow i katalogow podawanych jako argument polecenia chown mozesz stosowac symbole wieloznaczne, 
+poszerzajac zakres dzialania polecenia. W jednym wierszu polecenia mozewsz tez podac jedna po drugiej kilka nazw plikow 
+i katalogow: chown 'konto':'grupa' plik1 plik2 katalog1 katalog2.
+
+Zmiana praw dostepu do pliku lub katalogu
+==============================================
+
+chmod 'prawa' 'nazwa'   Ustalenie kodu praw dostepu do pliku o nazwie 'nazwa' na 'prawa'. Kod 'prawa' musi byc podany jako 
+                        trzy cyfry z zakresu od 0 do 7, zgodnie z zasadami.
                         
+chmod 'zmiana' 'nazwa'  Zmiana kodu praw dostepu do pliku o nazwie 'nazwa'. 
+
+
+Lancuch znakow 'zmiana' sklada sie z oddzielonych przecinkami elementow (co najmniej jednego) o nastepujacej postaci:
+
+kto     jak     prawa   
+
+kto:
+u       Wlascicel pliku
+g       Grupa uzytkownikow posiadajacych czesc praw wlascicela pliku
+o       Pozostali uzytkownicy
+a       Wszyscy uzytkownicy systemu (jednoczesna zmiana wszystkich trzech grup praw dostepu do pliku: wlasciela, grupy 
+                                                                                           i pozostalych uzytkownikow)
+                                                                                           
+jak:
++       Nadanie dodatkowych praw
+-       Odebranie wybranych praw
+=       Narzucenie praw bez bez zachowania dotychczas obowiazujacych
+
+prawa:
+r       read
+w       write
+x       execute
+
+Brak uprawnien (ma sens tylko przy nadawaniu praw za pomoca symbolu = i odpowiada wtedy lancuchowi -rwx, 
+powodujacemu odebranie wszystkich praw do pliku).
+
+Przyklad:
+
+chmod u+x,g-w,o= 'plik'
+
+Plikowi o nazwie 'plik' zosatna nadane nastepujace prawa dostepu:
+- Wlasciciel bedzie w stanie uruchomic plik (prawa r i w nie ulegna zmianie),
+- Grupa uzytkownikow posiadajacych czesc uprawnien do pliku nie bedzie mogla wprowadzac zmian do plikow 
+  (prawa r i x nie ulegna zmianie),
+- Pozostali uzytkownicy nie beda dysponowali zadnymi prawami do tego pliku. 
+
+
+
+Dolaczajac do polecenia parametr -R, spowodujesz zmodyfikowanie praw wlasnosci we wszystkich elementach 
+(plikach i katalogach) znajdujacych sie w katalogach, ktorych prawa dostepu sa modyfikowane. 
+Na przyklad wydajac polecenie chmod 750 katalog -R, spowodujesz zmiane uprawnien przypisanych nie tylko katalogowi 'katalog',
+ale rowniez wszystkim znajdujacym sie w nim elementowm.
+
+W nazwach plikow i katalogow podawanych jako argument polecenia chmod mozesz stosowac symbole wieloznaczne, 
+poszerzajac zakres dzialania polecenia. W jednynm wierszu polecenia mozesz tez podac jedna po drugiej kilka nazw plikow 
+i katalogow: chmod 400 plik1 plik2 katalog1 katalog2.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
