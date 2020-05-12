@@ -109,8 +109,6 @@ Pierwszy
 Drugi
 A tu mamy ; srednik 
 
-
-Ogolna Obsluga /
 -------------------------------------------------------------------------------------------------------------------------------------
 Obsluga Klawiatury i Ekranu
 
@@ -331,7 +329,6 @@ find 'punkt-startowy''wyrazenie'    Wyszukuje pliki o nazwach spelniajacych okre
                                     ./Ghart.pmc 
                                     
 -------------------------------------------------------------------------------------------------------------------------------------
-
 Pomiar Czasu
 
 time 'polecenie'        Mierzy czas realizacji polecenia podanego jako parametr i wyswietla go zaraz po zakonczeniu realizacji tego polecenia.
@@ -545,7 +542,6 @@ Plikowi o nazwie 'plik' zosatna nadane nastepujace prawa dostepu:
 - Pozostali uzytkownicy nie beda dysponowali zadnymi prawami do tego pliku. 
 
 
-
 Dolaczajac do polecenia parametr -R, spowodujesz zmodyfikowanie praw wlasnosci we wszystkich elementach 
 (plikach i katalogach) znajdujacych sie w katalogach, ktorych prawa dostepu sa modyfikowane. 
 Na przyklad wydajac polecenie chmod 750 katalog -R, spowodujesz zmiane uprawnien przypisanych nie tylko katalogowi 'katalog',
@@ -699,14 +695,11 @@ Ctrl+A, K - likwiduje biezaca konsole wirtualna,
 Ctrl+A, W - wyswietla liste konsoli wirtualnych w ramach sesji. 
 
 -------------------------------------------------------------------------------------------------------------------------------------
-
 Diagnostyka Dzialania Systemu Operacyjnego 
 
 Polecenie top
 
-
 Poszczegolne wiersze planszy programu top zawieraja nastepujace informacje:
-
 
 I. Wiersz pierwszy:
 
@@ -716,7 +709,6 @@ informuje o aktualnym czasie (14:09:53),
 czasie nieprzerwanej pracy systemu operacyjnego (up 57 min), 
 liczbie zalogowanych na komputerze uzytkownikow (3 users) 
 oraz srednim obciazeniu obliczeniowym komputera, mierzonym w trzech roznych przedzialach czasu (load average).
-
 
 II. Wiersz drugi:
 
@@ -847,6 +839,7 @@ kill 'opcje' pid      Wysyla uruchomionemu programowi (procesowi) o identyfikato
                             Przyklad: killall -s 9 cat
 
 Lista Sygnalow Przesylanych Procesom
+========================================
 
 SIGHUP 1    Zakonczenie lub przekonfigurowanie programu 
 SIGINT 2    Program przerwany za pomoca kombinacji klawiszy
@@ -878,6 +871,7 @@ root@shoebox: /home/gruszka# hdparm -T -t /dev/hda
 /dev/hda: 
 Timing cached reads: 252 MB in 2.00 seconds = 125.81 MB/sec 
 Timing buffered disk reads: 104 MB in 3.02 seconds = 34.42 MB/sec 
+
 -------------------------------------------------------------------------------------------------------------------------------------                 
 Diagnostyka Dzialania Polaczen Sieciowych
 
@@ -1028,7 +1022,6 @@ Dodatkowy parametr -n       spowoduje wylaczenie konwersji adresow IP na odpowia
                             oraz numerow portow na odpowiadajace im nazwy uslug sieciowych.
                             
 ------------------------------------------------------------------------------------------------------------------------
-
 Interpretacja wierszy tabeli iptables
 
 ACCEPT         udp         --        0.0.0.0/0   0.0.0.0/0   udp  spt:53
@@ -1046,8 +1039,7 @@ Cel pakietow
 - DROP    - Pakiet jest odrzucany bez powiadamiania o tym strony nadajacej go. 
             Jesli jego zadaniem bylo utworzenie nowego polaczenia, nie dojdzie ono skutku.
             
-------------------------------------------------------------------------------------------------------------------------
-            
+------------------------------------------------------------------------------------------------------------------------         
 Zadania pakietu
  
 - NEW     - Opisuje pakiet danych, ktorego zadaniem jest nawiazanie nowego polaczenia. Napotykajac taki pakiet 
@@ -1061,7 +1053,6 @@ Zadania pakietu
 - INVALID - Opisuje pakiet danych, ktorego przynaleznosci do polaczenia nie sposob okreslic.
 
 ------------------------------------------------------------------------------------------------------------------------
-
 Dodanie reguly zapory sieciowej
 
 iptables 'parametry'
@@ -1101,7 +1092,6 @@ Parametry:
 -j 'cel'    Kieruje pakiet do innego lancucha przetwarzania pakietow lub od razu odrzuca go (REJECT) lub akceptuje (ACCEPT).
 
 ------------------------------------------------------------------------------------------------------------------------
-
 Dzialanie stalego dostepu do Internetu w sieci lokalnej
 
 iptables -t nat -A POSTROUTING -o 'karta-zewnetrzna' -s 'IP-wewnetrzne'/'maska-wewnatrzna' -j SNAT --to 'IP-zewnetrzne'
@@ -1118,7 +1108,6 @@ Niestety, moze wymagac to troche innego podejscia do problemu. W razie potrzeby 
 - bez problemu powinny byc dostepne podreczniki opisujace krok po kroku konfiguracje serwera rozdzielajacego dostep do sieci.
 
 ------------------------------------------------------------------------------------------------------------------------
-
 Automatyzacja Pobierania Plikow
 
 
@@ -1244,6 +1233,7 @@ Najczesciej stosowane opcje:
 
 -------------------------------------------------------------------------------------------------------------------------------------
 Zmiana Trybu Dzialania Systemu
+
 
 telinit 'tryb'     Zmienia tryb dzialania systemu na 'tryb'. 
 ===============
