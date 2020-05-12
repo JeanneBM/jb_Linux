@@ -671,4 +671,318 @@ grep 'opcje''tekst''plik'     Wyszukuje w pliku 'plik' (lub w potoku danych) pod
                               cat log.txt | grep -v „10.0.0.1"
                               
 -------------------------------------------------------------------------------------------------------------------------------------
+Tworzenie Trwalych Sesji
 
+screen 'opcje'      Tworzy nowa trwala sesje uzytkownika (przy braku parametrow) lub przylacza sie do jednej z istniejacych. 
+                    Trwale sesje dzialaja bez przerwy, nawet jezeli uzytkownik wyloguje sie z komputera lub zostanie od niego odlaczony 
+                    (przy pracy zdalnej). 
+                    
+Opcje: 
+
+-list -   wyswietla liste obecnych w pamieci sesji, 
+                              
+-r -      przylacza uzytkownika do jednej z dzialajacych na danym komputerze i nalezacych do niego sesji 
+          (w razie istnienia kilku sesji ich lista zostanie wyswietlona na ekranie, a identyfikator sesji nalezy podac jako parametr opcji -r), 
+                    
+-d -      rozlacza sesje, jezeli jest ona uzywana z innego komputera (czesto uzywa sie polaczenia opcji -d -r, 
+          aby rozlaczyc sesje i przylaczyc sie do niej od razu z lokalnego komputera), 
+                              
+-s 'nazwa' -    nadaje tworzonej sesji opisowa nazwe. 
+
+
+Kombinacje klawiszy obowiązujące w ramach sesji: 
+
+Ctrl+A, 0-9 - przelacza na jedna z dziesieciu konsoli wirtualnych w ramach sesji, 
+Ctrl+A, C - tworzy nową konsole wirtualna w ramach aktywnej sesji, 
+Ctrl+A, O - odlacza biezaca sesje, 
+Ctrl+A, K - likwiduje biezaca konsole wirtualna, 
+Ctrl+A, W - wyswietla liste konsoli wirtualnych w ramach sesji. 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Diagnostyka Dzialania Systemu Operacyjnego 
+
+Polecenie top
+
+
+Poszczegolne wiersze planszy programu top zawieraja nastepujace informacje:
+
+
+I. Wiersz pierwszy:
+
+14:09:53 up 57 min, 3 users, load average: 0.05, 0,20, 0,22
+
+informuje o aktualnym czasie (14:09:53), 
+czasie nieprzerwanej pracy systemu operacyjnego (up 57 min), 
+liczbie zalogowanych na komputerze uzytkownikow (3 users) 
+oraz srednim obciazeniu obliczeniowym komputera, mierzonym w trzech roznych przedzialach czasu (load average).
+
+
+II. Wiersz drugi:
+
+60 processes: 58 sleeping, 2 running, 0 zombie, 0 stopped
+
+Informuje o sumarycznej liczbie procesow dzialajacych w systemie (60 processes), a w tym o:
+liczbie procesow czekajacych na jakies zdarzenie 58 sleeping),
+liczbie procesow aktualnie wykonywanych (2 running),
+liczbie procesow, ktore zakonczyly dzialanie, jednak nie moga byc jeszcze usuniete (0 zombie)
+oraz liczbie procesow, ktorych dzialanie zostalo swiadomie wstrzymane przez uzytkownika lub administratora (0 stopped)
+
+III i IV. Wiersz trzeci i czwarty:
+
+CPU states: user 2,1% nice 0,0% system 7,0%
+
+Informuje o obciazeniu obliczeniowym procesora, generowanym przez procesy uzytkownika (user 2,1%),
+procesy o obnizonym priorytecie (nice 0,0%),
+kernel systemu operacyjnego (system 7,0%).
+
+/* ?!
+
+irq 0,0% softirq 0,0% idle 90,8%
+
+Informuje o przerwaniach sprzetowych (irq 0,0%),
+przerwaniach programowych (softirq 0,0%),
+operacje wejscia-wyjscia (iowait 0,0%);                                                               prawdopodobnie wa
+pole idle informuje natomiast o mocy obliczeniowej, dostepnej w danym momencie do wykorzystania.      prawdopodobnie id
+
+*/
+
+V i VI. Wiersz piaty i szosty:
+
+Mem: 126000k av, 121040k used, 4960k free, 0k shrd, 9772k buff
+
+Informuje o dostepnej dla procesow fizycznej pamieci operacyjnej (RAM) komputera (126000k av),
+wykorzystywanej pojemnosci pamieci (121040k used),
+wolnej pojemnosci pamieci (4960k free),
+pojemnosci blokow pamieci wspoldzielonych przez wiele procesow (0 shrd),
+pojemnosci buforow podsystemu wejscia-wyjscia (9772k buff)
+
+72088k active, 37486k inactive
+
+Informuje o obszarze pamieci aktywnie wykorzystywanym (72088k active) 
+i potencjalnie przeznaczonym do przeniesienia do pliku wymiany (37486k inactive).
+
+VII. Wiersz siodmy:
+
+Swap: 305224k av, 8184k used, 297040 free
+
+Informuje o rozmiarze przestrzeni partycji pliku wymiany (305224k av), 
+stopniu wykorzystania tej przestrzeni (8184k used)
+oraz pozostalym wolnym miejscu (297040k free).
+
+/*  
+Wszystkie wartosci dotyczace zajetosci pamieci i powierzchni partycji pliku wymiany w programie top zakonczone sa 
+mala litera k - jest to blad. Wartosci te podane sa w binarnych kilobajtach (kibibajtach). Poprawnym oznaczeniem 
+bylaby wielka litera K lub - zgodnie z norma SI- oznaczenie Ki.
+*/
+
+Poszczegolne kolumny tabeli wyswietlanej w dolnej czesci ekranu maja nastepujace znaczenie:
+
+PID -   numeryczny identyfikator procesu,
+User-   nazwa konta uzytkownika, z ktorego prawami wykonywany jest kod procesu,
+Pri -   wewnetrzny systemowy priorytet kodu procesu,
+Ni -    nadany przez uzytkownika priorytet kolejnoci wykonywania kodu procesu,
+Size -  obszar pamieci wirtualnej zarezerwowany na potrzeby procesu,
+RSS -   rzeczywisty obszar fizycznej (realnej) pamieci operacyjnej komputera przydzielonej aktualnie danemu procesowi,
+Share - rozmiar obszaru pamieci operacyjnej, wspoldzielonego z innymi procesami,
+Stat -  stan procesu,
+%CPU -  wzgledny stopien wykorzystania mocy obliczeniowej procesora komputera przez dany proces,
+%Mem -  wzgledny stopien wykorzystania pamieci operacyjnej kopmutera przez dany proces,
+Time -  czas nieprzerwanej pracy procesora komputera, dotychczas wykorzystany przez proces,
+CPU -   numer procesora komputera, ktory wykonuje kod procesu,
+Command -  tekst polecenia uzytego do uruchomienia procesu.
+
+Kombinacje klawiszy:
+
+Shift+M   Sortowanie listy procesow wedle zajetosci pamieci operacyjnej.
+Shift+P   Sortowanie listy procesow wedle obciazenia procesora.
+k         Wysylanie sygnalu procesowi o podanym odentyfikatorze PID: Sygnal Znaczenie
+           1 - Ponowne odczytanie pliku konfiguracyjnego programu(obslugiwane przez niektore programy)
+           9 - Informuje proces, ze za chwile zostanie zkonczony, po czy natychwiast wylacz ten proces.
+                Tej metody powinno uzywac sie w ostatecznosci, gdy oporny proces nie reaguje na sygnal 15
+           15 - Informuje proces, ze powinien on elegancko zakonczyc swoja prace. Poniewaz sygnal ten moze zostac zignorowany 
+                przez kod programu, nie zawsze skutecznie realizuje swoja funkcje; jednak - jako ze jego uzycie nie przerywa 
+                w brutalny sposob dzialania kodu - istnieje niewielkie ryzyko, bo ponowne uruchomienie zatrzymanego 
+                w ten sposob programu bylo niemozliwe.
+
+Q        Zakonczenie pracy programu top.
+
+Wylaczanie procesow moze zaklocic dzialanie systemu operacyjnego; jesli wylaczysz jedne z procesow nizbednych 
+do funkcjonowania systemu, mozesz zostac zmuszony do ponownego jego uruchomnienia. 
+
+Uzytkownicy moga przerywac dzialanie jedynie tych procesow, ktorych prace sami zainicjowali. 
+Jedynie administrator systemu (root) moze przerywac prace dowolnych procesow.
+
+Polecenie ps
+
+ps
+Najczesciej stosowane parametry:
+
+r -   Ogranicza liste do procesow aktywnych w danym momencie (ktorych kod jest w trakcie wykonywania przez procesor)
+x -   Wyswietla procesy uruchomione na wszystkich terminalach systemu
+U 'nazwa' -   Ogranicza liste do procesow nalezacych do uzytkownika o nazwie 'nazwa'
+u -   Wyswietla wiecej informacji na temat wykorzystania pamieci operacyjnej i wirtualnej przez analizowane procesy
+m -   Wyswietla wszystkie watki analizowanych procesow
+w -   Umozliwia programowi ps wyswietlanie szerszej tabeli (o dlugosci wierszy przekraczajacej 80 znakow).
+ww -  Jeszcze wieksza dopuszczalna dlugosc wierszy
+
+Przyklady:
+
+ps u   Wyswietlenie szczegolowych informacji na temat uruchomionych w czasie danej sesji procesow
+
+ps ux  Wyswietlenie szczegolowych informacji na temat wszystkich procesow dzialajacych w systemie
+
+ps uU 'luzak'   Wyswietlenie wszystkich procesow uruchomionych przez uzytkownika 'luzak'
+
+
+kill 'opcje' pid      Wysyla uruchomionemu programowi (procesowi) o identyfikatorze pid informacje o koniecznosci chwilowego 
+                      lub trwalego przerwania pracy. Rodzaj przesylanego sygnalu mozna okreslic za pomocą opcji -s n, 
+                      gdzie n to identyfikator sygnału (lista w tabeli ponizej). 
+                      
+                      Przykład: kill -s 15 grep 
+                      
+ killall 'opcje''nazwa'     Funkcjonuje podobnie jak kill, jednak przesyla informacje nie wybranemu procesowi, lecz wszystkim procesom 
+                            o podanej nazwie. 
+
+                            Przyklad: killall -s 9 cat
+-------------------------------------------------------------------------------------------------------------------------------------                 
+Diagnostyka Dzialania Polaczen Sieciowych
+
+
+ifconfig      Wyswietla informacje na temat aktywnych polaczen sieciowych
+
+    
+    [root@yarrow root]# ifconfig
+    eth0      Link encap:Ethernet   HWaddr 00:0C:29:F9:E8:3B
+    
+              inet addr:10.0.0.12   Bcast:10.255.255.255  Mask:255.0.0.0
+              
+              UP BROADCAST RUNNING MULTICAST    MTU:1500   Metric:1
+              
+              RX packets:167 errors:0 dropped:0 overruns:0 frame:0
+              TX packets:100 errors:0 dropped:0 overruns:0 carrier:0
+              
+              collisions:0 txqueuelen:1000
+              
+              RX bytes:26091 (25.4 Kb)  TX bytes:7872 (7.6 Kb)
+              
+              Interrupt:11 Base address:0x10c0
+    
+    
+    lo        Link encap:Local Loopback
+              inet addr:127.0.0.1 Mask:255.0.0.0
+              UP LOOPBACK RUNNING   MTU:16436   Metric:1
+              RX packets:4743 errors:0 dropped:0 overruns:0 frame:0
+              TX packets:4743 errors:0 dropped:0 overruns:0 carrier:0
+              collisions:0 txqueuelen:0
+              RX bytes:3898538 (3.7 Mb)     TX bytes:3898538 (3.7 Mb)
+ 
+Pozycja lo odpowiada wirtualnemu urzadzeniu sieciowemu, ktore udaje karte sieciowa podlaczona do sieci, 
+w ktorej nie znajduja sie zadne komputery poza Twoim (ktoremu w sieci odpowiada adres IP 127.0.0.1). 
+Jest to tak zwany 'interfejs zwrotny'.
+
+
+ping 'adres'    Wysyla do komputera o adresie (lub nazwie) 'adres' testowy pakiet danych ICMP i oczekuje odpowiedzi.
+                Polecenie przydatne w czasie testowania sieci lokalnych lub dzialania polaczenia internetowego.
+                
+Najczesciej stosowane parametry:
+                
+-c n        Ogranicza liczbe pakietow do n (standardowo test polaczenia przebiega bez konca, az do momentu uzycia Ctrl+C)
+
+-i 'czas'   Modyfikuje czas (w sekundach) uplywajacy miedzy kolejnymi probami nadania pakietu testowego.
+
+-n          Wylacza mozliwosc zmiany adresow IP na odpowiadajace im nazwy komputerow 
+            (przydatne w razie klopotow z dzialaniem uslugi DNS).
+
+-q          Wylacza wyswietlanie informacji o odebranych prawidlowo pakietach; w czasie konczenia pracy programu wyswietlana 
+            jest jedynie statystyka przeprowadzonego testu polaczenia.
+            
+-s 'rozmiar'    Okresla rozmiar testowych pakietow danych.
+
+-W 'czas'   Okresla czas (w sekundach), jaki program czeka na uzyskanie odpowiedzi (echa) na wyslany pakiet testowy.
+
+
+Przyklad:
+
+root@shoebox:/src> ping 10.0.0.1 -c 5
+
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1  ttl=64  time=0.341 ms
+64 bytes from 10.0.0.1: icmp_seq=2  ttl=64  time=0.279 ms
+64 bytes from 10.0.0.1: icmp_seq=3  ttl=64  time=0.244 ms
+64 bytes from 10.0.0.1: icmp_seq=4  ttl=64  time=0.281 ms
+64 bytes from 10.0.0.1: icmp_seq=5  ttl=64  time=0.255 ms
+--- 10.0.0.1 ping statistics ---
+5 packets transmitted, 5 recived, 0% packet loss, time 4033ms
+rtt min/avg/max/mdev = 0.244/0.280/0.341/0.033 ms
+
+
+traceroute 'nazwa' (rowniez: tracepath 'nazwa')  Wyswietla trase, jaka przebywaja pakiety danych przeslane do komputera o adresie/nazwie 'nazwa'.
+
+
+Najczesciej stosowane pakiety:
+
+-I      Przeprowadza test za pomoca pakietow ICMP (domyslnie: UDP)
+
+-n      Wylacza mozliwosc zamiany adresow IP na odpowiadajace im nazwy komputerow 
+        (przydatne w razie klopotow z dzialaniem DNS).
+        
+-w 'czas'     Okresla czas (w sekundach), jaki program czeka na uzyskanie odpwoiedzi (echa) na wyslany pakiet testowy.
+
+
+Przyklad:
+
+root@shoebox:/src> treaceroute 157.158.36.242
+traceroute to 157.158.36.242 (157.158.36.242), 30 hops max, 38 byte packets
+1   gliw-gate.necik.pl  (213.76.162.1)  10.552 ms  1.928 ms   2.173 ms
+2   Motorola.Magsoft.com.pl   (213.76.162.254)   135.799 ms *  71.401 ms
+3   213.25.193.237  (213.25.193.237)  151.434 ms  264.818 ms  95.245 ms
+4   z.kat-r2.do.kat_r2.tpnet.pl  (195.205.0.153)  184.909 ms   249.591 ms   231.478 ms
+5   z.kat-r2.do.kat-rl.tpnet.pl  (195.204.175.187)   114.260 ms   193.740 ms   197.480 ms  
+6   * do.kat_ar4.z.kat_rl.tpnet.pl  (213.25.5.213)   183.355 ms   143.400 ms
+7   do-sask.katowice.tpnet.pl  (194.204.145.130)    189.123 ms   117.858 ms   121.295 ms
+8   pc242.elektr.polsl.gliwice.pl  (157.158.36.242)   215.145 ms  180.132 ms   130.100 ms
+
+
+netstat         Wyswietla liste wszystkich aktywnych w danym momencie polaczen TCP oraz nasluchujacych gniazd TCP i UDP.
+
+Najczesciej stosowane parametry:
+
+-r    Wyswietla tablice zasad przekazywania pakietow miedzy interfejsami sieciowymi.
+
+-n    Wylacza mozliwosc zamiany adresow IP na odpowiadajace im nazwy komputerow 
+      (przydatne w razie klopotow z dzialaniem uslugi DNS).
+      
+-c    Wlacza tryb ciaglego aktualizowania wyswietlanych informacji 
+
+-l    Wlacza tryb wyswietlania nasluchujacych gniazd TCP i UDP.
+
+
+Przyklad:
+
+root@shoebox:/src>  netstat -n
+
+Kernel IP routing table
+Destination   Gateway       Genmask         Flags     MSS Window    irtt Iface
+213.76.162.0  0.0.0.0       255.255.255.224   U           0 0           0 ethl
+10.0.0.0      0.0.0.0       255.0.0.0         U           0 0           0 eth0
+127.0.0.0     0.0.0.0       255.0.0.0         U           0 0           0 lo
+0.0.0.0       213.76.162.1  0.0.0.0           UG          0 0           0 ethl
+
+
+host        Dokonuje translacji nazwy komputera na adres IP lub na odwrot. 
+            
+Opcja -t umozliwia podanie rodzaju rekordu DNS do odczytania. 
+            
+Przyklad: 
+
+user@shoebox :-$ host www. grush. one.pl 
+www.grush.one.pl has address 85.14.98.13 
+
+user@shoebox :-$ host 157 .158. 3 .1 
+1.3.158.157.in-addr.arpa domain name pointer castor.polsl.pl. 
+
+user@shoebox :-$ host -t MX poczta. onet. pl 
+poczta.onet.pl mail is handled by 10 mx.poczta.onet.pl. 
+ 
+-------------------------------------------------------------------------------------------------------------------------------------
