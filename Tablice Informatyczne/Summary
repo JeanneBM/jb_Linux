@@ -309,7 +309,7 @@ rm 'opcje' 'nazwa'          Usuwa wskazane pliki lub katalogi. Domyslnie usuniec
                             -i - prosi o potwierdzanie kazdej operacji usuniecia pliku
                             
 -------------------------------------------------------------------------------------------------------------------------------------
-Wyszukiwanie plikow
+Wyszukiwanie Plikow
 
 find 'punkt-startowy''wyrazenie'    Wyszukuje pliki o nazwach spelniajacych okreslone warunki, rozpoczynajac od podanego katalogu. 
                                     find / przeszuka wszystkie katalogi na wszystkich systemach plikow, 
@@ -332,5 +332,19 @@ find 'punkt-startowy''wyrazenie'    Wyszukuje pliki o nazwach spelniajacych okre
                                     
 -------------------------------------------------------------------------------------------------------------------------------------
 
-Pomiar czasu
+Pomiar Czasu
 
+time 'polecenie'        Mierzy czas realizacji polecenia podanego jako parametr i wyswietla go zaraz po zakonczeniu realizacji tego polecenia.
+                        Przyklad:
+                        user@shoebox:~$ time find . ~maxdepth 1 -iname "a*"
+                        ./a.txt
+                        ./avr
+                        ./a.oos
+                        real 0m0.406s
+                        user 0m0.012s
+                        sys  0m0.004s
+                        
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+                        
