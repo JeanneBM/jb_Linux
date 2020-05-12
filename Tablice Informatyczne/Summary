@@ -1,0 +1,176 @@
+Strony Podrecznika Obslugi Systemu
+
+System Linux zawiera rozbudowana dokumentacje techniczna, umozliwiajaca uzyskanie w dowolnym momencie szczegolowych informacji
+na temat kazdego z polecen, wraz z lista jego opcjonalnych parametrow.
+
+apropos 'temat'   Wyswietlenie listy nazw stron systemowego podrecznika wiazanych z tematem o nazwie /temat/.
+                  Przyklad: apropos permission 
+                
+man 'temat'       Wyswietlenie strony systemowego podrecznika zwiazanej z tematem o nazwie /temat/. 
+                  Najczesciej nazwa tematu jest po prostu nazwa polecenia systemowego.
+                  Przyklad: man chmod
+                  
+Wiele polecen wyswietla rowniez skrocony opis swojego dzialania po wywolaniu polecenia z parametrem --help.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+ Struktura Katalogow Systemu
+
+/boot - katalog zawierajacy pliki niezbedne do uruchomienia systemu operacyjnego 
+        (miedzy innymi tzw. jªdro systemu operacyjnego)
+        
+/etc -  katalog zawierajacy pliki konfiguracyjne, odpowiadajace za sposob funkcjonowania systemu operacyjnego oraz wiekszosci 
+        dzialajacych pod jego kontrola aplikacji.      
+       
+/root - prywatny folder administratora systemu operacyjnego (korzystajacego z konta root)
+
+/home - katalog zawierajacy prywatne foldery poszczegolnych uzytkownikow systemu operacyjnego
+
+/dev  - katalog przechowujacy odnosniki do sterownikow urzadzen zamontowanych w komputerze; 
+        programy, odwolujac sie do tych odnosnikow, uzyskuja dostep do urzadzen i komunikuja sie z nimi.
+        
+/lib  - katalog zawierajacy biblioteki procedur i modulow uzywanych przez aplikacje.
+
+/mnt  - katalog, w ktorego katalogach podrzednych montowana jest zawartosc wymiennych lub dostepnych poprzez siec 
+        nosnikow informacji - dyskietek, płyt CD-ROM, wspoldzielonych zasobow sieciowych itp.
+       
+/proc - pseudokatalog, dajacy dostep do zaawansowanych funkcji diagnostycznych i konfiguracyjnych systemu operacyjnego;
+        katalog /proc w rzeczywistosci nie istnieje na dysku twardym komputera i jest tworzony od nowa po kazdym 
+        uruchomieniu systemu.
+
+/bin  - katalog zawierajacy narzedzia administracyjne, dostepne przede wszystkim dla administratorow systemu operacyjnego,
+        ale rowniez dla wybranych uzytkownikow.
+        
+/sbin - katalog zawierajacy systemowe narzedzia administracyjne
+
+/tmp  - katalog sluzacy do przechowywania danych tymczasowych, potrzebnych jedynie chwilowo.
+
+/var  - katalog zawierajacy pliki tworzone przez programy dzialajace na komputerze;
+        czesc z nich tworzona jest tylko tymczasowo i przestaje istniec po wylaczeniu programow lub systemu operacyjnego,
+        czesc zas istnieje przez caly czas dzialania systemu i jedynie podlega modyfikacjom
+        
+/lost + found - katalog, w ktorym umieszczane sa pliki odtworzone po awarii systemu operacyjnego, ktora zakonczyla sie 
+                utrata danych 
+                
+/opt   - katalog, w ktorym instalowane sa niektore aplikacje
+
+/usr   - katalog zawierajacy programy, moduly i biblioteki procedur dostepne dla wszystkich uzytkownikow systemu operacyjnego
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Oznaczenia Urzadzen i Nosnikow Danych
+
+Urzadzenia zewnetrzne i nosniki danych sa identyfikowane przez pseudo-pliki znajdujace sie w katalogu /dev.
+
+Typowe oznaczenia urzadzen:
+- /dev/hdX -   urzadzenia IDE, ATA i ATAPI (w starszych wersjach systemu Linux, obecnie oznaczenie wycofane)
+               - od /dev/hda do /dev/hdz w zaleznosci od liczby podlaczonych urzadzen,
+               
+- /dev/sdX -   urzadzenia SATA bi SCSI, a obecnie rowniez IDE, ATA i ATAPI - od /dev/sda do /dev/sdz w zaleznosci 
+               od liczby podlaczonych urzadzen,
+               
+- /dev/lpX -   drukarki, od /dev/lp0 w gore bw zaleznosci od liczby obslugiwanych drukarek
+
+- /dev/sgX -   urzadzenia SATA, SCSI i inne, niebedace nosnikami danych (np. napedy optyczne, skanery)
+
+- /dev/srX -   urzadzenia SATA, SCSI i inne umozliwiajace rejestracje danych (np. napedy optyczne z funkcja zapisu,
+                                                                              napedy tasmowe)
+               
+- /dev/null -  urzadzenie wirtualne, przyjmuje nieskonczone ilosci danych i ignoruje je, nie wydaje z siebie zadnych informacji
+               uzywane do likwidowania niepozadanych strumieni danych
+               
+- /dev/zero -  urzadzenie wirtualne, nie przyjmuje danych i genereuje nieskonczony ciag zer (w sensie binarnym);
+               uzywanie do zapelniania blokow danych pustymi bajtami (o zerowej wartosci) 
+               
+- /dev/random -   urzadzenie wirtualne, nie przyjmuje danych i generuje nieskonczony ciag losowych wartosci binarnych;
+                  uzywane do kasowania informacji poufnych lub w kryptografii
+                  
+Nosniki danych, ktore moga byc podzielone na partycje, dodatkowo sa dostepne jako odrebne urzadzenia wirtualne 
+reprezentujace poszczegolne partycje. Na przyklad nosnik /dev/sda podzielony na trzy partycje podstawowe moze byc
+dostepny dodatkowo jako urzadzenia /dev/sda1, /dev/sda2 i /dev/sda3.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Symbole Wieloznaczne
+
+* Zastepuje dowolny ciag znakow o niekoreslonej dlugosci
+? Zastepuje dokladnie jeden znak
+[ ] Wskazuja zakres znakow
+
+Przyklady:
+
+szu*s: szumilas, szus, szufelka-2s
+*-miniatura: l-miniatura, zdjecie-miniatura
+zdjecie?x:zdjecielx, zdjecie2x, zdjecie-x, zdjecieax
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Laczenie wielu polecen
+
+janek@serwerek:-$ echo Pierwszy; echo Drugi; echo A tu mamy \; srednik 
+
+Pierwszy 
+Drugi
+A tu mamy ; srednik 
+
+
+Ogolna Obsluga /
+-------------------------------------------------------------------------------------------------------------------------------------
+Obsluga Klawiatury i Ekranu
+
+reset       Ponownie inicjalizuje konsolę wirtualną. Polecenie przydatne w przypadku, gdy zrealizowane wcześniej polecenie spowoduje 
+            błędne działanie konsoli (np. zmianę alfabetu tak, że zamiast liter pojawiają się symbole) 
+            
+clear       Wyczyszczenie aktvwnej konsoli wirtualnej 
+
+echo 'opcje' tekst    Wyświetla na ekranie podany tekst. Z najbardziej użytecznych opcji -n powoduje rezygnację z kończenia wypisywanego tekstu 
+                      znakiem końca wiersza, co umożliwia stopniowe dopisywanie informacji w tym samym wierszu.
+                
+read 'nazwa-zmiennej'       Odczytuje tekst z klawiatury i wstawia do zmiennej o nazwie 'nazwa-zmiennej'. Aby odwołać się później do tej zmiennej, 
+                            musisz poprzedzić jej nazwę znakiem $. 
+                            
+                            Przykład:   
+                            user@shoebox: N$ read zmienna 
+                            abcdef 
+                            user@shoeb
+                            
+-------------------------------------------------------------------------------------------------------------------------------------
+Montowanie Systemow Plikow
+
+mount 'nazwa''gdzie''opcje'   Montuje (podlacza) system plikow z urzadzenia 'nazwa' w katalogu 'gdzie'. 
+                              Katalog docelowy musi istniec i powinien byc pusty. 
+                              Opcje:
+                               
+                              -t typ - okresla typ systemu plikow (na przykład iso9660, ext2, ext3, reiserfs). 
+                              -o opcje - dodatkowe opcje procesu montowania; 
+                                      najwazniejsze z nich to: 
+                                       async - asynchroniczne wykonywanie operacji wejscia-wyjscia, 
+                                       sync - synchroniczne (mniej wydajne, choc bezpieczniejsze) wykonywanie operacji wejscia-wyjscia, 
+                                       exec - umozliwia wykonywanie plikow binarnych z systemu plikow, 
+                                       noexec - uniemozliwia wykonywanie plikow binarnych z systemu plikow, 
+                                       noatime - nie aktualizuje zapisu czasu ostatniego dostepu do pliku, co zwieksza wydajnosc, 
+                                       remount - dokonuje podlaczenia juz zamontowanego systemu plikow, zmieniajac tylko opcje 
+                                                 procesu montowania,
+                                       ro - podlaczenie systemu plikow w trybie tylko do odczytu, 
+                                       rw - podlaczenie systemu plikow w trybie do odczytu i zapisu. 
+                                       
+umount 'nazwa'      Odlacza system plikow zamontowany w katalogu co, czyniac go niedostepnym. 
+                    Operacji tej moze dokonac jedynie administrator (root) systemu. Odlaczany system plikow nie powinien byc uzywany. 
+                    Opcje: 
+                    -f - dokonuje proby wymuszenia odlaczenia systemu plikow (jezeli jest on uzywany), 
+                    -1 - oznacza system plikow jako skierowany do odlaczenia i dokonuje automatycznie jego odlaczenia 
+                         przy pierwszej nadarzajacej sie okazji (jezeli aktualnie jest uzywany i nie moze byc odlaczony natychmiast). 
+                         
+                     Odlaczenie systemu plikow przed odlaczeniem urzadzenia, na ktorym zapisane sa dane w ramach tego systemu plikow, 
+                     jest warunkiem koniecznym ochrony przed utrata danych. Zamontowane systemy plikow moga nie byc poprawnie 
+                     zaktualizowane na nosniku i przedwczesne (bez odlaczenia systemu plikow) odlaczenie 
+                     lub wylaczenie urzadzenia moze spowodowac utrate danych.
+                    
+mount --bind 'nazwa''gdzie'       Przekierowuje caly katalog 'nazwa' wraz z zawartoscia do katalogu 'gdzie'. 
+                                  Katalog gdzie musi istniec i powinien byc pusty (poprzednia jego zawartosc staje sie niewidoczna, 
+                                  lecz nie zostaje utracona). Oba katalogi mogą lezec w roznych systemach plikow. 
+                                  Operacji tej moze dokonac jedynie administrator (root) systemu. 
+
+
+sync        Synchronizuje stan buforow w pamieci operacyjnej z zawartoscia nosnikow danych, minimalizujac (lecz nie likwidujac) ryzyko 
+            utraty danych w momencie naglego odlaczenia zasilania lub odlaczenia urzadzenia pamieci masowej 
+            bez wczesniejszego odlaczenia systemu plikow. 
+            
+-------------------------------------------------------------------------------------------------------------------------------------
+
