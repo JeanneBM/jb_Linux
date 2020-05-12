@@ -1019,3 +1019,103 @@ user@shoebox :-$ host -t MX poczta. onet. pl
 poczta.onet.pl mail is handled by 10 mx.poczta.onet.pl. 
  
 -------------------------------------------------------------------------------------------------------------------------------------
+Konfiguracja Zapory Sieciowej IPTABLES
+
+
+iptables -L         Wyswietlanie aktualnej konfiguracji zapory sieciowej
+
+Dodatkowy parametr -n       spowoduje wylaczenie konwersji adresow IP na odpowiadajace im nazwy komputerow 
+                            oraz numerow portow na odpowiadajace im nazwy uslug sieciowych.
+                            
+------------------------------------------------------------------------------------------------------------------------
+
+Interpretacja wierszy tabeli iptables
+
+ACCEPT         udp         --        0.0.0.0/0   0.0.0.0/0   udp  spt:53
+Cel pakietu    Protokol    Opcje     Zrodlo      Cel         Informacje dodatkowe
+
+------------------------------------------------------------------------------------------------------------------------
+
+Cel pakietow
+
+- ACCEPT  - Pakiet jest akceptowany, jesli jego zdaniem bylo utworzenie nowego polaczenia, 
+            zapora sieciowa zapamietuje fakt nawiazania polaczenia.
+            
+- REJECT  - Pakiet jest odrzucany. Jesli jego zadaniem bylo utworzenie nowego polaczenia, nie dojdzie ono do skutku.
+
+- DROP    - Pakiet jest odrzucany bez powiadamiania o tym strony nadajacej go. 
+            Jesli jego zadaniem bylo utworzenie nowego polaczenia, nie dojdzie ono skutku.
+            
+------------------------------------------------------------------------------------------------------------------------
+            
+Zadania pakietu
+ 
+- NEW     - Opisuje pakiet danych, ktorego zadaniem jest nawiazanie nowego polaczenia. Napotykajac taki pakiet 
+            i akceptujac go, zapora sieciowa automatycznie zapamietuje rowniez fakt nawiazania polaczenia.
+            
+- ESTABLISHED - Opisuje pakiet danych, ktory nalezy do istniejacego polaczenia.
+
+- RELATED - opisuje pakiet danych, ktorego zadaniem jest nawiazanie nowego polaczenia, 
+            logicznie jednak wynikajacego z jednego z juz istniejacych polaczen. 
+            
+- INVALID - Opisuje pakiet danych, ktorego przynaleznosci do polaczenia nie sposob okreslic.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Dodanie reguly zapory sieciowej
+
+iptables 'parametry'
+
+Parametry:
+-A 'nazwa-lancucha'   Dolacza formule zapory sieciowej na koncu fragmentu tabeli odpowiadajacego lancuchowi 
+                      o nazwie 'nazwa-lancucha'.
+
+-m state --state 'zadanie'    Analizowane sa tylko pakiety danych o zadaniu okreslonym w parametrze 'zadanie'. 
+                              Mozliwe  zadania to:
+                              - NEW (nowe polaczenie),
+                              - ESTABLISHED (juz nawiazane polaczenie),
+                              - RELATED (nowe polaczenie zalezne od istniejacego),
+                              - INVALID (nieznane).
+                              Jesli uzywany jest parametr NEW, powinien byc dolaczony -m tcp 
+                              (aby sledzenie polaczen dotyczylo protokulu TCP).
+                              
+-p 'protokol'   Wybiera protokol IP sledzony przez formule. 
+                Najczesciej spotykane protokoly to: TCP (tcp), UDP (udp) i ICMP (icmp).
+                
+-s 'adres'    Analizowane sa tylko pakiety pochodzace od komputera o adresie IP 'adres'.
+              Aby zablokowac szersza grupe komputerow, rozszerz adres o maske sieci, oddzielona od adresu ukosnikiem
+              (na przyklad: 194.204.152.0/255.255.255.0 lub 194.204.152.0/24).
+              
+--sport 'port'    Analizowane sa tylko pakiety przychodzace z portu 'port'. 
+                  Aby zablokowac szerszy zakres portow, nalezy podac zakres w postaci dwoch liczb rozdzielonych dwukropkiem
+                  (na przyklad: 25:80)
+                  
+-d 'adres'    Analizowane sa tylko pakiety zaadresowane do komputera o adresie IP 'adres'. 
+              Aby zablokowac szersza grupe komputerow, nalezy rozszerzyc maske sieci oddzieolna ukosnikiem 
+              (na przyklad: 194.204.152.0/255.255.255.0 lub 194.204.152.0/24).
+              
+--dport 'port'    Analizowane sa tylko pakiety zaadresowane do portu 'port'. 
+                  Aby zablokowac szerszy zakres portow, nalezy podac zakres w postaci dwoch liczb rozdzielonych dwukropkiem 
+                  (na przyklad: 25:80)
+                  
+-j 'cel'    Kieruje pakiet do innego lancucha przetwarzania pakietow lub od razu odrzuca go (REJECT) lub akceptuje (ACCEPT).
+
+------------------------------------------------------------------------------------------------------------------------
+
+Dzialanie stalego dostepu do Internetu w sieci lokalnej
+
+iptables -t nat -A POSTROUTING -o 'karta-zewnetrzna' -s 'IP-wewnetrzne'/'maska-wewnatrzna' -j SNAT --to 'IP-zewnetrzne'
+
+gdzie:
+        karta-zewnetrzna -  identyfikator karty sieciowej realizujacej polaczenie z Internetem - na przyklad eth0,
+        IP-wewnetrzne -    adres IP sieci wewnetrznej (lokalnej) - na przyklad 10.0.0.0,
+        maska-wewnetrzna -  maska sieci wewnetrznej (lokalnej) - na przyklad 255.0.0.0,
+        IP-zewnetrzne -   adres IP przydzielony karcie sieciowej realizujacej polaczenie z Internetem.
+        
+Zamiast karty sieciowej polaczenie z Internetem moze realizowac rowniez inne urzadzenie. 
+W sposob podobny do opisanego mozna rozdzielic dostep do Internetu uzyskany poprzez modem, SDI, neostrade czy DSL.
+Niestety, moze wymagac to troche innego podejscia do problemu. W razie potrzeby nalezy poszukac informacji w Internecie 
+- bez problemu powinny byc dostepne podreczniki opisujace krok po kroku konfiguracje serwera rozdzielajacego dostep do sieci.
+
+------------------------------------------------------------------------------------------------------------------------
+
