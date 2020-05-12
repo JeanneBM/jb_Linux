@@ -262,25 +262,6 @@ rm 'nazwa' -r -f  - Usuniecie katalogu /nazwa/ wraz ze wszystkimi znajdujacymi s
                     Przelacznik -f pozwala zapobiec pytaniu o potwierdzenie checi usuniecia danych
                     (zaleznego od ustawien srodowiska uzytkownika)
                 
-find 'punkt-startowy''wyrazenie'    Wyszukuje pliki o nazwach spelniajacych okreslone warunki, rozpoczynajac od podanego katalogu. 
-                                    find / przeszuka wszystkie katalogi na wszystkich systemach plikow, 
-                                    a find . rozpocznie poszukiwania od biezacego katalogu. 
-                                    
-                                    Najczesciej stosowane opcje i wyrazenia: 
-                                    -maxdepth n - ogranicza glebokosc rekurencji do n poziomow, 
-                                    -xdev - uniemozliwia przegladanie innych systemow plikow niz poczatkowy,
-                                    -amin n - wyszukuje pliki uzywane do n minut temu, 
-                                    -cmin n - wyszukuje pliki zmodyfikowane do n minut temu, 
-                                    -empty - wyszukuje pliki o rozmiarze O i puste katalogi, 
-                                    -name 'nazwa' - wyszukuje pliki o podanej nazwie (mozna stosowac symbole wieloznaczne),
-                                    -iname 'nazwa' - analogiczne do -name, lecz nie rozroznia malych i wielkich liter. 
-                                    
-                                    Przyklad: 
-                                    user@shoebox:-$ find . -iname "char*" 
-                                    ./Dokumenty/Charts.ods 
-                                    ./C++ Projects/ a/charsize.c 
-                                    ./Ghart.pmc 
-
 -------------------------------------------------------------------------------------------------------------------------------------
 Tworzenie i Usuwanie Plikow
 
@@ -328,4 +309,28 @@ rm 'opcje' 'nazwa'          Usuwa wskazane pliki lub katalogi. Domyslnie usuniec
                             -i - prosi o potwierdzanie kazdej operacji usuniecia pliku
                             
 -------------------------------------------------------------------------------------------------------------------------------------
+Wyszukiwanie plikow
+
+find 'punkt-startowy''wyrazenie'    Wyszukuje pliki o nazwach spelniajacych okreslone warunki, rozpoczynajac od podanego katalogu. 
+                                    find / przeszuka wszystkie katalogi na wszystkich systemach plikow, 
+                                    a find . rozpocznie poszukiwania od biezacego katalogu. 
+                                    
+                                    Najczesciej stosowane opcje i wyrazenia: 
+                                    -maxdepth n - ogranicza glebokosc rekurencji do n poziomow, 
+                                    -xdev - uniemozliwia przegladanie innych systemow plikow niz poczatkowy,
+                                    -amin n - wyszukuje pliki uzywane do n minut temu, 
+                                    -cmin n - wyszukuje pliki zmodyfikowane do n minut temu, 
+                                    -empty - wyszukuje pliki o rozmiarze O i puste katalogi, 
+                                    -name 'nazwa' - wyszukuje pliki o podanej nazwie (mozna stosowac symbole wieloznaczne),
+                                    -iname 'nazwa' - analogiczne do -name, lecz nie rozroznia malych i wielkich liter. 
+                                    
+                                    Przyklad: 
+                                    user@shoebox:-$ find . -iname "char*" 
+                                    ./Dokumenty/Charts.ods 
+                                    ./C++ Projects/ a/charsize.c 
+                                    ./Ghart.pmc 
+                                    
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Pomiar czasu
 
