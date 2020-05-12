@@ -194,10 +194,10 @@ instead UUID: cd /dev/disk -> ls -l -> ls by-path/ //symbolic links that points 
 
 systemctl cat tmp.mount -> to see what, where ... should be mounted 
 
-mount *pipe* grep tmp 
+mount | grep tmp 
 systemctl status tmp.mount
 systemctl enable --now tmp.mount
-mount *pipe* grep tmp
+mount | grep tmp
 vim /etc/fstab 
 cp /usr/lib/systemd/system/tmp.mount /etc/systemd/system/articles.mount
 vim /etc/systemd/system/articles.mount
