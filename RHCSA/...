@@ -37,6 +37,9 @@ remove
 add repo
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
+INODES - to ilosc plikow, ktore moze byc na dysku. Disk Space to wielkosc plikow, ktore moga byc na dysku. 
+Problem wystepuje rzadko i swiadczy o faktycznym problemie - oznacza to, ze jakas apka zaczela tworzyc male pliczki nie wiadomo po co.
+Rozwiazniami sa czyszczenie dysku lub zwiekszenie dysku.
 
 What is an inode?
 
