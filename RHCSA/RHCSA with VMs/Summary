@@ -181,6 +181,26 @@ Lesson 15 Lab: Managing LVM Logical Volumes
 Lesson 15 Lab Solution: Managing LVM Logical Volumes 
 
 Module 3: Performing Advanced System Administration Tasks
+Lesson 16: Managing the Kernel
+  16.1 Understanding the Modular Structure of the Kernel
+  16.2 Working with Kernel Modules
+  16.3 Modifying Kernel Module Behavior Through modprobe
+  16.4 Tuning Kernel Behavior Through /proc
+  16.5 Using sysctl
+  16.6 Updating the Kernel 
+Lesson 16 Lab: Managing the Kernel
+Lesson 16 Lab Solution: Managing the Kernel
 
-Lesson 16:
-  
+Lesson 17: Managing and Understanding the Boot Procedure
+  17.1 Boot Procedure Generic Overview 
+  17.2 Understanding Grub2
+  17.3 Modifying Grub2 Parameters 
+  17.4 Understanding Systemd
+  17.5 Managing Services in a Systemd Environment
+  17.6 Understanding Systemd Targets
+  17.7 Switching between Systemd Targets
+  17.8 Managing File System Mounts in a Systemd Environment
+Lesson 17 Lab: Changing Boot Parameters
+Lesson 17 Lab Solution: Changing Boot Parameters
+
+
