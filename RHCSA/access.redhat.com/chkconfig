@@ -1,1 +1,4 @@
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/s2-services-chkconfig
+
+chkconfig - uruchamianie aplikacji przy starcie systemu w zaleznosci od runlevela
+
