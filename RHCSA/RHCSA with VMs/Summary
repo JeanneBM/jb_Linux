@@ -136,8 +136,8 @@ Lesson 11: Working with Virtual Machines
   11.6 Understanding KVM Networking
   11.7 Managing KVM Networking
   11.8 Importing OVF Virtual Machines Files
-Lesson 11 Lab: Working with Virtual Machines
-Lesson 11 Lab Solution: Working with Virtual Machines  
+Lesson 11 Lab: Managing Virtual Machines
+Lesson 11 Lab Solution: Managing Virtual Machines  
 
 Lesson 12: Scheduling Tasks
   12.1 Using cron vs. at
