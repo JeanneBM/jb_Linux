@@ -110,4 +110,77 @@ Lesson 9: Managing Processes
   9.3 Getting Process Information with ps
   9.4 Understanding Memory Usage 
   9.5 Understanding Performance Load
-  9.6 
+  9.6 Monitoring System Activity with top
+  9.7 Sending Signals to Processes
+  9.8 Understanding Priorities and Niceness
+  9.9 Changing Process Nice
+Lesson 9 Lab: Managing Processes
+Lesson 9 Lab Solution: Managing Processes
+
+Lesson 10: Managing Software
+  10.1 Understanding Meta Package Handlers
+  10.2 Setting up Yum Repositories
+  10.3 Using Repositories 
+  10.4 Managing Packages with yum
+  10.5 Using Yum Groups
+  10.6 Understanding yum and RPM Queries
+Lesson 10 Lab: Managing Software
+Lesson 10 Lab Solution: Managing Software
+
+Lesson 11: Working with Virtual Machines
+  11.1 Introducing KVM Virtualization
+  11.2 Managing Libvirt and KVM
+  11.3 Installing a Virtual Machine
+  11.4 Using virsh
+  11.5 Using virt-manager
+  11.6 Understanding KVM Networking
+  11.7 Managing KVM Networking
+  11.8 Importing OVF Virtual Machines Files
+Lesson 11 Lab: Working with Virtual Machines
+Lesson 11 Lab Solution: Working with Virtual Machines  
+
+Lesson 12: Scheduling Tasks
+  12.1 Using cron vs. at
+  12.2 Understanding Cron Execution Times
+  12.3 Scheduling with cron
+  12.4 Understanding anacron
+  12.5 Using at
+Lesson 12 Lab: Scheduling Tasks
+Lesson 12 Lab Solution: Scheduling Tasks
+
+Lesson 13: Configuring Logging
+  13.1 Understanding rsyslogd and journald Logging
+  13.2 Configuring rsyslog Logging
+  13.3 Working with journald
+  13.4 Configuring logrotate
+Lesson 13 Lab: Configuring Logging
+Lesson 13 Lab Solution: Configuring Logging
+
+Lesson 14: Managing Partitions
+  14.1 Understanding Disk Layout
+  14.2 Understanding GPT and MBR Partitions
+  14.3 Creating MBR Partitions with fdisk
+  14.4 Creating GPT Partitions with gdisk
+  14.5 Understanding File System Differences 
+  14.6 Making the File System
+  14.7 Mounting the File System Manually
+  14.8 Mounting Partitions via /etc/fstab
+  14.9 Creating a Swap Partition 
+Lesson 14 Lab: Managing Partitions
+Lesson 14 Lab Solution: Managing Partitions
+
+Lesson 15: Managing LVM Logical Volumes 
+  15.1 Why use LVM
+  15.2 Understanding LVM
+  15.3 Creating an LVM Logical
+  15.4 Understanding Device Mapper and LVM Device Names 
+  15.5 Understanding LVM Resize Operations 
+  15.6 Growing an LVM Logical
+  15.7 Shrinking an LVM Logical
+Lesson 15 Lab: Managing LVM Logical Volumes 
+Lesson 15 Lab Solution: Managing LVM Logical Volumes 
+
+Module 3: Performing Advanced System Administration Tasks
+
+Lesson 16:
+  
