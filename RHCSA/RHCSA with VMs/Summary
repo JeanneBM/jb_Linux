@@ -205,3 +205,82 @@ Lesson 17 Lab: Changing Boot Parameters
 Lesson 17 Lab Solution: Changing Boot Parameters
 
 
+Lesson 18: Applying Essential Troubleshooting Skills
+  18.1 Changing the Root Password
+  18.2 Troubleshooting File System Issues 
+  18.3 Troubleshooting Networking Issues
+  18.4 Troubleshooting Performance Issues
+  18.5 Troubleshooting RPM Dependency Issues
+  18.6 Troubleshooting Memory Shortage
+  18.7 Consulting Red Hat Websites for Troubleshooting Tips
+Lesson 18 Lab: Troubleshooting Common Boot Problems 
+Lesson 18 Lab Solution: Troubleshooting Common Boot Problems 
+  
+Module 4: Managing Network Services
+  
+Lesson 19: Managing HTTP Services
+  19.1 Understanding Apache Configuration
+  19.2 Creating a Basic Web Site
+Lesson 19 Lab: Configuring in Apache Web Server
+Lesson 19 Lab Solution: Configuring in Apache Web Server
+
+Lesson 20: Connecting to an LDAP Server
+  20.1 Understanding LDAP, Kerberos, IPA, and AD
+  20.2 Setting up LDAP Authentication
+  20.3 Connecting to an IPA Server
+  20.4 Joining an AD Domain 
+  20.5 Modifying sssd Configuration
+Lesson 20 Lab: Setting up LDAP Connectivity
+Lesson 20 Lab Solution: Setting up LDAP Connectivity
+
+Lesson 21: Accessing Remote File Systems and Automount
+  21.1 Accessing an NFS Server
+  21.2 Accessing a Samba
+  21.3 Understanding Automount
+  21.4 Configuring Automount
+  21.5 Configuring Automount for Home Directories 
+Lesson 21 Lab: Configuring Automount for NFS Shared Home Directories
+Lesson 21 Lab Solution: Configuring Automount for NFS Shared Home Directories
+
+Lesson 22: Managing SELinux 
+  22.1 Understanding the Need for SELinux
+  22.2 Understanding SELinux Modes
+  22.3 Understanding SELinux Labels and Booleans
+  22.4 Using File System Context Labels
+  22.5 Finding the Right Context Labels
+  22.6 Understanding semanage fcontext and chcon Differences
+  22.7 Using Booleans
+  22.8 Analyzing SELinux Log Files
+  22.9 Configuring SELinux for Apache 
+Lesson 22 Lab: Applying SELinux Labels
+Lesson 22 Lab Solution: Applying SELinux Labels
+
+Lesson 23: Configuring a Firewall
+  23.1 Understanding Firewall Configuration
+  23.2 Understanding Firewalld Components
+  23.3 Configuring a Firewall with firewall-cmd
+  23.4 Using firewall-config
+Lesson 23 Lab: Creating a Basic Firewall Configuration
+Lesson 23 Lab Solution: Creating a Basic Firewall Configuration
+
+Lesson 24: Using Kickstart
+  24.1 Understanding Kickstart Usage
+  24.2 Creating a Kickstart File
+  24.3 Using the Kickstart File for Automatic Installations
+  24.4 Using Kickstart Files in Fully Automated Datacenters
+Lesson 24 Lab: Creating a Kickstart File
+Lesson 24 Lab Solution: Creating a Kickstart File
+
+Lesson 25: Configuring Time Services
+  25.1 Understanding Time on Linux
+  25.2 Setting Time with timedatectl
+Lesson 25 Lab: Configuring Server Time
+Lesson 25 Lab Solution: Configuring Server Time
+
+Lesson 26: Managing SSH
+  26.1 Changing Common SSH Server Options 
+  26.2 Accessing the SSH Server Through the Firewall
+Lesson 26 Lab: Configuring SSH
+Lesson 26 Lab Solution: Configuring SSH
+
+
