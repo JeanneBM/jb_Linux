@@ -111,3 +111,5 @@ SCM - Single Chip Modules
 
 A single chip module (SCM) is a chip package with only one die. Contrast with multi-chip modules, where multiple dies are placed on a chip package. 
 
+----------------------------------------------------------------------------------------------------------------------
+
