@@ -1,0 +1,111 @@
+DSMC
+================
+Informacje o systemach POWER7
+Działanie
+
+Tworzy i odtwarza kopię zapasową danych wygenerowanych podczas korzystania z serwera IBM® Tivoli Storage Manager.
+Składnia
+
+dsmc [ -incremental | -schedule ]
+
+dsmc [ -query | -restore ] argv
+Opis
+
+Komenda dsmc pozwala użytkownikowi tworzyć kopię zapasową danych i odtwarzać je z serwera IBM Tivoli Storage Manager.
+Opcje
+Opcja 	Opis
+-incremental 	Tworzy kopię zapasową wszystkich nowych lub zmodyfikowanych plików lub katalogów w domyślnej domenie klienckiej albo systemów plików, katalogów lub plików określonych przez użytkownika, chyba że zostaną one wykluczone z zakresu usług tworzenia kopii zapasowej.
+-query [argument] 	Funkcje zapytań umożliwiają tworzenie zapytań dotyczących kopii zapasowych na serwerze IBM Tivoli Storage Manager.
+
+access
+    Wyświetla listę bieżących reguł autoryzacji.
+
+archive
+    Wyświetla listę zarchiwizowanych plików.
+
+backup
+    Wyświetla listę wersji kopii zapasowych.
+
+backupset
+    Tworzy zapytanie o zestaw kopii zapasowych z lokalnego pliku, napędu taśm lub serwera IBM Tivoli Storage Manager.
+
+filespace
+    Wyświetla listę obszarów plików w pamięci serwera IBM Tivoli Storage Manager. Można w zapytaniu podać również jedną nazwę obszaru plików.
+
+group
+    Wyświetla informacje o kopiach zapasowych grup i ich elementach.
+
+image
+    Wyświetla informacje o kopiach zapasowych obrazów.
+
+inclexcl
+    Wyświetla listę instrukcji uwzględniania i wykluczania w kolejności ich przetwarzania podczas tworzenia kopii zapasowej i archiwizacji.
+
+mgmtclass
+    Wyświetla informacje o dostępnych klasach zarządzania.
+
+node
+    Wyświetla wszystkie węzły, dla których administracyjny identyfikator użytkownika ma uprawnienia do wykonywania działań.
+
+options
+    Wyświetla wszystkie opcje lub ich część, wraz z bieżącymi ustawieniami.
+
+restore
+    Wyświetla listę sesji odtwarzania w bazie danych serwera, które można restartować.
+
+schedule
+    Wyświetla informacje o zdarzeniach zaplanowanych dla wybranego węzła.
+
+session
+    Wyświetla informacje o bieżącej sesji, w tym nazwę bieżącego węzła, godzinę uruchomienia sesji, informacje o serwerze oraz o połączeniu z serwerem.
+
+systeminfo
+    Gromadzi informacje o systemie IBM Tivoli Storage Manager i wyprowadza je do pliku lub na konsolę.
+
+was
+    Wyświetla kopie zapasowe narzędzia WebSphere Application Server (WAS) Network Deployment Manager (zawierającego informacje dotyczące instalacji, plików aplikacji oraz konfiguracji) lub serwera aplikacji, który odpowiada nazwie i typowi węzła kopii zapasowej grupy WAS określonej przez użytkownika.
+
+-restore [argument] 	Odtwarza kopie wersji kopii zapasowych plików użytkownika z serwera IBM Tivoli Storage Manager.
+
+backupset
+    Odtwarza zestaw kopii zapasowych z serwera IBM Tivoli Storage Manager lub pliku lokalnego. Kopię zapasową można również odtworzyć z napędu taśm.
+
+group
+    Odtwarza określone elementy lub wszystkie elementy kopii zapasowej grupy.
+
+image
+    Odtwarza kopię zapasową obrazu systemu plików lub woluminu surowego.
+
+nas
+    Odtwarza obraz systemu plików należący do serwera plików NAS.
+
+was
+    Odtwarza narzędzie WebSphere Application Server (WAS) Network Deployment Manager (zawierające informacje dotyczące instalacji, plików aplikacji oraz konfiguracji) lub serwer aplikacji z serwera Tivoli Storage Manager.
+
+-schedule 	Uruchamia kliencki program planujący na stacji roboczej.
+IBM Tivoli Storage Manager
+
+Konsola programu IBM Tivoli Storage Manager umożliwia zabezpieczenie komputerów wykorzystujących różne środowiska operacyjne, w tym wirtualny serwer we/wy, uruchomione na różnych urządzeniach. Skonfigurowanie klienta oprogramowania IBM Tivoli Storage Manager na wirtualnym serwerze we/wy pozwala uwzględnić wirtualny serwer we/wy w standardowym środowisku kopii zapasowych.
+Atrybuty 	Opis 	Wartość
+DSMC_CONFIG 	Określa położenie pliku konfiguracyjnego dsm.sys. 	/home/padmin/tivoli/tsm/dsm.sys
+DSMC_DIR 	Określa położenie katalogu konfiguracyjnego programu Tivoli Storage Manager. 	/home/padmin/tivoli/tsm/
+Status wyjścia
+Zwracane są następujące wartości wyjścia:
+Wartość 	Opis
+0 	Operacja powiodła się.
+>0 	Wystąpił błąd.
+Przykłady
+Aby utworzyć kopię zapasową obrazu na serwerze IBM Tivoli Storage Manager, wpisz komendę:
+
+dsmc -incremental <plik_mksysb>
+Kopiuj
+
+Aby wyświetlić kopie zapasowe obrazów na serwerze IBM Tivoli Storage Manager, wpisz komendę:
+
+dsmc -query backup <plik_mksysb>
+
+----------------------------------------------------------------------------------------------------------------------
+
+SCM - Single Chip Modules
+===============================
+
