@@ -1,36 +1,311 @@
 01. Capacity Planning 	
 
+Capacity Planning - Jak zaplanowac zasoby serwera?
+
+Capacity Planning - planowanie i modelowanie mocy obliczeniowej na podstawie danych o wydajnosci, dzieki czemu zasoby 
+sa zoptymalizowane, a organizacja dysponuje wystarczajaca moca obliczeniowa, by prowadzic dzialanosc i swiadczyc uslugi 
+na oczekiwanym poziomie. Planowanie pojemnosci serwera.
+
+Dysk + Pamiec + Procesor(CPU) + opcjonalnie wszystkie inne zasoby, ktorych jest ograniczona ilosc 
+(np. pula polaczen do bazy danych)
+
+Konfiguracja LAMP (Stos Lampowy):
+L - Linux, A - Apache, M - MySQL, P - PHP 
+
+Root - APACHE2:
+	-30 MB
+	-30 MB
+	-30 MB	
+	-30 MB
+
+1GB wystarczy na ok 34 polaczen, reszta bedzie kolejkowana. Pamiec ma wplyw na ilosc polaczen jakie jestesmy w stanie obsluzyc.
+
+ApacheBench – program, który został stworzony do wykonywania testów wydajnościowych serwerów HTTP, a w szczególności serwera 
+Apache. „Jest to prosty klient protokołu HTTP, którego jedynym zadaniem jest wydawanie powtarzających się żądań pod adresem 
+serwera, np. oblicza na ile zapytan na sekunde jest w stanie odebrac serwer, ile jest w stanie przyjac polaczen.
+
+uzytkownik: Przegladarka nawiazuje kilka polaczen jednoczesnie z serwerem Apache (4,8, 16 lub in.- wieksze to przez programy 
+przyspieszajace polaczenie) a serwer podaje strone.
+
+Klaster: zestaw serwerow i za pomoca loadbalancera dzielimy ruch przychodzacych zapytan.
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 02. Klastry webowe - Organizacja i skalowanie zasobów serwerowych 	
+
+Wlasciwa struktura:
+
+RR DNS
+
+Front-end		Front-end		Front-end 
+(Linux, Apache, Php)	(Linux,Apache, Php)	(Linux, Apache, Php)		php.ini
+IP			IP			IP
+	
+NFS RW
+
+Back end 
+(Linux,
+MySQL,
+Podaje kod,
+FTP)
+	/home
+	/var/session/
+
+
+Protokół transferu plików, FTP (od ang. File Transfer Protocol) – protokół komunikacyjny typu klient-serwer wykorzystujący 
+protokół sterowania transmisją (TCP) według modelu TCP/IP (krótko: połączenie TCP), umożliwiający dwukierunkowy transfer 
+plików w układzie serwer FTP–klient FTP. 
+
+SFTP (ang. SSH File Transfer Protocol) – protokół komunikacyjny typu klient-serwer, który umożliwia przesyłanie plików 
+poprzez sieć TCP/IP.
+
+Przesyłając plik przy użyciu protokołu FTP uzyskujemy dobre przepływności, ale nie zyskujemy bezpieczeństwa – nasze hasła 
+i dane nie są szyfrowane podczas przysyłania, co potencjalnie stwarza zagrożenie ich kradzieży. Znaczną poprawę 
+bezpieczeństwa przynosi protokół SFTP, który nie wymaga obecności serwera FTP, a przesyłane dane są szyfrowane 
+z wykorzystaniem klucza szyfrującego.
+
+SFTP nie powinien być mylony z protokołem FTPS, który jest rozszerzeniem protokołu FTP. 
+
+NFS - Network File System (NFS) – oparty na UDP lub TCP protokół zdalnego udostępniania systemu plików. Standardowy 
+port NFS to 2049.
+
+NFS jest de facto standardowym sieciowym systemem plików na systemach uniksowych. Inne protokoły udostępniające taką 
+usługę, jak np. Coda, nie zyskały dużej popularności. 
+
+Plik php.ini jest to plik konfiguracyjny, który pozwala zdefiniować ustawienia PHP na całym serwerze lub 
+w danym katalogu, do którego domena została przekierowana. Stosowanie pliku php.ini do przechowywania konfiguracji 
+jest bardzo dobrym rozwiązaniem z uwagi na:
+
+    niezaśmiecanie pamięci stałymi,
+    możliwość grupowania danych w sekcje,
+    możliwość zdefiniowania ustawień PHP tylko dla wybranej domeny (katalogu).
+
+Round-robin DNS - loadbalancer, służy do balansowania obciążenia i zwiększenia odporności na awarie serwerów. 
+Kilka hostów z różnymi adresami IP udostępnimy pod jedną nazwą, tak aby klienci losowo łączyli się do któregoś z nich, 
+bez konieczności decydowania do którego. 
+
+Load balancer - serwer, urzadzenie lub aplikacja, ktora umozliwia rozproszenie ruchu na inne maszyny, 
+aby zrownowazyc obciazenie wszystkich jednostek. 
+
+CLOUDFLARE.COM - usluga, moze sluzyc za loadbalancera, losuje na ktory serwer ma trafic zapytanie, wykonanie RR DNS
+
+Proxy, Serwer pośredniczący (pośrednik, ang. proxy) – oprogramowanie lub serwer z odpowiednim oprogramowaniem, które 
+dokonuje pewnych operacji (zwykle nawiązuje połączenia) w imieniu użytkownika. Często utożsamiany z pośrednikiem HTTP 
+(HTTP proxy). 
+
+Reverse proxy - W sieciach komputerowych zwrotny serwer proxy to rodzaj serwera proxy, który pobiera zasoby w imieniu 
+klienta z jednego lub więcej serwerów. Zasoby te są następnie zwracane do klienta, wyglądając tak, jakby pochodziły 
+z samego serwera proxy. W przeciwieństwie do serwera proxy przekazywania, który jest pośrednikiem dla swoich powiązanych 
+klientów w kontaktowaniu się z dowolnym serwerem, zwrotny serwer proxy jest pośrednikiem dla swoich powiązanych serwerów, 
+z którymi może się kontaktować dowolny klient. 
+
+Innymi słowy, serwer proxy działa w imieniu klienta (klientów), podczas gdy serwer proxy działa w imieniu serwera (serwerów).
+
+Varnish Cache. Varnish to dopalacz aplikacji webowych (cache HTTP reverse proxy) pozwalający przyśpieszyć ich działanie 
+nawet kilkaset razy, jednocześnie zmniejszając obciążenia generowane przez nie na serwerze. 
+
+Squid - oprogramowanie serwera pośredniczącego (ang. proxy) rozwijane na wolnej licencji. 
+
+
+
+
+tryb RW i RO NFS 
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 03. Bazy danych - skalowanie i optymalizacja zasobow bazodanowych 
 
+E	FE	FE	FE	FE
+
+BE (MySQl)
+		MAX_CONNECTIONS=100+1 polaczen+root
+
+Replikacja MySQL - każda zmiana na serwerze głównym (master), prowadzi do identycznej zmiany na serwerze zapasowym (slave).
+
+(SELECT, INSERT, UPDATE, DELETE)
+			Master (WO) >> Slave (RO)
+
+master zapisuje informacje, a slave odczytuje - odczytow jest wiecej, wiec nie obciaza serwerow.
+
+MAX_CONNECTIONS*(
+	SORT_BUFFER
+	JOIN_BUFFER
+)
+
+Struktury przyspieszajace wyszukiwanie informacji:
+KEY_BUFFER (silnik: MYISAM) - przyspieszanie aplikacji, bufor do trzymania kluczy/indeksow (KEY+DATA) 
+INNODB_BUFFER (silnik: InnoDB) 
+
+MYSQLTUNER.PL - sam obliczy ile dane zajmuja, skrypt Perl umożliwia szybki i prosty przegląd stanu serwera MySQL.
+
+Replikacja to nie jest Backup.
+
+Backup - Kopia bezpieczeństwa, kopia zapasowa (ang. backup copy) – dane, które mają służyć do odtworzenia oryginalnych 
+danych w przypadku ich utraty lub uszkodzenia. 
+
+
+MYLVMBACKUP +
+XTRABACKUP (DB)
+MYSQLDUMP
+
+BackUp:
+Snapshot partycji > tworzenie drugiej partycji, ktora jest klonem > z klona robiony jest backup 
+							(calosc zamraza partycje na sekunde, wiec jest niezauwazalne)
+
+binlogi - Odzyskiwanie skasowanych danych z MySQL.
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 04. RAID i LVM cz. 1 - Macierze dyskowe: zastosowanie i backupowanie 	
+
+RAID - polaczenie dyskow twardych w jeden zasob, gdy fizycznie jest to kilka urzadzen.
+
+RAID0 - polaczenie wielu dyskow i ich pojemnosci - ale kazdy dysk ma inne dane
+RAID1 - macierz dublowana (mirrored volume), kazdy dysk jest identyczny i po uszkodzeniu jednego z nich mozna go odtwoerzyc 
+bezproblemowo
+RAID3 - pojemnosc zsumowana, szybkosc zsumowana i jeden oddzielny dysk z sumami kontrolnymi (on tak naprawde ogranicza 
+liczbe pozostalych dyskow), pomysl dobry gdy uszkodzony bedzie tylko jeden dysk
+RAID5 - kazdy dysk dzieli sie na tyle czesci co jest dyskow, kazdy ma partycje z sumami kontrolnymi, szybszy od 3 ale 
+tak samo ogranicozne - do awarii tylko jednego dysku
+RAID0+1 - min. 4 dyski, laczymy w pary w R0 a to wszystko polaczone jest w R1, jak piramida, jak pada jeden dysk, 
+pada urzadzenie ale jest zmirrorowane wiec sie odtwarza, zle rozwiazanie bo za duze koszty za maly efekt
+
+RAID1+0 - in. RAID10 - 4 dyski laczone w pary po dwa z mirrorem i w calosc jako dwa urzadzenia ktore sie sumuja, 
+jeden dysk z kazdej pary moze ulec awarii i bedzie ok. Drozsze rozwiazanie, bo potrzebva duzo kart, ale najlepsze.
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 05. RAID i LVM cz. 2 - Zarzadzanie partycjami dyskowymi na serwerze 	
 
+LVM - Logical Volume Manager, mechanizm systemu operacyjnego do zarządzania przestrzenią pamięci masowej. W szczególności, 
+zarządca pozwala na połączenie partycji znajdujących się na różnych urządzeniach pamięci masowej w jeden dysk wirtualny. 
+
+PV- wolumen fizyczny < dysk fizyczny
+VG - grupa wolumenow < grupa, do ktorej zaliczaja sie wolumeny
+LV - wolumen logiczny < dysk logiczny
+
+
+LVM umożliwia nam bardziej elastyczne zarządzanie partycjami a w szczególności ich wielkością. Używając LVM jesteśmy 
+w stanie zmieniać wielkość partycji na życzenie, bez konieczności restartowania komputera. Przy niektórych systemach 
+plików nie musimy nawet odłączać partycji by zmienić jej wielkość. 
+
+snapshot - rodzaj zrzutu danych rozumianego jako sposób zapewniania dostępu do starszych wersji danych przechowywanych 
+w pamięci masowej, zwłaszcza dyskowej. 
+
+PVMOVE - Za pomocą komendy pvmove możemy przenieść wszystkie bądź pojedynczy LV pomiędzy PV w ramach danej VG. 
+
+Rozszerzenie VG o utworzone nowe PV, nowa partycje, na ktorej jest zasob do przeniesienia > przenoszenie na uruchomionym dysku 
+> usuniecie starego LV i PV a serwer zacznie dzialac z nowego dysku > resize partycji do calej pojemnosci docelowego dysku
+                                                                    i nie tyrzeba wylaczac zasobu i restartowac komputera. 
+
+Rzadko uzywana funkcjonalnosc.
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 06. Serwery pocztowe - Jak dzialaja serwery poczty e-mail? 	
+
+Uzytkownik1 wysyla wiadomosc do swojego servera, serwer1 odnajduje serwer2 uzytkownika2 i tam zapisuje przekaz 
+- dobiera go aplikacja w serwerze - aplkacja odklada na dysku - skrzynka pocztowa uzytkownika2. 
+Uzytkownik2 potrzebuje aplikacji do pobierania zeby zapisac swoje informacje na swoim dysku.
+
+SMTP
+POP3
+IMAP
+
+W serwerach sa 3 aplikacje: Wysylajace, odbierajace i pozwalajace na pobranie na swoj dysk
+
+Czesto app wysylajaca i odbierajaca sa w jednej paczce, np. POSTFIX
+
+single point of failure - pojedynczy serwer w sieci serwerow laczacy wszystko dookola w calosc, jak padnie to wszystko lezy :)
+
+Partycjonowanie powierzchni na dysku - poprzez odpowiednia strukture katalogow
+
+Transporty
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 07. Serwery DNS - Dzialanie oraz budowa infrastruktury DNS 	
 
+IP sie zwiekszaly, bo siec sie powiekszala i jak bylo tego naprawde duzo stworzono DNSy jako krotkie nazwy do danego serwera.
+
+DNS trzyma nazwy domenowe z ich ip.
+
+root servery
+
+Krajowy Rejestr Domen: DNS
+NASK -  jest państwowym instytutem badawczym, którego misją jest poszukiwanie i wdrażanie rozwiązań, służących rozwojowi 
+sieci teleinformatycznych w Polsce. Wszystkie adresy *.pl
+
+Rekord typu A - nr ip
+
+Rekord cname nazwy kanonicznej (rekord CNAME) jest typem rekordu DNS, który mapuje alias na rzeczywistą kanoniczną 
+nazwę domeny. Rekordy CNAME są zwykle używane do mapowania subdomeny, takiej jak www lub poczta, na domenę hostującą 
+treść tej subdomeny. nazwa domenty
+
+Za pomocą rekordu A określamy adres IP serwera docelowego, na który ma wskazywać domena.
+Za pomocą rekordu CNAME host serwera docelowego, na który ma wskazywać domena.
+Za pomocą rekordu MX określamy serwery, które będą obsługiwały pocztę e-mail w naszej domenie.
+Za pomocą rekordu NS wskazujemy jakie serwery DNS będą obsługiwały naszą domenę. 
+
+Baza danych domeny tzw. ZONA - plik ktory definiuje wszystkie wpisy dla danej domeny
+
+Rekordy A nie maja priorytetow.
+
+TTL - Time to Life okres ważności pakietu danych lub innych danych, stosowany w sieciach komputerowych. 
+Wbrew nazwie TTL nie zawsze określa czas. W przypadku czasu życia pakietów danych w sieci komputerowej jest to zwykle liczba 
+przeskoków, które może on wykonać na swojej trasie. 
+Nazwa TTL jest używana również do określania długości życia plików torrent na niektórych stronach internetowych. 
+
+SOA czyli Service Oriented Architecture a mówiąc bardziej po polsku architektura zorientowana na usługi to niewątpliwie 
+jeden z liderów jeśli chodzi o trendy w inżynierii oprogramowania. 
+SOA to zestaw polis, praktyk i bibliotek, które pozwalają wykorzystać funkcjonalność aplikacji w taki sposób, by można 
+było z niej korzystać jako z zestawu usług, opublikowanych tak, by poziom szczegółowości był dostosowany 
+do potrzeb konsumenta usługi. Publikowane elementy są niezależne od implementacji i stosują pojedynczy, 
+standardowy interfejs
+
+Innymi słowy SOA w dużym uproszczeniu to nic innego jak aplikacja wyposażona w odpowiedni interfejs umożliwiający dostęp 
+do oferowanych przez nią usług przez inne elementy systemu informatycznego zgodne z góry ustalonymi standardami. 
+
+nslookup
+dig
+host
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 08. System Load - Czym jest i co oznacza dla Twojego serwera? 	
 
+Wartosc jak bardzo jest obciazony system. Aby ocenic skale wyniku trzeba znac moc serwera jaka dysponuje. 
+Jak dziala procesor - jeden core moze wykonywac tylko jedno zadanie, programow mozna odpalic jednoczesnie wiele, 
+ale sam core wykonuje tylko jedna czynnosc wiec przelacza sie miedzy nimi.
+
+load systemowy mowi ile procesow czeka na wykonanie na danym corze procesora. 
+
+Load 1.0! = 100% uzycia CPU.
+Maksymalna liczba jednoczesnie wykonywanych zadan jest rowna liczbie rdzeni procesora. 
+
+jakim procesorem dysponujesz: /proc/cpuinfo
+
+programy moga czekac na moc procesora (najczesciej) albo na dysk. 
+
+Load systemowy serwera mozna sprawdzic przez top lub uptime - trzy cyfry to trzy przedzialy czasowe, jak sa dzisietne 
+to znaczy ze procesor mial czas kiedy nie byl obciazony, przeciazona maszyna jest kiedy jest stale wysoka wartosc. 
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 09. SPF i spam - Jak zwalczyć spam docierający do serwerów e-mail? 	
+
+Filtry antyspamowe - Aplikacje analizujace tresc i na tej podstawie stwierdzajace czy dana wiadomosc to spam czy nie, 
+szuka znacznikow charakteryzujacych spam.
+
+SPF bazuje na DNS.
+Sender Policy Framework (SPF) – niekomercyjny projekt mający na celu wprowadzenie zabezpieczenia serwerów SMTP przed 
+przyjmowaniem poczty z niedozwolonych źródeł. Ma to pozytywnie wpłynąć na ograniczenie liczby wiadomości mailowych będących 
+spamem. 
+
+SPF sprawdza w DNS kto jest uprawniony do wysylania wiadomosci. "Jesli nadawca jest taki sam jak rekord A to przyjmij poczte".
+
+openspf.org
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
