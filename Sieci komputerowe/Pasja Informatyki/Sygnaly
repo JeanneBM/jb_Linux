@@ -1,1 +1,30 @@
-
+1. SIGHUP   -  Zerwanie łączności - sygnał zawieszenia (ang. hangup)
+2. SIGINT   -  Znak przerwania (ang. interrupt)
+3. SIGQUIT  -  Znak zakończenia
+4. SIGILL   -  Niedozwolony rozkaz
+5. SIGTRAP     -  Pułapka śledzenia
+6. SIGIOT,SIGABRT    -  Błąd sprzętowy (rozkaz IOT)
+7. SIGBUS      -  Błąd szyny
+8.  SIGFPE      -  Błąd sprzętowy (rozkaz FBE)
+9. SIGKILL      -  Zakończenie procesu
+10. SIGUSR1    -  Sygnał definiowany przez użytkownika
+11. SIGSEGV     -  Naruszenie segmentacji
+12. SIGUSR2       -  Definiowany przez użytkownika
+13. SIGPIPE         -  Dane nie są odbierane z łącza komunikacyjnego
+14. SIGALRM        -  Budzik
+15. SIGTERM      -  Programowe zakończenie procesu
+17. SIGCHLD          -  Zakończenie procesu potomnego
+18. SIGCONT         -  Wznowienie wstrzymanego procesu
+19. SIGSTOP       -  Zatrzymanie procesu
+20. SIGTSTP       -  Wprowadzenie znaku zatrzymania
+21. SIGTTIN         -  Czytanie w tle z terminala sterującego
+22. SIGTTOU          -  Pisanie w tle na terminalu sterującym
+23. SIGURG             -  Dane wysokopriorytetowe w gnieździe
+24. SIGXCPU         -  Przekroczenie czasu procesora
+25. SIGXFSZ          -  Przekroczenie rozmiaru pliku
+26. SIGVTALRM        -  Budzik zegara wirtualnego
+27. SIGPROF               -  Budzik profilometra
+28. SIGWINCH             -  Zmiana rozmiaru okna
+29. SIGIO          -  Wejście-wyjście dozwolone dla deskryptora pliku
+    SIGPOLL       -  Zdarzenie dotyczące urządzenia strumieniowego
+30. SIGPWR      -  Niedobór mocy 
