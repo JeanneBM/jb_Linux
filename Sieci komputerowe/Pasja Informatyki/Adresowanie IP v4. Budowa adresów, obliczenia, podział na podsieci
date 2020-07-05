@@ -1,1 +1,50 @@
+[ 00:00:13 ] Tytułem wstępu
+[ 00:00:47 ] Agenda wykładu
+[ 00:02:16 ] Po co nam adresacja?
+[ 00:03:22 ] Budowa adresu IP
+[ 00:07:25 ] Maska podsieci
+[ 00:09:09 ] Adresowanie klasowe i bezklasowe
+[ 00:10:18 ] Klasy adresowe A B C D E
 
+Zadanie 1:
+
+[ 00:12:13 ] Treść zadania
+[ 00:12:54 ] Adres sieci
+[ 00:14:29 ] Adres rozgłoszeniowy
+[ 00:15:01 ] Liczba hostów w sieci
+[ 00:15:35 ] Adres pierwszego i ostatniego hosta
+[ 00:16:40 ] Zestawienie wyników
+
+Zadanie 2:
+
+[ 00:16:53 ] Treść zadania
+[ 00:17:49 ] Adres sieci
+[ 00:19:55 ] Adres rozgłoszeniowy (metoda 1)
+[ 00:20:41 ] Adres rozgłoszeniowy (metoda 2)
+[ 00:21:58 ] Liczba hostów w sieci (wzór 1)
+[ 00:22:52 ] Liczba hostów w sieci (wzór 2)
+[ 00:24:01 ] Adres pierwszego i ostatniego hosta
+
+[ 00:24:48 ] Oktety maski o wartości 255
+[ 00:26:49 ] Adresy publiczne i prywatne
+[ 00:27:17 ] Translacja NAT
+[ 00:29:00 ] Zakresy adresów prywatnych
+
+[ 00:29:09 ] Podział na dwie logiczne podsieci
+[ 00:31:11 ] Liczba podsieci i hostów dla różnych masek
+[ 00:31:21 ] Wyznaczenie liczby hostów w podsieci
+[ 00:32:10 ] Adresy sieci i rozgłoszeniowe obu podsieci
+[ 00:33:47 ] Zestawienie wyników dla obu podsieci
+
+Projektowanie podsieci w budynku szkoły:
+
+[ 00:33:56 ] Treść zadania - podział na cztery podsieci
+[ 00:34:52 ] Wybór maski podsieci spełniającej kryteria
+[ 00:40:32 ] Liczba podsieci i hostów dla różnych masek
+
+[ 00:41:09 ] Technika VLSM 
+[ 00:42:37 ] Podział na trzy logiczne podsieci
+[ 00:44:36 ] Zestawienie wyników dla trzech podsieci
+[ 00:44:40 ] Zadanie z egzaminu zawodowego E13
+[ 00:48:41 ] Słowo końcowe
+[ 00:49:23 ] Podsumowanie zdobytej wiedzy na slajdach
