@@ -5,7 +5,7 @@
 5. SIGTRAP  -  Pułapka śledzenia
 6. SIGIOT,SIGABRT    -  Błąd sprzętowy (rozkaz IOT)
 7. SIGBUS   -  Błąd szyny
-8.  SIGFPE  -  Błąd sprzętowy (rozkaz FBE)
+8. SIGFPE  -  Błąd sprzętowy (rozkaz FBE)
 9. SIGKILL  -  Zakończenie procesu
 10. SIGUSR1  -  Sygnał definiowany przez użytkownika
 11. SIGSEGV  -  Naruszenie segmentacji
